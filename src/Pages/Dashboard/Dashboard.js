@@ -15,6 +15,11 @@ function Dashboard () {
 		const [pupilEmotion, setPupilEmotion] = useState()
 		const {theme, setTheme} = ThemeHooks()
 
+		const logOut = () => {
+			localStorage.clear()
+			window.location.reload()
+		}
+
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -213,6 +218,8 @@ function Dashboard () {
 <path d="M353.897 22.8926C356.494 22.8926 358.653 23.7337 360.372 25.416C362.092 27.0859 362.951 29.1888 362.951 31.7246C362.951 34.1862 362.079 36.2334 360.335 37.8662C358.591 39.4867 356.395 40.2969 353.748 40.2969C351.188 40.2969 349.048 39.4743 347.328 37.8291C345.609 36.1715 344.749 34.1058 344.749 31.6318C344.749 29.1331 345.615 27.055 347.347 25.3975C349.091 23.7275 351.274 22.8926 353.897 22.8926ZM353.711 25.9355C352.091 25.9355 350.761 26.4674 349.722 27.5312C348.683 28.5951 348.163 29.9495 348.163 31.5947C348.163 33.2275 348.695 34.5635 349.759 35.6025C350.823 36.6292 352.19 37.1426 353.86 37.1426C355.517 37.1426 356.872 36.623 357.923 35.584C358.987 34.5326 359.519 33.1904 359.519 31.5576C359.519 29.9372 358.968 28.5951 357.867 27.5312C356.766 26.4674 355.381 25.9355 353.711 25.9355Z" fill="white"/>
 <path d="M374.374 14.0791H377.751V40H374.374V14.0791Z" fill="white"/>
 </svg>
+
+<button className='logout' style={{borderRadius: "50px"}} onClick={logOut}>Log Out</button>
 
 <div className='langTheme'>
 <Link className='language_dashboard dashboard_button' to='/upload'>

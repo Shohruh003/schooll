@@ -87,3 +87,10 @@ border-bottom: 3px solid #FC6C85;
   border-radius: 50px;
   border: none;
 }
+
+.logout {
+  display: block;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 50px;
+}
