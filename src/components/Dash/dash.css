@@ -1,0 +1,132 @@
+.dash_inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+.dash {
+  position: relative;
+  height: 100vh; /* Masalan, 100 viewport balandligi */
+  overflow: hidden;
+}
+
+.dash_list {
+  width: 1200px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.dash_item {
+  display: flex;
+  justify-content: space-between;
+  width: 580px;
+  height: 330px;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #85D77A;
+}
+
+.dashItem_text {
+  width: 230px;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.resultName{
+  display: block;
+  width: 150px;
+  text-align: right;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.resultCount{
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.resultEmotion{
+  display: block;
+  font-size: 48px;
+  font-weight: 700;
+  margin-top: 130px;
+}
+
+.dash_header {
+  height: 98vh;
+  text-align: center;
+  border: 5px solid #00B8D7;
+}
+
+.dash_heading {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 40px 0;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  color: #ffffff;
+  background-color: #00B8D7;
+}
+
+.dashLogo {
+  width: 100px;
+  height: auto;
+}
+
+.dashLogoName {
+  display: block;
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 28px;
+  font-weight: 600;
+  color: #00B8D7;
+}
+
+.dashLink {
+  display: block;
+  width: 250px;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 15px;
+  margin: 50px auto 0 auto;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #00B8D7;
+  border-radius: 40px;
+}
+
+.dashLink:hover {
+  background-color: rgba(0, 184, 215, 0.7);
+}
+
+.dashLink:active {
+  background-color: rgba(0, 184, 215, 0.5);
+}
+
+.itemDash {
+  margin-top: 32px;
+  background-color: #FC6C85;
+}
+
+.item_dash{
+  margin-top: 32px;
+}
+
+.itemDash_text {
+  font-size: 36px;
+  font-weight: 600;
+  margin: 20px auto;
+}

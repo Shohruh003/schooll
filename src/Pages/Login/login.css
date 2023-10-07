@@ -1,0 +1,104 @@
+.login_inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login_img {
+  width: 65%;
+  height: 100vh;
+}
+
+.login_content {
+  width: 600px;
+  height: 100vh;
+  padding: 20px 160px;
+  text-align: center;
+  border-left: 1px solid #000000;
+  background-color: rgba(2, 135, 157, 0.15);
+}
+
+.login_heading{
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 15px;
+  color: #161B23;
+}
+
+.login_logoText {
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 30px;
+  padding: 10px 10px;
+  color: #ffffff;
+  background-color: #00B8D7;
+}
+
+.login_text {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.login_input {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 8px 20px;
+  margin-bottom: 20px;
+  color: rgba(22, 27, 35, 0.5);
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+.login_button {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 10px 0;
+  text-align: center;
+  background-color: #00B8D7;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+}
+
+.login_button:hover {
+  background-color: rgba(0, 184, 215, 0.5);
+}
+
+.login_button:active {
+  background-color: rgb(0, 184, 215);
+}
+
+.login_link {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 20px auto 30px auto;
+  text-decoration: none;
+  color: rgba(22, 27, 35, 0.5);
+}
+
+.login_link:hover {
+  color: rgba(22, 27, 35, 0.7);
+}
+
+.login_link:active {
+  color: rgba(22, 27, 35, 1);
+}
+
+.login_logo {
+  width: 70px;
+  height: auto;
+}
+
+.login_logoName {
+  width: 150px;
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 auto 0 auto;
+}

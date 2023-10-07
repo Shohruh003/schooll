@@ -1,0 +1,89 @@
+/* .school {
+  background-color: rgba(231, 225, 236, 1);
+} */
+
+.header_dashboard{
+display: flex;
+align-items: end;
+justify-content: space-between;
+padding-top: 20px;
+margin-bottom: 10px;
+border-bottom: 3px solid #FC6C85;
+}
+
+.language-dash {
+  margin: 0;
+  padding: 0;
+}
+
+.logo-dashboard {
+  padding: 0;
+  margin: 0;
+}
+
+.userList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.canvasjs-chart-credit {
+  display: none;
+}
+
+.canvasjs-chart-canvas {
+  right: 0;
+  left: 50px;
+}
+
+.userItem {
+  margin: 0;
+  padding: 0;
+}
+
+.item_text{
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  color: #FC6C85;
+}
+
+.item_result{
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 18px; 
+  margin-left: 50px;
+  color: #FC6C85;
+}
+
+.canvas{
+  width: 600px;
+  border: 3px solid #FC6C85;
+  border-radius: 40px;
+  margin-bottom: 10px;
+}
+
+/* .vektor {
+  margin: 0 30px 0 30px;
+} */
+
+.admin_link {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 14px 20px;
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #FA8072;
+}
+
+.dashboard_button{
+  background-color: transparent;
+  margin-right: 20px;
+  border-radius: 50px;
+  border: none;
+}

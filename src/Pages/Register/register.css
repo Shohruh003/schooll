@@ -1,0 +1,109 @@
+.register {
+  display: block;
+  height: auto;
+  background-color: rgba(17, 17, 17, 0.1);
+}
+
+
+.register_inner {
+  display: flex;
+  align-items: center;
+}
+
+.register_img {
+  width: 542px;
+  height: auto;
+}
+
+.register_content {
+  width: 500px;
+  padding: 20px 130px 20px 110px;
+  margin-left: 250px;
+  text-align: center;
+  border: 5px solid #36C8E0;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.register_heading{
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 15px;
+  color: #161B23;
+}
+
+.register_logoText {
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 30px;
+  padding: 10px 10px;
+  color: #ffffff;
+  background-color: #00B8D7;
+}
+
+.register_text {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.register_input {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 8px 20px;
+  margin-bottom: 20px;
+  color: rgba(22, 27, 35, 0.5);
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+.register_button {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 10px 0;
+  text-align: center;
+  background-color: #00B8D7;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+}
+
+.register_button:hover {
+  background-color: rgba(0, 184, 215, 0.5);
+}
+
+.register_button:active {
+  background-color: rgb(0, 184, 215);
+}
+
+.register_link {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 20px auto 30px auto;
+  text-decoration: none;
+  color: rgba(22, 27, 35, 0.5);
+}
+
+.register_link:hover {
+  color: rgba(22, 27, 35, 0.7);
+}
+
+.register_link:active {
+  color: rgba(22, 27, 35, 1);
+}
+
+.register_logo {
+  width: 70px;
+  height: auto;
+}
+
+.register_logoName {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0;
+}
