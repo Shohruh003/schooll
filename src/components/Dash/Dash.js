@@ -1,19 +1,22 @@
 import './dash.css'
 import TadLogo from '../../Image/tad-head-big.png'
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { TeacherContext } from '../../context/TeacherContext';
 
 function Dash() {
   const [dashpupil, setDashPupil] = useState()
   const [dashteacher, setDashteacher] = useState()
   const [user, setUser] = useState()
+  const {position} = useContext(TeacherContext)
+  console.log(position);
 
   useEffect(() => {
 
     const fetchPupils = async () => {
       try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/AllPupilsEmotion/for_pupils/');
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/for_pupils/');
         setDashPupil(response.data.Pupils)
         setDashteacher(response.data.Teacher)
         setUser(response.data.Users)
@@ -67,7 +70,7 @@ function Dash() {
           <img className='dashLogo' src={TadLogo} alt="logoTad"  width='200' height='300'/>
           <h3 className='dashLogoName'>Tad Industries</h3>
 
-          <Link className='dashLink' to='/admin/pupil'>Доска администратора</Link>
+          <Link className='dashLink' to={`${position}/pupil`}>Доска {position === 'teacher' ? 'преподавателей' : position === 'admin' ? 'администратора' : position === 'psychologist' ? 'психолога' : 'родители'}</Link>
         </div>
       </div>
     </div>
