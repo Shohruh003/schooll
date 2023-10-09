@@ -1,0 +1,100 @@
+.admin_Modal ~ .modal-body, .modal-content{
+    border-radius: 50px !important;
+    border: 3px solid rgba(250, 128, 114, 1)
+}
+.modal_add{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content:space-around;
+    font-size: 23px !important;
+}
+#example-custom-modal-styling-title{
+    font-weight: 600;
+    font-size: 28px;
+    color: rgba(250, 128, 114, 1);
+    margin-left: 20px;
+    margin-bottom: 40px;
+}
+.input_box{
+    width: 45%;
+}
+.input_box input{
+    height: 62px;
+    font-size: 22px;
+    border-radius: 10px !important;
+}
+.input_box input:focus{
+    border: 1px solid rgba(250, 128, 114, 1);
+    box-shadow: 0 0 10px  rgba(250, 128, 114, 0.614);
+}
+label{
+    font-weight: 600;
+}
+.button_box{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 23px;
+    box-sizing: border-box !important;
+}
+.button_box label{
+    display: inline-block;
+    margin: 0;
+    font-size: 16px;
+}
+.button_box2{
+    display: flex;
+    gap: 23px;
+}
+
+.button_box button{
+    width: 154px;
+    height: 60px;
+    border-radius: 10px;
+    color: rgb(255, 255, 255) !important;
+    border: 0;
+}
+.button_box input{
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}
+.btn1{
+    background-color: rgb(252, 108, 133) !important;
+}
+.btn2{
+    background-color: rgb(250, 128, 114) !important;
+}   
+
+.video_box{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.vid-box{
+    width: 45%;
+    display: flex;
+}
+
+.vid-box button{
+    background-color: rgba(22, 27, 35, 0.78);
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    width: 169px;
+    height: 45px;
+}
+.vid-box select{
+    background-color: rgba(22, 27, 35, 0.78);
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    width: 169px;
+    height: 45px;
+}
+.modal_header{
+    display: flex !important;
+    justify-content: space-between !important;
+}

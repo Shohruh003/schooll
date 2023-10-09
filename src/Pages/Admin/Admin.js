@@ -17,6 +17,7 @@ import TeacherList from '../../components/TeacherList/TeacherList';
 import ClassesList from '../../components/Classes/ClassesList';
 import { LoginHooks } from '../../Hooks/LoginHooks';
 import { ThemeHooks } from '../../Hooks/ThemeHook';
+import AdminModal from '../../Modal/Admin/Adminmodal';
 
 function Admin(props) {
   const { isActive } = props;
@@ -31,6 +32,7 @@ const {user, setUsers} = PupilHooks()
   const {pupilCount, setPupilCount} = PupilCountHooks()
   const {teacherCount, setTeacherCount} = TeacherCountHooks()
   const {theme, setTheme} = ThemeHooks()
+  const [adminModal, setAdminModal] = useState()
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -420,7 +422,11 @@ const {user, setUsers} = PupilHooks()
               </li>
             </ul>
           </div>
-          <button className='panel_button' type='button'>Создать профиль</button>
+          <button className='panel_button' type='button' onClick={() => setAdminModal(true)}>Создать профиль</button>
+          <AdminModal className='admin_Modal' adminModal={adminModal} setAdminModal={setAdminModal}/>
+
+
+
           <Modal
          className='modal'
         show={modal}
