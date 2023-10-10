@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap'; 
+import close_Button from '../../Image/close-btn.svg';
+
 import './attendanceModal.css'
 function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
     const [agressiya, setAgressiya] = useState()
@@ -11,7 +13,7 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
             setAgressiya(response.data);
           })
           .catch(error => {
-            console.log(error);
+            console.log(error); 
           });
       }, []);
     
@@ -26,11 +28,13 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">
+        {/* <Modal.Header > */}
+          <Modal.Title className='modal_header' id="example-custom-modal-styling-title">
           Опоздавшие ученик
+          <img className='close_button' onClick={() => setLateComersPupil(false)} src={close_Button} />
+
           </Modal.Title>
-        </Modal.Header>
+        {/* </Modal.Header> */}
         <Modal.Body>
         <table class="table table-striped">
   <thead>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import close_Button from '../../Image/close-btn.svg';
 import { Modal } from 'react-bootstrap'; 
 
 import './depressiyaPupil.css'
@@ -25,11 +26,13 @@ function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">
+        {/* <Modal.Header closeButton> */}
+          <Modal.Title className='modal_header' id="example-custom-modal-styling-title">
           Дети в состоянии депрессии
+          <img className='close_button' onClick={() => setDepressiyaModal(false)} src={close_Button} />
+
           </Modal.Title>
-        </Modal.Header>
+        {/* </Modal.Header> */}
         <Modal.Body>
         <table class="table table-striped">
   <thead>
