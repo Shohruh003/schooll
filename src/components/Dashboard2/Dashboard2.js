@@ -33,7 +33,10 @@ function Dashboard2() {
 
     return (
         <div className='dashboard2'>
+            <div className='dashboard2_heading'>
             <h1>СИСТЕМА АНАЛИЗА ПСИХОЭМОЦИОНАЛЬНОГО <br />СОСТОЯНИЯ  УЧАЩИХСЯ </h1>
+            <Link className='dashboard2_headerButton' to='teacher/pupil'>Доска Преподавателя</Link>
+            </div>
             <div className='dashboard-body'>
                 <div className='dashboard-left'>
                     <h2>СРЕДНЯЯ <br />ШКОЛА №64 <br />г. Ташкента</h2>
