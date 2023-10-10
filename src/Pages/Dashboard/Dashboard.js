@@ -12,10 +12,7 @@ import MissingPupil from '../../Modal/AttendanceModal/MissingPupil';
 import MissingTeacher from '../../Modal/AttendanceModal/MissingTeacher';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function Dashboard () {
-	const [teacherCount, setTeacherCount] = useState()
 	const [teacherEmotion, setTeacherEmotion] = useState()
-
-	const [pupilCount, setPupilCount] = useState()
 	const [pupilEmotion, setPupilEmotion] = useState()
 	const {theme, setTheme} = ThemeHooks()
 const {decode} = DecodeHooks()
@@ -54,6 +51,7 @@ const {decode} = DecodeHooks()
 		const adminLink = document.querySelector('.admin_link')
 		const canvas = document.querySelectorAll('.canvas');
 		const dashboardIcons = document.querySelectorAll('.dashboard_icon circle')
+		const weather = document.querySelector('.weather')
 
 		if (theme === '#FC6C85') {
 			body.style.backgroundColor = '#F5EFEF';
@@ -81,6 +79,7 @@ const {decode} = DecodeHooks()
 			canvas.forEach((e) => {
 				e.style.borderColor = '#FC6C85';
 			})
+			weather.style.backgroundColor = 'rgba(250, 128, 114, 0.7)';
 		} else if (theme === '#81B37A') {
 			body.style.backgroundColor = 'rgba(133, 215, 122, 0.15)';
 			texts.forEach((e) => {
@@ -107,6 +106,7 @@ const {decode} = DecodeHooks()
 			canvas.forEach((e) => {
 				e.style.borderColor = '#81B37A';
 			})
+			weather.style.backgroundColor = '#81B37A';
 		}
 	};
 
@@ -183,10 +183,6 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 			indexLabel: "{name} - #percent%",
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
-				// { y: 400, color: "#FC6C85", name: "Злость" },
-				// { y: 100, color: "#ffffff", name: "Грусть" },
-				// { y: 200, color: "#FCEFED", name: "Нейтраль" },
-				// { y: 300, color: "#F9A79D", name: "Веселье"}
 				{ y: sadPupils, color: "#FC6C85", name: "Злость" },
 				{ y: angryPupils, color: "#ffffff", name: "Грусть" },
 				{ y: neutralPupils, color: "#FCEFED", name: "Нейтраль" },
@@ -271,6 +267,29 @@ function findLargestSection(options) {
 		const MissingPupils = () => {
 			setMissingPupil(true)
 		}
+
+		const [weather, setWeather] = useState()
+
+		useEffect(() => {
+			const fetchWeather = async () => {
+				try {
+					const response = await axios.get('https://api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=50e314a5fea145f564977fe2a4844e46');
+					setWeather(response.data.main.feels_like)
+				} catch (error) {
+					console.error(error);
+				}
+			};
+	
+			fetchWeather();
+		}, []);
+
+
+
+			const currentDate = new Date();
+			const day = String(currentDate.getDate()).padStart(2, '0');
+			const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+			const year = currentDate.getFullYear();
+
 	return (
 		<div className="school">
 			<div className='container'>
@@ -292,6 +311,25 @@ function findLargestSection(options) {
 						<path d="M353.897 22.8926C356.494 22.8926 358.653 23.7337 360.372 25.416C362.092 27.0859 362.951 29.1888 362.951 31.7246C362.951 34.1862 362.079 36.2334 360.335 37.8662C358.591 39.4867 356.395 40.2969 353.748 40.2969C351.188 40.2969 349.048 39.4743 347.328 37.8291C345.609 36.1715 344.749 34.1058 344.749 31.6318C344.749 29.1331 345.615 27.055 347.347 25.3975C349.091 23.7275 351.274 22.8926 353.897 22.8926ZM353.711 25.9355C352.091 25.9355 350.761 26.4674 349.722 27.5312C348.683 28.5951 348.163 29.9495 348.163 31.5947C348.163 33.2275 348.695 34.5635 349.759 35.6025C350.823 36.6292 352.19 37.1426 353.86 37.1426C355.517 37.1426 356.872 36.623 357.923 35.584C358.987 34.5326 359.519 33.1904 359.519 31.5576C359.519 29.9372 358.968 28.5951 357.867 27.5312C356.766 26.4674 355.381 25.9355 353.711 25.9355Z" fill="white"/>
 						<path d="M374.374 14.0791H377.751V40H374.374V14.0791Z" fill="white"/>
 					</svg>
+
+					<div className='weather'>
+					<svg className='weather_monstr' width="50" height="47" viewBox="0 0 50 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_71_1472)">
+<path d="M42.5458 15.8227C42.175 9.01871 36.2313 3.66096 29.1458 4.26305C26.8813 1.65259 23.5354 0 19.7917 0C13.1833 0 7.80417 5.14302 7.45417 11.6123C3.21875 12.3681 0 16.0438 0 20.4668C0 25.4393 4.06042 29.4729 9.07083 29.4729H11.8333C13.4396 31.995 16.2583 33.6833 19.4875 33.6833H40.9271C45.9396 33.6833 50 29.6498 50 24.6773C50 20.2542 46.7813 16.5785 42.5458 15.8227ZM10.4729 25.2625H9.07083C6.36875 25.2625 4.16667 23.1131 4.16667 20.4668C4.16667 16.008 8.55 14.9996 11.4333 15.1764C11.3292 12.3239 11.7188 4.21042 19.7917 4.21042C21.8063 4.21042 23.3625 4.73672 24.5625 5.56828C20.7646 7.50717 18.1125 11.3471 17.8708 15.8227C13.6583 16.5743 10.1688 20.3005 10.4729 25.2625ZM40.9271 29.4729H19.4875C16.7854 29.4729 14.5833 27.3235 14.5833 24.6773C14.5833 20.2184 18.9667 19.21 21.85 19.3869C21.7458 16.5343 22.1354 8.42083 30.2083 8.42083C38.0646 8.42083 39.0187 16.3596 38.5667 19.3869C41.7104 19.1658 45.8333 20.3068 45.8333 24.6773C45.8333 27.3235 43.6313 29.4729 40.9271 29.4729ZM11.1542 44.0683L14.4667 40.7211L15.9375 42.2094L12.625 45.5567L11.1542 44.0683ZM20.975 45.5399L24.2875 42.1905L22.8146 40.7021L19.5021 44.0515L20.975 45.5399ZM15.9375 39.2327L17.4104 40.7211L20.8167 37.2769L19.3438 35.7885L15.9375 39.2327ZM9.67917 45.5567L6.25 49.0198L7.72292 50.5082L11.1521 47.043L9.67917 45.5567ZM29.3146 45.5799L32.6292 42.2305L31.1563 40.7421L27.8417 44.0915L29.3146 45.5799ZM18.0292 45.5399L14.5833 49.0198L16.0562 50.5082L19.5021 47.0283L18.0292 45.5399ZM32.6292 39.2537L34.1021 40.7421L37.5167 37.2917L36.0438 35.8033L32.6292 39.2537ZM26.3708 45.5799L22.9479 49.0366L24.4229 50.525L27.8438 47.0683L26.3708 45.5799Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_71_1472">
+<rect width="50" height="47" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+					<span className='weather_number'>{Number(weather).toFixed() - 273}</span>
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.19239 7C6.74763 7 7.20009 7.449 7.20009 8C7.20009 8.551 6.74763 9 6.19239 9C5.63716 9 5.1847 8.551 5.1847 8C5.1847 7.449 5.63716 7 6.19239 7ZM6.19239 6C5.07889 6 4.17701 6.895 4.17701 8C4.17701 9.105 5.07889 10 6.19239 10C7.30589 10 8.20778 9.105 8.20778 8C8.20778 6.895 7.30589 6 6.19239 6ZM18.2686 13.949C18.1769 15.206 17.7093 16.195 16.8659 16.917C16.0234 17.639 14.912 18 13.5314 18C12.0229 18 10.8358 17.496 9.97124 16.488C9.10664 15.48 8.67434 14.096 8.67434 12.337V11.623C8.67434 10.5 8.87386 9.511 9.2719 8.655C9.67095 7.8 10.2403 7.143 10.982 6.686C11.7226 6.229 12.5832 6 13.5637 6C14.922 6 16.0154 6.361 16.8457 7.083C17.6761 7.805 18.1547 8.818 18.2847 10.123H15.8602C15.8007 9.369 15.5891 8.822 15.2253 8.483C14.8616 8.143 14.3083 7.974 13.5647 7.974C12.7565 7.974 12.1519 8.262 11.7498 8.836C11.3488 9.411 11.1422 10.303 11.1311 11.511V12.393C11.1311 13.655 11.3236 14.578 11.7085 15.16C12.0934 15.743 12.7011 16.034 13.5314 16.034C14.2801 16.034 14.8394 15.864 15.2082 15.525C15.577 15.185 15.7886 14.66 15.8431 13.949H18.2686ZM12.2385 2C17.795 2 22.3155 6.486 22.3155 12C22.3155 17.514 17.795 22 12.2385 22C6.68213 22 2.16162 17.514 2.16162 12C2.16162 6.486 6.68213 2 12.2385 2ZM12.2385 0C5.56057 0 0.14624 5.373 0.14624 12C0.14624 18.627 5.56057 24 12.2385 24C18.9165 24 24.3309 18.627 24.3309 12C24.3309 5.373 18.9165 0 12.2385 0Z" fill="white"/>
+</svg>
+					<span className='weather_date'>{`${day}/${month}/${year}`}</span>
+
+					</div>
 
 					<button className='logout' style={{borderRadius: "50px"}} onClick={logOut}>Log Out</button>
 					

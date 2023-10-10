@@ -23,9 +23,6 @@
   border-radius: 4px;
 }
 
-.class_list::-webkit-scrollbar-thumb:hover {
-  background-color: #FC6C85;
-}
 
 .class_list li {
   border: 2px solid #FC6C85;

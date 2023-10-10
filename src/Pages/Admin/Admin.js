@@ -437,7 +437,7 @@ const {user, setUsers} = PupilHooks()
         aria-labelledby="example-custom-modal-styling-title"
       >
         {/* <Modal.Header closeButton> */}
-          <Modal.Title className='modal_header' id="example-custom-modal-styling-title">
+          <Modal.Title className='modal_header' style={{color: theme}} id="example-custom-modal-styling-title">
           Текст сообщения
           <img className='close_button' onClick={() => setModal(false)} src={close_Button} />
 

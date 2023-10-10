@@ -106,3 +106,28 @@ border-bottom: 3px solid #FC6C85;
   border: 4px solid #FC6C85;
   border-radius: 40px;
 }
+
+.weather{
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  height: 70px;
+  padding: 10px;
+  color: #ffffff;
+  background-color: #FA8072;
+  border-radius: 10px;
+}
+
+.weather_number {
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  margin-top: 25px;
+}
+
+.weather_date {
+  font-size: 14px;
+  margin-top: 40px;
+}

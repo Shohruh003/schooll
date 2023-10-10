@@ -1,13 +1,15 @@
-import './dashboard.css'
+import './dashboard2.css'
 import TadLogo from '../../Image/tad-head-big.png'
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from '../../Image/logotad.svg'
+import gif from '../../Gif/happy-gif-unscreen.gif'
 import boy from '../../Image/happy-removebg-preview 1.svg'
 import teacher from '../../Image/teacher.svg'
 import all from '../../Image/all.svg'
 import boyTwo from '../../Image/happy-removebg-preview 2.svg'
+import { DecodeHooks } from '../../Hooks/DecodeHook';
 
 function Dashboard2() {
     const [dashpupil, setDashPupil] = useState()
@@ -34,6 +36,23 @@ function Dashboard2() {
 
     //     fetchPupils();
     //   }, []);
+    const {decode} = DecodeHooks()
+    const [position, setPosition] = useState()
+
+    useEffect(() => {
+
+		const fetchClasses = async () => {
+			try {
+
+				const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
+				setPosition(response.data.status)
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
+		fetchClasses();
+	}, []);
 
 
     return (
@@ -41,7 +60,7 @@ function Dashboard2() {
             <div className='dashboard2_heading'>
             <h1>СИСТЕМА АНАЛИЗА ПСИХОЭМОЦИОНАЛЬНОГО <br />СОСТОЯНИЯ  УЧАЩИХСЯ </h1>
             <button className='logout' style={{borderRadius: "50px"}} onClick={logOut}>Log Out</button>
-            <Link className='dashboard2_headerButton' to='teacher/pupil'>Доска Преподавателя</Link>
+            <Link className='dashboard2_headerButton' to={position === 'teacher' ? `${position}/pupil` : 'родители'}>Доска {position === 'teacher' ? 'преподавателей' : 'родители'}</Link>
             </div>
             <div className='dashboard-body'>
                 <div className='dashboard-left'>
@@ -50,7 +69,7 @@ function Dashboard2() {
                 </div>
                 <ul>
                     <li className='card-one'>
-                        <img src={boy} />
+                        <img className='gifImg' src={gif} alt='GIF' />
                         <div className='card_text'>
                             <div className='card-item'>
                                 <p>Всего учеников</p>

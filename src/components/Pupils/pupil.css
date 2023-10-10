@@ -23,10 +23,6 @@
   border-radius: 4px;
 }
 
-.people_list::-webkit-scrollbar-thumb:hover {
-  background-color: #FC6C85;
-}
-
 .people_list li {
   border: 2px solid #FC6C85;
   border-radius: 20px;

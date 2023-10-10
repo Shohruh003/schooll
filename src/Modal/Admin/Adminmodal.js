@@ -4,7 +4,10 @@ import selectIcon from '../../Image/select-icon.svg';
 import { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import './AdminModal.css'
+import { ThemeHooks } from '../../Hooks/ThemeHook';
 function AdminModal({ adminModal, setAdminModal }) {
+  const {theme, setTheme} = ThemeHooks()
+
   // const [agressiya, setAgressiya] = useState()
 
   // useEffect(() => {
@@ -33,7 +36,7 @@ function AdminModal({ adminModal, setAdminModal }) {
         <table class="table table-striped modal_update">
           <thead>
 
-            <Modal.Title className='modal_header' id="example-custom-modal-styling-title">
+            <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
               Дети в состоянии агрессии
               <img onClick={() => setAdminModal(false)} src={close_Button} />
             </Modal.Title>
@@ -78,7 +81,7 @@ function AdminModal({ adminModal, setAdminModal }) {
               </div>
               <div className='button_box2'>
                 <button className="btn1" onClick={() => setAdminModal(false)}>Отмена</button>
-                <button className="btn2">Cохранить</button>
+                <button style={{backgroundColor: theme}} className="btn2">Cохранить</button>
               </div>
             </div>
 

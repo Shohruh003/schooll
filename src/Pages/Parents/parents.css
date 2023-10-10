@@ -1,0 +1,271 @@
+.avatarImg {
+    border-radius: 50px;
+}
+
+.avatar_dashboard {
+    border-radius: 50px;
+    margin: 0 15px;
+}
+
+.avatar {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.avatar_inner {
+    width: 60%;
+}
+
+.avatar_about{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    background-color: rgba(252, 108, 133, 0.15);
+}
+
+.avatar_name {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+    color: #161B23;
+}
+
+.avatar_time {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.avatar_chat {
+    width: 30%;
+}
+
+.avatar_chartInner{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+    margin-bottom: 20px;
+    background-color: rgba(252, 108, 133, 0.15);
+    border-radius: 20px;
+}
+
+.charts_text{
+    display: flex;
+    align-items: center;
+    margin: 0;
+    margin: 10px 0 10px 0;
+}
+
+.chart_percentage {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    color: black;
+    border-radius: 50px;
+}
+
+.chart_name {
+    font-size: 16px;
+    font-weight: 400;
+    color: #161B23;
+}
+
+.chart {
+    position: absolute;
+    left: 50px;
+    bottom: 20px;
+}
+
+.week_list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.emotion_week {
+    padding: 10px 30px;
+    background-color: rgba(252, 108, 133, 0.15);
+    border-radius: 20px;
+    margin-top: 15px;
+}
+
+.week_item {
+    text-align: center;
+}
+
+.week_heading {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.weekImg_come {
+    width: 80px;
+    height: auto;
+    border-radius: 10px;
+    border: 4px solid #FA8072;
+}
+
+.days {
+    display: block;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 7px 0;
+}
+
+.weekImg_leave{
+    width: 80px;
+    height: auto;
+    border-radius: 10px;
+    border: 4px solid #FC6C85;
+}
+
+
+.chat{
+    display: flex;
+    justify-content: space-between;
+    height: 80%;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: #F4C4C5;
+}
+
+.chat_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 100%;
+    background-color: #F5EFEF;
+    border-radius: 10px;
+}
+
+.chat_content {
+    width: 75%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.chat_heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #161B23;
+    height: 10%;
+    border-radius: 10px;
+    background-color: #F5EFEF;
+}
+
+.empty_div {
+    height: 10%;
+    border-radius: 10px;
+    background-color: #F5EFEF;
+}
+
+.chat_list {
+    overflow-y: auto;
+    max-height: 350px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    height: 75%;
+    border-radius: 10px;
+    background-color: #F5EFEF;
+}
+
+.chat_item {
+    width: 90%;
+    border: 2px solid #F4C4C5;
+    border-radius: 10px;
+    margin: 5px auto 5px auto;
+}
+
+.chat_about {
+    margin: 0;
+    text-align: start;
+}
+
+.chat_name{
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.chat_position{
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.chat_avatarImg {
+    border-radius: 50px;
+    margin-right: 15px;
+}
+
+.chat_count{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background-color: #FC6C85;
+    font-size: 14px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+    right: -5px;
+    top: -5px;
+}
+
+.chat_link{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px;
+    color: #161B23;
+    text-decoration: none;
+}
+
+.chart_percentage1 {
+    background-color: #F9A79D;
+}
+
+.chart_percentage2 {
+    background-color: #FCEFED;
+}
+
+.chart_percentage3 {
+    background-color: #ffffff;
+}
+
+.chart_percentage4 {
+    background-color: #FC6C85;
+}
+
+.column {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgba(252, 108, 133, 0.15);
+}
+
+.column div {
+    height: 150px;
+}
