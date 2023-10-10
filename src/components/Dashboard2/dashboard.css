@@ -132,3 +132,9 @@
     color: #ffffff;
     background-color: rgba(0, 184, 215, 1);
 }
+.logout {
+    display: block;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 50px;
+  }

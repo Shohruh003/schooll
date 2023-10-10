@@ -415,3 +415,13 @@
   margin-left: 15px;
   margin-right: 15px;
 }
+
+.modal_header{
+  display: flex ;
+  justify-content: space-between ;
+  padding-top: 10px;
+}
+
+.close_button {
+  margin-right: 40px;
+}

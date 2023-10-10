@@ -14,6 +14,11 @@ function Dashboard2() {
     const [dashteacher, setDashteacher] = useState()
     const [user, setUser] = useState()
 
+    const logOut = () => {
+		localStorage.clear()
+		window.location.reload()
+	}
+
     //   useEffect(() => {
 
     //     const fetchPupils = async () => {
@@ -35,6 +40,7 @@ function Dashboard2() {
         <div className='dashboard2'>
             <div className='dashboard2_heading'>
             <h1>СИСТЕМА АНАЛИЗА ПСИХОЭМОЦИОНАЛЬНОГО <br />СОСТОЯНИЯ  УЧАЩИХСЯ </h1>
+            <button className='logout' style={{borderRadius: "50px"}} onClick={logOut}>Log Out</button>
             <Link className='dashboard2_headerButton' to='teacher/pupil'>Доска Преподавателя</Link>
             </div>
             <div className='dashboard-body'>

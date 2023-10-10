@@ -15,6 +15,7 @@ import { TeacherHooks } from '../../Hooks/TeacherHook';
 import { TeacherCountHooks } from '../../Hooks/TeacherCountHook';
 import TeacherList from '../../components/TeacherList/TeacherList';
 import ClassesList from '../../components/Classes/ClassesList';
+import close_Button from '../../Image/close-btn.svg';
 import { LoginHooks } from '../../Hooks/LoginHooks';
 import { ThemeHooks } from '../../Hooks/ThemeHook';
 import AgressiyaPupil from '../../Modal/AgressiyaPupil/AgressiyaPupil';
@@ -465,18 +466,20 @@ const {user, setUsers} = PupilHooks()
 </li>
 </ul>
 
-          <Modal
+<Modal
          className='modal'
         show={modal}
         onHide={() => setModal(false)}
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">
+        {/* <Modal.Header closeButton> */}
+          <Modal.Title className='modal_header' id="example-custom-modal-styling-title">
           Текст сообщения
+          <img className='close_button' onClick={() => setModal(false)} src={close_Button} />
+
           </Modal.Title>
-        </Modal.Header>
+        {/* </Modal.Header> */}
         <Modal.Body>
           <p>
           Идейные соображения высшего порядка, а также понимание сути ресурсосберегающих технологий однозначно фиксирует необходимость направлений прогрессивного развития. Как уже неоднократно упомянуто, независимые государства могут быть рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок.

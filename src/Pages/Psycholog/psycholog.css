@@ -457,3 +457,13 @@
   color: #FC6C85;
   border-radius: 50px;
 }
+
+.modal_header{
+  display: flex ;
+  justify-content: space-between ;
+  padding-top: 10px;
+}
+
+.close_button {
+  margin-right: 40px;
+}
