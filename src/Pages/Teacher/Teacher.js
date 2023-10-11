@@ -5,7 +5,6 @@ import { Modal } from 'react-bootstrap';
 import axios from 'axios';
 import { PupilHooks } from '../../Hooks/PupilHooks';
 import Pupil from '../../components/Pupils/Pupil';
-import { AgeRangeHooks } from '../../Hooks/AgeRangeHook';
 import { OriginalUserHooks } from '../../Hooks/OriginalUsersHook';
 import { GendersHooks } from '../../Hooks/GendersHooks';
 import { PupilEmotionHooks } from '../../Hooks/PupilEmotionHook';
@@ -22,13 +21,13 @@ function Teacher(props) {
   const { isActive } = props;
 
   const [modal, setModal] = useState(false)
-const {user, setUsers} = PupilHooks()
-  const {originalUsers, setOriginalUsers} = OriginalUserHooks();
+const {setUsers} = PupilHooks()
+  const {originalUsers} = OriginalUserHooks();
   const {genders, setGenders} = GendersHooks()
-  const {pupilEmotion, setPupilEmotion} = PupilEmotionHooks()
-  const {classes, setClasses} = ClassesHooks()
+  const {setPupilEmotion} = PupilEmotionHooks()
+  const {setClasses} = ClassesHooks()
   const {pupilCount, setPupilCount} = PupilCountHooks()
-  const {teacherCount, setTeacherCount} = TeacherCountHooks()
+  const {setTeacherCount} = TeacherCountHooks()
   const {theme, setTheme} = ThemeHooks()
 
 
@@ -55,7 +54,6 @@ const {user, setUsers} = PupilHooks()
     const dockaAdmin = document.querySelector('.adminBoard_header')
     const headerIcons = document.querySelectorAll('.header_icon circle')
     const headerLinks = document.querySelectorAll('.header-link')
-    const headerActives = document.querySelectorAll('.header-active')
     const adminPanel = document.querySelector('.admin_panel')
     const itemButtons = document.querySelectorAll('.item_button')
     const ageSearch = document.querySelectorAll('.ageSearch')

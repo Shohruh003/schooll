@@ -1,7 +1,5 @@
-import axios from 'axios';
 import close_Button from '../../Image/close-btn.svg';
 import selectIcon from '../../Image/select-icon.svg';
-import { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import './AdminModal.css'
 function AdminModal({ adminModal, setAdminModal }) {

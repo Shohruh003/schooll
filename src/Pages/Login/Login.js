@@ -1,5 +1,5 @@
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import LoginPageImg from '../../Image/loginImage.png'
 import TadIndustries from '../../Image/tad-head-big.png'
 import axios from 'axios';
@@ -8,12 +8,11 @@ import { LoginHooks } from '../../Hooks/LoginHooks';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import jwt_decode from 'jwt-decode'
-import { useState } from 'react';
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 
 function Login() {
-  const {token, setToken} = LoginHooks()
-  const {decode, setDecode} = DecodeHooks()
+  const {setToken} = LoginHooks()
+  const {setDecode} = DecodeHooks()
   const navigate = useNavigate();
 
   const handleUserLogin = (evt) => {

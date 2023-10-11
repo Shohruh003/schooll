@@ -2,11 +2,10 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import close_Button from '../../Image/close-btn.svg';
 
-import { Modal } from 'react-bootstrap'; 
-// import AgressiyaImg from '../../Image/peopleImg1.png'
+import { Modal } from 'react-bootstrap';
 import './agressiyaPupil.css'
 function AgressiyaPupil ({agressiyaModal, setAgressiyaModal}) {
-    const [agressiya, setAgressiya] = useState()
+    const [setAgressiya] = useState()
 
     useEffect(() => {
         const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
@@ -28,13 +27,11 @@ function AgressiyaPupil ({agressiyaModal, setAgressiyaModal}) {
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
-        {/* <Modal.Header closeButton> */}
           <Modal.Title className='modal_header' id="example-custom-modal-styling-title">
           Дети в состоянии агрессии
           <img className='close_button' onClick={() => setAgressiyaModal(false)} src={close_Button} />
 
           </Modal.Title>
-        {/* </Modal.Header> */}
         <Modal.Body>
         <table class="table table-striped">
   <thead>

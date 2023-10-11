@@ -14,7 +14,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function Parents () {
 	const {theme, setTheme} = ThemeHooks()
 const {decode} = DecodeHooks()
-		const [position, setPosition] = useState()
+		const [ setPosition] = useState()
         const [modal, setModal] = useState()
 
 	const logOut = () => {
@@ -208,7 +208,6 @@ const {decode} = DecodeHooks()
                   const column = {
                     data: [
                     {
-                        // Change type to "doughnut", "line", "splineArea", etc.
                         type: "column",
                         dataPoints: [
                             { label: "Пн.", color: "#FC6C85", y: 50  },

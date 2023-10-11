@@ -16,9 +16,9 @@ import { AgeRangeProvider } from './context/AgeRange';
 import { TeacherCountProvider } from './context/TeacherCount';
 import { ClassListProvider } from './context/ClassList';
 import { LoginProvider } from './context/loginContext';
-import { OriginalTeacherProvider } from './context/OriginalTeacher';
 import { ThemeProvider } from './context/ThemeContext';
 import { DecodeProvider } from './context/DecodeContext';
+import { PositionProvider } from './context/PositionContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -38,7 +38,9 @@ root.render(
                         <LoginProvider>
                         <ThemeProvider>
                         <DecodeProvider>
-                        <App/>
+                        <PositionProvider>
+                          <App/>
+                        </PositionProvider>
                         </DecodeProvider>
                         </ThemeProvider>
                         </LoginProvider>

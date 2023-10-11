@@ -1,11 +1,9 @@
 import './dashboard2.css'
-import TadLogo from '../../Image/tad-head-big.png'
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from '../../Image/logotad.svg'
 import gif from '../../Gif/happy-gif-unscreen.gif'
-import boy from '../../Image/happy-removebg-preview 1.svg'
 import teacher from '../../Image/teacher.svg'
 import all from '../../Image/all.svg'
 import boyTwo from '../../Image/happy-removebg-preview 2.svg'
@@ -15,27 +13,30 @@ function Dashboard2() {
     const [dashpupil, setDashPupil] = useState()
     const [dashteacher, setDashteacher] = useState()
     const [user, setUser] = useState()
+  
+    useEffect(() => {
+
+        const fetchPupils = async () => {
+          try {
+            const response = await axios.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/for_pupils/');
+            setDashPupil(response.data)
+            setDashteacher(response.data.Teacher)
+            setUser(response.data.Users)
+          } catch (error) {
+            console.error(error);
+          }
+        };
+    
+        fetchPupils();
+      }, []);
+      const parcents = dashpupil?.Emotion_percent?.percent
+      const parcet = Number(parcents).toFixed(0)
 
     const logOut = () => {
 		localStorage.clear()
 		window.location.reload()
 	}
 
-    //   useEffect(() => {
-
-    //     const fetchPupils = async () => {
-    //       try {
-    //         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/AllPupilsEmotion/for_pupils/');
-    //         setDashPupil(response.data.Pupils)
-    //         setDashteacher(response.data.Teacher)
-    //         setUser(response.data.Users)
-    //       } catch (error) {
-    //         console.error(error);
-    //       }
-    //     };
-
-    //     fetchPupils();
-    //   }, []);
     const {decode} = DecodeHooks()
     const [position, setPosition] = useState()
 
@@ -53,7 +54,6 @@ function Dashboard2() {
 
 		fetchClasses();
 	}, []);
-
 
     return (
         <div className='dashboard2'>
@@ -73,7 +73,7 @@ function Dashboard2() {
                         <div className='card_text'>
                             <div className='card-item'>
                                 <p>Всего учеников</p>
-                                <h2>441</h2>
+                                <h2>{dashpupil?.Pupils?.count}</h2>
                             </div>
                             <div className='card-item'>
                                 <p>Общий <br />эмоциональный фон <br />учеников</p>
@@ -86,7 +86,7 @@ function Dashboard2() {
                             <img src={teacher} />
                             <div className='card-item'>
                                 <p>Всего<br /> преподавателей</p>
-                                <h2>36</h2>
+                                <h2>{dashteacher?.count}</h2>
                             </div>
                         </div>
                         <p>Общий эмоциональный фон<br /> преподавателей</p>
@@ -103,7 +103,7 @@ function Dashboard2() {
                         <img src={boyTwo} />
                         <div>
                             <h2>Уровень депрессии</h2>
-                            <button><span>0%</span> Всё хорошо!</button>
+                            <button><span>{parcet}%</span> Всё хорошо!</button>
                         </div>
                     </li>
                 </ul>

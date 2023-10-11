@@ -11,11 +11,9 @@ import { GendersHooks } from '../../Hooks/GendersHooks';
 import { PupilEmotionHooks } from '../../Hooks/PupilEmotionHook';
 import { ClassesHooks } from '../../Hooks/ClassesHook';
 import { PupilCountHooks } from '../../Hooks/PupilCountHook';
-import { TeacherHooks } from '../../Hooks/TeacherHook';
 import { TeacherCountHooks } from '../../Hooks/TeacherCountHook';
 import TeacherList from '../../components/TeacherList/TeacherList';
 import ClassesList from '../../components/Classes/ClassesList';
-import { LoginHooks } from '../../Hooks/LoginHooks';
 import { ThemeHooks } from '../../Hooks/ThemeHook';
 import AgressiyaPupil from '../../Modal/AgressiyaPupil/AgressiyaPupil';
 import DepressiyaPupil from '../../Modal/DepressiyaPupil/DepressiyaPupil';
@@ -26,11 +24,11 @@ function Psycholog(props) {
   const { isActive } = props;
 
   const [modal, setModal] = useState(false)
-const {user, setUsers} = PupilHooks()
-  const {originalUsers, setOriginalUsers} = OriginalUserHooks();
-  const {ageRange,setAgeRange} = AgeRangeHooks()
+const {setUsers} = PupilHooks()
+  const {originalUsers} = OriginalUserHooks();
+  const {setAgeRange} = AgeRangeHooks()
   const {genders, setGenders} = GendersHooks()
-  const {pupilEmotion, setPupilEmotion} = PupilEmotionHooks()
+  const { setPupilEmotion} = PupilEmotionHooks()
   const {classes, setClasses} = ClassesHooks()
   const {pupilCount, setPupilCount} = PupilCountHooks()
   const {teacherCount, setTeacherCount} = TeacherCountHooks()
@@ -62,7 +60,6 @@ const {user, setUsers} = PupilHooks()
     const dockaAdmin = document.querySelector('.adminBoard_header')
     const headerIcons = document.querySelectorAll('.header_icon circle')
     const headerLinks = document.querySelectorAll('.header-link')
-    const headerActives = document.querySelectorAll('.header-active')
     const adminPanel = document.querySelector('.admin_panel')
     const itemButtons = document.querySelectorAll('.item_button')
     const ageSearch = document.querySelectorAll('.ageSearch')
@@ -138,7 +135,7 @@ const {user, setUsers} = PupilHooks()
   const c1 = document.querySelector('.c1')
   const c2 = document.querySelector('.c2')
 
-  const handleAgeChange = (evt) => {
+  const handleAgeChange = () => {
     if (c1.value !== '' && c2.value !== '') {
     setAgeRange(`${c1.value}-${c2.value}`);
     } else {

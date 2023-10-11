@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// const CanvasJS = CanvasJSReact.CanvasJS;
 import CanvasJSReact from '@canvasjs/react-charts';
 import './dashboard.css'
 import axios from 'axios';

@@ -7,9 +7,7 @@ import { OriginalUserHooks } from "../../Hooks/OriginalUsersHook";
 import { AgeRangeHooks } from "../../Hooks/AgeRangeHook";
 import { GendersHooks } from "../../Hooks/GendersHooks";
 import { PupilEmotionHooks } from "../../Hooks/PupilEmotionHook";
-import { ClassesHooks } from "../../Hooks/ClassesHook";
 import { PupilCountHooks } from "../../Hooks/PupilCountHook";
-import { TeacherHooks } from "../../Hooks/TeacherHook";
 import { PupilClassHooks } from "../../Hooks/PupilClassHook";
 import { ThemeHooks } from "../../Hooks/ThemeHook";
 
@@ -17,14 +15,12 @@ import { ThemeHooks } from "../../Hooks/ThemeHook";
 function Pupil() {
 
   const {user, setUsers} = PupilHooks()
-  const {originalUsers, setOriginalUsers} = OriginalUserHooks();
-  const {ageRange,setAgeRange} = AgeRangeHooks()
-  const {genders, setGenders} = GendersHooks()
-  const {pupilEmotion, setPupilEmotion} = PupilEmotionHooks()
-  const {classes, setClasses} = ClassesHooks()
-  const {pupilCount, setPupilCount} = PupilCountHooks()
-  const {teacher, setTeacher} = TeacherHooks()
-  const {pupilClass, setPupilClass} = PupilClassHooks()
+  const {setOriginalUsers} = OriginalUserHooks();
+  const {ageRange} = AgeRangeHooks()
+  const {genders} = GendersHooks()
+  const {pupilEmotion} = PupilEmotionHooks()
+  const {setPupilCount} = PupilCountHooks()
+  const {pupilClass} = PupilClassHooks()
   const {theme} = ThemeHooks()
   const style = document.createElement('style');
 style.innerHTML = `

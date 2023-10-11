@@ -5,7 +5,7 @@ import { Modal } from 'react-bootstrap';
 
 import './depressiyaPupil.css'
 function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
-    const [depressiya, setDepressiya] = useState()
+    const [setDepressiya] = useState()
 
     useEffect(() => {
         const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
@@ -26,13 +26,11 @@ function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
-        {/* <Modal.Header closeButton> */}
           <Modal.Title className='modal_header' id="example-custom-modal-styling-title">
           Дети в состоянии депрессии
           <img className='close_button' onClick={() => setDepressiyaModal(false)} src={close_Button} />
 
           </Modal.Title>
-        {/* </Modal.Header> */}
         <Modal.Body>
         <table class="table table-striped">
   <thead>

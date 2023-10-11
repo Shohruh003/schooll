@@ -1,12 +1,10 @@
-import axios from 'axios';
 import close_Button from '../../Image/close-btn.svg';
 import selectIcon from '../../Image/select-icon.svg';
-import { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import './AdminModal.css'
 import { ThemeHooks } from '../../Hooks/ThemeHook';
 function AdminModal({ adminModal, setAdminModal }) {
-  const {theme, setTheme} = ThemeHooks()
+  const {theme} = ThemeHooks()
 
   // const [agressiya, setAgressiya] = useState()
 

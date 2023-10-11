@@ -1,29 +1,21 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { PupilHooks } from "../../Hooks/PupilHooks";
 import './teacherList.css'
 import { Link } from "react-router-dom";
-import { OriginalUserHooks } from "../../Hooks/OriginalUsersHook";
-import { AgeRangeHooks } from "../../Hooks/AgeRangeHook";
 import { GendersHooks } from "../../Hooks/GendersHooks";
 import { PupilEmotionHooks } from "../../Hooks/PupilEmotionHook";
-import { ClassesHooks } from "../../Hooks/ClassesHook";
-import { PupilCountHooks } from "../../Hooks/PupilCountHook";
 import { TeacherHooks } from "../../Hooks/TeacherHook";
 import { PupilClassHooks } from "../../Hooks/PupilClassHook";
-import { TeacherCountHooks } from "../../Hooks/TeacherCountHook";
-import { OriginalTeacherHook } from "../../Hooks/OriginalTeacherHook";
 import { ThemeHooks } from "../../Hooks/ThemeHook";
 
 
 function TeacherList() {
   
-  const {originalUsers, setOriginalUsers} = OriginalUserHooks();
-  const {genders, setGenders} = GendersHooks()
-  const {pupilEmotion, setPupilEmotion} = PupilEmotionHooks()
+  const {genders} = GendersHooks()
+  const {pupilEmotion} = PupilEmotionHooks()
   const {teacher, setTeacher} = TeacherHooks()
-  const {pupilClass, setPupilClass} = PupilClassHooks()
-  const {theme, setTheme} = ThemeHooks()
+  const {pupilClass} = PupilClassHooks()
+  const {theme} = ThemeHooks()
 
   const style = document.createElement('style');
 style.innerHTML = `
@@ -61,7 +53,6 @@ document.head.appendChild(style);
   return (
     <ul className="teacher_list">
                         {teacher?.map((item) => {
-  // const teacherClass = item.pupils[0].pupil_class
   const emotions = item.emotions ? item.emotions : {
     emotions: [
       {
@@ -121,10 +112,6 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
           <span className='teacher_heading'>Пришел: {comeClock ? comeClock : "0"}</span>
           <span className='teacher_heading'>Ушел: {wentClock ? wentClock : "0"}</span>
         </p>
-        {/* <p style={{borderColor: theme}}>
-          <span className='teacher_heading'>Класс</span>
-          <span className='teacher_name'>{teacherClass ? teacherClass : "Пустой"}</span>
-        </p> */}
         <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"}`}>
         <span className='people_heading'> {firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"} </span>
           <span className='people_name'>{firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.confidence : "0"} %</span>
