@@ -60,7 +60,7 @@ function Dashboard2() {
             <div className='dashboard2_heading'>
             <h1>СИСТЕМА АНАЛИЗА ПСИХОЭМОЦИОНАЛЬНОГО <br />СОСТОЯНИЯ  УЧАЩИХСЯ </h1>
             <button className='logout' style={{borderRadius: "50px"}} onClick={logOut}>Log Out</button>
-            <Link className='dashboard2_headerButton' to={position === 'teacher' ? `${position}/pupil` : 'родители'}>Доска {position === 'teacher' ? 'преподавателей' : 'родители'}</Link>
+            <Link className='dashboard2_headerButton' to={position === 'teacher' ? `${position}/pupil` : 'parents'}>Доска {position === 'teacher' ? 'преподавателей' : 'родителя'}</Link>
             </div>
             <div className='dashboard-body'>
                 <div className='dashboard-left'>

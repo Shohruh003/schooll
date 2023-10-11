@@ -52,7 +52,7 @@ export const Private = () => {
           return (
               <Routes>
               <Route path="/*" element={<Dashboard2 />} />
-            <Route path="/родители/*" element={<Parents/>}/>
+            <Route path="/parents/*" element={<Parents/>}/>
             </Routes>
           )}
 }

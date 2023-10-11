@@ -331,7 +331,7 @@ function findLargestSection(options) {
 
 					</div>
 
-					<button className='logout' style={{borderRadius: "50px"}} onClick={logOut}>Log Out</button>
+					<button className='logout' style={{borderRadius: "50px", backgroundColor: theme}} onClick={logOut}>Log Out</button>
 					
 					<div className='langTheme'>
 

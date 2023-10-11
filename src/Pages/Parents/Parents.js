@@ -340,7 +340,7 @@ const {decode} = DecodeHooks()
                             </p>
 
                             <p className='avatar_name'>Ушел:
-                                <span className='avatar_time'>09:30</span>
+                                <span className='avatar_time'>18:05</span>
                             </p>
                         </div>
 
@@ -355,38 +355,50 @@ const {decode} = DecodeHooks()
                             <ul className='week_list'>
                                 <li className='week_item'>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={Avatar} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>09:23</span>
                                     <span className='days'>Пн.</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={Avatar} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>18:45</span>
                                 </li>
 
                                 <li className='week_item'>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={Avatar} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>09:23</span>
                                     <span className='days'>Вт.</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={Avatar} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>18:45</span>
                                 </li>
 
                                 <li className='week_item'>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={Avatar} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>09:23</span>
                                     <span className='days'>Ср.</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={Avatar} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>18:45</span>
                                 </li>
 
                                 <li className='week_item'>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={Avatar} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>09:23</span>
                                     <span className='days'>Чт.</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={Avatar} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>18:45</span>
                                 </li>
 
                                 <li className='week_item'>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={Avatar} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>09:23</span>
                                     <span className='days'>Пят.</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={Avatar} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>18:45</span>
                                 </li>
 
                                 <li className='week_item'>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={Avatar} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>09:23</span>
                                     <span className='days'>Суб..</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={Avatar} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>18:45</span>
                                 </li>
                             </ul>
                         </div>

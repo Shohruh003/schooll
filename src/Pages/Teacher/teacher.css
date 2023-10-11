@@ -76,16 +76,13 @@
   text-decoration: none;
 }
 
+.header-link svg {
+  border: none;
+}
+
 .header-link:hover {
   border: none;
   background-color: rgba(252, 108, 133, 0.25);
-}
-
-.header-active svg {
-  border:  1px solid white;
-}
-.header-active:hover svg {
-  border: none;
 }
 
 .navLinkIcon {
@@ -94,7 +91,7 @@
 }
 
 .navLinkIcon0{
-  width: 90px;
+  width: 100px;
   height: 100px;
 }
 
@@ -104,7 +101,6 @@
   color:#161B23;
   margin: 0;
   margin-top: 10px;
-  margin-bottom: 15px;
 }
 
 .navLinkName1 {
@@ -468,7 +464,7 @@
   border-radius: 20px;
   list-style-type: none;
   overflow-y: auto;
-  max-height: 210px;
+  max-height: 230px;
 }
 .attendance_link{
   text-decoration: none;
@@ -495,17 +491,9 @@
   color: #161B23;
 }
 
-.attendance_time{
-  margin: 0;
-  font-size: 15px;
-  font-weight: 600;
-  color: #161B23;
+.attendance_avatar {
+  border-radius: 50px;
 }
-
-.attendance_time span {
-  display: block;
-}
-
 
 .modal_header{
   display: flex ;

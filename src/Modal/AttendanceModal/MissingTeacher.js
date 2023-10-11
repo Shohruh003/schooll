@@ -42,7 +42,6 @@ function MissingTeacher ({missingTeacher, setMissingTeacher}) {
       <th className='agressiyaModal_heading' scope="col">преподавателей</th>
       <th className='agressiyaModal_heading' scope="col">Фамилия и имя</th>
       <th className='agressiyaModal_heading' scope="col">класс</th>
-      <th>Пришел</th>
     </tr>
   </thead>
   <tbody>
@@ -50,7 +49,11 @@ function MissingTeacher ({missingTeacher, setMissingTeacher}) {
       <td><img src='djqb' width='30' height='30' alt='agressiyaImg'/></td>
       <td>Otto</td>
       <td>5-A</td>
-      <td>09:34</td>
+    </tr>
+    <tr>
+      <td><img src='djqb' width='30' height='30' alt='agressiyaImg'/></td>
+      <td>Shohruh Azimov</td>
+      <td>5-A</td>
     </tr>
   </tbody>
 </table>

@@ -14,7 +14,7 @@
 }
 
 .avatar_inner {
-    width: 60%;
+    width: 65%;
 }
 
 .avatar_about{
@@ -82,8 +82,8 @@
 
 .chart {
     position: absolute;
-    left: 50px;
-    bottom: 20px;
+    left: 10%;
+    bottom: 5%;
 }
 
 .week_list {
@@ -137,7 +137,7 @@
 .chat{
     display: flex;
     justify-content: space-between;
-    height: 80%;
+    height: 69%;
     padding: 15px;
     border-radius: 20px;
     background-color: #F4C4C5;
@@ -268,4 +268,8 @@
 
 .column div {
     height: 150px;
+}
+
+.weekItem_time {
+    display: block;
 }

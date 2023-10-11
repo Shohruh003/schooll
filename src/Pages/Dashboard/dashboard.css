@@ -111,7 +111,7 @@ border-bottom: 3px solid #FC6C85;
   display: flex;
   justify-content: space-between;
   width: 250px;
-  height: 70px;
+  height: 55px;
   padding: 10px;
   color: #ffffff;
   background-color: #FA8072;
@@ -124,10 +124,10 @@ border-bottom: 3px solid #FC6C85;
   line-height: 0;
   margin: 0;
   padding: 0;
-  margin-top: 25px;
+  margin-top: 18px;
 }
 
 .weather_date {
   font-size: 14px;
-  margin-top: 40px;
+  margin-top: 25px;
 }

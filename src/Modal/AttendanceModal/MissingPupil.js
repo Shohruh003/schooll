@@ -42,7 +42,6 @@ function MissingPupil ({missingPupil, setMissingPupil}) {
       <th className='agressiyaModal_heading' scope="col">ученик</th>
       <th className='agressiyaModal_heading' scope="col">Фамилия и имя</th>
       <th className='agressiyaModal_heading' scope="col">класс</th>
-      <th>Пришел</th>
     </tr>
   </thead>
   <tbody>
@@ -50,7 +49,18 @@ function MissingPupil ({missingPupil, setMissingPupil}) {
       <td><img src='djqb' width='30' height='30' alt='agressiyaImg'/></td>
       <td>Otto</td>
       <td>5-A</td>
-      <td>09:34</td>
+    </tr>
+
+    <tr>
+      <td><img src='djqb' width='30' height='30' alt='agressiyaImg'/></td>
+      <td>Shohruh Azimov</td>
+      <td>4-B</td>
+    </tr>
+
+    <tr>
+      <td><img src='djqb' width='30' height='30' alt='agressiyaImg'/></td>
+      <td>Azizbek Normatov</td>
+      <td>5-A</td>
     </tr>
   </tbody>
 </table>

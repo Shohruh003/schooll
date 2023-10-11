@@ -382,9 +382,9 @@ const {user, setUsers} = PupilHooks()
               </div>
           </div>
 
-          <div>
+          <div className='admin_panelInner'>
           <div className="admin_panel">
-            <h4 className="panel_heading">фильтрация учеников</h4>
+            <h4 className="panel_heading">фильтрация</h4>
 
             <ul className='panel_list'>
               <li className='panel_item age-search' onChange={handleAgeChange}>
