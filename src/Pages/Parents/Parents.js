@@ -3,7 +3,6 @@ import './parents.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { ThemeHooks } from '../../Hooks/ThemeHook';
-import { DecodeHooks } from '../../Hooks/DecodeHook';
 import { Modal } from 'react-bootstrap';
 import close_Button from '../../Image/close-btn.svg';
 import Avatar from '../../Image/peopleImg1.jpg'
@@ -13,14 +12,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function Parents () {
 	const {theme, setTheme} = ThemeHooks()
-const {decode} = DecodeHooks()
-		const [ setPosition] = useState()
         const [modal, setModal] = useState()
-
-	const logOut = () => {
-		localStorage.clear()
-		window.location.reload()
-	}
 
 	useEffect(() => {
 		const savedTheme = localStorage.getItem('theme');
@@ -115,22 +107,6 @@ const {decode} = DecodeHooks()
 		setTheme(newTheme);
 		localStorage.setItem('theme', newTheme);
 	};
-
-
-	useEffect(() => {
-
-		const fetchClasses = async () => {
-			try {
-
-				const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
-				setPosition(response.data.status)
-			} catch (error) {
-				console.error(error);
-			}
-		};
-
-		fetchClasses();
-	}, []);
 		const [weather, setWeather] = useState()
 
 		useEffect(() => {
@@ -308,7 +284,7 @@ const {decode} = DecodeHooks()
       >
           <Modal.Title className='modal_header' style={{color: theme}} id="example-custom-modal-styling-title">
           Текст сообщения
-          <img className='close_button' onClick={() => setModal(false)} src={close_Button} />
+          <img className='close_button' onClick={() => setModal(false)} src={close_Button} alt='close' />
 
           </Modal.Title>
         <Modal.Body>

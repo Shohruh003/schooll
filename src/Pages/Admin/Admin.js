@@ -15,8 +15,9 @@ import { TeacherCountHooks } from '../../Hooks/TeacherCountHook';
 import TeacherList from '../../components/TeacherList/TeacherList';
 import ClassesList from '../../components/Classes/ClassesList';
 import { ThemeHooks } from '../../Hooks/ThemeHook';
-import AdminModal from '../../Modal/Admin/Adminmodal';
+import CreateAdminModal from '../../Modal/Admin/CreateAdminmodal';
 import close_Button from '../../Image/close-btn.svg';
+import EditAdminModal from '../../Modal/User_modal/EditAdminmodal';
 
 
 function Admin(props) {
@@ -33,6 +34,7 @@ const {setUsers} = PupilHooks()
   const {teacherCount, setTeacherCount} = TeacherCountHooks()
   const {theme, setTheme} = ThemeHooks()
   const [adminModal, setAdminModal] = useState()
+  const [editAdminModal, setEditAdminModal] = useState()
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -379,7 +381,7 @@ const {setUsers} = PupilHooks()
 
           <div>
           <div className="admin_panel">
-            <h4 className="panel_heading">фильтрация учеников</h4>
+            <h4 className="panel_heading">фильтрация</h4>
 
             <ul className='panel_list'>
               <li className='panel_item age-search' onChange={handleAgeChange}>
@@ -422,9 +424,8 @@ const {setUsers} = PupilHooks()
             </ul>
           </div>
           <button className='panel_button' type='button' onClick={() => setAdminModal(true)}>Создать профиль</button>
-          <AdminModal className='admin_Modal' adminModal={adminModal} setAdminModal={setAdminModal}/>
-
-
+          <CreateAdminModal className='admin_Modal' adminModal={adminModal} setAdminModal={setAdminModal}/>
+          
 
           <Modal
          className='modal'
@@ -433,13 +434,11 @@ const {setUsers} = PupilHooks()
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
-        {/* <Modal.Header closeButton> */}
           <Modal.Title className='modal_header' style={{color: theme}} id="example-custom-modal-styling-title">
           Текст сообщения
           <img className='close_button' onClick={() => setModal(false)} src={close_Button} />
 
           </Modal.Title>
-        {/* </Modal.Header> */}
         <Modal.Body>
           <p>
           Идейные соображения высшего порядка, а также понимание сути ресурсосберегающих технологий однозначно фиксирует необходимость направлений прогрессивного развития. Как уже неоднократно упомянуто, независимые государства могут быть рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок.

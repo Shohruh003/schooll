@@ -6,13 +6,12 @@ import logo from '../../Image/logotad.svg'
 import gif from '../../Gif/happy-gif-unscreen.gif'
 import teacher from '../../Image/teacher.svg'
 import all from '../../Image/all.svg'
-import boyTwo from '../../Image/happy-removebg-preview 2.svg'
+import boyTwo from '../../Gif/happy-gif-right-bg.gif'
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 
 function Dashboard2() {
     const [dashpupil, setDashPupil] = useState()
     const [dashteacher, setDashteacher] = useState()
-    const [user, setUser] = useState()
   
     useEffect(() => {
 
@@ -21,7 +20,6 @@ function Dashboard2() {
             const response = await axios.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/for_pupils/');
             setDashPupil(response.data)
             setDashteacher(response.data.Teacher)
-            setUser(response.data.Users)
           } catch (error) {
             console.error(error);
           }
@@ -53,7 +51,7 @@ function Dashboard2() {
 		};
 
 		fetchClasses();
-	}, []);
+	}, [decode]);
 
     return (
         <div className='dashboard2'>
@@ -65,7 +63,7 @@ function Dashboard2() {
             <div className='dashboard-body'>
                 <div className='dashboard-left'>
                     <h2>СРЕДНЯЯ <br />ШКОЛА №64 <br />г. Ташкента</h2>
-                    <img src={logo} />
+                    <img src={logo} alt='logo' />
                 </div>
                 <ul>
                     <li className='card-one'>
@@ -83,7 +81,7 @@ function Dashboard2() {
                     </li>
                     <li className='card-two'>
                         <div className='card-two-header'>
-                            <img src={teacher} />
+                            <img src={teacher} alt='teacher' />
                             <div className='card-item'>
                                 <p>Всего<br /> преподавателей</p>
                                 <h2>{dashteacher?.count}</h2>
@@ -96,11 +94,11 @@ function Dashboard2() {
                         <p>Общий эмоциональный <br />фон школы</p>
                         <div className='card-there-body'>
                             <button>Всё хорошо</button>
-                            <img src={all} />
+                            <img src={all} alt='allIcon' />
                         </div>
                     </li>
                     <li className='card-last'>
-                        <img src={boyTwo} />
+                    <img className='boyTwo' src={boyTwo} alt='GIF' />
                         <div>
                             <h2>Уровень депрессии</h2>
                             <button><span>{parcet}%</span> Всё хорошо!</button>

@@ -83,7 +83,7 @@
 .card-item {
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .card-there button {
@@ -93,7 +93,7 @@
 }
 .card-there p {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 
@@ -163,3 +163,8 @@
     top: -60px;
 }
 
+.boyTwo {
+    position: absolute;
+    width: 330px;
+    height: auto;
+}

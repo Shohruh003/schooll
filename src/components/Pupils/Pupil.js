@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PupilHooks } from "../../Hooks/PupilHooks";
 import './pupil.css'
 import { Link } from "react-router-dom";
@@ -10,6 +10,8 @@ import { PupilEmotionHooks } from "../../Hooks/PupilEmotionHook";
 import { PupilCountHooks } from "../../Hooks/PupilCountHook";
 import { PupilClassHooks } from "../../Hooks/PupilClassHook";
 import { ThemeHooks } from "../../Hooks/ThemeHook";
+import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
+import { ThemeContext } from "../../context/ThemeContext";
 
 
 function Pupil() {
@@ -60,6 +62,11 @@ document.head.appendChild(style);
 
     fetchPupils();
   }, [ageRange, pupilClass, genders, pupilEmotion]);
+  const [editAdminModal, setEditAdminModal] = useState()
+  const clickItem = () => {
+    setEditAdminModal(true)
+  }
+
   return (
     <ul className="people_list" style={{'--scrollbar-thumb': theme}}>
                         {user.map((item) => {
@@ -118,7 +125,7 @@ const firstMaxConfidenceIndex = emotions.findIndex(
 
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
     return (
-      <li key={item.id} style={{borderColor: theme}}>
+      <li key={item.id} style={{borderColor: theme}} onClick={clickItem}>
       <Link className='people_link'>
         <img className='people_image' src={pupils.thumbnail} alt="People of the img" width='100' height='100' />
         <p style={{borderColor: theme}}>
@@ -145,6 +152,7 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
     </li>
     )
 })}
+        <EditAdminModal editAdminModal={editAdminModal} setEditAdminModal={setEditAdminModal}/>
     </ul>
   )
 }

@@ -28,7 +28,7 @@ export const Private = () => {
 		};
 
 		fetchClasses();
-	}, []);
+	}, [decode]);
 
     if (position === 'admin' || position === 'psychologist') {
       return (

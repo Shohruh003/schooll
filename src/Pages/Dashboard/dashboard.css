@@ -4,7 +4,7 @@
 
 .header_dashboard{
 display: flex;
-align-items: end;
+align-items: flex-end;
 justify-content: space-between;
 padding-top: 20px;
 margin-bottom: 10px;
