@@ -1,13 +1,12 @@
-import axios from 'axios';
 import close_Button from '../../Image/close-btn.svg';
 import selectIcon from '../../Image/select-icon.svg';
 import eye from '../../Image/eye-svgrepo-com.svg';
-import { useEffect, useState } from 'react';
+import { useContext} from 'react';
 import { Modal } from 'react-bootstrap';
 import './createAdminModal.css'
-import { ThemeHooks } from '../../Hooks/ThemeHook';
+import { AuthContext } from '../../context/PupilContext';
 function CreateAdminModal({ adminModal, setAdminModal }) {
-  const {theme} = ThemeHooks()
+  const {theme} = useContext(AuthContext)
   // const [agressiya, setAgressiya] = useState()
   
   // useEffect(() => {

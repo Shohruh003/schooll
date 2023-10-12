@@ -1,27 +1,12 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import './classes.css'
 import { Link } from "react-router-dom";
-import { OriginalUserHooks } from "../../Hooks/OriginalUsersHook";
-import { GendersHooks } from "../../Hooks/GendersHooks";
-import { PupilEmotionHooks } from "../../Hooks/PupilEmotionHook";
-import { PupilCountHooks } from "../../Hooks/PupilCountHook";
-import { TeacherHooks } from "../../Hooks/TeacherHook";
-import { PupilClassHooks } from "../../Hooks/PupilClassHook";
-import { ClassListHooks } from "../../Hooks/ClassListHook";
-import { ThemeHooks } from "../../Hooks/ThemeHook";
+import { AuthContext } from "../../context/PupilContext";
 
 
 function ClassesList() {
-
-  const {originalUsers, setOriginalUsers} = OriginalUserHooks();
-  const {genders, setGenders} = GendersHooks()
-  const {pupilEmotion, setPupilEmotion} = PupilEmotionHooks()
-  const {pupilCount, setPupilCount} = PupilCountHooks()
-  const {teacher, setTeacher} = TeacherHooks()
-  const {pupilClass, setPupilClass} = PupilClassHooks()
-  const {classList, setClassList} = ClassListHooks()
-  const {theme, setTheme} = ThemeHooks()
+  const {classList, setClassList,genders, setOriginalUsers,pupilClass,theme, pupilEmotion} = useContext(AuthContext)
 
   const style = document.createElement('style');
   style.innerHTML = `

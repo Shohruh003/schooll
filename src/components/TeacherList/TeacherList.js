@@ -1,28 +1,13 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import './teacherList.css'
 import { Link } from "react-router-dom";
-import { GendersHooks } from "../../Hooks/GendersHooks";
-import { PupilEmotionHooks } from "../../Hooks/PupilEmotionHook";
-import { TeacherHooks } from "../../Hooks/TeacherHook";
-import { PupilClassHooks } from "../../Hooks/PupilClassHook";
-import { ThemeHooks } from "../../Hooks/ThemeHook";
 import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
-import { OriginalUserHooks } from "../../Hooks/OriginalUsersHook";
-import { PupilHooks } from "../../Hooks/PupilHooks";
+import { AuthContext } from "../../context/PupilContext";
 
 
 function TeacherList() {
-  
-  const {genders} = GendersHooks()
-  const {pupilEmotion} = PupilEmotionHooks()
-  const {teacher, setTeacher} = TeacherHooks()
-  const {pupilClass} = PupilClassHooks()
-  const {theme} = ThemeHooks()
-  const {user, setUsers} = PupilHooks()
-  const {setOriginalUsers} = OriginalUserHooks();
-
-
+  const {genders, setOriginalUsers,pupilClass,pupilEmotion, teacher, setTeacher,theme,editAdminModal, setEditAdminModal} = useContext(AuthContext)
 
   const style = document.createElement('style');
 style.innerHTML = `
@@ -50,7 +35,6 @@ document.head.appendChild(style);
 
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher', { params });
       setTeacher(response.data.results);
-      // setUsers(response.data.results);
       setOriginalUsers(response.data.results);
 
       } catch (error) {
@@ -61,7 +45,6 @@ document.head.appendChild(style);
     fetchPupils();
   }, [pupilClass, genders, pupilEmotion]);
 
-  const [editAdminModal, setEditAdminModal] = useState()
   const clickItem = () => {
     setEditAdminModal(true)
   }

@@ -1,9 +1,9 @@
 .dashboard2 {
+    display: block;
     background: linear-gradient(295.83deg, #8047CA 35.05%, #C63F70 100%);
-    height: 100%;
+    height:104%;
     color: white;
     padding: 10px;
-    /* position: fixed; */
     margin: 0 auto;
 }
 

@@ -3,14 +3,13 @@ import TadLogo from '../../Image/tad-head-big.png'
 import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { TeacherContext } from '../../context/TeacherContext';
+import { AuthContext } from '../../context/PupilContext';
 
 function Dash() {
+
+  const {user,position} = useContext(AuthContext)
   const [dashpupil, setDashPupil] = useState()
   const [dashteacher, setDashteacher] = useState()
-  const [user, setUser] = useState()
-  const {position} = useContext(TeacherContext)
-  console.log(position);
 
   useEffect(() => {
 

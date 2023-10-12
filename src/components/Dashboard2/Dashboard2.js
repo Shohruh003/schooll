@@ -1,15 +1,17 @@
 import './dashboard2.css'
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from '../../Image/logotad.svg'
 import gif from '../../Gif/happy-gif-unscreen.gif'
-import teacher from '../../Image/teacher.svg'
+import teacherImg from '../../Image/teacher.svg'
 import all from '../../Image/all.svg'
 import boyTwo from '../../Gif/happy-gif-right-bg.gif'
 import { DecodeHooks } from '../../Hooks/DecodeHook';
+import { AuthContext } from '../../context/PupilContext';
 
 function Dashboard2() {
+    const {position, setPosition} = useContext(AuthContext)
     const [dashpupil, setDashPupil] = useState()
     const [dashteacher, setDashteacher] = useState()
   
@@ -36,7 +38,6 @@ function Dashboard2() {
 	}
 
     const {decode} = DecodeHooks()
-    const [position, setPosition] = useState()
 
     useEffect(() => {
 
@@ -81,7 +82,7 @@ function Dashboard2() {
                     </li>
                     <li className='card-two'>
                         <div className='card-two-header'>
-                            <img src={teacher} alt='teacher' />
+                            <img src={teacherImg} alt='teacher' />
                             <div className='card-item'>
                                 <p>Всего<br /> преподавателей</p>
                                 <h2>{dashteacher?.count}</h2>

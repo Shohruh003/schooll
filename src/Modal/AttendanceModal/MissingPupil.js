@@ -1,13 +1,13 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap'; 
 import close_Button from '../../Image/close-btn.svg';
-
 import './attendanceModal.css'
-import { ThemeHooks } from '../../Hooks/ThemeHook';
+import { AuthContext } from '../../context/PupilContext';
 function MissingPupil ({missingPupil, setMissingPupil}) {
-    const [setAgressiya] = useState()
-    const {theme} = ThemeHooks()
+  const {theme} = useContext(AuthContext)
+
+  const [setAgressiya] = useState()
 
     useEffect(() => {
         const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';

@@ -1,38 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './admin.css'
 import { Link, NavLink, Route, Routes } from 'react-router-dom';
-import { Modal } from 'react-bootstrap'; 
-import axios from 'axios';
-import { PupilHooks } from '../../Hooks/PupilHooks';
+import { Modal } from 'react-bootstrap';
 import Pupil from '../../components/Pupils/Pupil';
-import { AgeRangeHooks } from '../../Hooks/AgeRangeHook';
-import { OriginalUserHooks } from '../../Hooks/OriginalUsersHook';
-import { GendersHooks } from '../../Hooks/GendersHooks';
-import { PupilEmotionHooks } from '../../Hooks/PupilEmotionHook';
-import { ClassesHooks } from '../../Hooks/ClassesHook';
-import { PupilCountHooks } from '../../Hooks/PupilCountHook';
-import { TeacherCountHooks } from '../../Hooks/TeacherCountHook';
 import TeacherList from '../../components/TeacherList/TeacherList';
 import ClassesList from '../../components/Classes/ClassesList';
-import { ThemeHooks } from '../../Hooks/ThemeHook';
 import CreateAdminModal from '../../Modal/Admin/CreateAdminmodal';
 import close_Button from '../../Image/close-btn.svg';
-import { TeacherHooks } from '../../Hooks/TeacherHook';
+import { AuthContext } from '../../context/PupilContext';
+import axios from 'axios';
 
 
 function Admin(props) {
   const { isActive } = props;
-
+  const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilEmotion,classes, setClasses, teacherCount, theme, setTheme, setAgeRange, setTeacher, setPupilCount, setTeacherCount} = useContext(AuthContext)
   const [modal, setModal] = useState(false)
-const {setUsers} = PupilHooks()
-  const {originalUsers} = OriginalUserHooks();
-  const {setAgeRange} = AgeRangeHooks()
-  const {genders, setGenders} = GendersHooks()
-  const {setPupilEmotion} = PupilEmotionHooks()
-  const {classes, setClasses} = ClassesHooks()
-  const {pupilCount, setPupilCount} = PupilCountHooks()
-  const {teacherCount, setTeacherCount} = TeacherCountHooks()
-  const {theme, setTheme} = ThemeHooks()
   const [adminModal, setAdminModal] = useState()
 
   useEffect(() => {
@@ -51,6 +33,45 @@ const {setUsers} = PupilHooks()
   const applyDefaultTheme = () => {
     setTheme('#FC6C85');
   };
+
+  useEffect(() => {
+    const fetchPupils = async () => {
+      try {
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/');
+        setPupilCount(response.data.count)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPupils();
+  }, []);
+
+  useEffect(() => {
+    const fetchPupils = async () => {
+      try {
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher');
+        setTeacherCount(response.data.count)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPupils();
+  }, []);
+
+  useEffect(() => {
+    const fetchPupils = async () => {
+      try {
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/');
+        setClasses(response.data.count)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPupils();
+  }, []);
 
   const applyTheme = () => {
     const body = document.body;
@@ -167,50 +188,6 @@ const {setUsers} = PupilHooks()
     setPupilEmotion(selectedEmotion);
   };
 
-
-  useEffect(() => {
-    const fetchPupils = async () => {
-      try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/');
-        setPupilCount(response.data.count)
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchPupils();
-  }, []);
-
-
-  useEffect(() => {
-    const fetchClass = async () => {
-      try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/');
-      setClasses(response.data.count)
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchClass();
-  }, []);
-
-  useEffect(() => {
-
-    const fetchTeachers = async () => {
-      try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher');
-        setTeacherCount(response.data.count)
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchTeachers();
-  }, []);
-
-  const {setTeacher} = TeacherHooks()
- 
   const handleSearch = (event) => {
     const searchTerm = event.target.value;
     const filteredUsers = originalUsers.filter((item) =>
@@ -437,7 +414,7 @@ const {setUsers} = PupilHooks()
       >
           <Modal.Title className='modal_header' style={{color: theme}} id="example-custom-modal-styling-title">
           Текст сообщения
-          <img className='close_button' onClick={() => setModal(false)} src={close_Button} />
+          <img className='notification_button' onClick={() => setModal(false)} src={close_Button} />
 
           </Modal.Title>
         <Modal.Body>

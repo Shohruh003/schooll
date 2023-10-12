@@ -1,12 +1,13 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import close_Button from '../../Image/close-btn.svg';
 import { Modal } from 'react-bootstrap'; 
 import './depressiyaPupil.css'
-import { ThemeHooks } from '../../Hooks/ThemeHook';
+import { AuthContext } from '../../context/PupilContext';
 function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
-    const [setDepressiya] = useState()
-    const {theme} = ThemeHooks()
+  const {theme} = useContext(AuthContext)
+
+  const [setDepressiya] = useState()
 
     useEffect(() => {
         const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';

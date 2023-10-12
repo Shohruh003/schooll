@@ -5,10 +5,10 @@ import eye from '../../Image/eye-svgrepo-com.svg';
 import { useContext, useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import './editAdminModal.css'
-import { ThemeHooks } from '../../Hooks/ThemeHook';
-import { ThemeContext } from '../../context/ThemeContext';
+import { AuthContext } from '../../context/PupilContext';
 function EditAdminModal({editAdminModal, setEditAdminModal}) {
-  const {theme} = ThemeHooks()
+  const {theme} = useContext(AuthContext)
+
   // const [agressiya, setAgressiya] = useState()
   
   // useEffect(() => {

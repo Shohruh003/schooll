@@ -273,3 +273,7 @@
 .weekItem_time {
     display: block;
 }
+
+.notification_button {
+    margin-right: 15px;
+}

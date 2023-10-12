@@ -1,28 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { PupilHooks } from "../../Hooks/PupilHooks";
+import { useContext, useEffect, useState } from "react";
 import './pupil.css'
 import { Link } from "react-router-dom";
-import { OriginalUserHooks } from "../../Hooks/OriginalUsersHook";
-import { AgeRangeHooks } from "../../Hooks/AgeRangeHook";
-import { GendersHooks } from "../../Hooks/GendersHooks";
-import { PupilEmotionHooks } from "../../Hooks/PupilEmotionHook";
-import { PupilCountHooks } from "../../Hooks/PupilCountHook";
-import { PupilClassHooks } from "../../Hooks/PupilClassHook";
-import { ThemeHooks } from "../../Hooks/ThemeHook";
 import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
+import { AuthContext } from "../../context/PupilContext";
 
 
 function Pupil() {
+const {user, setUsers,ageRange,genders, setOriginalUsers,pupilClass, setPupilCount,pupilEmotion,theme,editAdminModal, setEditAdminModal} = useContext(AuthContext)
 
-  const {user, setUsers} = PupilHooks()
-  const {setOriginalUsers} = OriginalUserHooks();
-  const {ageRange} = AgeRangeHooks()
-  const {genders} = GendersHooks()
-  const {pupilEmotion} = PupilEmotionHooks()
-  const {setPupilCount} = PupilCountHooks()
-  const {pupilClass} = PupilClassHooks()
-  const {theme} = ThemeHooks()
   const style = document.createElement('style');
 style.innerHTML = `
   .people_list::-webkit-scrollbar-thumb {
@@ -61,7 +47,6 @@ document.head.appendChild(style);
 
     fetchPupils();
   }, [ageRange, pupilClass, genders, pupilEmotion]);
-  const [editAdminModal, setEditAdminModal] = useState()
   const clickItem = () => {
     setEditAdminModal(true)
   }

@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
 import './dashboard.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { ThemeHooks } from '../../Hooks/ThemeHook';
-import { DecodeHooks } from '../../Hooks/DecodeHook';
 import LateComersTeacher from '../../Modal/AttendanceModal/LateComersTeacher';
 import LateComersPupil from '../../Modal/AttendanceModal/LateComersPupil';
 import MissingPupil from '../../Modal/AttendanceModal/MissingPupil';
 import MissingTeacher from '../../Modal/AttendanceModal/MissingTeacher';
+import { AuthContext } from '../../context/PupilContext';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function Dashboard () {
+
+	const {position, pupilEmotion, setPupilEmotion,theme, setTheme} = useContext(AuthContext)
 	const [teacherEmotion, setTeacherEmotion] = useState()
-	const [pupilEmotion, setPupilEmotion] = useState()
-	const {theme, setTheme} = ThemeHooks()
-const {decode} = DecodeHooks()
-		const [position, setPosition] = useState()
+
 		const [lateComersTeacher, setLateComersTeacher] = useState(false)
 		const [missingTeacher, setMissingTeacher] = useState(false)
 		const [missingPupil, setMissingPupil] = useState(false)
@@ -235,21 +233,6 @@ function findLargestSection(options) {
   }
   
   const largestSectionName = findLargestSection(options);
-
-	useEffect(() => {
-
-		const fetchClasses = async () => {
-			try {
-
-				const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
-				setPosition(response.data.status)
-			} catch (error) {
-				console.error(error);
-			}
-		};
-
-		fetchClasses();
-	}, []);
 
 	const LateComersTeachers = () => {
 			setLateComersTeacher(true)

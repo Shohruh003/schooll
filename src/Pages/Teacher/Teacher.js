@@ -1,34 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './teacher.css'
 import { Link, NavLink, Route, Routes } from 'react-router-dom';
 import { Modal } from 'react-bootstrap'; 
 import axios from 'axios';
-import { PupilHooks } from '../../Hooks/PupilHooks';
 import Pupil from '../../components/Pupils/Pupil';
-import { OriginalUserHooks } from '../../Hooks/OriginalUsersHook';
-import { GendersHooks } from '../../Hooks/GendersHooks';
-import { PupilEmotionHooks } from '../../Hooks/PupilEmotionHook';
-import { ClassesHooks } from '../../Hooks/ClassesHook';
-import { PupilCountHooks } from '../../Hooks/PupilCountHook';
-import { TeacherCountHooks } from '../../Hooks/TeacherCountHook';
 import TeacherList from '../../components/TeacherList/TeacherList';
 import ClassesList from '../../components/Classes/ClassesList';
 import close_Button from '../../Image/close-btn.svg';
-import { ThemeHooks } from '../../Hooks/ThemeHook';
 import Avatar from '../../Image/peopleImg1.jpg'
+import { AuthContext } from '../../context/PupilContext';
 
 function Teacher(props) {
   const { isActive } = props;
-
+  const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilCount, setPupilEmotion, setClasses, setTeacherCount, theme, setTheme} = useContext(AuthContext)
   const [modal, setModal] = useState(false)
-const {setUsers} = PupilHooks()
-  const {originalUsers} = OriginalUserHooks();
-  const {genders, setGenders} = GendersHooks()
-  const {setPupilEmotion} = PupilEmotionHooks()
-  const {setClasses} = ClassesHooks()
-  const {pupilCount, setPupilCount} = PupilCountHooks()
-  const {setTeacherCount} = TeacherCountHooks()
-  const {theme, setTheme} = ThemeHooks()
 
 
   useEffect(() => {
@@ -430,7 +415,7 @@ const {setUsers} = PupilHooks()
       >
           <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
           Текст сообщения
-          <img className='close_button' onClick={() => setModal(false)} src={close_Button} />
+          <img className='notification_button' onClick={() => setModal(false)} src={close_Button} />
 
           </Modal.Title>
         <Modal.Body>

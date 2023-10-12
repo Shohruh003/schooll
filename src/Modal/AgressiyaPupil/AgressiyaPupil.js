@@ -1,24 +1,23 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import close_Button from '../../Image/close-btn.svg';
-
 import { Modal } from 'react-bootstrap';
 import './agressiyaPupil.css'
-import { ThemeHooks } from '../../Hooks/ThemeHook';
+import { AuthContext } from '../../context/PupilContext';
 function AgressiyaPupil ({agressiyaModal, setAgressiyaModal}) {
-    const [setAgressiya] = useState()
-    const {theme} = ThemeHooks()
+  const {theme} = useContext(AuthContext)
+  // const [setAgressiya] = useState()
 
-    useEffect(() => {
-        const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
-        axios.get(apiUrl)
-          .then(response => {
-            setAgressiya(response.data);
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }, []);
+  //   useEffect(() => {
+  //       const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
+  //       axios.get(apiUrl)
+  //         .then(response => {
+  //           setAgressiya(response.data);
+  //         })
+  //         .catch(error => {
+  //           console.log(error);
+  //         });
+  //     }, []);
 
     return (
         <Modal

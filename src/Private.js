@@ -6,15 +6,16 @@ import Psycholog from "./Pages/Psycholog/Psycholog"
 import Teacher from "./Pages/Teacher/Teacher"
 import Dashboard2 from "./components/Dashboard2/Dashboard2"
 import { DecodeHooks } from "./Hooks/DecodeHook"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import axios from "axios"
 import Parents from './Pages/Parents/Parents';
+import { AuthContext } from "./context/PupilContext"
 
 
 
 export const Private = () => {
   const {decode} = DecodeHooks()
-  const [position, setPosition] = useState()
+  const {position, setPosition} = useContext(AuthContext)
   useEffect(() => {
 
 		const fetchClasses = async () => {

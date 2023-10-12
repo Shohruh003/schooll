@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './parents.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { ThemeHooks } from '../../Hooks/ThemeHook';
 import { Modal } from 'react-bootstrap';
 import close_Button from '../../Image/close-btn.svg';
 import Avatar from '../../Image/peopleImg1.jpg'
 import CanvasJSReact from '@canvasjs/react-charts';
+import { AuthContext } from '../../context/PupilContext';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
 function Parents () {
-	const {theme, setTheme} = ThemeHooks()
+	const {theme, setTheme} = useContext(AuthContext)
         const [modal, setModal] = useState()
 
 	useEffect(() => {
@@ -284,7 +284,7 @@ function Parents () {
       >
           <Modal.Title className='modal_header' style={{color: theme}} id="example-custom-modal-styling-title">
           Текст сообщения
-          <img className='close_button' onClick={() => setModal(false)} src={close_Button} alt='close' />
+          <img className='notification_button' onClick={() => setModal(false)} src={close_Button} alt='close' />
 
           </Modal.Title>
         <Modal.Body>
