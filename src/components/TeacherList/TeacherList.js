@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import './teacherList.css'
 import { Link } from "react-router-dom";
 import { GendersHooks } from "../../Hooks/GendersHooks";
@@ -7,6 +7,9 @@ import { PupilEmotionHooks } from "../../Hooks/PupilEmotionHook";
 import { TeacherHooks } from "../../Hooks/TeacherHook";
 import { PupilClassHooks } from "../../Hooks/PupilClassHook";
 import { ThemeHooks } from "../../Hooks/ThemeHook";
+import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
+import { OriginalUserHooks } from "../../Hooks/OriginalUsersHook";
+import { PupilHooks } from "../../Hooks/PupilHooks";
 
 
 function TeacherList() {
@@ -16,6 +19,10 @@ function TeacherList() {
   const {teacher, setTeacher} = TeacherHooks()
   const {pupilClass} = PupilClassHooks()
   const {theme} = ThemeHooks()
+  const {user, setUsers} = PupilHooks()
+  const {setOriginalUsers} = OriginalUserHooks();
+
+
 
   const style = document.createElement('style');
 style.innerHTML = `
@@ -43,6 +50,9 @@ document.head.appendChild(style);
 
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher', { params });
       setTeacher(response.data.results);
+      // setUsers(response.data.results);
+      setOriginalUsers(response.data.results);
+
       } catch (error) {
         console.error(error);
       }
@@ -50,6 +60,11 @@ document.head.appendChild(style);
 
     fetchPupils();
   }, [pupilClass, genders, pupilEmotion]);
+
+  const [editAdminModal, setEditAdminModal] = useState()
+  const clickItem = () => {
+    setEditAdminModal(true)
+  }
   return (
     <ul className="teacher_list">
                         {teacher?.map((item) => {
@@ -101,7 +116,7 @@ const firstMaxConfidenceIndex = emotions.findIndex(
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
 
     return (
-      <li key={item.id} style={{borderColor: theme}}>
+      <li key={item.id} style={{borderColor: theme}} onClick={clickItem}>
       <Link className='teacher_link'>
         <img className='teacher_image' src={teacher.thumbnail} alt="teacher of the img" width='100' height='100' />
         <p style={{borderColor: theme}}>
@@ -120,6 +135,7 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
     </li>
     )
 })}
+        <EditAdminModal editAdminModal={editAdminModal} setEditAdminModal={setEditAdminModal}/>
     </ul>
   )
 }

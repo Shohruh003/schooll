@@ -103,9 +103,25 @@
     justify-content: space-between;
 }
 .card-last{
+    position: relative;
     display: flex;
     justify-content: space-around;
 }
+
+.boyTwo {
+    position: absolute;
+    width: 330px;
+    height: auto;
+    left: -5%;
+    top: -10%;
+}
+
+.card-last div{
+    display: block;
+    width: 60%;
+    margin-left: auto;
+}
+
 .card-last button {
     width: 250px !important;
     height: 250px;
@@ -161,10 +177,4 @@
     height: auto;
     left: -40px;
     top: -60px;
-}
-
-.boyTwo {
-    position: absolute;
-    width: 330px;
-    height: auto;
 }

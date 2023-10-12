@@ -4,8 +4,10 @@ import { Modal } from 'react-bootstrap';
 import close_Button from '../../Image/close-btn.svg';
 
 import './attendanceModal.css'
+import { ThemeHooks } from '../../Hooks/ThemeHook';
 function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
     const [setAgressiya] = useState()
+    const {theme} = ThemeHooks()
     useEffect(() => {
         const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
         axios.get(apiUrl)
@@ -28,7 +30,7 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
-          <Modal.Title className='modal_header' id="example-custom-modal-styling-title">
+          <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
           Опоздавшие ученик
           <img className='close_button' onClick={() => setLateComersPupil(false)} src={close_Button} />
 

@@ -428,13 +428,11 @@ const {setUsers} = PupilHooks()
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
-        {/* <Modal.Header closeButton> */}
-          <Modal.Title className='modal_header' id="example-custom-modal-styling-title">
+          <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
           Текст сообщения
           <img className='close_button' onClick={() => setModal(false)} src={close_Button} />
 
           </Modal.Title>
-        {/* </Modal.Header> */}
         <Modal.Body>
           <p>
           Идейные соображения высшего порядка, а также понимание сути ресурсосберегающих технологий однозначно фиксирует необходимость направлений прогрессивного развития. Как уже неоднократно упомянуто, независимые государства могут быть рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок.

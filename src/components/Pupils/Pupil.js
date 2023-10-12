@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { PupilHooks } from "../../Hooks/PupilHooks";
 import './pupil.css'
 import { Link } from "react-router-dom";
@@ -11,7 +11,6 @@ import { PupilCountHooks } from "../../Hooks/PupilCountHook";
 import { PupilClassHooks } from "../../Hooks/PupilClassHook";
 import { ThemeHooks } from "../../Hooks/ThemeHook";
 import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
-import { ThemeContext } from "../../context/ThemeContext";
 
 
 function Pupil() {

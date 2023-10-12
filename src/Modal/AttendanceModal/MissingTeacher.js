@@ -4,8 +4,11 @@ import { Modal } from 'react-bootstrap';
 import close_Button from '../../Image/close-btn.svg';
 
 import './attendanceModal.css'
+import { ThemeHooks } from '../../Hooks/ThemeHook';
 function MissingTeacher ({missingTeacher, setMissingTeacher}) {
     const [setAgressiya] = useState()
+    const {theme} = ThemeHooks()
+
     useEffect(() => {
         const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
         axios.get(apiUrl)
@@ -28,7 +31,7 @@ function MissingTeacher ({missingTeacher, setMissingTeacher}) {
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
-          <Modal.Title className='modal_header' id="example-custom-modal-styling-title">
+          <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
           Отсутствующие преподавателей
           <img className='close_button' onClick={() => setMissingTeacher(false)} src={close_Button} />
 

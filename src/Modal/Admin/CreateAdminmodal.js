@@ -42,7 +42,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
           <thead>
 
             <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
-              Дети в состоянии агрессии
+              Создать профиль
               <img onClick={() => setAdminModal(false)} src={close_Button} />
             </Modal.Title>
           </thead>

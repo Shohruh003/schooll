@@ -2,10 +2,11 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import close_Button from '../../Image/close-btn.svg';
 import { Modal } from 'react-bootstrap'; 
-
 import './depressiyaPupil.css'
+import { ThemeHooks } from '../../Hooks/ThemeHook';
 function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
     const [setDepressiya] = useState()
+    const {theme} = ThemeHooks()
 
     useEffect(() => {
         const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
@@ -26,7 +27,7 @@ function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
       >
-          <Modal.Title className='modal_header' id="example-custom-modal-styling-title">
+          <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
           Дети в состоянии депрессии
           <img className='close_button' onClick={() => setDepressiyaModal(false)} src={close_Button} />
 

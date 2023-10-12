@@ -17,7 +17,7 @@ import ClassesList from '../../components/Classes/ClassesList';
 import { ThemeHooks } from '../../Hooks/ThemeHook';
 import CreateAdminModal from '../../Modal/Admin/CreateAdminmodal';
 import close_Button from '../../Image/close-btn.svg';
-import EditAdminModal from '../../Modal/User_modal/EditAdminmodal';
+import { TeacherHooks } from '../../Hooks/TeacherHook';
 
 
 function Admin(props) {
@@ -34,7 +34,6 @@ const {setUsers} = PupilHooks()
   const {teacherCount, setTeacherCount} = TeacherCountHooks()
   const {theme, setTheme} = ThemeHooks()
   const [adminModal, setAdminModal] = useState()
-  const [editAdminModal, setEditAdminModal] = useState()
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -210,6 +209,7 @@ const {setUsers} = PupilHooks()
     fetchTeachers();
   }, []);
 
+  const {setTeacher} = TeacherHooks()
  
   const handleSearch = (event) => {
     const searchTerm = event.target.value;
@@ -217,6 +217,7 @@ const {setUsers} = PupilHooks()
       item.full_name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setUsers(searchTerm === '' ? originalUsers : filteredUsers);
+    setTeacher(searchTerm === '' ? originalUsers : filteredUsers);
   };
 
   const handleClasChange = (event) => {
