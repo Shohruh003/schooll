@@ -40,7 +40,7 @@ function EditAdminModal({editAdminModal, setEditAdminModal}) {
     >
 
       <Modal.Body>
-        <table class="table table-striped modal_update">
+        <table className="table table-striped modal_update">
           <thead>
 
             <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
@@ -75,18 +75,18 @@ function EditAdminModal({editAdminModal, setEditAdminModal}) {
             <div className='input_box'>
               <label for="7" class="form-label class-lable">Класс</label>
               <select id='7' className="classNum">
-                <option>1<img src={selectIcon} /></option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <option value='1'>1<img src={selectIcon} /></option>
+                <option value='2'>2</option>
+                <option value='3'>3</option>
+                <option value='4'>4</option>
+                <option value='5'>5</option>
               </select>
               <select className="class2">
-                <option>"А"<img src={selectIcon} /></option>
-                <option>"Б"</option>
-                <option>"В"</option>
-                <option>"Г"</option>
-                <option>"Д"</option>
+                <option value='A'>"А"<img src={selectIcon} /></option>
+                <option value='B'>"B"</option>
+                <option value='C'>"C"</option>
+                <option value='D'>"D"</option>
+                <option value='E'>"E"</option>
               </select>
             </div>
             <div className='input_box'>
@@ -114,9 +114,9 @@ function EditAdminModal({editAdminModal, setEditAdminModal}) {
               <div className='video_box'>
                 <label for="5" class="form-label">Статус:</label>
                 <select>
-                  <option>ученик<img src={selectIcon} /></option>
-                  <option>психолог</option>
-                  <option>родители</option>
+                  <option value='pupil'>ученик<img src={selectIcon} /></option>
+                  <option value='psychologist'>психолог</option>
+                  <option value='teacher'>родители</option>
                 </select>
               </div>
               <div className='video_box'>

@@ -1,21 +1,63 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './admin.css'
 import { Link, NavLink, Route, Routes } from 'react-router-dom';
-import { Modal } from 'react-bootstrap';
 import Pupil from '../../components/Pupils/Pupil';
 import TeacherList from '../../components/TeacherList/TeacherList';
 import ClassesList from '../../components/Classes/ClassesList';
 import CreateAdminModal from '../../Modal/Admin/CreateAdminmodal';
-import close_Button from '../../Image/close-btn.svg';
 import { AuthContext } from '../../context/PupilContext';
 import axios from 'axios';
+import { DecodeHooks } from '../../Hooks/DecodeHook';
+import Notification from '../../Modal/Notification/Notification';
 
 
 function Admin(props) {
   const { isActive } = props;
-  const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilEmotion,classes, setClasses, teacherCount, theme, setTheme, setAgeRange, setTeacher, setPupilCount, setTeacherCount} = useContext(AuthContext)
-  const [modal, setModal] = useState(false)
+  const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilEmotion,classes, setClasses, teacherCount, theme, setTheme, setAgeRange, setTeacher, setPupilCount, setTeacherCount,setNotification,notificationCount, setNotificationCount, modal, setModal} = useContext(AuthContext)
   const [adminModal, setAdminModal] = useState()
+  const {decode} = DecodeHooks()
+  const [teach, setTeach] = useState()
+
+  useEffect(() => {
+      const fetchParents = async () => {
+          try {
+
+              const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
+              setTeach(response.data)
+          } catch (error) {
+              console.error(error);
+          }
+      };
+
+      fetchParents();
+  }, [decode]);
+console.log(teach);
+
+const handleModal = () => {
+  try {
+    setModal(true)
+
+      const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+      setNotification(response.data.messages)
+  } catch (error) {
+      console.error(error);
+  }
+};
+
+useEffect(() => {
+  const fetchNotification = async () => {
+    try {
+
+        const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+        setNotification(response.data.messages)
+        setNotificationCount(response.data.messages.length)
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+fetchNotification();
+}, [decode]);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -205,10 +247,6 @@ function Admin(props) {
     setUsers(searchTerm === '' ? originalUsers : filteredClass);
   };
 
-  const handleModal = () => {
-    setModal(true)
-  }
-
   return (
     <div className="admin_page">
       <div className="container">
@@ -291,7 +329,7 @@ function Admin(props) {
   </clipPath>
   </defs>
                     </svg>
-                    <span className='sms_count'>3</span>
+                    <span className='sms_count' style={notificationCount ? {display: 'block'} : {display: 'none'}}>{notificationCount}</span>
                   </button>
                 </div>
                 <p className='admin_boardSpan'>администратора</p>
@@ -403,30 +441,7 @@ function Admin(props) {
           </div>
           <button className='panel_button' type='button' onClick={() => setAdminModal(true)}>Создать профиль</button>
           <CreateAdminModal className='admin_Modal' adminModal={adminModal} setAdminModal={setAdminModal}/>
-          
-
-          <Modal
-         className='modal'
-        show={modal}
-        onHide={() => setModal(false)}
-        dialogClassName="modal-90w"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
-          <Modal.Title className='modal_header' style={{color: theme}} id="example-custom-modal-styling-title">
-          Текст сообщения
-          <img className='notification_button' onClick={() => setModal(false)} src={close_Button} />
-
-          </Modal.Title>
-        <Modal.Body>
-          <p>
-          Идейные соображения высшего порядка, а также понимание сути ресурсосберегающих технологий однозначно фиксирует необходимость направлений прогрессивного развития. Как уже неоднократно упомянуто, независимые государства могут быть рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок.
-          </p>
-
-          <p>Не следует, однако, забывать, что курс на социально-ориентированный национальный проект требует анализа своевременного выполнения сверхзадачи.</p>
-
-          <p>А ещё активно развивающиеся страны третьего мира будут рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. Сложно сказать, почему действия представителей оппозиции ограничены исключительно образом мышления. Современные технологии достигли такого уровня, что граница обучения кадров представляет собой интересный эксперимент проверки соответствующих условий активизации.</p>
-        </Modal.Body>
-      </Modal>
+          <Notification modal={modal} setModal={setModal}/>
 
           </div>
       </div>

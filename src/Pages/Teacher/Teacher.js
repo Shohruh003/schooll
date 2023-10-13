@@ -1,20 +1,49 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './teacher.css'
 import { Link, NavLink, Route, Routes } from 'react-router-dom';
-import { Modal } from 'react-bootstrap'; 
 import axios from 'axios';
 import Pupil from '../../components/Pupils/Pupil';
 import TeacherList from '../../components/TeacherList/TeacherList';
 import ClassesList from '../../components/Classes/ClassesList';
-import close_Button from '../../Image/close-btn.svg';
 import Avatar from '../../Image/peopleImg1.jpg'
 import { AuthContext } from '../../context/PupilContext';
+import { DecodeHooks } from '../../Hooks/DecodeHook';
+import Notification from '../../Modal/Notification/Notification';
 
 function Teacher(props) {
   const { isActive } = props;
-  const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilCount, setPupilEmotion, setClasses, setTeacherCount, theme, setTheme} = useContext(AuthContext)
-  const [modal, setModal] = useState(false)
+  const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilCount, setPupilEmotion, theme, setTheme, setNotification,notificationCount, setNotificationCount, modal, setModal} = useContext(AuthContext)
+        const {decode} = DecodeHooks()
+        const [teach, setTeach] = useState()
 
+        useEffect(() => {
+            const fetchParents = async () => {
+                try {
+    
+                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
+                    setTeach(response.data)
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+    
+            fetchParents();
+        }, [decode]);
+
+            useEffect(() => {
+      const fetchNotification = async () => {
+        try {
+
+            const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+            setNotification(response.data.messages)
+            setNotificationCount(response.data.messages.length)
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    fetchNotification();
+}, [decode]);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -146,35 +175,6 @@ function Teacher(props) {
     fetchPupils();
   }, []);
 
-
-  useEffect(() => {
-    const fetchClass = async () => {
-      try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/');
-      setClasses(response.data.count)
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchClass();
-  }, []);
-
-  useEffect(() => {
-
-    const fetchTeachers = async () => {
-      try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher');
-        setTeacherCount(response.data.count)
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchTeachers();
-  }, []);
-
- 
   const handleSearch = (event) => {
     const searchTerm = event.target.value;
     const filteredUsers = originalUsers.filter((item) =>
@@ -183,9 +183,16 @@ function Teacher(props) {
     setUsers(searchTerm === '' ? originalUsers : filteredUsers);
   };
 
-  const handleModal = () => {
-    setModal(true)
-  }
+      const handleModal = () => {
+          try {
+            setModal(true)
+
+              const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+              setNotification(response.data.messages)
+          } catch (error) {
+              console.error(error);
+          }
+      };
 
   return (
     <div className="admin_page">
@@ -269,7 +276,7 @@ function Teacher(props) {
   </clipPath>
   </defs>
                     </svg>
-                    <span className='sms_count'>3</span>
+                    <span className='sms_count' style={notificationCount ? {display: 'block'} : {display: 'none'}}>{notificationCount}</span>
                   </button>
                 </div>
                 <p className='admin_boardSpan'>Преподавателя</p>
@@ -405,29 +412,7 @@ function Teacher(props) {
   </Link>
 </li>
 </ul>
-
-<Modal
-         className='modal'
-        show={modal}
-        onHide={() => setModal(false)}
-        dialogClassName="modal-90w"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
-          <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
-          Текст сообщения
-          <img className='notification_button' onClick={() => setModal(false)} src={close_Button} />
-
-          </Modal.Title>
-        <Modal.Body>
-          <p>
-          Идейные соображения высшего порядка, а также понимание сути ресурсосберегающих технологий однозначно фиксирует необходимость направлений прогрессивного развития. Как уже неоднократно упомянуто, независимые государства могут быть рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок.
-          </p>
-
-          <p>Не следует, однако, забывать, что курс на социально-ориентированный национальный проект требует анализа своевременного выполнения сверхзадачи.</p>
-
-          <p>А ещё активно развивающиеся страны третьего мира будут рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. Сложно сказать, почему действия представителей оппозиции ограничены исключительно образом мышления. Современные технологии достигли такого уровня, что граница обучения кадров представляет собой интересный эксперимент проверки соответствующих условий активизации.</p>
-        </Modal.Body>
-      </Modal>
+<Notification modal={modal} setModal={setModal}/>
 
           </div>
       </div>

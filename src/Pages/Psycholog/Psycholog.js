@@ -10,15 +10,17 @@ import DepressiyaPupil from '../../Modal/DepressiyaPupil/DepressiyaPupil';
 import close_Button from '../../Image/close-btn.svg';
 import { AuthContext } from '../../context/PupilContext';
 import axios from 'axios';
+import { DecodeHooks } from '../../Hooks/DecodeHook';
+import Notification from '../../Modal/Notification/Notification';
 
 
 function Psycholog(props) {
   const { isActive } = props;
-  const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilEmotion,classes,teacherCount, theme, setTheme, setAgeRange, setTeacher,setClasses,setPupilCount, setTeacherCount} = useContext(AuthContext)
+  const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilEmotion,classes,teacherCount, theme, setTheme, setAgeRange, setTeacher,setClasses,setPupilCount, setTeacherCount,modal, setModal,setNotification,notificationCount, setNotificationCount} = useContext(AuthContext)
 
-  const [modal, setModal] = useState(false)
   const [agressiyaModal, setAgressiyaModal] = useState()
   const [depressiyaModal, setDepressiyaModal] = useState()
+  const {decode} = DecodeHooks()
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -67,7 +69,8 @@ function Psycholog(props) {
     const fetchPupils = async () => {
       try {
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/');
-        setClasses(response.data.count)
+        setClasses(response.data)
+
       } catch (error) {
         console.error(error);
       }
@@ -206,9 +209,31 @@ function Psycholog(props) {
     setUsers(searchTerm === '' ? originalUsers : filteredClass);
   };
 
+  useEffect(() => {
+    const fetchNotification = async () => {
+      try {
+
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+          setNotification(response.data.messages)
+          setNotificationCount(response.data.messages.length)
+      } catch (error) {
+          console.error(error);
+      }
+  };
+
+  fetchNotification();
+}, [decode]);
+
   const handleModal = () => {
-    setModal(true)
-  }
+    try {
+      setModal(true)
+
+        const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+        setNotification(response.data.messages)
+    } catch (error) {
+        console.error(error);
+    }
+};
 
   return (
     <div className="admin_page">
@@ -292,7 +317,7 @@ function Psycholog(props) {
   </clipPath>
   </defs>
                     </svg>
-                    <span className='sms_count'>3</span>
+                    <span className='sms_count' style={notificationCount ? {display: 'block'} : {display: 'none'}}>{notificationCount}</span>
                   </button>
                 </div>
                 <p className='admin_boardSpan'>психолога</p>
@@ -346,7 +371,7 @@ function Psycholog(props) {
 </svg>
 
                       <h4 className='navLinkName'>всего классов</h4>
-                      <span className='quantity'>{classes}</span>
+                      <span className='quantity'>{classes?.count}</span>
                     </NavLink>
                   </li>
                 </ul>
@@ -407,34 +432,12 @@ function Psycholog(props) {
 
           <div className='psycholog_emotionDiv' style={{borderColor: theme}}>
             <h2 className='emotionDiv_heading' style={{color: theme}}>Внимание</h2>
-            <button className='emotionDiv_button' style={{backgroundColor: theme}} onClick={() => setAgressiyaModal(true)}>Агрессия <span className='emotionDiv_span' style={{borderColor: theme, color: theme}}>2</span></button>
-            <button className='emotionDiv_button' style={{backgroundColor: theme}} onClick={() => setDepressiyaModal(true)}>Депрессия <span className='emotionDiv_span' style={{borderColor: theme, color: theme}}>5</span></button>
+            <button className='emotionDiv_button' style={{backgroundColor: theme}} onClick={() => setAgressiyaModal(true)}>Агрессия <span className='emotionDiv_span' style={{borderColor: theme, color: theme}}>{classes?.extra?.sad?.length}</span></button>
+            <button className='emotionDiv_button' style={{backgroundColor: theme}} onClick={() => setDepressiyaModal(true)}>Депрессия <span className='emotionDiv_span' style={{borderColor: theme, color: theme}}>{classes?.extra?.angry?.length}</span></button>
           </div>
           <AgressiyaPupil agressiyaModal={agressiyaModal} setAgressiyaModal={setAgressiyaModal}/>
           <DepressiyaPupil depressiyaModal={depressiyaModal} setDepressiyaModal={setDepressiyaModal}/>
-
-          <Modal
-         className='modal'
-        show={modal}
-        onHide={() => setModal(false)}
-        dialogClassName="modal-90w"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
-          <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
-          Текст сообщения
-          <img className='notification_button' onClick={() => setModal(false)} src={close_Button} />
-
-          </Modal.Title>
-        <Modal.Body>
-          <p>
-          Идейные соображения высшего порядка, а также понимание сути ресурсосберегающих технологий однозначно фиксирует необходимость направлений прогрессивного развития. Как уже неоднократно упомянуто, независимые государства могут быть рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок.
-          </p>
-
-          <p>Не следует, однако, забывать, что курс на социально-ориентированный национальный проект требует анализа своевременного выполнения сверхзадачи.</p>
-
-          <p>А ещё активно развивающиеся страны третьего мира будут рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. Сложно сказать, почему действия представителей оппозиции ограничены исключительно образом мышления. Современные технологии достигли такого уровня, что граница обучения кадров представляет собой интересный эксперимент проверки соответствующих условий активизации.</p>
-        </Modal.Body>
-      </Modal>
+          <Notification modal={modal} setModal={setModal}/>
 
           </div>
       </div>

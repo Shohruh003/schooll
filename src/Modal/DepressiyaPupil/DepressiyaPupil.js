@@ -5,20 +5,29 @@ import { Modal } from 'react-bootstrap';
 import './depressiyaPupil.css'
 import { AuthContext } from '../../context/PupilContext';
 function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
-  const {theme} = useContext(AuthContext)
+  const {theme, classes} = useContext(AuthContext)
 
-  const [setDepressiya] = useState()
+  const [depressiya, setDepressiya] = useState([]);
 
-    useEffect(() => {
-        const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
-        axios.get(apiUrl)
-          .then(response => {
-            setDepressiya(response.data);
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const promises = classes?.extra?.angry?.map(async (item) => {
+          const response = await axios.get(
+            `https://www.api.yomon-emas.uz/api/users/pupils/${item?.id}`
+          );
+          return response.data;
+        });
+
+        const depressiyaData = await Promise.all(promises);
+        setDepressiya(depressiyaData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [classes?.extra?.angry]);
     return (
         <Modal
          className='modal custom-modal'
@@ -43,21 +52,13 @@ function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><img src='djqb' width='30' height='30' alt='agressiyaImg'/></td>
-      <td>Otto</td>
-      <td>5-A</td>
-    </tr>
-    <tr>
-      <td>img</td>
-      <td>Thornton</td>
-      <td>2-B</td>
-    </tr>
-    <tr>
-      <td>img</td>
-      <td>the Bird</td>
-      <td>4-A</td>
-    </tr>
+  {depressiya.map((item, index) => (
+              <tr key={index}>
+                <td><img src={item?.main_image} width='30' height='30' alt='agressiyaImg' /></td>
+                <td>{item?.full_name}</td>
+                <td>{item?.pupil_class}</td>
+              </tr>
+            ))}
   </tbody>
 </table>
         </Modal.Body>

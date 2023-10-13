@@ -19,9 +19,12 @@ export const AuthProvider = ({children}) => {
   const [teacherCount, setTeacherCount] = useState();
   const [theme, setTheme] = useState('#FC6C85');
   const [editAdminModal, setEditAdminModal] = useState()
+  const [notificationCount, setNotificationCount] = useState()
+  const [notification, setNotification] = useState()
+  const [modal, setModal] = useState()
 
   return (
-    <AuthContext.Provider value={{user, setUsers,ageRange, setAgeRange,classes, setClasses,classList, setClassList,genders, setGenders,originalTeacher, setOriginalTeacher,originalUsers, setOriginalUsers,position, setPosition,pupilClass, setPupilClass,pupilCount, setPupilCount,pupilEmotion, setPupilEmotion,teacher, setTeacher,teacherCount, setTeacherCount,theme, setTheme,editAdminModal, setEditAdminModal}}>
+    <AuthContext.Provider value={{user, setUsers,ageRange, setAgeRange,classes, setClasses,classList, setClassList,genders, setGenders,originalTeacher, setOriginalTeacher,originalUsers, setOriginalUsers,position, setPosition,pupilClass, setPupilClass,pupilCount, setPupilCount,pupilEmotion, setPupilEmotion,teacher, setTeacher,teacherCount, setTeacherCount,theme, setTheme,editAdminModal, setEditAdminModal, notificationCount, setNotificationCount, notification, setNotification, modal, setModal}}>
       {children}
     </AuthContext.Provider>
   );

@@ -7,12 +7,43 @@ import close_Button from '../../Image/close-btn.svg';
 import Avatar from '../../Image/peopleImg1.jpg'
 import CanvasJSReact from '@canvasjs/react-charts';
 import { AuthContext } from '../../context/PupilContext';
+import { DecodeHooks } from '../../Hooks/DecodeHook';
+import Notification from '../../Modal/Notification/Notification';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
 function Parents () {
-	const {theme, setTheme} = useContext(AuthContext)
-        const [modal, setModal] = useState()
+	    const {theme, setTheme, modal, setModal,setNotification,notificationCount, setNotificationCount} = useContext(AuthContext)
+        const {decode} = DecodeHooks()
+        const [parent, setParent] = useState()
+        useEffect(() => {
+            const fetchNotification = async () => {
+              try {
+      
+                  const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+                  setNotification(response.data.messages)
+                  setNotificationCount(response.data.messages.length)
+              } catch (error) {
+                  console.error(error);
+              }
+          };
+      
+          fetchNotification();
+      }, [decode]);
+
+        useEffect(() => {
+            const fetchParents = async () => {
+                try {
+    
+                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
+                    setParent(response.data)
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+    
+            fetchParents();
+        }, [decode]);
 
 	useEffect(() => {
 		const savedTheme = localStorage.getItem('theme');
@@ -131,8 +162,15 @@ function Parents () {
 
 
             const handleModal = () => {
-                setModal(true)
-              }
+                try {
+                  setModal(true)
+      
+                    const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+                    setNotification(response.data.messages)
+                } catch (error) {
+                    console.error(error);
+                }
+            };
 
 
               const pupils = {
@@ -273,30 +311,8 @@ function Parents () {
   </clipPath>
   </defs>
                     </svg>
-                    <span className='sms_count'>3</span>
+                    <span className='sms_count' style={notificationCount ? {display: 'block'} : {display: 'none'}}>{notificationCount}</span>
                   </button>
-                  <Modal
-         className='modal'
-        show={modal}
-        onHide={() => setModal(false)}
-        dialogClassName="modal-90w"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
-          <Modal.Title className='modal_header' style={{color: theme}} id="example-custom-modal-styling-title">
-          Текст сообщения
-          <img className='notification_button' onClick={() => setModal(false)} src={close_Button} alt='close' />
-
-          </Modal.Title>
-        <Modal.Body>
-          <p>
-          Идейные соображения высшего порядка, а также понимание сути ресурсосберегающих технологий однозначно фиксирует необходимость направлений прогрессивного развития. Как уже неоднократно упомянуто, независимые государства могут быть рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок.
-          </p>
-
-          <p>Не следует, однако, забывать, что курс на социально-ориентированный национальный проект требует анализа своевременного выполнения сверхзадачи.</p>
-
-          <p>А ещё активно развивающиеся страны третьего мира будут рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. Сложно сказать, почему действия представителей оппозиции ограничены исключительно образом мышления. Современные технологии достигли такого уровня, что граница обучения кадров представляет собой интересный эксперимент проверки соответствующих условий активизации.</p>
-        </Modal.Body>
-      </Modal>
 
 					</div>
 
@@ -306,7 +322,7 @@ function Parents () {
                     <div className='avatar_inner'>
                         <div className='avatar_about'>
                             <p className='avatar_name'>
-                                <span>Shohruh Azimov</span> <br/>
+                                <span>{parent?.full_name}</span> <br/>
                                 <span className='avatar_time'>Класс: 5 ”Б”</span>
                             </p>
 
@@ -454,6 +470,7 @@ function Parents () {
                                     
                                 </ul>
                                 <div className='empty_div' style={theme === '#81B37A' ? {backgroundColor: '#E4F0E2'} : {backgroundColor: '#F5EFEF'}}></div>
+                                <Notification modal={modal} setModal={setModal}/>
                             </div>
                         </div>
                     </div>

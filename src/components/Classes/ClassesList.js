@@ -42,7 +42,6 @@ function ClassesList() {
   }, [pupilClass, genders, pupilEmotion]);
 
   const arr = Object.keys(classList).map(key => ({ key, value: classList[key] }));
-  console.log(arr);
   return (
     <ul className="class_list">
                         {arr?.map((item) => {

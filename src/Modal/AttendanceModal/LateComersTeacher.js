@@ -7,17 +7,17 @@ import { AuthContext } from '../../context/PupilContext';
 function LateComersTeacher ({lateComersTeacher, setLateComersTeacher}) {
   const {theme} = useContext(AuthContext)
 
-  const [setAgressiya] = useState()
-    useEffect(() => {
-        const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
-        axios.get(apiUrl)
-          .then(response => {
-            setAgressiya(response.data);
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }, []);
+  // const [setAgressiya] = useState()
+  //   useEffect(() => {
+  //       const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
+  //       axios.get(apiUrl)
+  //         .then(response => {
+  //           setAgressiya(response.data);
+  //         })
+  //         .catch(error => {
+  //           console.log(error);
+  //         });
+  //     }, []);
     
 
     return (

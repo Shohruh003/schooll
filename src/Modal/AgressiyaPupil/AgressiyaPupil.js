@@ -1,58 +1,70 @@
-import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import close_Button from '../../Image/close-btn.svg';
 import { Modal } from 'react-bootstrap';
 import './agressiyaPupil.css'
 import { AuthContext } from '../../context/PupilContext';
-function AgressiyaPupil ({agressiyaModal, setAgressiyaModal}) {
-  const {theme} = useContext(AuthContext)
-  // const [setAgressiya] = useState()
+import axios from 'axios';
+import { useState } from 'react';
 
-  //   useEffect(() => {
-  //       const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
-  //       axios.get(apiUrl)
-  //         .then(response => {
-  //           setAgressiya(response.data);
-  //         })
-  //         .catch(error => {
-  //           console.log(error);
-  //         });
-  //     }, []);
+function AgressiyaPupil({ agressiyaModal, setAgressiyaModal }) {
+  const { theme, classes } = useContext(AuthContext);
+  const [agressiya, setAgressiya] = useState([]);
 
-    return (
-        <Modal
-         className='modal'
-        show={agressiyaModal}
-        onHide={() => setAgressiyaModal(false)}
-        size="lg"
-        dialogClassName="modal-90w"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
-          <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
-          Дети в состоянии агрессии
-          <img className='close_button' onClick={() => setAgressiyaModal(false)} src={close_Button} />
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const promises = classes?.extra?.sad?.map(async (item) => {
+          const response = await axios.get(
+            `https://www.api.yomon-emas.uz/api/users/pupils/${item?.id}`
+          );
+          return response.data;
+        });
 
-          </Modal.Title>
-        <Modal.Body>
-        <table class="table table-striped">
-  <thead>
-    <tr>
-      <th className='agressiyaModal_heading' scope="col">ученик</th>
-      <th className='agressiyaModal_heading' scope="col">Фамилия и имя</th>
-      <th className='agressiyaModal_heading' scope="col">класс</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><img src='djqb' width='30' height='30' alt='agressiyaImg'/></td>
-      <td>Otto</td>
-      <td>5-A</td>
-    </tr>
-  </tbody>
-</table>
-        </Modal.Body>
-      </Modal>
-    )
+        const agressiyaData = await Promise.all(promises);
+        setAgressiya(agressiyaData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [classes?.extra?.sad]);
+
+  return (
+    <Modal
+      className='modal'
+      show={agressiyaModal}
+      onHide={() => setAgressiyaModal(false)}
+      size='lg'
+      dialogClassName='modal-90w'
+      aria-labelledby='example-custom-modal-styling-title'
+    >
+      <Modal.Title style={{ color: theme }} className='modal_header' id='example-custom-modal-styling-title'>
+        Дети в состоянии агрессии
+        <img className='close_button' onClick={() => setAgressiyaModal(false)} src={close_Button} alt='Close Button' />
+      </Modal.Title>
+      <Modal.Body>
+        <table className='table table-striped'>
+          <thead>
+            <tr>
+              <th className='agressiyaModal_heading' scope='col'>ученик</th>
+              <th className='agressiyaModal_heading' scope='col'>Фамилия и имя</th>
+              <th className='agressiyaModal_heading' scope='col'>класс</th>
+            </tr>
+          </thead>
+          <tbody>
+            {agressiya.map((item, index) => (
+              <tr key={index}>
+                <td><img src={item?.main_image} width='30' height='30' alt='agressiyaImg' /></td>
+                <td>{item?.full_name}</td>
+                <td>{item?.pupil_class}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Modal.Body>
+    </Modal>
+  );
 }
 
 export default AgressiyaPupil;
