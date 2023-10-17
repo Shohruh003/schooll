@@ -1,25 +1,29 @@
 import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Modal } from 'react-bootstrap'; 
 import close_Button from '../../Image/close-btn.svg';
 import './attendanceModal.css'
 import { AuthContext } from '../../context/PupilContext';
 function MissingTeacher ({missingTeacher, setMissingTeacher}) {
-  const {theme} = useContext(AuthContext)
+  const {theme,missingTeachers, setMissingTeachers} = useContext(AuthContext)
 
-  // const [setAgressiya] = useState()
 
-  //   useEffect(() => {
-  //       const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
-  //       axios.get(apiUrl)
-  //         .then(response => {
-  //           setAgressiya(response.data);
-  //         })
-  //         .catch(error => {
-  //           console.log(error);
-  //         });
-  //     }, []);
-    
+  useEffect(() => {
+    const fetchTeachers = async () => {
+      try {
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher&is_absent=true');
+        const result = response?.data?.results?.map((e) => {
+          if (e.is_absent === true) {
+            setMissingTeachers(response.data);
+          }
+        })
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchTeachers();
+  }, []);
 
     return (
         <div>
@@ -46,16 +50,13 @@ function MissingTeacher ({missingTeacher, setMissingTeacher}) {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><img src='djqb' width='30' height='30' alt='agressiyaImg'/></td>
-      <td>Otto</td>
-      <td>5-A</td>
-    </tr>
-    <tr>
-      <td><img src='djqb' width='30' height='30' alt='agressiyaImg'/></td>
-      <td>Shohruh Azimov</td>
-      <td>5-A</td>
-    </tr>
+  {missingTeachers?.results?.map((item, index) => (
+              <tr key={index}>
+                <td><img src={item?.main_image} width='30' height='30' alt='agressiyaImg' /></td>
+                <td>{item?.full_name}</td>
+                <td>{item?.pupil_class}</td>
+              </tr>
+            ))}
   </tbody>
 </table>
         </Modal.Body>

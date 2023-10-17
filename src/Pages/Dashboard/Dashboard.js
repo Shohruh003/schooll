@@ -11,13 +11,27 @@ import { AuthContext } from '../../context/PupilContext';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function Dashboard () {
 
-	const {position, pupilEmotion, setPupilEmotion,theme, setTheme} = useContext(AuthContext)
+	const {position, pupilEmotion, setPupilEmotion,theme, setTheme, setClasses,comersPupils, missingTeachers,lateComersTeachers,lateComersPupils} = useContext(AuthContext)
 	const [teacherEmotion, setTeacherEmotion] = useState()
 
 		const [lateComersTeacher, setLateComersTeacher] = useState(false)
 		const [missingTeacher, setMissingTeacher] = useState(false)
 		const [missingPupil, setMissingPupil] = useState(false)
 		const [lateComersPupil, setLateComersPupil] = useState(false)
+
+		useEffect(() => {
+			const fetchPupils = async () => {
+			  try {
+				const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/');
+				setClasses(response.data)
+		
+			  } catch (error) {
+				console.error(error);
+			  }
+			};
+		
+			fetchPupils();
+		  }, []);
 
 	const logOut = () => {
 		localStorage.clear()
@@ -352,8 +366,8 @@ function findLargestSection(options) {
 							/>
 						</div>
 						
-		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={LateComersTeachers}>Опоздавшие : 1</button>
-		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={MissingTeachers}>Отсутствующие : 3</button>
+		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={LateComersTeachers}>Опоздавшие : {lateComersTeachers?.results?.length ? lateComersTeachers?.results?.length : '0'}</button>
+		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={MissingTeachers}>Отсутствующие : {missingTeachers?.results?.length ? missingTeachers?.results?.length : '0'}</button>
 
 					</li>
 
@@ -364,8 +378,8 @@ function findLargestSection(options) {
 							/>
 						</div>
 						
-		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={LateComersPupils}>Опоздавшие : 1</button>
-		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={MissingPupils}>Отсутствующие : 3</button>
+		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={LateComersPupils}>Опоздавшие : {lateComersPupils?.length ? lateComersPupils?.length : '0'}</button>
+		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={MissingPupils}>Отсутствующие : {comersPupils?.length ? comersPupils?.length : '0'}</button>
 					</li>
 				</ul>
 <LateComersTeacher lateComersTeacher={lateComersTeacher} setLateComersTeacher={setLateComersTeacher} />

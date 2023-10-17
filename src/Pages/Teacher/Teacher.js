@@ -2,33 +2,60 @@ import React, { useContext, useEffect, useState } from 'react';
 import './teacher.css'
 import { Link, NavLink, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
-import Pupil from '../../components/Pupils/Pupil';
-import TeacherList from '../../components/TeacherList/TeacherList';
-import ClassesList from '../../components/Classes/ClassesList';
-import Avatar from '../../Image/peopleImg1.jpg'
 import { AuthContext } from '../../context/PupilContext';
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import Notification from '../../Modal/Notification/Notification';
+import TeacherPupils from '../../components/TeacherPupils/TeacherPupils';
 
 function Teacher(props) {
   const { isActive } = props;
-  const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilCount, setPupilEmotion, theme, setTheme, setNotification,notificationCount, setNotificationCount, modal, setModal} = useContext(AuthContext)
+  const { setUsers, originalUsers, genders, setGenders,setPupilEmotion,theme, setTheme, setNotification,notificationCount, setNotificationCount, modal, setModal,teach, setTeach,classes, setClasses} = useContext(AuthContext)
         const {decode} = DecodeHooks()
-        const [teach, setTeach] = useState()
+        const [pupilMissing, setPupilMissing] = useState()
 
+        useEffect(() => {
+          const fetchParents = async () => {
+              try {
+                  const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/classes/`);
+                  setClasses(response.data)
+              } catch (error) {
+                  console.error(error);
+              }
+          };
+          fetchParents();
+      }, [decode]);
+
+        useEffect(() => {
+          const fetchData = async () => {
+            try {
+              const presentPupilIds = classes?.classes["2-a"]?.absent_pupils?.id;
+              const promises = presentPupilIds.map(async (id) => {
+                const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`);
+                return response.data;
+              });
+        
+              const presentPupilsData = await Promise.all(promises);
+              setPupilMissing(presentPupilsData);
+            } catch (error) {
+              console.log(error);
+            }
+          };
+        
+          fetchData();
+        }, [classes?.classes]);
         useEffect(() => {
             const fetchParents = async () => {
                 try {
-    
                     const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
                     setTeach(response.data)
                 } catch (error) {
                     console.error(error);
                 }
             };
-    
             fetchParents();
         }, [decode]);
+
+
 
             useEffect(() => {
       const fetchNotification = async () => {
@@ -161,20 +188,6 @@ function Teacher(props) {
     setPupilEmotion(selectedEmotion);
   };
 
-
-  useEffect(() => {
-    const fetchPupils = async () => {
-      try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/');
-        setPupilCount(response.data.count)
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchPupils();
-  }, []);
-
   const handleSearch = (event) => {
     const searchTerm = event.target.value;
     const filteredUsers = originalUsers.filter((item) =>
@@ -297,7 +310,7 @@ function Teacher(props) {
 </svg>
 
                       <h4 className='navLinkName'>Всего учеников</h4>
-                      <span className='quantity'>{pupilCount}</span>
+                      <span className='quantity'>{teach?.pupils?.length}</span>
                     </NavLink>
                   </li>
 
@@ -333,16 +346,14 @@ function Teacher(props) {
 
 
                       <h4 className='navLinkName'>Посещаемость учеников</h4>
-                      <span className='quantity'>8</span>
+                      <span className='quantity'>{teach?.pupils?.length - pupilMissing?.length}</span>
                     </NavLink>
                   </li>
                 </ul>
               </nav>
               <div>
               <Routes>
-                <Route path='/pupil' element={<Pupil/>}/>
-                <Route path='/teacher' element={<TeacherList/>}/>
-                <Route path='/class' element={<ClassesList/>}/>
+                <Route path='/pupil' element={<TeacherPupils/>}/>
               </Routes>
               </div>
           </div>
@@ -384,33 +395,14 @@ function Teacher(props) {
           </div>
 
           <ul className='attendance' style={{borderColor: theme}}>
-<li className="attendance_item" style={{borderColor: theme}}>
+{pupilMissing?.map((item, index) => (
+  <li key={index} className="attendance_item" style={{borderColor: theme}}>
   <Link className='attendance_link'>
-    <p className='attendance_name'>Алиев Валижон</p>
-    <img className='attendance_avatar' src={Avatar} alt='Avatar' width='50' height='50'/>
+    <p className='attendance_name'>{item?.full_name}</p>
+    <img className='attendance_avatar' src={item?.main_image} alt='Avatar' width='50' height='50'/>
   </Link>
 </li>
-
-<li className="attendance_item" style={{borderColor: theme}}>
-  <Link className='attendance_link'>
-  <p className='attendance_name'>Shohruh Azimov</p>
-    <img className='attendance_avatar' src={Avatar} alt='Avatar' width='50' height='50'/>
-  </Link>
-</li>
-
-<li className="attendance_item" style={{borderColor: theme}}>
-  <Link className='attendance_link'>
-  <p className='attendance_name'>Alisherov Sadriddin</p>
-    <img className='attendance_avatar' src={Avatar} alt='Avatar' width='50' height='50'/>
-  </Link>
-</li>
-
-<li className="attendance_item" style={{borderColor: theme}}>
-  <Link className='attendance_link'>
-  <p className='attendance_name'>Алиев Валижон</p>
-    <img className='attendance_avatar' src={Avatar} alt='Avatar' width='50' height='50'/>
-  </Link>
-</li>
+))}
 </ul>
 <Notification modal={modal} setModal={setModal}/>
 

@@ -121,7 +121,7 @@
 
 .days {
     display: block;
-    font-size: 22px;
+    font-size: 14px;
     font-weight: 400;
     margin: 7px 0;
 }
@@ -277,3 +277,20 @@
 .notification_button {
     margin-right: 15px;
 }
+
+/* .btn{
+    position: relative;
+}
+
+.header-navigate {
+    position: absolute;
+    top: 70px;
+    left: 100px;
+    z-index: 3;
+  } */
+
+  .select {
+    height: 30px;
+    margin: 0 10px 0 0;
+    border: none;
+  }

@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useState } from 'react';
 
 function AgressiyaPupil({ agressiyaModal, setAgressiyaModal }) {
-  const { theme, classes } = useContext(AuthContext);
+  const { theme, classes} = useContext(AuthContext);
   const [agressiya, setAgressiya] = useState([]);
 
   useEffect(() => {

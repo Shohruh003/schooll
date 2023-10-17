@@ -45,7 +45,7 @@ function EditAdminModal({editAdminModal, setEditAdminModal}) {
 
             <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
               Изменить профиль
-              <img onClick={() => setEditAdminModal(false)} src={close_Button} />
+              <img className='closeBtn' onClick={() => setEditAdminModal(false)} src={close_Button} />
             </Modal.Title>
           </thead>
           <tbody className='modal_add'>

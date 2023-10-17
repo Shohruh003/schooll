@@ -5,19 +5,24 @@ import close_Button from '../../Image/close-btn.svg';
 import './attendanceModal.css'
 import { AuthContext } from '../../context/PupilContext';
 function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
-  const {theme} = useContext(AuthContext)
-  // const [setAgressiya] = useState()
-
-  //   useEffect(() => {
-  //       const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
-  //       axios.get(apiUrl)
-  //         .then(response => {
-  //           setAgressiya(response.data);
-  //         })
-  //         .catch(error => {
-  //           console.log(error); 
-  //         });
-  //     }, []);
+  const { theme, classes,lateComersPupils, setLateComersPupils} = useContext(AuthContext);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const promises = Object.values(classes?.classes).flatMap((classData) => classData.present_pupils.id).map(async (id) => {
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`);
+          return response.data;
+        });
+  
+        const absentPupilsData = await Promise.all(promises);
+        setLateComersPupils(absentPupilsData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchData();
+  }, [classes?.classes]);
     
 
     return (
@@ -46,12 +51,14 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><img src='djqb' width='30' height='30' alt='agressiyaImg'/></td>
-      <td>Otto</td>
-      <td>5-A</td>
-      <td>09:34</td>
-    </tr>
+  {lateComersPupils.map((item, index) => (
+              <tr key={index}>
+                <td><img src={item?.main_image} width='30' height='30' alt='agressiyaImg' /></td>
+                <td>{item?.full_name}</td>
+                <td>{item?.pupil_class}</td>
+                <td>09:34</td>
+              </tr>
+            ))}
   </tbody>
 </table>
         </Modal.Body>

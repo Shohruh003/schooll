@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './psycholog.css'
 import { Link, NavLink, Route, Routes } from 'react-router-dom';
-import { Modal } from 'react-bootstrap';
 import Pupil from '../../components/Pupils/Pupil';
 import TeacherList from '../../components/TeacherList/TeacherList';
 import ClassesList from '../../components/Classes/ClassesList';
 import AgressiyaPupil from '../../Modal/AgressiyaPupil/AgressiyaPupil';
 import DepressiyaPupil from '../../Modal/DepressiyaPupil/DepressiyaPupil';
-import close_Button from '../../Image/close-btn.svg';
 import { AuthContext } from '../../context/PupilContext';
 import axios from 'axios';
 import { DecodeHooks } from '../../Hooks/DecodeHook';
@@ -53,24 +51,23 @@ function Psycholog(props) {
   }, []);
 
   useEffect(() => {
-    const fetchPupils = async () => {
+    const fetchClasses = async () => {
       try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher');
-        setTeacherCount(response.data.count)
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/');
+        setClasses(response.data.count)
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchPupils();
+    fetchClasses();
   }, []);
 
   useEffect(() => {
     const fetchPupils = async () => {
       try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/');
-        setClasses(response.data)
-
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher');
+        setTeacherCount(response.data.count)
       } catch (error) {
         console.error(error);
       }
@@ -371,7 +368,7 @@ function Psycholog(props) {
 </svg>
 
                       <h4 className='navLinkName'>всего классов</h4>
-                      <span className='quantity'>{classes?.count}</span>
+                      <span className='quantity'>{classes}</span>
                     </NavLink>
                   </li>
                 </ul>
@@ -432,8 +429,8 @@ function Psycholog(props) {
 
           <div className='psycholog_emotionDiv' style={{borderColor: theme}}>
             <h2 className='emotionDiv_heading' style={{color: theme}}>Внимание</h2>
-            <button className='emotionDiv_button' style={{backgroundColor: theme}} onClick={() => setAgressiyaModal(true)}>Агрессия <span className='emotionDiv_span' style={{borderColor: theme, color: theme}}>{classes?.extra?.sad?.length}</span></button>
-            <button className='emotionDiv_button' style={{backgroundColor: theme}} onClick={() => setDepressiyaModal(true)}>Депрессия <span className='emotionDiv_span' style={{borderColor: theme, color: theme}}>{classes?.extra?.angry?.length}</span></button>
+            <button className='emotionDiv_button' style={{backgroundColor: theme}} onClick={() => setAgressiyaModal(true)}>Агрессия <span className='emotionDiv_span' style={{borderColor: theme, color: theme}}>{classes?.extra?.sad?.length ? classes?.extra?.sad?.length : '0'}</span></button>
+            <button className='emotionDiv_button' style={{backgroundColor: theme}} onClick={() => setDepressiyaModal(true)}>Депрессия <span className='emotionDiv_span' style={{borderColor: theme, color: theme}}>{classes?.extra?.angry?.length ? classes?.extra?.angry?.length : '0'}</span></button>
           </div>
           <AgressiyaPupil agressiyaModal={agressiyaModal} setAgressiyaModal={setAgressiyaModal}/>
           <DepressiyaPupil depressiyaModal={depressiyaModal} setDepressiyaModal={setDepressiyaModal}/>

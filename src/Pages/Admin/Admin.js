@@ -31,7 +31,6 @@ function Admin(props) {
 
       fetchParents();
   }, [decode]);
-console.log(teach);
 
 const handleModal = () => {
   try {
@@ -106,7 +105,7 @@ fetchNotification();
     const fetchPupils = async () => {
       try {
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/');
-        setClasses(response.data.count)
+        setClasses(response.data)
       } catch (error) {
         console.error(error);
       }
@@ -383,7 +382,7 @@ fetchNotification();
 </svg>
 
                       <h4 className='navLinkName'>всего классов</h4>
-                      <span className='quantity'>{classes}</span>
+                      <span className='quantity'>{classes?.count}</span>
                     </NavLink>
                   </li>
                 </ul>

@@ -35,7 +35,7 @@ function Parents () {
             const fetchParents = async () => {
                 try {
     
-                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
+                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/sons/`);
                     setParent(response.data)
                 } catch (error) {
                     console.error(error);
@@ -172,6 +172,108 @@ function Parents () {
                 }
             };
 
+            function getLastWeekDates() {
+                const currentDate = new Date();
+                const lastWeekDates = [];
+              
+                for (let i = 6; i >= 0; i--) {
+                  const date = new Date(currentDate);
+                  date.setDate(currentDate.getDate() - i);
+                  const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+                  lastWeekDates.push(formattedDate);
+                }
+              
+                return lastWeekDates;
+              }
+              const result = getLastWeekDates();
+              const date1 = result[0];
+              const date2 = result[1];
+              const date3 = result[2];
+              const date4 = result[3];
+              const date5 = result[4];
+              const date6 = result[5];
+              const date7 = result[6];
+
+
+              const [diagram2, setDiagram2] = useState()
+              const [diagram3, setDiagram3] = useState()
+              const [diagram4, setDiagram4] = useState()
+              const [diagram5, setDiagram5] = useState()
+              const [diagram6, setDiagram6] = useState()
+              const [diagram7, setDiagram7] = useState()
+              const [profil, setProfil] = useState()
+              const [pia, setPia] = useState()
+              const [week, setWeek] = useState()
+              const [week2, setWeek2] = useState()
+              const [week3, setWeek3] = useState()
+              const [week4, setWeek4] = useState()
+              const [week5, setWeek5] = useState()
+              const [week6, setWeek6] = useState()
+              const [week7, setWeek7] = useState()
+
+                      const OnParentChange = async (evt) => {
+                          try {
+                              const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${evt.target.value}/`);
+                              setProfil(response.data)
+                          } catch (error) {
+                              console.error(error);
+                          }
+                          
+                          try {
+                              const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${evt.target.value}/weekly_diagram/`);
+                              const filteredData2 = response.data.filter(item => item.create_date === date2);
+                              const filteredData3 = response.data.filter(item => item.create_date === date3);
+                              const filteredData4 = response.data.filter(item => item.create_date === date4);
+                              const filteredData5 = response.data.filter(item => item.create_date === date5);
+                              const filteredData6 = response.data.filter(item => item.create_date === date6);
+                              const filteredData7 = response.data.filter(item => item.create_date === date7);
+
+                              setDiagram2(filteredData2[0])
+                              setDiagram3(filteredData3[0])
+                              setDiagram4(filteredData4[0])
+                              setDiagram5(filteredData5[0])
+                              setDiagram6(filteredData6[0])
+                              setDiagram7(filteredData7[0])
+
+                          } catch (error) {
+                              console.error(error);
+                          }
+
+
+                          try {
+                            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${evt.target.value}/pie_chart_id/`);
+                            setPia(response.data)
+                        } catch (error) {
+                            console.error(error);
+                        }
+
+
+                        try {
+                            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${evt.target.value}/for_week/
+                            `);
+                            setWeek(response.data)
+                            const data2 = response.data[date2]
+                            const data3 = response.data[date3]
+                            const data4 = response.data[date4]
+                            const data5 = response.data[date5]
+                            const data6 = response.data[date6]
+                            const data7 = response.data[date7]
+
+                            setWeek2(data2)
+                            setWeek3(data3)
+                            setWeek4(data4)
+                            setWeek5(data5)
+                            setWeek6(data6)
+                            setWeek7(data7)
+
+                        } catch (error) {
+                            console.error(error);
+                        }
+                      };
+const piAngry = Math.round(pia?.angry)
+const piSad = Math.round(pia?.sad)
+const piNeutral = Math.round(pia?.neutral)
+const piHappy = Math.round(pia?.happy)
 
               const pupils = {
                 animationEnabled: true,
@@ -186,14 +288,15 @@ function Parents () {
                     type: "doughnut",
                     yValueFormatString: "#,###'%'",
                     dataPoints: [
-                        { y: 15, color: "#FC6C85", name: "Злость" },
-                        { y: 25, color: "#ffffff", name: "Грусть" },
-                        { y: 25, color: "#FCEFED", name: "Нейтраль" },
-                        { y: 35, color: "#F9A79D", name: "Веселье"}
+                        { y: piAngry , color: "#FC6C85", name: "Злость" },
+                        { y: piSad , color: "#ffffff", name: "Грусть" },
+                        { y: piNeutral, color: "#FCEFED", name: "Нейтраль" },
+                        { y: piHappy, color: "#F9A79D", name: "Веселье"}
                     ]
                 }],
                 backgroundColor: "transparent",
             }
+
         
         function findLargestSection(pupils) {
                     let largestSectionIndex = 0;
@@ -217,19 +320,17 @@ function Parents () {
                   
                   const pupilsSectionName = findLargestSection(pupils);
 
-
-
                   const column = {
                     data: [
                     {
                         type: "column",
                         dataPoints: [
-                            { label: "Пн.", color: "#FC6C85", y: 50  },
-                            { label: "Вт.",color: "#ffffff", y: 75  },
-                            { label: "Ср.",color: "#FCEFED",  y: 76  },
-                            { label: "Чт.", color: "#F9A79D", y: 56  },
-                            { label: "Пят.",color: "#FCEFED",  y: 89  },
-                            { label: "Суб.", color: "#F9A79D", y: 80  }
+                            { label: date2, color: "#FC6C85", y: diagram2?.confidence   },
+                            { label: date3,color: "#ffffff", y: diagram3?.confidence   },
+                            { label: date4,color: "#FCEFED",  y: diagram4?.confidence   },
+                            { label: date5, color: "#F9A79D", y: diagram5?.confidence   },
+                            { label: date6,color: "#FCEFED",  y: diagram6?.confidence   },
+                            { label: date7, color: "#F9A79D", y: diagram7?.confidence  }
                         ],
                     }
                     ],
@@ -238,6 +339,103 @@ function Parents () {
                     backgroundColor: "transparent",
                 }
 
+
+
+                        const pupilss = profil?.thumbnail && profil?.thumbnail.length ? profil?.thumbnail[0] : {
+                            "thumbnail": profil?.main_image,
+                            "create_date": "2023-09-26T16:36:37.036650Z"
+                        }
+                          const emotions = profil?.emotions ? profil?.emotions : {
+                            emotions: [
+                              {
+                                "emotions": "happy",
+                                "confidence": 54,
+                                "create_date": "2023-09-26T20:12:16.675505Z"
+                              }]
+                          }
+                          const emotionsCome = emotions && emotions[0] ? emotions[0] : {
+                            "emotions": "happy",
+                            "confidence": 54,
+                            "create_date": "2023-09-26T20:12:16.675505Z"
+                          }
+                          const emotionsWent =emotions && emotions.length > 1 ? emotions[emotions.length -1] : {
+                            "emotions": "happy",
+                            "confidence": 54,
+                            "create_date": "2023-09-26T20:12:16.675505Z"
+                          };
+                          const dateCome = emotionsCome.create_date;
+                          
+                        const comeDateTime = new Date(dateCome);
+                        const comeHours = comeDateTime.getHours().toString().padStart(2, "0");
+                        const comeMinutes = comeDateTime.getMinutes().toString().padStart(2, "0");
+                        const comeClock = `${comeHours}:${comeMinutes}`;
+                        
+                        const dateWent = emotionsWent.create_date;
+                        const wentDateTime = new Date(dateWent);
+                        const wentHours = wentDateTime.getHours().toString().padStart(2, "0");
+                        const wentMinutes = wentDateTime.getMinutes().toString().padStart(2, "0");
+                        const wentClock = `${wentHours}:${wentMinutes}`;
+
+
+                        const dateTime2 = new Date(week2?.first?.time);
+                        const hours2 = dateTime2.getHours();
+                        const minutes2 = dateTime2.getMinutes();
+                        const formattedTime2 = `${hours2}:${minutes2}`;
+
+                        const dateTime3 = new Date(week3?.first?.time);
+                        const hours3 = dateTime3.getHours();
+                        const minutes3 = dateTime3.getMinutes();
+                        const formattedTime3 = `${hours3}:${minutes3}`;
+
+                        const dateTime4 = new Date(week4?.first?.time);
+                        const hours4 = dateTime4.getHours();
+                        const minutes4 = dateTime4.getMinutes();
+                        const formattedTime4 = `${hours4}:${minutes4}`;
+
+                        const dateTime5 = new Date(week5?.first?.time);
+                        const hours5 = dateTime5.getHours();
+                        const minutes5 = dateTime5.getMinutes();
+                        const formattedTime5 = `${hours5}:${minutes5}`;
+
+                        const dateTime6 = new Date(week6?.first?.time);
+                        const hours6 = dateTime6.getHours();
+                        const minutes6 = dateTime6.getMinutes();
+                        const formattedTime6 = `${hours6}:${minutes6}`;
+
+                        const dateTime7 = new Date(week7?.first?.time);
+                        const hours7 = dateTime7.getHours();
+                        const minutes7 = dateTime7.getMinutes();
+                        const formattedTime7 = `${hours7}:${minutes7}`;
+
+                        const dateTime2week = new Date(week2?.last?.time);
+                        const hours2week = dateTime2week.getHours();
+                        const minutes2week = dateTime2week.getMinutes();
+                        const formattedTime2week = `${hours2week}:${minutes2week}`;
+
+                        const dateTime3week = new Date(week3?.last?.time);
+                        const hours3week = dateTime3week.getHours();
+                        const minutes3week = dateTime3week.getMinutes();
+                        const formattedTime3week = `${hours3week}:${minutes3week}`;
+
+                        const dateTime4week = new Date(week4?.last?.time);
+                        const hours4week = dateTime4week.getHours();
+                        const minutes4week = dateTime4week.getMinutes();
+                        const formattedTime4week = `${hours4week}:${minutes4week}`;
+
+                        const dateTime5week = new Date(week5?.last?.time);
+                        const hours5week = dateTime5week.getHours();
+                        const minutes5week = dateTime5week.getMinutes();
+                        const formattedTime5week = `${hours5week}:${minutes5week}`;
+
+                        const dateTime6week = new Date(week6?.last?.time);
+                        const hours6week = dateTime6week.getHours();
+                        const minutes6week = dateTime6week.getMinutes();
+                        const formattedTime6week = `${hours6week}:${minutes6week}`;
+
+                        const dateTime7week = new Date(week7?.last?.time);
+                        const hours7week = dateTime7week.getHours();
+                        const minutes7week = dateTime7week.getMinutes();
+                        const formattedTime7week = `${hours7week}:${minutes7week}`;
 	return (
 		<div className="school">
 			<div className='container'>
@@ -289,8 +487,16 @@ function Parents () {
                   </Link>
 
 						<button className='avatar_dashboard' style={{borderColor: theme}}>
-                            <img className='avatarImg' src={Avatar} alt='Avatar' width='55' height='55'/>
+                            <img className='avatarImg' src={profil?.main_image} alt='Avatar' width='55' height='55'/>
 						</button>
+
+                        <select onChange={OnParentChange} className='select'>
+                            {parent?.map((item) => (
+                                <option key={item.id} value={item.id}>
+                                    <h4>{item.full_name}</h4>
+                                </option>
+                            ))}
+                        </select>
 
 						<button className='theme_dashboard dashboard_button' onClick={changeTheme}>
 							<svg className='theme-dash dashboard_icon' width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -322,16 +528,16 @@ function Parents () {
                     <div className='avatar_inner'>
                         <div className='avatar_about'>
                             <p className='avatar_name'>
-                                <span>{parent?.full_name}</span> <br/>
-                                <span className='avatar_time'>Класс: 5 ”Б”</span>
+                                <span>{profil?.full_name}</span> <br/>
+                                <span className='avatar_time'>Класс: {profil?.pupil_class}</span>
                             </p>
 
                             <p className='avatar_name'>Пришел:
-                                <span className='avatar_time'>09:30</span>
+                                <span className='avatar_time'>{wentClock}</span>
                             </p>
 
                             <p className='avatar_name'>Ушел:
-                                <span className='avatar_time'>18:05</span>
+                                <span className='avatar_time'>{comeClock}</span>
                             </p>
                         </div>
 
@@ -345,51 +551,51 @@ function Parents () {
 
                             <ul className='week_list'>
                                 <li className='week_item'>
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={Avatar} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>09:23</span>
-                                    <span className='days'>Пн.</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={Avatar} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>18:45</span>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week2?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>{formattedTime2}</span>
+                                    <span className='days'>{date2}</span>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week2?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>{formattedTime2week}</span>
                                 </li>
 
                                 <li className='week_item'>
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={Avatar} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>09:23</span>
-                                    <span className='days'>Вт.</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={Avatar} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>18:45</span>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week3?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>{formattedTime3}</span>
+                                    <span className='days'>{date3}</span>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week3?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>{formattedTime3week}</span>
                                 </li>
 
                                 <li className='week_item'>
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={Avatar} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>09:23</span>
-                                    <span className='days'>Ср.</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={Avatar} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>18:45</span>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week4?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>{formattedTime4}</span>
+                                    <span className='days'>{date4}</span>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week4?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>{formattedTime4week}</span>
                                 </li>
 
                                 <li className='week_item'>
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={Avatar} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>09:23</span>
-                                    <span className='days'>Чт.</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={Avatar} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>18:45</span>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week5?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>{formattedTime5}</span>
+                                    <span className='days'>{date5}</span>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week5?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>{formattedTime5week}</span>
                                 </li>
 
                                 <li className='week_item'>
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={Avatar} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>09:23</span>
-                                    <span className='days'>Пят.</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={Avatar} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>18:45</span>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week6?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>{formattedTime6}</span>
+                                    <span className='days'>{date6}</span>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week6?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>{formattedTime6week}</span>
                                 </li>
 
                                 <li className='week_item'>
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={Avatar} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>09:23</span>
-                                    <span className='days'>Суб..</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={Avatar} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>18:45</span>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week7?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>{formattedTime7}</span>
+                                    <span className='days'>{date7}</span>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week7?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
+                                    <span className='weekItem_time'>{formattedTime7week}</span>
                                 </li>
                             </ul>
                         </div>
@@ -399,19 +605,19 @@ function Parents () {
                         <div className='avatar_chartInner'>
                             <div className='chart_about'>
                                 <p className='charts_text'>
-                                    <span className='chart_percentage chart_percentage1'>35%</span>
+                                    <span className='chart_percentage chart_percentage1'>{piHappy}%</span>
                                     <span className='chart_name'>Веселье</span>
                                 </p>
                                 <p className='charts_text'>
-                                    <span className='chart_percentage chart_percentage2'>25%</span>
+                                    <span className='chart_percentage chart_percentage2'>{piNeutral}%</span>
                                     <span className='chart_name'>Нейтраль</span>
                                 </p>
                                 <p className='charts_text'>
-                                    <span className='chart_percentage chart_percentage3'>25%</span>
+                                    <span className='chart_percentage chart_percentage3'>{piSad}%</span>
                                     <span className='chart_name'>Грусть</span>
                                 </p>
                                 <p className='charts_text'>
-                                    <span className='chart_percentage chart_percentage4'>15%</span>
+                                    <span className='chart_percentage chart_percentage4'>{piAngry}%</span>
                                     <span className='chart_name'>Злость</span>
                                 </p>
                             </div>

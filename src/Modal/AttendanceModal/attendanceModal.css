@@ -6,4 +6,5 @@
 
 .close_button {
     margin-right: 40px;
+    cursor: pointer;
 }

@@ -463,8 +463,6 @@
   border: 2px solid #FC6C85;
   border-radius: 20px;
   list-style-type: none;
-  overflow-y: auto;
-  max-height: 230px;
 }
 .attendance_link{
   text-decoration: none;
