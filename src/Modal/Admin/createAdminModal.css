@@ -137,6 +137,9 @@ label {
 
 .input_box2 {
     width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
 }
 
 .input_box2 input {
@@ -146,10 +149,13 @@ label {
     background-color: black;
     display: inline-block;
     color: black;
+    display: flex;
+    flex-direction: column;
 }
 
 .input_box2 label {
-    font-size: 20px;
+    font-size: 19px;
+    font-weight: 900;
 }
 
 .check label {
@@ -173,6 +179,22 @@ label {
     margin: 0;
 }
 
-.closeBtn {
+.box2_item{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.box2_item label{
+   margin: 0;
+}
+.modalHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 725px;
+}
+
+.close_btn {
     cursor: pointer;
 }

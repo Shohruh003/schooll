@@ -54,7 +54,7 @@ function Psycholog(props) {
     const fetchClasses = async () => {
       try {
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/');
-        setClasses(response.data.count)
+        setClasses(response.data)
       } catch (error) {
         console.error(error);
       }
@@ -368,8 +368,16 @@ function Psycholog(props) {
 </svg>
 
                       <h4 className='navLinkName'>всего классов</h4>
-                      <span className='quantity'>{classes}</span>
+                      <span className='quantity'>{classes?.count}</span>
                     </NavLink>
+                  </li>
+
+                  <li>
+                  <div className='psycholog_emotionDiv' style={{borderColor: theme}}>
+            <h2 className='emotionDiv_heading' style={{color: theme}}>Внимание</h2>
+            <button className='emotionDiv_button' style={{backgroundColor: theme}} onClick={() => setAgressiyaModal(true)}>Агрессия <span className='emotionDiv_span' style={{borderColor: theme, color: theme}}>{classes?.extra?.sad?.length ? classes?.extra?.sad?.length : '0'}</span></button>
+            <button className='emotionDiv_button' style={{backgroundColor: theme}} onClick={() => setDepressiyaModal(true)}>Депрессия <span className='emotionDiv_span' style={{borderColor: theme, color: theme}}>{classes?.extra?.angry?.length ? classes?.extra?.angry?.length : '0'}</span></button>
+          </div>
                   </li>
                 </ul>
               </nav>
@@ -387,17 +395,17 @@ function Psycholog(props) {
             <h4 className="panel_heading">фильтрация</h4>
 
             <ul className='panel_list'>
-              <li className='panel_item age-search' onChange={handleAgeChange}>
+              <li className='panel_item panel_itemm age-search' onChange={handleAgeChange}>
                 <input className='c1 ageSearch' type="text" />
                 <span>По возрасту</span>
                 <input className='c2 ageSearch' type="text" />
               </li>
 
-              <li className='panel_item'>
+              <li className='panel_item panel_itemm'>
               <input className='item_button search_pupil' type="text" placeholder='введите класс...' onChange={handleClasChange}/>
               </li>
 
-              <li className='panel_item'>
+              <li className='panel_item panel_itemm'>
                 <div className='item_button search_danger'>
                   <span>По полу</span>
                 <div onChange={handleGenderChange}>
@@ -413,7 +421,7 @@ function Psycholog(props) {
                 </div>
               </li>
 
-              <li className='panel_item'>
+              <li className='panel_item panel_itemm'>
                 <select className='item_button search_select' onChange={handleEmotionChange}>
                   <option className='search_option' value="" disabled selected hidden>По ЭС</option>
                   <option className='search_option' value="happy">Веселье</option>
@@ -427,11 +435,6 @@ function Psycholog(props) {
             </ul>
           </div>
 
-          <div className='psycholog_emotionDiv' style={{borderColor: theme}}>
-            <h2 className='emotionDiv_heading' style={{color: theme}}>Внимание</h2>
-            <button className='emotionDiv_button' style={{backgroundColor: theme}} onClick={() => setAgressiyaModal(true)}>Агрессия <span className='emotionDiv_span' style={{borderColor: theme, color: theme}}>{classes?.extra?.sad?.length ? classes?.extra?.sad?.length : '0'}</span></button>
-            <button className='emotionDiv_button' style={{backgroundColor: theme}} onClick={() => setDepressiyaModal(true)}>Депрессия <span className='emotionDiv_span' style={{borderColor: theme, color: theme}}>{classes?.extra?.angry?.length ? classes?.extra?.angry?.length : '0'}</span></button>
-          </div>
           <AgressiyaPupil agressiyaModal={agressiyaModal} setAgressiyaModal={setAgressiyaModal}/>
           <DepressiyaPupil depressiyaModal={depressiyaModal} setDepressiyaModal={setDepressiyaModal}/>
           <Notification modal={modal} setModal={setModal}/>

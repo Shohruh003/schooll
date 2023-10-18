@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/PupilContext";
 
 
 function Pupil() {
-const {user, setUsers,ageRange,genders, setOriginalUsers,pupilClass, setPupilCount,pupilEmotion,theme,editAdminModal, setEditAdminModal} = useContext(AuthContext)
+const {user, setUsers,ageRange,genders, setOriginalUsers,pupilClass, setPupilCount,pupilEmotion,theme,editAdminModal, setEditAdminModal, setEditUser, editUser} = useContext(AuthContext)
 
   const style = document.createElement('style');
 style.innerHTML = `
@@ -47,8 +47,10 @@ document.head.appendChild(style);
 
     fetchPupils();
   }, [ageRange, pupilClass, genders, pupilEmotion]);
-  const clickItem = () => {
+  const clickItem = (evt) => {
     setEditAdminModal(true)
+    setEditUser(evt)
+    console.log(editUser);
   }
 
   return (
@@ -109,7 +111,7 @@ const firstMaxConfidenceIndex = emotions.findIndex(
 
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
     return (
-      <li key={item.id} style={{borderColor: theme}} onClick={clickItem}>
+      <li key={item.id} style={{borderColor: theme}} onClick={() => clickItem(item)}>
       <Link className='people_link'>
         <img className='people_image' src={pupils.thumbnail} alt="People of the img" width='100' height='100' />
         <p style={{borderColor: theme}}>

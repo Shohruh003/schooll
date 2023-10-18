@@ -410,50 +410,6 @@
   margin-left: 15px;
   margin-right: 15px;
 }
-
-
-.psycholog_emotionDiv {
-  padding: 10px;
-  text-align: center;
-  border: 3px solid #FC6C85;
-  border-radius: 20px;
-  margin-top: 5px;
-}
-
-.emotionDiv_heading {
-  font-size: 32px;
-  font-weight: 700;
-  margin: 0;
-  margin-bottom: 10px;
-  color: #FF0000;
-}
-
-.emotionDiv_button {
-  position: relative;
-  display: block;
-  width: 200px;
-  padding: 10px 20px;
-  font-size: 24px;
-  margin: 20px auto 0 auto;
-  border: none;
-  border-radius: 20px;
-  background-color: #FC6C85;
-  color: white;
-}
-
-.emotionDiv_span{
-  position: absolute;
-  bottom: 35px;
-  right: -15px;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  border: 3px solid #FC6C85;
-  background-color: #ffffff;
-  color: #FC6C85;
-  border-radius: 50px;
-}
-
 /* ============================================= */
 .attendance {
   padding: 0;

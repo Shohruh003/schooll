@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/PupilContext";
 
 
 function TeacherList() {
-  const {genders, setOriginalUsers,pupilClass,pupilEmotion, teacher, setTeacher,theme,editAdminModal, setEditAdminModal} = useContext(AuthContext)
+  const {genders, setOriginalUsers,pupilClass,pupilEmotion, teacher, setTeacher,theme,editAdminModal, setEditAdminModal, setEditUser} = useContext(AuthContext)
 
   const style = document.createElement('style');
 style.innerHTML = `
@@ -45,8 +45,9 @@ document.head.appendChild(style);
     fetchPupils();
   }, [pupilClass, genders, pupilEmotion]);
 
-  const clickItem = () => {
+  const clickItem = (evt) => {
     setEditAdminModal(true)
+    setEditUser(evt)
   }
   return (
     <ul className="teacher_list">
@@ -99,7 +100,7 @@ const firstMaxConfidenceIndex = emotions.findIndex(
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
 
     return (
-      <li key={item.id} style={{borderColor: theme}} onClick={clickItem}>
+      <li key={item.id} style={{borderColor: theme}} onClick={() => clickItem(item)}>
       <Link className='teacher_link'>
         <img className='teacher_image' src={teacher.thumbnail} alt="teacher of the img" width='100' height='100' />
         <p style={{borderColor: theme}}>
