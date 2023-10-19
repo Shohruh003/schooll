@@ -97,8 +97,6 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     formData.append('gender', user?.gender)
     formData.append('shift', user?.shift)
 
-
-
     const apiUrl = 'http://localhost:5000/test';
     axios.put(apiUrl, formData)
       .then((response) => {
@@ -108,6 +106,8 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
       .catch((error) => {
         console.log(error);
       });
+
+      setEditAdminModal(false)
   }
 
 
@@ -277,7 +277,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
             </div>
             <div className='button_box'>
               <div className='button_box2'>
-                <button className="btn1" onClick={() => setEditAdminModal(false)}>Отмена</button>
+                <button className="btn1" type='button' onClick={() => setEditAdminModal(false)}>Отмена</button>
                 <button style={{ backgroundColor: theme }} type="submit" className="btn2">Cохранить</button>
               </div>
             </div>

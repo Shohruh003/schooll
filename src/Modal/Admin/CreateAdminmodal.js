@@ -7,9 +7,13 @@ import './createAdminModal.css'
 import { AuthContext } from '../../context/PupilContext';
 import axios from 'axios';
 import { useRef } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+
 function CreateAdminModal({ adminModal, setAdminModal }) {
   const { theme } = useContext(AuthContext)
   const [user, setUser] = useState()
+  const [isChecked, setIsChecked] = useState()
+
   var imgref = useRef()
 
   // const [agressiya, setAgressiya] = useState()
@@ -40,6 +44,8 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     const elClass = document.getElementById('7')
     const elClass1 = document.querySelector('.class2')
     const elParent = document.getElementById('8')
+    const Radio1 = document.getElementById('first')
+    const Radio2 = document.getElementById('second')
 
     if (evetValue === 'teacher') {
       elParent.disabled = true
@@ -48,6 +54,8 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
       elPassword3.disabled = false
       elClass.disabled = false
       elClass1.disabled = false
+      Radio1.disabled = true
+      Radio2.disabled = true
     } else
       if (evetValue === 'pupil') {
         elParent.disabled = false
@@ -64,6 +72,8 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
           elPassword3.disabled = false
           elClass.disabled = true
           elClass1.disabled = true
+          Radio1.disabled = true
+          Radio2.disabled = true
         } else
           if (evetValue === 'parent') {
             elParent.disabled = true
@@ -72,9 +82,14 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
             elPassword3.disabled = false
             elClass.disabled = true
             elClass1.disabled = true
+            Radio1.disabled = true
+            Radio2.disabled = true
           }
   }
 
+  function handleCheckboxChange(event) {
+    setIsChecked(event.target.checked);
+  }
   const hendlSend = (evt) => {
 
     evt.preventDefault()
@@ -87,8 +102,8 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     formData.append('full_name', user?.full_name)
     formData.append('birth_date', user?.birth_date)
     formData.append('password', user?.password)
-    formData.append('status', user?.status)
-    formData.append('pupil_class', (user?.pupil_class+'-'+ user?.pupil_class_str))
+    formData.append('status', user?.status ? user?.status : 'pupil')
+    formData.append('pupil_class', (user?.pupil_class || user?.pupil_class === undefined ? user?.pupil_class : "1" +'-'+ user?.pupil_class_str || user?.pupil_class_str  === undefined ? user?.pupil_class_str : "A"))
     formData.append('parent', user?.parent)
     formData.append('gender', user?.gender)
     formData.append('shift', user?.shift)
@@ -98,14 +113,26 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     const apiUrl = 'http://localhost:5000/test';
     axios.post(apiUrl, formData)
       .then((response) => {
-        console.log(response.data);
-        alert(response.data);
+        toast.success("Ma'lumot qo'shildi !");
       })
       .catch((error) => {
         console.log('Error sending data:', error);
       });
+
+
+
+      if (isChecked) {
+        setAdminModal(false)
+      }
   }
 
+
+  function OnparentChange(event) {
+    setUser({
+      ...user,
+      parent: event.target.value
+    })
+  } 
 
   return (
     <Modal
@@ -123,6 +150,8 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
 
             <Modal.Title style={{ color: theme }} className='modal_header' id="example-custom-modal-styling-title">
               <div className='modalHeader'>
+              <ToastContainer />
+
               Создать профиль
               <img className='close_btn' onClick={() => setAdminModal(false)} src={close_Button} />
               </div>
@@ -136,7 +165,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                   ...user,
                   email: event.target.value
                 })
-              }} type="email" class="form-control" list="datalistOptions" id="1" placeholder="shohruhazimov0705@gmail.com " />
+              }} type="email" disabled class="form-control" list="datalistOptions" id="1" placeholder="shohruhazimov0705@gmail.com " />
             </div>
             <div className='input_box'>
               <label for="2" class="form-label">Имя</label>
@@ -154,7 +183,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                   ...user,
                   password: event.target.value
                 })
-              }} type="password" class="form-control" list="datalistOptions" id="pass3" placeholder="*********" />
+              }} type="password" disabled class="form-control" list="datalistOptions" id="pass3" placeholder="*********" />
               <img className="btnpass3" onClick={() => { const password1 = document.querySelector('#pass3'); return (password1.type == "password") ? password1.type = "text" : password1.type = "password" }} src={eye} />
             </div>
             <div className='input_box'>
@@ -168,7 +197,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
             </div>
             <div className='input_box pass5'>
               <label for="pass5" class="form-label">Повторите пароль</label>
-              <input type="password" class="form-control" list="datalistOptions" id="pass5" placeholder="*********" />
+              <input type="password" disabled class="form-control" list="datalistOptions" id="pass5" placeholder="*********" />
               <img src={eye} className="btnpass5" onClick={() => { const password2 = document.querySelector('#pass5'); return (password2.type == "password") ? password2.type = "text" : password2.type = "password" }} />
             </div>
             <div className='input_box'>
@@ -200,12 +229,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
             </div>
             <div className='input_box'>
               <label for="8" class="form-label">Родители ребёнка</label>
-              <input onChange={(event) => {
-                setUser({
-                  ...user,
-                  parent: event.target.value
-                })
-              }} type="text" class="form-control" list="datalistOptions" id="8" placeholder="Муминова Гульчехра" />
+              <input onChange={OnparentChange} type="text" class="form-control" list="datalistOptions" id="8" placeholder="Муминова Гульчехра" />
             </div>
             <div className='input_box2'>
               <div className='box2_item'>
@@ -256,7 +280,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
               </div>
                   <div className='d-flex align-items-center check gap-2'>
                     <label for="6" class="form-label" role="button">Добавить несколько</label>
-                    <input type="checkbox" list="datalistOptions" id="6" />
+                    <input type="checkbox" list="datalistOptions" onChange={handleCheckboxChange} id="6" />
                   </div>
             </div>
             <div className='vid-box'>
@@ -276,7 +300,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
             </div>
             <div className='button_box'>
               <div className='button_box2'>
-                <button className="btn1" onClick={() => setAdminModal(false)}>Отмена</button>
+                <button className="btn1" type='button' onClick={() => setAdminModal(false)}>Отмена</button>
                 <button style={{ backgroundColor: theme }} type="submit" className="btn2">Cохранить</button>
               </div>
             </div>

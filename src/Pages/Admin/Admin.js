@@ -13,7 +13,7 @@ import Notification from '../../Modal/Notification/Notification';
 
 function Admin(props) {
   const { isActive } = props;
-  const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilEmotion,classes, setClasses, teacherCount, theme, setTheme, setAgeRange, setTeacher, setPupilCount, setTeacherCount,setNotification,notificationCount, setNotificationCount, modal, setModal} = useContext(AuthContext)
+  const { setUsers,user, originalUsers, genders, setGenders,pupilCount, setPupilEmotion,classes, setClasses, teacherCount, theme, setTheme, setAgeRange, setTeacher, setPupilCount, setTeacherCount,setNotification,notificationCount, setNotificationCount, modal, setModal} = useContext(AuthContext)
   const [adminModal, setAdminModal] = useState()
   const {decode} = DecodeHooks()
   const [teach, setTeach] = useState()
@@ -226,7 +226,7 @@ fetchNotification();
 
   const handleEmotionChange = (event) => {
     const selectedEmotion = event.target.value;
-    setPupilEmotion(selectedEmotion);
+      setPupilEmotion(selectedEmotion);
   };
 
   const handleSearch = (event) => {
@@ -427,7 +427,7 @@ fetchNotification();
 
               <li className='panel_item'>
                 <select className='item_button search_select' onChange={handleEmotionChange}>
-                  <option className='search_option' value="" disabled selected hidden>По ЭС</option>
+                  <option className='search_option' value="all" disabled selected hidden>По ЭС</option>
                   <option className='search_option' value="happy">Веселье</option>
                   <option className='search_option' value="neutral">Нейтраль</option>
                   <option className='search_option' value="sad">Грусть</option>
