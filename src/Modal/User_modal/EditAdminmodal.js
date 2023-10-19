@@ -136,7 +136,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
            
             <div className='input_box'>
               <label for="1" class="form-label">email</label>
-              <input defaultValue={editUser?.email} onChange={(event) => {
+              <input defaultValue={editUser?.email} disabled onChange={(event) => {
                 setUser({
                   ...user,
                   email: event.target.value
@@ -154,7 +154,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
             </div>
             <div className='input_box pass3'>
               <label for="pass3" class="form-label">Пароль</label>
-              <input  defaultValue={editUser?.password} onChange={(event) => {
+              <input  defaultValue={editUser?.password} disabled onChange={(event) => {
                 setUser({
                   ...user,
                   password: event.target.value
@@ -173,7 +173,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
             </div>
             <div className='input_box pass5'>
               <label for="pass5" class="form-label">Повторите пароль</label>
-              <input    defaultValue={editUser?.password} type="password" class="form-control" list="datalistOptions" id="pass5" placeholder="*********" />
+              <input    defaultValue={editUser?.password} disabled type="password" class="form-control" list="datalistOptions" id="pass5" placeholder="*********" />
               <img src={eye} className="btnpass5" onClick={() => { const password2 = document.querySelector('#pass5'); return (password2.type == "password") ? password2.type = "text" : password2.type = "password" }} />
             </div>
             <div className='input_box'>
