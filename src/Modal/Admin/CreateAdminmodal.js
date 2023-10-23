@@ -103,7 +103,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     formData.append('birth_date', user?.birth_date)
     formData.append('password', user?.password)
     formData.append('status', user?.status ? user?.status : 'pupil')
-    formData.append('pupil_class', (user?.pupil_class || user?.pupil_class === undefined ? user?.pupil_class : "1" +'-'+ user?.pupil_class_str || user?.pupil_class_str  === undefined ? user?.pupil_class_str : "A"))
+    formData.append('pupil_class', ((user?.pupil_class ? user?.pupil_class : '1') +'-'+ (user?.pupil_class_str?user?.pupil_class_str: 'A')))
     formData.append('parent', user?.parent)
     formData.append('gender', user?.gender)
     formData.append('shift', user?.shift)
@@ -113,6 +113,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     const apiUrl = 'http://localhost:5000/test';
     axios.post(apiUrl, formData)
       .then((response) => {
+        console.log(response.data);
         toast.success("Ma'lumot qo'shildi !");
       })
       .catch((error) => {
@@ -208,7 +209,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                   pupil_class: event.target.value
                 })
               }} id='7' className="classNum">
-                <option value='1'>1<img src={selectIcon} /></option>
+                <option defaultValue='1'>1<img src={selectIcon} /></option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
                 <option value='4'>4</option>
@@ -220,7 +221,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                   pupil_class_str: event.target.value
                 })
               }} className="class2">
-                <option value='A'>"А"<img src={selectIcon} /></option>
+                <option defaultValue='A'>"А"<img src={selectIcon} /></option>
                 <option value='B'>"B"</option>
                 <option value='C'>"C"</option>
                 <option value='D'>"D"</option>

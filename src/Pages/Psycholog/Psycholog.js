@@ -232,6 +232,35 @@ function Psycholog(props) {
     }
 };
 
+const search_pupil = document?.querySelector('.search_pupil')
+const maleCheckbox = document?.getElementById('maleCheckbox')
+const femaleCheckbox = document?.getElementById('femaleCheckbox')
+
+const hendlStatus = (x) => {
+  
+  if (x == 'teacher') {
+    c1.disabled = true
+    c2.disabled = true
+    search_pupil.disabled = true
+    maleCheckbox.disabled = false
+    femaleCheckbox.disabled = false
+  }
+  else if (x === 'class') {
+    c1.disabled = true
+    c2.disabled = true
+    search_pupil.disabled = true
+    maleCheckbox.disabled = true
+    femaleCheckbox.disabled = true
+  }
+  else {
+    c1.disabled = false
+    c2.disabled = false
+    search_pupil.disabled = false
+    maleCheckbox.disabled = false
+    femaleCheckbox.disabled = false
+  }    
+}
+
   return (
     <div className="admin_page">
       <div className="container">
@@ -324,7 +353,7 @@ function Psycholog(props) {
 					<div className='admin_header'>
             <nav>
                 <ul className='header-list'>
-                  <li>
+                  <li onClick={() => hendlStatus('pupil')}>
                     <NavLink className={({isActive}) => (isActive ? 'header-active header-link' : 'header-link')} activeClassName="active"
   style={{ backgroundColor: isActive ? '#81B37A' : '' }} to='pupil'>
                       <svg className='navLinkIcon'  width="150" height="138" viewBox="0 0 150 138" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -339,7 +368,7 @@ function Psycholog(props) {
                     </NavLink>
                   </li>
 
-                  <li>
+                  <li onClick={() => hendlStatus('teacher')}>
                     <NavLink className={({isActive}) => (isActive ? 'header-active header-link' : 'header-link')} activeClassName="active"
   style={{ backgroundColor: isActive ? '#81B37A' : '' }} to='teacher'>
                       <svg className='navLinkIcon navLinkIcon0' width="120" height="130" viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -359,7 +388,7 @@ function Psycholog(props) {
                     </NavLink>
                   </li>
 
-                  <li>
+                  <li onClick={() => hendlStatus('class')}>
                     <NavLink className={({isActive}) => (isActive ? 'header-active header-link' : 'header-link')} activeClassName="active"
   style={{ backgroundColor: isActive ? '#81B37A' : '' }} to='class'>
                       <svg className='navLinkIcon' width="150" height="138" viewBox="0 0 150 138" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -396,9 +425,9 @@ function Psycholog(props) {
 
             <ul className='panel_list'>
               <li className='panel_item panel_itemm age-search' onChange={handleAgeChange}>
-                <input className='c1 ageSearch' type="text" />
+                <input id='c1' className='c1 ageSearch' type="text" />
                 <span>По возрасту</span>
-                <input className='c2 ageSearch' type="text" />
+                <input id='c2' className='c2 ageSearch' type="text" />
               </li>
 
               <li className='panel_item panel_itemm'>

@@ -82,6 +82,14 @@ label {
     background-color: rgb(250, 128, 114);
 }
 
+.btn2:hover, .btn1:hover {
+    opacity: 0.8;
+}
+
+.btn2:active, .btn1:active {
+    opacity: 0.5;
+}
+
 .video_box {
     display: flex;
     justify-content: space-between;

@@ -258,6 +258,14 @@
 }
 
 .panel_button:hover {
+  opacity: 0.8;
+}
+
+.panel_button:active {
+  opacity: 0.5;
+}
+
+.panel_button:hover {
   background-color: rgba(250, 128, 114,0.4);
 }
 
