@@ -206,3 +206,23 @@ label {
 .close_btn {
     cursor: pointer;
 }
+
+.parentInput {
+    position: relative;
+}
+
+#parentList {
+    position: absolute;
+    z-index: 20;
+    width: 300px;
+    border: 1px solid rgb(166, 165, 165);
+    border-radius: 10px;
+}
+#parentList tr{
+    display: block;
+    width: 280px;
+}
+#parentList tr:hover{
+    cursor: pointer;
+    background-color: rgb(211, 211, 205);
+}

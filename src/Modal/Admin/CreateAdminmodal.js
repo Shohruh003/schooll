@@ -13,24 +13,10 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
   const { theme } = useContext(AuthContext)
   const [user, setUser] = useState()
   const [isChecked, setIsChecked] = useState()
+  const [parent, setParent] = useState()
+  const [orginalParent, setOrginalParent] = useState()
 
   var imgref = useRef()
-
-  // const [agressiya, setAgressiya] = useState()
-
-  // useEffect(() => {
-  //     const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
-  //     axios.get(apiUrl)
-  //       .then(response => {
-  //         setAgressiya(response.data);
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   }, []);
-
-  // const password1 = document.querySelector('#pass3');
-  // const password2 = document.querySelector('#pass5');
 
   const changeOption = (evt) => {
     setUser({
@@ -75,7 +61,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
           Radio1.disabled = true
           Radio2.disabled = true
         } else
-          if (evetValue === 'parent') {
+          if (evetValue === 'parents') {
             elParent.disabled = true
             elEmail.disabled = false
             elPassword.disabled = false
@@ -93,7 +79,8 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
   const hendlSend = (evt) => {
 
     evt.preventDefault()
-    const password1 = document.querySelector('#pass3'); const password2 = document.querySelector('#pass5');
+    const password1 = document.querySelector('#pass3');
+    const password2 = document.querySelector('#pass5');
     if (password1.value !== password2.value) { return alert("Tasdiqlash paroli xato !") };
 
     const formData = new FormData()
@@ -102,38 +89,68 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     formData.append('full_name', user?.full_name)
     formData.append('birth_date', user?.birth_date)
     formData.append('password', user?.password)
+    formData.append('confirm_password', user?.password)
     formData.append('status', user?.status ? user?.status : 'pupil')
     formData.append('pupil_class', ((user?.pupil_class ? user?.pupil_class : '1') +'-'+ (user?.pupil_class_str?user?.pupil_class_str: 'A')))
     formData.append('parent', user?.parent)
     formData.append('gender', user?.gender)
     formData.append('shift', user?.shift)
-
-
-
-    const apiUrl = 'http://localhost:5000/test';
-    axios.post(apiUrl, formData)
-      .then((response) => {
-        console.log(response.data);
-        toast.success("Ma'lumot qo'shildi !");
-      })
-      .catch((error) => {
-        console.log('Error sending data:', error);
-      });
-
-
+    if (user?.status === 'pupil') {
+      const apiUrl = `https://www.api.yomon-emas.uz/api/users/pupils/`;
+      axios.post(apiUrl, formData)
+        .then((response) => {
+          console.log(response.data);
+          toast.success("Ma'lumot qo'shildi !");
+        })
+        .catch((error) => {
+          console.log('Error sending data:', error?.response?.data);
+        });
+    } else {
+      const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/`;
+      axios.post(apiUrl, formData)
+        .then((response) => {
+          console.log(response.data);
+          toast.success("Ma'lumot qo'shildi !");
+        })
+        .catch((error) => {
+          console.log('Error sending data:', error);
+        });
+    }
 
       if (isChecked) {
         setAdminModal(false)
       }
   }
 
+  
 
-  function OnparentChange(event) {
-    setUser({
-      ...user,
-      parent: event.target.value
-    })
-  } 
+  const hendlParent = async (evt) => {
+    var parentList = document.getElementById('parentList')
+    parentList.style.display = 'block'
+
+    await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=parents')
+      .then((response) => {
+        setParent(response?.data?.results);
+        setOrginalParent(response?.data?.results);
+      })
+      .catch((error) => {
+        console.log('Error sending data:', error);
+      });
+
+    const searchTerm = evt;
+    const filteredUsers = orginalParent?.filter((item) =>
+      item?.full_name?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setParent(searchTerm === '' ? orginalParent : filteredUsers);
+  }
+
+  const hendlItem = (evt) => {
+    const input = document.getElementById('8')
+    const value2 = evt
+    input.value = value2
+    var parentList = document.getElementById('parentList')
+    parentList.style.display = 'none'
+  }
 
   return (
     <Modal
@@ -198,7 +215,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
             </div>
             <div className='input_box pass5'>
               <label for="pass5" class="form-label">Повторите пароль</label>
-              <input type="password" disabled class="form-control" list="datalistOptions" id="pass5" placeholder="*********" />
+              <input type="password" name='password2' disabled class="form-control" list="datalistOptions" id="pass5" placeholder="*********" />
               <img src={eye} className="btnpass5" onClick={() => { const password2 = document.querySelector('#pass5'); return (password2.type == "password") ? password2.type = "text" : password2.type = "password" }} />
             </div>
             <div className='input_box'>
@@ -229,8 +246,22 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
               </select>
             </div>
             <div className='input_box'>
-              <label for="8" class="form-label">Родители ребёнка</label>
-              <input onChange={OnparentChange} type="text" class="form-control" list="datalistOptions" id="8" placeholder="Муминова Гульчехра" />
+            <label for="8" class="form-label">Родители ребёнка</label>
+              <input onChange={(event) => {
+
+                hendlParent(event.target.value);
+
+              }} type="text" class="form-control parentInput" list="datalistOptions" id="8" placeholder="Муминова Гульчехра" />
+              <table class="table table-hover" id='parentList'>
+                <tbody>
+                  {parent?.map((item) => (
+                    <tr key={item?.id} onClick={(event) => {hendlItem(item.full_name);setUser({
+                      ...user,
+                      parent: item?.id
+                    })}}>{item.full_name}</tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
             <div className='input_box2'>
               <div className='box2_item'>
@@ -291,7 +322,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                   <option value='pupil'>ученик<img src={selectIcon} /></option>
                   <option value='psychologist'>психолог</option>
                   <option value='teacher'>учитель</option>
-                  <option value='parent'>родители</option>
+                  <option value='parents'>родители</option>
                 </select>
               </div>
               <div className='video_box'>

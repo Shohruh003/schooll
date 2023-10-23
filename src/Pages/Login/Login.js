@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import jwt_decode from 'jwt-decode'
 import { DecodeHooks } from '../../Hooks/DecodeHook';
+import eye from '../../Image/eye-svgrepo-com.svg'
 
 function Login() {
   const {setToken} = LoginHooks()
@@ -53,7 +54,11 @@ function Login() {
               <input className="login_input" type="email" name="email" placeholder="Email" />
 
             
-              <input className="login_input" type="password" name="password" placeholder="Пароль" />
+              <div className='password-box'>
+                <input className="login_input password" type="password" name="password" placeholder="Пароль" />
+                <ToastContainer />
+                <img className="btnEye" onClick={() => { const password = document.querySelector('.password'); return (password.type == "password") ? password.type = "text" : password.type = "password" }} src={eye} />
+              </div>
               <ToastContainer />
             <button className="login_button" type="submit">Войти</button>
           </form>

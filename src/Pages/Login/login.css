@@ -94,6 +94,7 @@
 .login_logo {
   width: 70px;
   height: auto;
+  margin-top: 30px;
 }
 
 .login_logoName {
@@ -101,4 +102,15 @@
   font-size: 32px;
   font-weight: 600;
   margin: 0 auto 0 auto;
+}
+
+.password-box{
+  position: relative;
+}
+.btnEye{
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  width: 20px;
+  cursor: pointer;
 }

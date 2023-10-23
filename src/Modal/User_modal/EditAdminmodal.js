@@ -7,28 +7,15 @@ import { Modal } from 'react-bootstrap';
 import './editAdminModal.css'
 import { AuthContext } from '../../context/PupilContext';
 import { useRef } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function EditAdminModal({ editAdminModal, setEditAdminModal }) {
   const { theme, editUser, modal, setModal } = useContext(AuthContext)
   const [user, setUser] = useState()
+  const [parent, setParent] = useState()
+  const [orginalParent, setOrginalParent] = useState()
   var imgref = useRef()
-
-  // const [agressiya, setAgressiya] = useState()
-
-  // useEffect(() => {
-  //     const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
-  //     axios.get(apiUrl)
-  //       .then(response => {
-  //         setAgressiya(response.data);
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   }, []);
-
-  // const password1 = document.querySelector('#pass3');
-  // const password2 = document.querySelector('#pass5');
 
   const changeOption = (evt) => {
     setUser({
@@ -91,23 +78,64 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     formData.append('full_name', user?.full_name)
     formData.append('birth_date', user?.birth_date)
     formData.append('password', user?.password)
-    formData.append('status', user?.status)
-    formData.append('pupil_class', (user?.pupil_class+'-'+ user?.pupil_class_str))
+    formData.append('status', user?.status ? user?.status : 'pupil')
+    formData.append('pupil_class', ((user?.pupil_class ? user?.pupil_class : '1') +'-'+ (user?.pupil_class_str?user?.pupil_class_str: 'A')))
     formData.append('parent', user?.parent)
     formData.append('gender', user?.gender)
     formData.append('shift', user?.shift)
+    if (user?.status === 'pupil') {
+      const apiUrl = `https://www.api.yomon-emas.uz/api/users/pupils/${editUser?.id}`;
+      axios.patch(apiUrl, formData)
+        .then((response) => {
+          console.log(response.data);
+          toast.success("Ma'lumot qo'shildi !");
+        })
+        .catch((error) => {
+          console.log('Error sending data:', error?.response?.data);
+        });
+    } else {
+      const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/${editUser?.id}`;
+      axios.patch(apiUrl, formData)
+        .then((response) => {
+          console.log(response.data);
+          toast.success("Ma'lumot qo'shildi !");
+        })
+        .catch((error) => {
+          console.log('Error sending data:', error);
+        });
+    }
 
-    const apiUrl = 'http://localhost:5000/test';
-    axios.put(apiUrl, formData)
+      // setEditAdminModal(false)
+  }
+
+
+  const hendlParent = async (evt) => {
+    var parentList = document.getElementById('parentList')
+    parentList.style.display = 'block'
+
+    await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=parents')
       .then((response) => {
-        console(response.data);
-        setModal('')
+        setParent(response?.data?.results);
+        setOrginalParent(response?.data?.results);
       })
       .catch((error) => {
-        console.log(error);
+        console.log('Error sending data:', error);
       });
+    console.log(parent);
 
-      setEditAdminModal(false)
+    const searchTerm = evt;
+    const filteredUsers = orginalParent?.filter((item) =>
+      item?.full_name?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setParent(searchTerm === '' ? orginalParent : filteredUsers);
+  }
+
+  const hendlItem = (evt) => {
+    const input = document.getElementById('8')
+    const value2 = evt
+    input.value = value2
+    var parentList = document.getElementById('parentList')
+    parentList.style.display = 'none'
   }
 
 
@@ -127,6 +155,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
 
             <Modal.Title style={{ color: theme }} className='modal_header' id="example-custom-modal-styling-title">
               <div className='modalHeader'>
+              <ToastContainer />
               Изменить профиль
                 <img className='close_btn' onClick={() => setEditAdminModal(false)} src={close_Button} />
               </div>
@@ -195,7 +224,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
                   ...user,
                   pupil_class_str: event.target.value
                 })
-              }} defaultValue={editUser?.pupil_class ? editUser?.pupil_class.slice(2, 3).toUpperCase(): ''} className="class2">
+              }} defaultValue={editUser?.pupil_class ? editUser?.pupil_class?.slice(2, 3): ''} className="class2">
                 <option value='A'>"А"<img src={selectIcon} /></option>
                 <option value='B'>"B"</option>
                 <option value='C'>"C"</option>
@@ -205,12 +234,20 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
             </div>
             <div className='input_box'>
               <label for="8" class="form-label">Родители ребёнка</label>
-              <input  defaultValue={editUser?.parent} onChange={(event) => {
-                setUser({
-                  ...user,
-                  parent: event.target.value
-                })
-              }} type="text" class="form-control" list="datalistOptions" id="8" placeholder="Муминова Гульчехра" />
+              <input defaultValue={editUser?.parents} onChange={(event) => {
+                hendlParent(event.target.value);
+
+              }} type="text" class="form-control parentInput" list="datalistOptions" id="8" placeholder="Муминова Гульчехра" />
+              <table class="table table-hover" id='parentList'>
+                <tbody>
+                  {parent?.map((item) => (
+                    <tr onClick={() => {hendlItem(item.full_name);                setUser({
+                      ...user,
+                      parent: item?.id
+                    })}}>{item.full_name}</tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
             <div className='input_box2'>
               <div className='box2_item'>

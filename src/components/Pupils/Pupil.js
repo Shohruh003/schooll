@@ -50,7 +50,6 @@ document.head.appendChild(style);
   const clickItem = (evt) => {
     setEditAdminModal(true)
     setEditUser(evt)
-    console.log(editUser);
   }
 
   return (

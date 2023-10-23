@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import './parents.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Modal } from 'react-bootstrap';
-import close_Button from '../../Image/close-btn.svg';
 import Avatar from '../../Image/peopleImg1.jpg'
 import CanvasJSReact from '@canvasjs/react-charts';
 import { AuthContext } from '../../context/PupilContext';
@@ -350,18 +348,18 @@ const piHappy = Math.round(pia?.happy)
                               {
                                 "emotions": "happy",
                                 "confidence": 54,
-                                "create_date": "2023-09-26T20:12:16.675505Z"
+                                "create_date": "0"
                               }]
                           }
                           const emotionsCome = emotions && emotions[0] ? emotions[0] : {
                             "emotions": "happy",
                             "confidence": 54,
-                            "create_date": "2023-09-26T20:12:16.675505Z"
+                            "create_date": "0"
                           }
                           const emotionsWent =emotions && emotions.length > 1 ? emotions[emotions.length -1] : {
                             "emotions": "happy",
                             "confidence": 54,
-                            "create_date": "2023-09-26T20:12:16.675505Z"
+                            "create_date": "0"
                           };
                           const dateCome = emotionsCome.create_date;
                           
@@ -492,8 +490,8 @@ const piHappy = Math.round(pia?.happy)
 
                         <select onChange={OnParentChange} className='select'>
                             {parent?.map((item) => (
-                                <option key={item.id} value={item.id}>
-                                    <h4>{item.full_name}</h4>
+                                <option key={item?.id} value={item?.id}>
+                                    <h4>{item?.full_name}</h4>
                                 </option>
                             ))}
                         </select>
