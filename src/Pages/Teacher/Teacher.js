@@ -28,7 +28,7 @@ function Teacher(props) {
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const presentPupilIds = classes?.classes["2-a"]?.absent_pupils?.id;
+              const presentPupilIds = classes?.classes?.absent_pupils?.id;
               const promises = presentPupilIds.map(async (id) => {
                 const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`);
                 return response.data;
@@ -47,6 +47,7 @@ function Teacher(props) {
             const fetchParents = async () => {
                 try {
                     const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
+                    console.log(response.data);
                     setTeach(response.data)
                 } catch (error) {
                     console.error(error);
@@ -206,7 +207,7 @@ function Teacher(props) {
               console.error(error);
           }
       };
-
+console.log(pupilMissing);
   return (
     <div className="admin_page">
       <div className="container">

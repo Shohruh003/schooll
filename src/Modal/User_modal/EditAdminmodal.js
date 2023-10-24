@@ -207,7 +207,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
             </div>
             <div className='input_box'>
               <label for="7" class="form-label class-lable">Класс</label>
-              <select  defaultValue={editUser?.pupil_class ? editUser?.pupil_class.slice(0, 1):''} onChange={(event) => {
+              <select  defaultValue={editUser?.pupil_class ? editUser?.pupil_class[0]?.slice(0, 1):''} onChange={(event) => {
                 setUser({
                   ...user,
                   pupil_class: event.target.value
@@ -224,7 +224,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
                   ...user,
                   pupil_class_str: event.target.value
                 })
-              }} defaultValue={editUser?.pupil_class ? editUser?.pupil_class?.slice(2, 3): ''} className="class2">
+              }} defaultValue={editUser?.pupil_class ? editUser?.pupil_class[0]?.slice(2, 3)?.toUpperCase(): ''} className="class2">
                 <option value='A'>"А"<img src={selectIcon} /></option>
                 <option value='B'>"B"</option>
                 <option value='C'>"C"</option>
@@ -301,7 +301,8 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
               <div className='video_box'>
                 <label for="5" class="form-label">Статус:</label>
                 <select onChange={changeOption}>
-                  <option value='pupil'>ученик<img src={selectIcon} /></option>
+                  <option disabled selected hidden>Статус:</option>
+                  <option value='pupil'>ученик</option>
                   <option value='psychologist'>психолог</option>
                   <option value='teacher'>учитель</option>
                   <option value='parent'>родители</option>

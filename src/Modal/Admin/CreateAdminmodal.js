@@ -17,7 +17,6 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
   const [orginalParent, setOrginalParent] = useState()
 
   var imgref = useRef()
-
   const changeOption = (evt) => {
     setUser({
       ...user,
@@ -35,13 +34,13 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
 
     if (evetValue === 'teacher') {
       elParent.disabled = true
+      Radio1.disabled = true
+      Radio2.disabled = true
       elEmail.disabled = false
       elPassword.disabled = false
       elPassword3.disabled = false
       elClass.disabled = false
       elClass1.disabled = false
-      Radio1.disabled = true
-      Radio2.disabled = true
     } else
       if (evetValue === 'pupil') {
         elParent.disabled = false
@@ -50,26 +49,28 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
         elPassword3.disabled = true
         elClass.disabled = false
         elClass1.disabled = false
+        Radio1.disabled = false
+        Radio2.disabled = false
       } else
         if (evetValue === 'psychologist') {
           elParent.disabled = true
+          Radio1.disabled = true
+          Radio2.disabled = true
           elEmail.disabled = false
           elPassword.disabled = false
           elPassword3.disabled = false
           elClass.disabled = true
           elClass1.disabled = true
-          Radio1.disabled = true
-          Radio2.disabled = true
         } else
           if (evetValue === 'parents') {
             elParent.disabled = true
+            Radio1.disabled = true
+            Radio2.disabled = true
             elEmail.disabled = false
             elPassword.disabled = false
             elPassword3.disabled = false
             elClass.disabled = true
             elClass1.disabled = true
-            Radio1.disabled = true
-            Radio2.disabled = true
           }
   }
 
@@ -90,36 +91,41 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     formData.append('birth_date', user?.birth_date)
     formData.append('password', user?.password)
     formData.append('confirm_password', user?.password)
-    formData.append('status', user?.status ? user?.status : 'pupil')
+    formData.append('status', user?.status ? user?.status : user.status = 'pupil')
     formData.append('pupil_class', ((user?.pupil_class ? user?.pupil_class : '1') +'-'+ (user?.pupil_class_str?user?.pupil_class_str: 'A')))
     formData.append('parent', user?.parent)
     formData.append('gender', user?.gender)
     formData.append('shift', user?.shift)
-    if (user?.status === 'pupil') {
-      const apiUrl = `https://www.api.yomon-emas.uz/api/users/pupils/`;
-      axios.post(apiUrl, formData)
-        .then((response) => {
-          console.log(response.data);
-          toast.success("Ma'lumot qo'shildi !");
-        })
-        .catch((error) => {
-          console.log('Error sending data:', error?.response?.data);
-        });
-    } else {
+    if (user?.status !== 'pupil') {
       const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/`;
       axios.post(apiUrl, formData)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot qo'shildi !");
+          if (isChecked) {
+            setAdminModal(false)
+          }
         })
         .catch((error) => {
           console.log('Error sending data:', error);
+          toast.error("Ma'lumot qo'shildimadi !");
+        });
+    } else {
+      const apiUrl = `https://www.api.yomon-emas.uz/api/users/pupils/`;
+      axios.post(apiUrl, formData)
+        .then((response) => {
+          console.log(response.data);
+          toast.success("Ma'lumot qo'shildi !");
+          if (isChecked) {
+            setAdminModal(false)
+          }
+        })
+        .catch((error) => {
+          console.log('Error sending data:', error?.response?.data);
+          toast.error("Ma'lumot qo'shilmadi !");
         });
     }
 
-      if (isChecked) {
-        setAdminModal(false)
-      }
   }
 
   
@@ -319,7 +325,8 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
               <div className='video_box'>
                 <label for="5" class="form-label">Статус:</label>
                 <select onChange={changeOption}>
-                  <option value='pupil'>ученик<img src={selectIcon} /></option>
+                  <option disabled selected hidden>Статус:</option>
+                  <option value='pupil'>ученик</option>
                   <option value='psychologist'>психолог</option>
                   <option value='teacher'>учитель</option>
                   <option value='parents'>родители</option>

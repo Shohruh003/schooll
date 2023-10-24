@@ -49,7 +49,7 @@ useEffect(() => {
           params.emotions = pupilEmotion
         }
 
-  const pupilIds = ids?.pupils?.map((pupil) => pupil.id);
+  const pupilIds = ids?.pupils['2-a']?.map((pupil) => pupil.id);
         const promises = pupilIds.map(async (id) => {
           const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`, { params });
           return response.data;
