@@ -92,7 +92,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     formData.append('password', user?.password)
     formData.append('confirm_password', user?.password)
     formData.append('status', user?.status ? user?.status : user.status = 'pupil')
-    formData.append('pupil_class', ((user?.pupil_class ? user?.pupil_class : '1') +'-'+ (user?.pupil_class_str?user?.pupil_class_str: 'A')))
+    formData.append('pupil_class', ((user?.pupil_class ? user?.pupil_class : '1') +'-'+ (user?.pupil_class_str ? user?.pupil_class_str : 'A')))
     formData.append('parent', user?.parent)
     formData.append('gender', user?.gender)
     formData.append('shift', user?.shift)

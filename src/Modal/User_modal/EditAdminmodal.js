@@ -2,7 +2,7 @@ import axios from 'axios';
 import close_Button from '../../Image/close-btn.svg';
 import selectIcon from '../../Image/select-icon.svg';
 import eye from '../../Image/eye-svgrepo-com.svg';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import './editAdminModal.css'
 import { AuthContext } from '../../context/PupilContext';
@@ -54,7 +54,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
           elClass.disabled = true
           elClass1.disabled = true
         } else
-          if (evetValue === 'parent') {
+          if (evetValue === 'parents') {
             elParent.disabled = true
             elEmail.disabled = false
             elPassword.disabled = false
@@ -69,43 +69,92 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     evt.preventDefault()
     const password1 = document.querySelector('#pass3'); const password2 = document.querySelector('#pass5');
     if (password1.value !== password2.value) { return alert("Tasdiqlash paroli xato !") };
-
-    console.log(user, 'user');
-    console.log(imgref, 'imgref');
     const formData = new FormData()
-    formData.append('main_video', imgref.current.files[0])
-    formData.append('email', user?.email)
-    formData.append('full_name', user?.full_name)
-    formData.append('birth_date', user?.birth_date)
-    formData.append('password', user?.password)
+    formData.append('main_video', imgref.current.files[0] ? imgref.current.files[0] : editUser?.main_video)
+    formData.append('email', user?.email ? user?.email : editUser?.email)
+    formData.append('full_name', user?.full_name ? user?.full_name : editUser?.full_name)
+    formData.append('birth_date', user?.birth_date ? user?.birth_date : editUser?.birth_date)
+    formData.append('password', user?.password ? user?.password : editUser?.password)
+    formData.append('confirm_password', user?.password ? user?.password : editUser?.password)
     formData.append('status', user?.status ? user?.status : 'pupil')
-    formData.append('pupil_class', ((user?.pupil_class ? user?.pupil_class : '1') +'-'+ (user?.pupil_class_str?user?.pupil_class_str: 'A')))
-    formData.append('parent', user?.parent)
-    formData.append('gender', user?.gender)
-    formData.append('shift', user?.shift)
+    formData.append('pupil_class', (user?.pupil_class ? user?.pupil_class : editUser?.pupil_class[0]?.slice(0, 1)) +'-'+ (user?.pupil_class_str?user?.pupil_class_str: editUser?.pupil_class[0]?.slice(2, 3)?.toUpperCase()))    
+    formData.append('parents', user?.parent ? user?.parent : editUser?.parent)
+    formData.append('gender', user?.gender ? user?.gender : editUser?.gender)
+    formData.append('is_morning', user?.shift ? user?.shift : editUser?.is_morning)
     if (user?.status === 'pupil') {
-      const apiUrl = `https://www.api.yomon-emas.uz/api/users/pupils/${editUser?.id}`;
+      const apiUrl = `https://www.api.yomon-emas.uz/api/users/pupils/${editUser?.id}/`;
+      // const apiUrl = `http://localhost:5000/test/${editUser?.id}`;
+      formData.delete('password')
+      formData.delete('main_video')
+      formData.delete('email')
+      formData.delete('status')
+
       axios.patch(apiUrl, formData)
         .then((response) => {
           console.log(response.data);
-          toast.success("Ma'lumot qo'shildi !");
+          toast.success("Ma'lumot yangilandi!");
+          setEditAdminModal(false)
         })
         .catch((error) => {
           console.log('Error sending data:', error?.response?.data);
+          toast.error("Xatolik sodir bo'ldida !");
+          
         });
-    } else {
-      const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/${editUser?.id}`;
-      axios.patch(apiUrl, formData)
+      } else if (user?.status === 'teacher') {
+      console.log(user,'----------------')
+
+        const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/${editUser?.id}/update_user/`;
+        formData.delete('parent')
+        formData.delete('is_morning')
+        formData.delete('main_video')
+        axios.patch(apiUrl, formData)
         .then((response) => {
           console.log(response.data);
-          toast.success("Ma'lumot qo'shildi !");
+          toast.success("Ma'lumot yangilandi !");
+          setEditAdminModal(false)
         })
         .catch((error) => {
           console.log('Error sending data:', error);
+          toast.error("Xatolik sodir bo'ldi !");
         });
-    }
+    }else if (user?.status === 'psychologist') {
+      console.log(user,'----------------')
 
-      // setEditAdminModal(false)
+        const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/${editUser?.id}/update_user/`;
+        formData.delete('parent')
+        formData.delete('is_morning')
+        formData.delete('main_video')
+        formData.delete('pupil_class')
+        axios.patch(apiUrl, formData)
+        .then((response) => {
+          console.log(response.data);
+          toast.success("Ma'lumot yangilandi !");
+          setEditAdminModal(false)
+        })
+        .catch((error) => {
+          console.log('Error sending data:', error);
+          toast.error("Xatolik sodir bo'ldi !");
+        });
+    } else if (user?.status === 'parents') {
+      console.log(user,'----------------')
+
+        const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/${editUser?.id}/update_user/`;
+        formData.delete('parent')
+        formData.delete('is_morning')
+        formData.delete('main_video')
+        formData.delete('pupil_class')
+        axios.patch(apiUrl, formData)
+        .then((response) => {
+          console.log(response.data);
+          toast.success("Ma'lumot yangilandi !");
+          setEditAdminModal(false)
+        })
+        .catch((error) => {
+          console.log('Error sending data:', error);
+          toast.error("Xatolik sodir bo'ldi !");
+        });
+    } 
+      
   }
 
 
@@ -151,9 +200,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
 
       <Modal.Body>
         <form onSubmit={(e) => hendlSend(e)} className="table table-striped modal_update">
-          <thead>
-
-            <Modal.Title style={{ color: theme }} className='modal_header' id="example-custom-modal-styling-title">
+          <thead><Modal.Title style={{ color: theme }} className='modal_header' id="example-custom-modal-styling-title">
               <div className='modalHeader'>
               <ToastContainer />
               Изменить профиль
@@ -227,8 +274,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
               }} defaultValue={editUser?.pupil_class ? editUser?.pupil_class[0]?.slice(2, 3)?.toUpperCase(): ''} className="class2">
                 <option value='A'>"А"<img src={selectIcon} /></option>
                 <option value='B'>"B"</option>
-                <option value='C'>"C"</option>
-                <option value='D'>"D"</option>
+                <option value='C'>"C"</option><option value='D'>"D"</option>
                 <option value='E'>"E"</option>
               </select>
             </div>
@@ -253,20 +299,27 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
               <div className='box2_item'>
                 <label class="form-label">Укажите пол</label><br />
                 <div className='d-flex align-items-center gap-2'>
-                  <input checked={editUser?.gender ?  true : false}   onClick={(e)=> {e.target.checked ? e.target.name = false : e.target.checked = true}} onChange={(event) => {
+                  <input 
+                  // checked={editUser?.gender ?  true : false}   
+                  // onClick={(e)=> {e.target.checked ? e.target.name = false : e.target.checked = true}} 
+                  onChange={(event) => {
                     setUser({
                       ...user,
-                      gender: event.target.value
+                      gender: Boolean(event.target.value)
                     })
                   }} name='gender' value='true' className='radio' type="radio" id="boy" />
                   <label for="boy">Мальчик</label>
                 </div>
                 <div className="d-flex align-items-center justify-content-between gap-2">
                   <div className="d-flex align-items-center gap-2">
-                    <input  checked={editUser?.gender? false : true}  id='girl'   defaultValue={editUser?.gender} onClick={(e)=> {e.target.checked ? e.target.checked = false : e.target.checked = true}} onChange={(event) => {
+                    <input  
+                    // checked={editUser?.gender? false : true}  
+                    id='girl'   
+                    //  onClick={(e)=> {e.target.checked ? e.target.checked = false : e.target.checked = true}} 
+                     onChange={(event) => {
                       setUser({
                         ...user,
-                        gender: event.target.value
+                        gender: Boolean(event.target.value)
                       })
                     }} name='gender' value='false' className='radio' type="radio" />
                     <label for="girl">Девочка</label>
@@ -276,20 +329,24 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
               <div className='box2_item'>
                 <label class="form-label">Укажите смену</label><br />
                 <div className='d-flex align-items-center gap-2'>
-                  <input  checked={editUser?.is_morning ? true: false} onChange={(event) => {
+                  <input  
+                  // checked={editUser?.is_morning ? true: false}
+                   onChange={(event) => {
                     setUser({
                       ...user,
-                      shift: event.target.value
+                      shift: Boolean(event.target.value)
                     })
                   }} name='shift' value='true' className='radio' type="radio" id="first" />
                   <label for="first">Первая</label>
                 </div>
                 <div className="d-flex align-items-center justify-content-between gap-2">
                   <div className="d-flex align-items-center gap-2">
-                    <input  checked={editUser?.is_morning? false : true} id='second' onChange={(event) => {
+                    <input  
+                    // checked={editUser?.is_morning? false : true} 
+                    id='second' onChange={(event) => {
                       setUser({
                         ...user,
-                        shift: event.target.value
+                        shift: Boolean(event.target.value)
                       })
                     }} name='shift' value='false' className='radio' type="radio" />
                     <label for="second">Вторая</label>
@@ -305,7 +362,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
                   <option value='pupil'>ученик</option>
                   <option value='psychologist'>психолог</option>
                   <option value='teacher'>учитель</option>
-                  <option value='parent'>родители</option>
+                  <option value='parents'>родители</option>
                 </select>
               </div>
               <div className='video_box '>
