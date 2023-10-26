@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Modal } from 'react-bootstrap'; 
 import close_Button from '../../Image/close-btn.svg';
 import './attendanceModal.css'
@@ -37,7 +37,7 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
       >
           <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
           Опоздавшие ученик
-          <img className='close_button' onClick={() => setLateComersPupil(false)} src={close_Button} />
+          <img className='close_button' onClick={() => setLateComersPupil(false)} src={close_Button} alt='closeButton' />
 
           </Modal.Title>
         <Modal.Body>

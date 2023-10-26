@@ -168,7 +168,7 @@
   .dashboard2_headerButton:active, .logout:active {
     background-color: rgba(250, 128, 114, 1);
   }
-  .card-one{
+  .card-one, .card-two{
     position: relative;
 }
 .gifImg {
@@ -177,4 +177,24 @@
     height: auto;
     left: -40px;
     top: -60px;
+}
+
+.teacherGif {
+    position: absolute;
+    width: 320px;
+    height: auto;
+    left: -40px;
+    top: -60px;
+}
+
+.card-item{
+    margin-left: auto;
+}
+
+.card-itemTwo{
+    margin-top: 25px;
+}
+.card-itemTwo p {
+    margin-left: 250px;
+    margin-bottom: 40px;
 }

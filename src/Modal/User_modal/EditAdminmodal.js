@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 function EditAdminModal({ editAdminModal, setEditAdminModal }) {
-  const { theme, editUser, modal, setModal } = useContext(AuthContext)
+  const { theme, editUser } = useContext(AuthContext)
   const [user, setUser] = useState()
   const [parent, setParent] = useState()
   const [orginalParent, setOrginalParent] = useState()
@@ -83,7 +83,6 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     formData.append('is_morning', user?.shift ? user?.shift : editUser?.is_morning)
     if (user?.status === 'pupil') {
       const apiUrl = `https://www.api.yomon-emas.uz/api/users/pupils/${editUser?.id}/`;
-      // const apiUrl = `http://localhost:5000/test/${editUser?.id}`;
       formData.delete('password')
       formData.delete('main_video')
       formData.delete('email')

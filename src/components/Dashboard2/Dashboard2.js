@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from '../../Image/logotad.svg'
 import gif from '../../Gif/happy-gif-unscreen.gif'
-import teacherImg from '../../Image/teacher.svg'
+import teacherImg from '../../Gif/teacher-normal-gif.gif'
 import all from '../../Image/all.svg'
 import boyTwo from '../../Gif/happy-gif-right-bg.gif'
 import { DecodeHooks } from '../../Hooks/DecodeHook';
@@ -82,14 +82,17 @@ function Dashboard2() {
                     </li>
                     <li className='card-two'>
                         <div className='card-two-header'>
-                            <img src={teacherImg} alt='teacher' />
+                            <img className='teacherGif' src={teacherImg} alt='teacher' />
                             <div className='card-item'>
                                 <p>Всего<br /> преподавателей</p>
                                 <h2>{dashteacher?.count}</h2>
                             </div>
                         </div>
-                        <p>Общий эмоциональный фон<br /> преподавателей</p>
+                        <div className='card-itemTwo'>
+                        <p>Общий <br/> эмоциональный фон<br /> преподавателей</p>
                         <button>Всё хорошо</button>
+                            </div>
+                        
                     </li>
                     <li className='card-there'>
                         <p>Общий эмоциональный <br />фон школы</p>
