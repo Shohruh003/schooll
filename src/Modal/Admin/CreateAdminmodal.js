@@ -211,13 +211,13 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
               <img className="btnpass3" onClick={() => { const password1 = document.querySelector('#pass3'); return (password1.type == "password") ? password1.type = "text" : password1.type = "password" }} src={eye} />
             </div>
             <div className='input_box'>
-              <label for="4" class="form-label">Дата рождения</label>
+              <label for="d" class="form-label">Дата рождения</label>
               <input onChange={(event) => {
                 setUser({
                   ...user,
                   birth_date: event.target.value
                 })
-              }} type="date" class="form-control" list="datalistOptions" id="4" />
+              }} type="date" class="form-control" list="datalistOptions" id="d" />
             </div>
             <div className='input_box pass5'>
               <label for="pass5" class="form-label">Повторите пароль</label>
@@ -235,7 +235,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                 <option defaultValue='1'>1<img src={selectIcon} /></option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
-                <option value='4'>4</option>
+                <option value='d'>d</option>
                 <option value='5'>5</option>
               </select>
               <select onChange={(event) => {

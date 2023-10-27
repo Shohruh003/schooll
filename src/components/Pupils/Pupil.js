@@ -1,9 +1,10 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import './pupil.css'
 import { Link } from "react-router-dom";
 import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
 import { AuthContext } from "../../context/PupilContext";
+import usersLogo from '../../Image/photo_people.jpg'
 
 
 function Pupil() {
@@ -112,7 +113,7 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
     return (
       <li key={item.id} style={{borderColor: theme}} onClick={() => clickItem(item)}>
       <Link className='people_link'>
-        <img className='people_image' src={pupils.thumbnail} alt="People of the img" width='100' height='100' />
+        <img className='people_image' src={(pupils?.thumbnail.split('').reverse().slice(0,3).reverse().join('') == 'jpg') ? pupils.thumbnail : usersLogo} alt="People of the img" width='100' height='100' />
         <p style={{borderColor: theme}}>
           <span className='people_heading'>Фамилия и имя</span>
           <span className='people_name'>{item.full_name ? item.full_name : "Пустой"}</span>

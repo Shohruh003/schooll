@@ -4,6 +4,7 @@ import './teacherList.css'
 import { Link } from "react-router-dom";
 import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
 import { AuthContext } from "../../context/PupilContext";
+import usersLogo from '../../Image/photo_people.jpg'
 
 
 function TeacherList() {
@@ -102,7 +103,7 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
     return (
       <li key={item.id} style={{borderColor: theme}} onClick={() => clickItem(item)}>
       <Link className='teacher_link'>
-        <img className='teacher_image' src={teacher.thumbnail} alt="teacher of the img" width='100' height='100' />
+        <img className='teacher_image' src={(teacher?.thumbnail.split('').reverse().slice(0,3).reverse().join('') == 'jpg') ? teacher.thumbnail : usersLogo} alt="teacher of the img" width='100' height='100' />
         <p style={{borderColor: theme}}>
           <span className='teacher_heading'>Фамилия и имя</span>
           <span className='teacher_name'>{item.full_name ? item.full_name : "Пустой"}</span>

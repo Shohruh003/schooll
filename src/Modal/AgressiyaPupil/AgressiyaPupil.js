@@ -5,6 +5,8 @@ import './agressiyaPupil.css'
 import { AuthContext } from '../../context/PupilContext';
 import axios from 'axios';
 import { useState } from 'react';
+import usersLogo from '../../Image/photo_people.jpg'
+
 
 function AgressiyaPupil({ agressiyaModal, setAgressiyaModal }) {
   const { theme, classes} = useContext(AuthContext);
@@ -55,7 +57,7 @@ function AgressiyaPupil({ agressiyaModal, setAgressiyaModal }) {
           <tbody>
             {agressiya.map((item, index) => (
               <tr key={index}>
-                <td><img src={item?.main_image} width='30' height='30' alt='agressiyaImg' /></td>
+                <td><img src={(item?.main_image?.split('').reverse().slice(0,3).reverse().join('') == 'jpg') ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
                 <td>{item?.full_name}</td>
                 <td>{item?.pupil_class}</td>
               </tr>

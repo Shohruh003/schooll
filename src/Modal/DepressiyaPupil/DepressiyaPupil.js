@@ -4,6 +4,8 @@ import close_Button from '../../Image/close-btn.svg';
 import { Modal } from 'react-bootstrap'; 
 import './depressiyaPupil.css'
 import { AuthContext } from '../../context/PupilContext';
+import usersLogo from '../../Image/photo_people.jpg'
+
 function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
   const {theme, classes} = useContext(AuthContext)
 
@@ -54,7 +56,7 @@ function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
   <tbody>
   {depressiya.map((item, index) => (
               <tr key={index}>
-                <td><img src={item?.main_image} width='30' height='30' alt='agressiyaImg' /></td>
+                <td><img src={(item?.main_image?.split('').reverse().slice(0,3).reverse().join('') == 'jpg') ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
                 <td>{item?.full_name}</td>
                 <td>{item?.pupil_class}</td>
               </tr>

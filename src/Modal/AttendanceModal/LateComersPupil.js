@@ -4,6 +4,8 @@ import { Modal } from 'react-bootstrap';
 import close_Button from '../../Image/close-btn.svg';
 import './attendanceModal.css'
 import { AuthContext } from '../../context/PupilContext';
+import usersLogo from '../../Image/photo_people.jpg'
+
 function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
   const { theme, classes,lateComersPupils, setLateComersPupils} = useContext(AuthContext);
   useEffect(() => {
@@ -53,7 +55,7 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
   <tbody>
   {lateComersPupils.map((item, index) => (
               <tr key={index}>
-                <td><img src={item?.main_image} width='30' height='30' alt='agressiyaImg' /></td>
+                <td><img src={(item?.main_image?.split('').reverse().slice(0,3).reverse().join('') == 'jpg') ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
                 <td>{item?.full_name}</td>
                 <td>{item?.pupil_class}</td>
                 <td>09:34</td>
