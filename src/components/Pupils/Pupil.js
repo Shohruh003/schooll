@@ -8,7 +8,7 @@ import usersLogo from '../../Image/photo_people.jpg'
 
 
 function Pupil() {
-const {user, setUsers,ageRange,genders, setOriginalUsers,pupilClass, setPupilCount,pupilEmotion,theme,editAdminModal, setEditAdminModal, setEditUser, editUser} = useContext(AuthContext)
+const {user, setUsers,ageRange,genders, setOriginalUsers,pupilClass, setPupilCount,pupilEmotion,theme,editAdminModal, setEditAdminModal, setEditUser} = useContext(AuthContext)
 
   const style = document.createElement('style');
 style.innerHTML = `
@@ -38,9 +38,9 @@ document.head.appendChild(style);
         }
 
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/', { params });
-        setPupilCount(response.data.count)
-      setUsers(response.data.results);
-      setOriginalUsers(response.data.results);
+        setPupilCount(response.data.length)
+      setUsers(response.data);
+      setOriginalUsers(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -53,9 +53,10 @@ document.head.appendChild(style);
     setEditUser(evt)
   }
 
+
   return (
     <ul className="people_list" style={{'--scrollbar-thumb': theme}}>
-                        {user.map((item) => {
+                        {user?.map((item) => {
                    const date = item.birth_date;
                    const birthDate = new Date(date);
                    const today = new Date();
@@ -110,10 +111,11 @@ const firstMaxConfidenceIndex = emotions.findIndex(
 );
 
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
+
     return (
       <li key={item.id} style={{borderColor: theme}} onClick={() => clickItem(item)}>
       <Link className='people_link'>
-        <img className='people_image' src={(pupils?.thumbnail.split('').reverse().slice(0,3).reverse().join('') == 'jpg') ? pupils.thumbnail : usersLogo} alt="People of the img" width='100' height='100' />
+        <img className='people_image' src={item?.main_image ? item?.main_image : usersLogo} alt="People of the img" width='100' height='100' />
         <p style={{borderColor: theme}}>
           <span className='people_heading'>Фамилия и имя</span>
           <span className='people_name'>{item.full_name ? item.full_name : "Пустой"}</span>

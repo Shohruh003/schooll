@@ -9,10 +9,10 @@ import TeacherPupils from '../../components/TeacherPupils/TeacherPupils';
 
 function Teacher(props) {
   const { isActive } = props;
-  const { setUsers, originalUsers, genders, setGenders,setPupilEmotion,theme, setTheme, setNotification,notificationCount, setNotificationCount, modal, setModal,teach, setTeach,classes, setClasses} = useContext(AuthContext)
+  const { setUsers, originalUsers, genders, setGenders,setPupilEmotion,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
         const {decode} = DecodeHooks()
         const [pupilMissing, setPupilMissing] = useState()
-
+        const [teachClass, setTeachClass] = useState()
         useEffect(() => {
           const fetchParents = async () => {
               try {
@@ -47,7 +47,6 @@ function Teacher(props) {
             const fetchParents = async () => {
                 try {
                     const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
-                    console.log(response.data);
                     setTeach(response.data)
                 } catch (error) {
                     console.error(error);
@@ -207,7 +206,61 @@ function Teacher(props) {
               console.error(error);
           }
       };
-console.log(pupilMissing);
+
+      const teachClasses = async () => {
+        try {
+            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${teach?.id}/teacher_pupils/`);
+            setTeachClass(response?.data)
+            console.log(response?.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+      useEffect(() => {
+      teachClasses();
+  }, [teach?.id]);
+
+
+      
+
+      const onPupilClass = (evt) => {
+        setPupilsClass(evt?.target?.value)
+        fetchData()
+      }
+console.log(pupilsClass);
+      // const pupilClas = pupilsClass ? pupilsClass : teachClass?.pupils?.map((e) => e?.pupil_class[0])
+      const teachPupilsCount = teach?.pupils[pupilsClass]?.length
+
+      const fetchData = async () => {
+        try {
+  
+          const params = {};
+  
+          if (genders.length > 0) {
+            params.gender = genders.join(',');
+          }
+  
+          if (pupilEmotion) {
+            params.emotions = pupilEmotion
+          }
+          console.log(teach?.pupils[pupilsClass]);
+    const pupilIds = teach?.pupils[pupilsClass]?.map((pupil) => pupil.id);
+          const promises = pupilIds?.map(async (id) => {
+            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`, { params });
+            return response.data;
+          });
+          const absentPupilsData = await Promise.all(promises);
+          setUsers(absentPupilsData);
+          setOriginalUsers(absentPupilsData)
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+              useEffect(() => {
+                onPupilClass()
+        }, []);
+
   return (
     <div className="admin_page">
       <div className="container">
@@ -266,6 +319,17 @@ console.log(pupilMissing);
   </defs>
                     </svg>
                   </button>
+
+
+                  <select className='select'>
+                            {teachClass?.pupils?.map((item) => (
+                                <option onClick={() =>{
+                                  setTeachClass()
+                                }} key={item?.pupil_class} value={item?.pupil_class}>
+                                    <h4>{item?.pupil_class}</h4>
+                                </option>
+                            ))}
+                        </select>
               </div>
 
               <div className='adminBoard_header'>
@@ -311,7 +375,7 @@ console.log(pupilMissing);
 </svg>
 
                       <h4 className='navLinkName'>Всего учеников</h4>
-                      <span className='quantity'>{teach?.pupils?.length}</span>
+                      <span className='quantity'>{teachPupilsCount}</span>
                     </NavLink>
                   </li>
 
@@ -347,7 +411,7 @@ console.log(pupilMissing);
 
 
                       <h4 className='navLinkName'>Посещаемость учеников</h4>
-                      <span className='quantity'>{teach?.pupils?.length - pupilMissing?.length}</span>
+                      <span className='quantity'>{teachPupilsCount - (pupilMissing?.length ? pupilMissing?.length : 0)}</span>
                     </NavLink>
                   </li>
                 </ul>

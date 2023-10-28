@@ -550,50 +550,50 @@ const piHappy = Math.round(pia?.happy)
                             <ul className='week_list'>
                                 <li className='week_item'>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week2?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime2}</span>
+                                    <span className='weekItem_time'>{formattedTime2week}</span>
                                     <span className='days'>{date2}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week2?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime2week}</span>
+                                    <span className='weekItem_time'>{formattedTime2}</span>
                                 </li>
 
                                 <li className='week_item'>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week3?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime3}</span>
+                                    <span className='weekItem_time'>{formattedTime3week}</span>
                                     <span className='days'>{date3}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week3?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime3week}</span>
+                                    <span className='weekItem_time'>{formattedTime3}</span>
                                 </li>
 
                                 <li className='week_item'>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week4?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime4}</span>
+                                    <span className='weekItem_time'>{formattedTime4week}</span>
                                     <span className='days'>{date4}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week4?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime4week}</span>
+                                    <span className='weekItem_time'>{formattedTime4}</span>
                                 </li>
 
                                 <li className='week_item'>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week5?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime5}</span>
+                                    <span className='weekItem_time'>{formattedTime5week}</span>
                                     <span className='days'>{date5}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week5?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime5week}</span>
+                                    <span className='weekItem_time'>{formattedTime5}</span>
                                 </li>
 
                                 <li className='week_item'>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week6?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime6}</span>
+                                    <span className='weekItem_time'>{formattedTime6week}</span>
                                     <span className='days'>{date6}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week6?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime6week}</span>
+                                    <span className='weekItem_time'>{formattedTime6}</span>
                                 </li>
 
                                 <li className='week_item'>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week7?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime7}</span>
+                                    <span className='weekItem_time'>{formattedTime7week}</span>
                                     <span className='days'>{date7}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week7?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime7week}</span>
+                                    <span className='weekItem_time'>{formattedTime7}</span>
                                 </li>
                             </ul>
                         </div>

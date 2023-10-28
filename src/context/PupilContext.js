@@ -28,9 +28,11 @@ export const AuthProvider = ({children}) => {
   const [lateComersPupils, setLateComersPupils] = useState([])
   const [teach, setTeach] = useState()
   const [editUser, setEditUser] = useState()
+  const [pupilsClass, setPupilsClass] = useState()
+
 
   return (
-    <AuthContext.Provider value={{user, setUsers,ageRange, setAgeRange,classes, setClasses,classList, setClassList,genders, setGenders,originalTeacher, setOriginalTeacher,originalUsers, setOriginalUsers,position, setPosition,pupilClass, setPupilClass,pupilCount, setPupilCount,pupilEmotion, setPupilEmotion,teacher, setTeacher,teacherCount, setTeacherCount,theme, setTheme,editAdminModal, setEditAdminModal, notificationCount, setNotificationCount, notification, setNotification, modal, setModal,comersPupils, setComersPupil,missingTeachers, setMissingTeachers,lateComersTeachers, setLateComersTeachers,lateComersPupils, setLateComersPupils, teach, setTeach,editUser, setEditUser}}>
+    <AuthContext.Provider value={{pupilsClass, setPupilsClass,user, setUsers,ageRange, setAgeRange,classes, setClasses,classList, setClassList,genders, setGenders,originalTeacher, setOriginalTeacher,originalUsers, setOriginalUsers,position, setPosition,pupilClass, setPupilClass,pupilCount, setPupilCount,pupilEmotion, setPupilEmotion,teacher, setTeacher,teacherCount, setTeacherCount,theme, setTheme,editAdminModal, setEditAdminModal, notificationCount, setNotificationCount, notification, setNotification, modal, setModal,comersPupils, setComersPupil,missingTeachers, setMissingTeachers,lateComersTeachers, setLateComersTeachers,lateComersPupils, setLateComersPupils, teach, setTeach,editUser, setEditUser}}>
       {children}
     </AuthContext.Provider>
   );

@@ -11,7 +11,7 @@ function MissingPupil ({missingPupil, setMissingPupil}) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const promises = Object.values(classes?.classes).flatMap((classData) => classData.absent_pupils.id).map(async (id) => {
+        const promises = Object.values(classes?.classes).flatMap((classData) => classData?.absent_pupils?.id).map(async (id) => {
           const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`);
           return response.data;
         });
@@ -54,7 +54,7 @@ function MissingPupil ({missingPupil, setMissingPupil}) {
   <tbody>
   {comersPupils.map((item, index) => (
               <tr key={index}>
-                <td><img src={(item?.main_image?.split('').reverse().slice(0,3).reverse().join('') == 'jpg') ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
+                <td><img src={item?.main_image ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
                 <td>{item?.full_name}</td>
                 <td>{item?.pupil_class}</td>
               </tr>

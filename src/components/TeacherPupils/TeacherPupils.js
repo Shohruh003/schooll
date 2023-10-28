@@ -1,17 +1,14 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import './teacherPupils.css'
 import { Link } from "react-router-dom";
 import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
 import { AuthContext } from "../../context/PupilContext";
-import { DecodeHooks } from "../../Hooks/DecodeHook";
 import usersLogo from '../../Image/photo_people.jpg'
 
 
 function TeacherPupil() {
-const {user, setUsers,genders, setOriginalUsers,pupilEmotion,theme,editAdminModal, setEditAdminModal} = useContext(AuthContext)
-const {decode} = DecodeHooks()
-const [ids, setIds] = useState()
+const {user,theme,editAdminModal, setEditAdminModal} = useContext(AuthContext)
 
   const style = document.createElement('style');
 style.innerHTML = `
@@ -21,49 +18,6 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-  useEffect(() => {
-
-    const fetchPupils = async () => {
-      try {
-        const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
-      setIds(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchPupils();
-  }, []);
-
-useEffect(() => {
-    const fetchData = async () => {
-      try {
-
-        const params = {};
-
-        if (genders.length > 0) {
-          params.gender = genders.join(',');
-        }
-
-        if (pupilEmotion) {
-          params.emotions = pupilEmotion
-        }
-
-  const pupilIds = ids?.pupils['2-a']?.map((pupil) => pupil.id);
-        const promises = pupilIds.map(async (id) => {
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`, { params });
-          return response.data;
-        });
-        const absentPupilsData = await Promise.all(promises);
-        setUsers(absentPupilsData);
-        setOriginalUsers(absentPupilsData)
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  
-    fetchData();
-  }, [ids?.pupils, genders, pupilEmotion]);
 
   const clickItem = () => {
     setEditAdminModal(true)
@@ -72,15 +26,15 @@ useEffect(() => {
   return (
     <ul className="people_list" style={{'--scrollbar-thumb': theme}}>
                         {user?.map((item) => {
-                   const date = item.birth_date;
+                   const date = item?.birth_date;
                    const birthDate = new Date(date);
                    const today = new Date();
                    const age = today.getFullYear() - birthDate.getFullYear();
-  const pupils = item.thumbnail && item.thumbnail.length ? item.thumbnail[0] : {
-    "thumbnail": item.main_image,
+  const pupils = item?.thumbnail && item?.thumbnail.length ? item?.thumbnail[0] : {
+    "thumbnail": item?.main_image,
     "create_date": "2023-09-26T16:36:37.036650Z"
 }
-  const emotions = item.emotions ? item.emotions : {
+  const emotions = item?.emotions ? item?.emotions : {
     emotions: [
       {
         "emotions": "happy",
@@ -120,8 +74,7 @@ for (let i = 0; i < emotions.length; i++) {
     maxConfidenceIndex = i;
   }
 }
-
-const firstMaxConfidenceIndex = emotions?.findIndex(
+const firstMaxConfidenceIndex = emotions?.emotions?.findIndex(
   (emotion) => emotion?.confidence === maxConfidence
 );
 
@@ -129,7 +82,7 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
     return (
       <li key={item.id} style={{borderColor: theme}} onClick={clickItem}>
       <Link className='people_link'>
-        <img className='people_image' src={(pupils?.thumbnail.split('').reverse().slice(0,3).reverse().join('') == 'jpg') ? pupils.thumbnail : usersLogo} alt="People of the img" width='100' height='100' />
+        <img className='people_image' src={item?.main_image ? item?.main_image : usersLogo} alt="People of the img" width='100' height='100' />
         <p style={{borderColor: theme}}>
           <span className='people_heading'>Фамилия и имя</span>
           <span className='people_name'>{item.full_name ? item.full_name : "Пустой"}</span>
