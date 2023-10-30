@@ -9,7 +9,7 @@ import TeacherPupils from '../../components/TeacherPupils/TeacherPupils';
 
 function Teacher(props) {
   const { isActive } = props;
-  const { setUsers, originalUsers, genders, setGenders,setPupilEmotion,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
+  const { setTeacherPupils, originalUsers, genders, setGenders,setPupilEmotion,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
         const {decode} = DecodeHooks()
         const [pupilMissing, setPupilMissing] = useState()
         const [teachClass, setTeachClass] = useState()
@@ -30,7 +30,7 @@ function Teacher(props) {
             try {
               const presentPupilIds = classes?.classes?.absent_pupils?.id;
               const promises = presentPupilIds.map(async (id) => {
-                const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`);
+                const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id?.id}`);
                 return response.data;
               });
         
@@ -60,7 +60,6 @@ function Teacher(props) {
             useEffect(() => {
       const fetchNotification = async () => {
         try {
-
             const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
             setNotification(response.data.messages)
             setNotificationCount(response.data.messages.length)
@@ -193,7 +192,7 @@ function Teacher(props) {
     const filteredUsers = originalUsers.filter((item) =>
       item.full_name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setUsers(searchTerm === '' ? originalUsers : filteredUsers);
+    setTeacherPupils(searchTerm === '' ? originalUsers : filteredUsers);
   };
 
       const handleModal = () => {
@@ -207,30 +206,25 @@ function Teacher(props) {
           }
       };
 
-      const teachClasses = async () => {
-        try {
-            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${teach?.id}/teacher_pupils/`);
-            setTeachClass(response?.data)
-            console.log(response?.data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
       useEffect(() => {
-      teachClasses();
-  }, [teach?.id]);
-
-
+        axios.get(`https://www.api.yomon-emas.uz/api/users/users/${teach?.id}/teacher_pupils`)
+        .then((response) => {
+          setTeachClass(response?.data)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }, []);
       
 
       const onPupilClass = (evt) => {
         setPupilsClass(evt?.target?.value)
         fetchData()
       }
-console.log(pupilsClass);
-      // const pupilClas = pupilsClass ? pupilsClass : teachClass?.pupils?.map((e) => e?.pupil_class[0])
+      const pupilClas = pupilsClass ? pupilsClass : teach?.pupil_class[0]
       const teachPupilsCount = teach?.pupils[pupilsClass]?.length
-
+      console.log(pupilClas);
+      console.log(teach?.pupils[pupilClas]);
       const fetchData = async () => {
         try {
   
@@ -243,14 +237,14 @@ console.log(pupilsClass);
           if (pupilEmotion) {
             params.emotions = pupilEmotion
           }
-          console.log(teach?.pupils[pupilsClass]);
-    const pupilIds = teach?.pupils[pupilsClass]?.map((pupil) => pupil.id);
-          const promises = pupilIds?.map(async (id) => {
-            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`, { params });
+
+    const pupilIds = teach?.pupils[pupilClas]?.map((pupil) => pupil.id);
+          const promises = pupilIds?.map( (id) => {
+            const response = axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`, { params });
             return response.data;
           });
           const absentPupilsData = await Promise.all(promises);
-          setUsers(absentPupilsData);
+          setTeacherPupils(absentPupilsData)
           setOriginalUsers(absentPupilsData)
         } catch (error) {
           console.log(error);
@@ -259,7 +253,7 @@ console.log(pupilsClass);
 
               useEffect(() => {
                 onPupilClass()
-        }, []);
+        }, [pupilClas]);
 
   return (
     <div className="admin_page">
@@ -321,11 +315,9 @@ console.log(pupilsClass);
                   </button>
 
 
-                  <select className='select'>
+                  <select onChange={onPupilClass} className='select'>
                             {teachClass?.pupils?.map((item) => (
-                                <option onClick={() =>{
-                                  setTeachClass()
-                                }} key={item?.pupil_class} value={item?.pupil_class}>
+                                <option key={item?.pupil_class} value={item?.pupil_class}>
                                     <h4>{item?.pupil_class}</h4>
                                 </option>
                             ))}

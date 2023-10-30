@@ -9,7 +9,7 @@ import usersLogo from '../../Image/photo_people.jpg'
 
 function Pupil() {
 const {user, setUsers,ageRange,genders, setOriginalUsers,pupilClass, setPupilCount,pupilEmotion,theme,editAdminModal, setEditAdminModal, setEditUser} = useContext(AuthContext)
-
+console.log(user);
   const style = document.createElement('style');
 style.innerHTML = `
   .people_list::-webkit-scrollbar-thumb {
@@ -38,7 +38,6 @@ document.head.appendChild(style);
         }
 
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/', { params });
-        setPupilCount(response.data.length)
       setUsers(response.data);
       setOriginalUsers(response.data);
       } catch (error) {
@@ -56,7 +55,7 @@ document.head.appendChild(style);
 
   return (
     <ul className="people_list" style={{'--scrollbar-thumb': theme}}>
-                        {user?.map((item) => {
+                        {user?.result?.map((item) => {
                    const date = item.birth_date;
                    const birthDate = new Date(date);
                    const today = new Date();

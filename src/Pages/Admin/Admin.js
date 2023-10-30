@@ -16,14 +16,14 @@ function Admin(props) {
   const { setUsers,user, originalUsers, genders, setGenders,pupilCount, setPupilEmotion,classes, setClasses, teacherCount, theme, setTheme, setAgeRange, setTeacher, setPupilCount, setTeacherCount,setNotification,notificationCount, setNotificationCount, modal, setModal} = useContext(AuthContext)
   const [adminModal, setAdminModal] = useState()
   const {decode} = DecodeHooks()
-  const [teach, setTeach] = useState()
-
+  const [teach,setTeach] = useState()
   useEffect(() => {
       const fetchParents = async () => {
           try {
 
               const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
-              setTeach(response.data)
+              setTeach(response?.data)
+              console.log(response?.data);
           } catch (error) {
               console.error(error);
           }

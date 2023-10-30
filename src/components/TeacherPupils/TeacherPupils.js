@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useContext, useEffect } from "react";
+
+import { useContext } from "react";
 import './teacherPupils.css'
 import { Link } from "react-router-dom";
 import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
@@ -8,8 +8,7 @@ import usersLogo from '../../Image/photo_people.jpg'
 
 
 function TeacherPupil() {
-const {user,theme,editAdminModal, setEditAdminModal} = useContext(AuthContext)
-
+const {teacherPupils,theme,editAdminModal, setEditAdminModal} = useContext(AuthContext)
   const style = document.createElement('style');
 style.innerHTML = `
   .people_list::-webkit-scrollbar-thumb {
@@ -22,10 +21,9 @@ document.head.appendChild(style);
   const clickItem = () => {
     setEditAdminModal(true)
   }
-
   return (
     <ul className="people_list" style={{'--scrollbar-thumb': theme}}>
-                        {user?.map((item) => {
+                        {teacherPupils?.map((item) => {
                    const date = item?.birth_date;
                    const birthDate = new Date(date);
                    const today = new Date();
@@ -77,15 +75,14 @@ for (let i = 0; i < emotions.length; i++) {
 const firstMaxConfidenceIndex = emotions?.emotions?.findIndex(
   (emotion) => emotion?.confidence === maxConfidence
 );
-
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
     return (
-      <li key={item.id} style={{borderColor: theme}} onClick={clickItem}>
+      <li style={{borderColor: theme}} onClick={clickItem}>
       <Link className='people_link'>
         <img className='people_image' src={item?.main_image ? item?.main_image : usersLogo} alt="People of the img" width='100' height='100' />
         <p style={{borderColor: theme}}>
           <span className='people_heading'>Фамилия и имя</span>
-          <span className='people_name'>{item.full_name ? item.full_name : "Пустой"}</span>
+          <span className='people_name'>{item?.full_name ? item?.full_name : "Пустой"}</span>
         </p>
         <p style={{borderColor: theme}}>
           <span className='people_heading'>Пришел: {comeClock ? comeClock : "0"}</span>
@@ -93,15 +90,15 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
         </p>
         <p style={{borderColor: theme}}>
           <span className='people_heading'>Класс</span>
-          <span className='people_name'>{item.pupil_class ? item.pupil_class : "Пустой"}</span>
+          <span className='people_name'>{item?.pupil_class ? item?.pupil_class : "Пустой"}</span>
         </p>
         <p style={{borderColor: theme}}>
           <span className='people_heading'>Возраст</span>
           <span className='people_name'>{age ? age : "0"}</span>
         </p>
-        <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"}`}> 
-        <span className='people_heading'> {firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"} </span>
-          <span className='people_name'>{firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.confidence : "0"} %</span>
+        <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence?.emotions ? firstEmotionWithMaxConfidence?.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence?.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence?.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence?.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"}`}> 
+        <span className='people_heading'> {firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence?.emotions ? firstEmotionWithMaxConfidence?.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence?.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence?.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence?.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"} </span>
+          <span className='people_name'>{firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence?.emotions ? firstEmotionWithMaxConfidence?.confidence : "0"} %</span>
         </p>
       </Link>
     </li>
