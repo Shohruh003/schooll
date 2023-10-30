@@ -159,6 +159,8 @@
     border-radius: 50px;
     color: #ffffff;
     background-color: #FA8072;
+    z-index: 5;
+    cursor: pointer;
   }
 
   .dashboard2_headerButton:hover, .logout:hover {

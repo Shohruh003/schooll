@@ -22,7 +22,7 @@ document.head.appendChild(style);
     setEditAdminModal(true)
   }
   return (
-    <ul className="people_list" style={{'--scrollbar-thumb': theme}}>
+    <ul className="teacher_list" style={{'--scrollbar-thumb': theme}}>
                         {teacherPupils?.map((item) => {
                    const date = item?.birth_date;
                    const birthDate = new Date(date);
@@ -78,27 +78,27 @@ const firstMaxConfidenceIndex = emotions?.emotions?.findIndex(
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
     return (
       <li style={{borderColor: theme}} onClick={clickItem}>
-      <Link className='people_link'>
-        <img className='people_image' src={item?.main_image ? item?.main_image : usersLogo} alt="People of the img" width='100' height='100' />
+      <Link className='teacher_link'>
+        <img className='teacher_image' src={item?.main_image ? item?.main_image : usersLogo} alt="teacher of the img" width='100' height='100' />
         <p style={{borderColor: theme}}>
-          <span className='people_heading'>Фамилия и имя</span>
-          <span className='people_name'>{item?.full_name ? item?.full_name : "Пустой"}</span>
+          <span className='teacher_heading'>Фамилия и имя</span>
+          <span className='teacher_name'>{item?.full_name ? item?.full_name : "Пустой"}</span>
         </p>
         <p style={{borderColor: theme}}>
-          <span className='people_heading'>Пришел: {comeClock ? comeClock : "0"}</span>
-          <span className='people_heading'>Ушел: {wentClock ? wentClock : "0"}</span>
+          <span className='teacher_heading'>Пришел: {comeClock ? comeClock : "0"}</span>
+          <span className='teacher_heading'>Ушел: {wentClock ? wentClock : "0"}</span>
         </p>
         <p style={{borderColor: theme}}>
-          <span className='people_heading'>Класс</span>
-          <span className='people_name'>{item?.pupil_class ? item?.pupil_class : "Пустой"}</span>
+          <span className='teacher_heading'>Класс</span>
+          <span className='teacher_name'>{item?.pupil_class ? item?.pupil_class : "Пустой"}</span>
         </p>
         <p style={{borderColor: theme}}>
-          <span className='people_heading'>Возраст</span>
-          <span className='people_name'>{age ? age : "0"}</span>
+          <span className='teacher_heading'>Возраст</span>
+          <span className='teacher_name'>{age ? age : "0"}</span>
         </p>
         <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence?.emotions ? firstEmotionWithMaxConfidence?.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence?.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence?.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence?.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"}`}> 
-        <span className='people_heading'> {firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence?.emotions ? firstEmotionWithMaxConfidence?.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence?.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence?.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence?.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"} </span>
-          <span className='people_name'>{firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence?.emotions ? firstEmotionWithMaxConfidence?.confidence : "0"} %</span>
+        <span className='teacher_heading'> {firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence?.emotions ? firstEmotionWithMaxConfidence?.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence?.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence?.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence?.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"} </span>
+          <span className='teacher_name'>{firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence?.emotions ? firstEmotionWithMaxConfidence?.confidence : "0"} %</span>
         </p>
       </Link>
     </li>

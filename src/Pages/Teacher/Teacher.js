@@ -13,6 +13,7 @@ function Teacher(props) {
         const {decode} = DecodeHooks()
         const [pupilMissing, setPupilMissing] = useState()
         const [teachClass, setTeachClass] = useState()
+        const [test, setTest] = useState()
         useEffect(() => {
           const fetchParents = async () => {
               try {
@@ -47,6 +48,7 @@ function Teacher(props) {
             const fetchParents = async () => {
                 try {
                     const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
+                    setTest(response.data?.pupil_class[0])
                     setTeach(response.data)
                 } catch (error) {
                     console.error(error);
@@ -216,47 +218,44 @@ function Teacher(props) {
         });
       }, []);
 
-
-      const onPupilClass = (evt) => {
-        const pupilClassValue = evt?.target?.value
-        setPupilsClass(pupilClassValue)
-        fetchData()
-      }
-console.log(teach);
-      const pupilClas = (pupilsClass === 'undefined' ? teach?.pupil_class
-      [0] : pupilsClass)
-      console.log(teach?.pupils[pupilClas]);
-      const teachPupilsCount = teach?.pupils[pupilClas]?.length
-
       const fetchData = async () => {
         try {
-  
           const params = {};
-  
+      
           if (genders.length > 0) {
             params.gender = genders.join(',');
           }
-  
+      
           if (pupilEmotion) {
-            params.emotions = pupilEmotion
+            params.emotions = pupilEmotion;
           }
-          const pupilIds = teach?.pupils[pupilClas]?.map((pupil) => pupil.id);
-          const promises = pupilIds?.map( (id) => {
-            console.log(id);
-            const response = axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}`, { params });
+      
+          const pupilIds = teach?.pupils[pupilsClass ? pupilsClass : test]?.map((pupil) => pupil.id);
+          const promises = pupilIds?.map(async (id) => {
+            const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, { params });
+            console.log(response?.data);
             return response.data;
           });
+      
           const absentPupilsData = await Promise.all(promises);
-          setTeacherPupils(absentPupilsData)
-          setOriginalUsers(absentPupilsData)
+          setTeacherPupils(absentPupilsData);
+          setOriginalUsers(absentPupilsData);
         } catch (error) {
           console.log(error);
         }
       };
-
-              useEffect(() => {
-                onPupilClass()
-        }, []);
+      
+      useEffect(() => {
+        fetchData();
+      }, [pupilsClass]);
+      
+      const onPupilClass = (evt) => {
+        const pupilClassValue = evt?.target?.value;
+        setPupilsClass(pupilClassValue);
+      };
+      
+      const teachPupilsCount = teach?.pupils[pupilsClass ? pupilsClass : test]?.length;
+      
 
   return (
     <div className="admin_page">
@@ -318,7 +317,7 @@ console.log(teach);
                   </button>
 
 
-                  <select onChange={onPupilClass} id='classSelect' className='select'>
+                  <select onChange={onPupilClass} id='classSelect' value={pupilsClass} className='select'>
                             {teachClass?.pupils?.map((item) => (
                                 <option key={item?.pupil_class} value={item?.pupil_class}>
                                     <h4>{item?.pupil_class}</h4>

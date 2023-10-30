@@ -1,11 +1,11 @@
-.people_heading{
+.teacher_heading{
     display: block;
     font-size: 20px;
     font-weight: 600;
     text-align: center;
   }
   
-  .people_list {
+  .teacher_list {
     padding: 0;
     margin: 0;
     overflow-y: auto;
@@ -14,16 +14,16 @@
     list-style-type: none;
   }
   
-  .people_list::-webkit-scrollbar {
+  .teacher_list::-webkit-scrollbar {
     width: 7px;
   }
   
-  .people_list::-webkit-scrollbar-thumb {
+  .teacher_list::-webkit-scrollbar-thumb {
     background-color:#FA8072;
     border-radius: 4px;
   }
   
-  .people_list li {
+  .teacher_list li {
     border: 2px solid #FC6C85;
     border-radius: 20px;
     margin: 0;
@@ -31,7 +31,7 @@
     padding: 0;
   }
   
-  .people_link {
+  .teacher_link {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -39,21 +39,21 @@
   }
   
   
-  .people_link p {
+  .teacher_link p {
     margin: 0;
-    padding: 8px 30px;
+    padding: 8px 30px 8px 30px;
     border-left: 2px solid #FC6C85;
     text-align: start;
     color: #161B23;
   } 
   
-  .people_name{
+  .teacher_name{
     font-size: 20px;
     font-weight: 400;
     text-align: center;
   }
   
-  .people_image {
+  .teacher_image {
     width: 70px;
     height: 70px;
     margin-left: 10px;

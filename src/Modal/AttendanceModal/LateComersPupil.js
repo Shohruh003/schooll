@@ -13,7 +13,6 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
       try {
         const promises = Object.values(classes?.classes).flatMap((classData) => classData.present_pupils.id).map(async (id) => {
           const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`);
-          console.log(classes);
           return response.data;
         });
   
@@ -26,7 +25,6 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
   
     fetchData();
   }, [classes?.classes]);
-    
 
     return (
         <div>
@@ -59,7 +57,16 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
                 <td><img className='lateComersImg' src={item?.main_image ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
                 <td>{item?.full_name}</td>
                 <td>{item?.pupil_class}</td>
-                <td>09:34</td>
+                <td>
+      {item?.emotions[0]?.create_date ? (
+        new Date(item?.emotions[0]?.create_date).toLocaleTimeString('uz-UZ', {
+          hour: 'numeric',
+          minute: 'numeric'
+        })
+      ) : (
+        'N/A'
+      )}
+    </td>
               </tr>
             ))}
   </tbody>

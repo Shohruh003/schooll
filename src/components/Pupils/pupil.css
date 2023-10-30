@@ -47,6 +47,9 @@
   text-align: start;
   color: #161B23;
 }
+.people_link img {
+  margin-top: 4px !important;
+}
 
 
 .people_name {
