@@ -1,4 +1,4 @@
-.people_heading{
+.people_heading {
   display: block;
   font-size: 20px;
   font-weight: 600;
@@ -19,7 +19,7 @@
 }
 
 .people_list::-webkit-scrollbar-thumb {
-  background-color:#FA8072;
+  background-color: #FA8072;
   border-radius: 4px;
 }
 
@@ -33,21 +33,23 @@
 
 .people_link {
   display: flex;
-  align-items: center;
+  align-items: inherit !important;
   justify-content: space-between;
   text-decoration: none;
 }
 
 
 .people_link p {
-  margin: 0;
-  padding: 8px 30px;
+  display: block;
+  margin: 0 auto;
+  padding: 8px 5px 8px 25px !important;
   border-left: 2px solid #FC6C85;
   text-align: start;
   color: #161B23;
-} 
+}
 
-.people_name{
+
+.people_name {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -61,4 +63,7 @@
   height: 70px;
   margin-left: 10px;
   border-radius: 50px;
+}
+.name_item{
+  min-width: 250px !important;
 }

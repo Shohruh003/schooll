@@ -286,7 +286,7 @@ const piHappy = Math.round(pia?.happy)
                     type: "doughnut",
                     yValueFormatString: "#,###'%'",
                     dataPoints: [
-                        { y: piAngry , color: "#FC6C85", name: "Злость" },
+                        { y: piAngry ? piAngry : 0 , color: "#FC6C85", name: "Злость" },
                         { y: piSad , color: "#ffffff", name: "Грусть" },
                         { y: piNeutral, color: "#FCEFED", name: "Нейтраль" },
                         { y: piHappy, color: "#F9A79D", name: "Веселье"}
@@ -531,11 +531,11 @@ const piHappy = Math.round(pia?.happy)
                             </p>
 
                             <p className='avatar_name'>Пришел:
-                                <span className='avatar_time'>{wentClock}</span>
+                                <span className='avatar_time'>{formattedTime7week}</span>
                             </p>
 
                             <p className='avatar_name'>Ушел:
-                                <span className='avatar_time'>{comeClock}</span>
+                                <span className='avatar_time'>{formattedTime7}</span>
                             </p>
                         </div>
 
@@ -603,19 +603,19 @@ const piHappy = Math.round(pia?.happy)
                         <div className='avatar_chartInner'>
                             <div className='chart_about'>
                                 <p className='charts_text'>
-                                    <span className='chart_percentage chart_percentage1'>{piHappy}%</span>
+                                    <span className='chart_percentage chart_percentage1'>{piHappy ? piHappy : 0}%</span>
                                     <span className='chart_name'>Веселье</span>
                                 </p>
                                 <p className='charts_text'>
-                                    <span className='chart_percentage chart_percentage2'>{piNeutral}%</span>
+                                    <span className='chart_percentage chart_percentage2'>{piNeutral ? piNeutral : 0}%</span>
                                     <span className='chart_name'>Нейтраль</span>
                                 </p>
                                 <p className='charts_text'>
-                                    <span className='chart_percentage chart_percentage3'>{piSad}%</span>
+                                    <span className='chart_percentage chart_percentage3'>{piSad ? piSad : 0}%</span>
                                     <span className='chart_name'>Грусть</span>
                                 </p>
                                 <p className='charts_text'>
-                                    <span className='chart_percentage chart_percentage4'>{piAngry}%</span>
+                                    <span className='chart_percentage chart_percentage4'>{piAngry ? piAngry : 0 }%</span>
                                     <span className='chart_name'>Злость</span>
                                 </p>
                             </div>

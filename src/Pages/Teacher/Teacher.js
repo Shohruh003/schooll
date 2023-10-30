@@ -16,7 +16,7 @@ function Teacher(props) {
         useEffect(() => {
           const fetchParents = async () => {
               try {
-                  const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/classes/`);
+                  const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/classes/`);
                   setClasses(response.data)
               } catch (error) {
                   console.error(error);
@@ -29,8 +29,8 @@ function Teacher(props) {
           const fetchData = async () => {
             try {
               const presentPupilIds = classes?.classes?.absent_pupils?.id;
-              const promises = presentPupilIds.map(async (id) => {
-                const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id?.id}`);
+              const promises = presentPupilIds?.map(async (id) => {
+                const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id?.id}`);
                 return response.data;
               });
         
@@ -46,7 +46,7 @@ function Teacher(props) {
         useEffect(() => {
             const fetchParents = async () => {
                 try {
-                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
+                    const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
                     setTeach(response.data)
                 } catch (error) {
                     console.error(error);
@@ -60,7 +60,7 @@ function Teacher(props) {
             useEffect(() => {
       const fetchNotification = async () => {
         try {
-            const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+            const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
             setNotification(response.data.messages)
             setNotificationCount(response.data.messages.length)
         } catch (error) {
@@ -199,7 +199,7 @@ function Teacher(props) {
           try {
             setModal(true)
 
-              const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+              const response = axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
               setNotification(response.data.messages)
           } catch (error) {
               console.error(error);
@@ -207,7 +207,7 @@ function Teacher(props) {
       };
 
       useEffect(() => {
-        axios.get(`https://www.api.yomon-emas.uz/api/users/users/${teach?.id}/teacher_pupils`)
+        axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/users/${decode}/teacher_pupils`)
         .then((response) => {
           setTeachClass(response?.data)
         })
@@ -215,16 +215,19 @@ function Teacher(props) {
           console.log(error);
         });
       }, []);
-      
+
 
       const onPupilClass = (evt) => {
-        setPupilsClass(evt?.target?.value)
+        const pupilClassValue = evt?.target?.value
+        setPupilsClass(pupilClassValue)
         fetchData()
       }
-      const pupilClas = pupilsClass ? pupilsClass : teach?.pupil_class[0]
-      const teachPupilsCount = teach?.pupils[pupilsClass]?.length
-      console.log(pupilClas);
+console.log(teach);
+      const pupilClas = (pupilsClass === 'undefined' ? teach?.pupil_class
+      [0] : pupilsClass)
       console.log(teach?.pupils[pupilClas]);
+      const teachPupilsCount = teach?.pupils[pupilClas]?.length
+
       const fetchData = async () => {
         try {
   
@@ -237,10 +240,10 @@ function Teacher(props) {
           if (pupilEmotion) {
             params.emotions = pupilEmotion
           }
-
-    const pupilIds = teach?.pupils[pupilClas]?.map((pupil) => pupil.id);
+          const pupilIds = teach?.pupils[pupilClas]?.map((pupil) => pupil.id);
           const promises = pupilIds?.map( (id) => {
-            const response = axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`, { params });
+            console.log(id);
+            const response = axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}`, { params });
             return response.data;
           });
           const absentPupilsData = await Promise.all(promises);
@@ -253,7 +256,7 @@ function Teacher(props) {
 
               useEffect(() => {
                 onPupilClass()
-        }, [pupilClas]);
+        }, []);
 
   return (
     <div className="admin_page">
@@ -315,7 +318,7 @@ function Teacher(props) {
                   </button>
 
 
-                  <select onChange={onPupilClass} className='select'>
+                  <select onChange={onPupilClass} id='classSelect' className='select'>
                             {teachClass?.pupils?.map((item) => (
                                 <option key={item?.pupil_class} value={item?.pupil_class}>
                                     <h4>{item?.pupil_class}</h4>

@@ -36,7 +36,6 @@ document.head.appendChild(style);
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher', { params });
       setTeacher(response.data.results);
       setOriginalUsers(response.data.results);
-
       } catch (error) {
         console.error(error);
       }
@@ -52,7 +51,7 @@ document.head.appendChild(style);
   return (
     <ul className="teacher_list">
                         {teacher?.map((item) => {
-  const emotions = item.emotions ? item.emotions : {
+  const emotions = item?.todays_emotions ? item?.todays_emotions : {
     emotions: [
       {
         "emotions": "happy",

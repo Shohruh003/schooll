@@ -5,18 +5,20 @@ import { Link } from "react-router-dom";
 import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
 import { AuthContext } from "../../context/PupilContext";
 import usersLogo from '../../Image/photo_people.jpg'
+import { useState } from "react";
 
 
 function Pupil() {
-const {user, setUsers,ageRange,genders, setOriginalUsers,pupilClass, setPupilCount,pupilEmotion,theme,editAdminModal, setEditAdminModal, setEditUser} = useContext(AuthContext)
-console.log(user);
+  const { user, setUsers, ageRange, genders, setOriginalUsers, pupilClass, setPupilCount, pupilEmotion, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
+
+  const [userEmotion, setUserEmotion] = useState([])
   const style = document.createElement('style');
-style.innerHTML = `
+  style.innerHTML = `
   .people_list::-webkit-scrollbar-thumb {
     background-color: ${theme};
   }
 `;
-document.head.appendChild(style);
+  document.head.appendChild(style);
 
   useEffect(() => {
 
@@ -38,15 +40,33 @@ document.head.appendChild(style);
         }
 
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/', { params });
-      setUsers(response.data);
-      setOriginalUsers(response.data);
+        setUsers(response.data.results);
+        setOriginalUsers(response.data.results);
       } catch (error) {
         console.error(error);
       }
     };
-
     fetchPupils();
   }, [ageRange, pupilClass, genders, pupilEmotion]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const promises = user?.map(async (id) => {
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${id.id}/for_week/`);
+          return response.data;
+        });
+
+        const presentPupilsData = await Promise.all(promises);
+        setUserEmotion(presentPupilsData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [user]);
+
   const clickItem = (evt) => {
     setEditAdminModal(true)
     setEditUser(evt)
@@ -54,92 +74,95 @@ document.head.appendChild(style);
 
 
   return (
-    <ul className="people_list" style={{'--scrollbar-thumb': theme}}>
-                        {user?.result?.map((item) => {
-                   const date = item.birth_date;
-                   const birthDate = new Date(date);
-                   const today = new Date();
-                   const age = today.getFullYear() - birthDate.getFullYear();
-  const pupils = item.thumbnail && item.thumbnail.length ? item.thumbnail[0] : {
-    "thumbnail": item.main_image,
-    "create_date": "2023-09-26T16:36:37.036650Z"
-}
-  const emotions = item.emotions ? item.emotions : {
-    emotions: [
-      {
-        "emotions": "happy",
-        "confidence": 54,
-        "create_date": "2023-09-26T20:12:16.675505Z"
-      }]
-  }
-  const emotionsCome = emotions && emotions[0] ? emotions[0] : {
-    "emotions": "happy",
-    "confidence": 54,
-    "create_date": "2023-09-26T20:12:16.675505Z"
-  }
-  const emotionsWent =emotions && emotions.length > 1 ? emotions[emotions.length -1] : {
-    "emotions": "happy",
-    "confidence": 54,
-    "create_date": "2023-09-26T20:12:16.675505Z"
-  };
-  const dateCome = emotionsCome.create_date;
-  
-const comeDateTime = new Date(dateCome);
-const comeHours = comeDateTime.getHours().toString().padStart(2, "0");
-const comeMinutes = comeDateTime.getMinutes().toString().padStart(2, "0");
-const comeClock = `${comeHours}:${comeMinutes}`;
+    <ul className="people_list" style={{ '--scrollbar-thumb': theme }}>
+      {user?.map((item, index) => {
+        const date = item.birth_date;
+        const birthDate = new Date(date);
+        const today = new Date();
+        const age = today.getFullYear() - birthDate.getFullYear();
 
-const dateWent = emotionsWent.create_date;
-const wentDateTime = new Date(dateWent);
-const wentHours = wentDateTime.getHours().toString().padStart(2, "0");
-const wentMinutes = wentDateTime.getMinutes().toString().padStart(2, "0");
-const wentClock = `${wentHours}:${wentMinutes}`;
+        const emotions = item.emotions ? item.emotions : {
+          emotions: [
+            {
+              "emotions": "happy",
+              "confidence": 54,
+              "create_date": "2023-09-26T20:12:16.675505Z"
+            }]
+        }
+        const emotionsCome = emotions && emotions[0] ? emotions[0] : {
+          "emotions": "happy",
+          "confidence": 54,
+          "create_date": "2023-09-26T20:12:16.675505Z"
+        }
+        const emotionsWent = emotions && emotions.length > 1 ? emotions[emotions.length - 1] : {
+          "emotions": "happy",
+          "confidence": 54,
+          "create_date": "2023-09-26T20:12:16.675505Z"
+        };
+        const dateCome = emotionsCome.create_date;
 
-let maxConfidence = -Infinity;
-let maxConfidenceIndex = -1;
+        const comeDateTime = new Date(dateCome);
+        const comeHours = comeDateTime.getHours().toString().padStart(2, "0");
+        const comeMinutes = comeDateTime.getMinutes().toString().padStart(2, "0");
+        const comeClock = `${comeHours}:${comeMinutes}`;
 
-for (let i = 0; i < emotions.length; i++) {
-  if (emotions[i].confidence > maxConfidence) {
-    maxConfidence = emotions[i].confidence;
-    maxConfidenceIndex = i;
-  }
-}
+        const dateWent = emotionsWent.create_date;
+        const wentDateTime = new Date(dateWent);
+        const wentHours = wentDateTime.getHours().toString().padStart(2, "0");
+        const wentMinutes = wentDateTime.getMinutes().toString().padStart(2, "0");
+        const wentClock = `${wentHours}:${wentMinutes}`;
 
-const firstMaxConfidenceIndex = emotions.findIndex(
-  (emotion) => emotion.confidence === maxConfidence
-);
+        let maxConfidence = -Infinity;
+        let maxConfidenceIndex = -1;
 
-const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
+        for (let i = 0; i < emotions.length; i++) {
+          if (emotions[i].confidence > maxConfidence) {
+            maxConfidence = emotions[i].confidence;
+            maxConfidenceIndex = i;
+          }
+        }
+          
+        return (
 
-    return (
-      <li key={item.id} style={{borderColor: theme}} onClick={() => clickItem(item)}>
-      <Link className='people_link'>
-        <img className='people_image' src={item?.main_image ? item?.main_image : usersLogo} alt="People of the img" width='100' height='100' />
-        <p style={{borderColor: theme}}>
-          <span className='people_heading'>Фамилия и имя</span>
-          <span className='people_name'>{item.full_name ? item.full_name : "Пустой"}</span>
-        </p>
-        <p style={{borderColor: theme}}>
-          <span className='people_heading'>Пришел: {comeClock ? comeClock : "0"}</span>
-          <span className='people_heading'>Ушел: {wentClock ? wentClock : "0"}</span>
-        </p>
-        <p style={{borderColor: theme}}>
-          <span className='people_heading'>Класс</span>
-          <span className='people_name'>{item.pupil_class ? item.pupil_class : "Пустой"}</span>
-        </p>
-        <p style={{borderColor: theme}}>
-          <span className='people_heading'>Возраст</span>
-          <span className='people_name'>{age ? age : "0"}</span>
-        </p>
-        <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"}`}> 
-        <span className='people_heading'> {firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"} </span>
-          <span className='people_name'>{firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.confidence : "0"} %</span>
-        </p>
-      </Link>
-    </li>
-    )
-})}
-        <EditAdminModal editAdminModal={editAdminModal} setEditAdminModal={setEditAdminModal}/>
+          <li key={item.id} style={{ borderColor: theme }} onClick={() => clickItem(item)}>
+            <Link className='people_link'>
+              <img className='people_image' src={userEmotion[index]?.["2023-10-30"]?.first.thumbnail || usersLogo} alt="People-img" width='100' height='100' />
+              <p className="name_item" style={{ borderColor: theme }}>
+                <span className='people_heading'>Фамилия и имя</span>
+                <span className='people_name'>{item.full_name ? item.full_name : "Пустой"}</span>
+              </p>
+              <p style={{ borderColor: theme }}>
+                <span className='people_heading'>Пришел: {comeClock ? comeClock : "0"}</span>
+                <span className='people_heading'>Ушел: {wentClock ? wentClock : "0"}</span>
+              </p>
+              <p style={{ borderColor: theme }}>
+                <span className='people_heading'>Класс</span>
+                <span className='people_name'>{item.pupil_class ? item.pupil_class : "Пустой"}</span>
+              </p>
+              <p style={{ borderColor: theme }}>
+                <span className='people_heading'>Возраст</span>
+                <span className='people_name'>{age ? age : "0"}</span>
+              </p>
+              <p style={{ borderColor: theme }}
+                className={`emotions ${userEmotion[index]?.["2023-10-30"]?.last && userEmotion [index]?.["2023-10-30"]?.last?.emotion ? userEmotion[index]?.["2023-10-30"]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.["2023-10-30"]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.["2023-10-30"]?.last?.emotion === "angry" ? "Грусть" : userEmotion[index]?.["2023-10-30"]?.last?.emotion === "sad" ? "Злость" : "Пустой" : "Пустой"}`}
+              >
+                <span className='people_heading'> {
+                userEmotion[index]?.["2023-10-30"]?.last && 
+                userEmotion[index]?.["2023-10-30"]?.last?.emotion ? 
+                userEmotion[index]?.["2023-10-30"]?.last?.emotion == "neutral" ? "Нейтраль" : userEmotion[index]?.["2023-10-30"]?.last?.emotion == "happy" ? "Веселье" : userEmotion[index]?.["2023-10-30"]?.last?.emotion == "angry" ? "Грусть" : userEmotion[index]?.["2023-10-30"]?.last?.emotion == "sad" ? "Злость" : "Пустой" : 
+                userEmotion[index]?.["2023-10-30"]?.last?.emotion ? 
+                userEmotion[index]?.["2023-10-30"]?.last?.emotion 
+                : 'Пустой'} </span>
+
+
+                <span className='people_name'>{userEmotion[index]?.["2023-10-30"]?.last && userEmotion[index]?.["2023-10-30"]?.last.confidence ? userEmotion[index]?.["2023-10-30"]?.last.confidence : "0"} %</span>
+              </p>
+            </Link>
+          </li>
+        )
+        // })
+      })}
+      <EditAdminModal editAdminModal={editAdminModal} setEditAdminModal={setEditAdminModal} />
     </ul>
   )
 }

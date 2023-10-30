@@ -13,6 +13,7 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
       try {
         const promises = Object.values(classes?.classes).flatMap((classData) => classData.present_pupils.id).map(async (id) => {
           const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`);
+          console.log(classes);
           return response.data;
         });
   

@@ -55,7 +55,7 @@ function LateComersTeacher ({lateComersTeacher, setLateComersTeacher}) {
   <tbody>
   {lateComersTeachers?.results?.map((item, index) => (
               <tr key={index}>
-                <td><img src={item?.main_image ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
+                <td><img className='lateComersImg' src={item?.main_image ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
                 <td>{item?.full_name}</td>
                 <td>{item?.pupil_class}</td>
                 <td>09:34</td>

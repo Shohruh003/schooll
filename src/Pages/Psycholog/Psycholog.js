@@ -15,7 +15,7 @@ import Notification from '../../Modal/Notification/Notification';
 function Psycholog(props) {
   const { isActive } = props;
   const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilEmotion,classes,teacherCount, theme, setTheme, setAgeRange, setTeacher,setClasses,setPupilCount, setTeacherCount,modal, setModal,setNotification,notificationCount, setNotificationCount} = useContext(AuthContext)
-
+console.log(classes);
   const [agressiyaModal, setAgressiyaModal] = useState()
   const [depressiyaModal, setDepressiyaModal] = useState()
   const {decode} = DecodeHooks()
