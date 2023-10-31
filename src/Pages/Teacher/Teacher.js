@@ -9,7 +9,7 @@ import TeacherPupils from '../../components/TeacherPupils/TeacherPupils';
 
 function Teacher(props) {
   const { isActive } = props;
-  const { setTeacherPupils, originalUsers, genders, setGenders,setPupilEmotion,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
+  const { setTeacherPupils, originalUsers, genders, setGenders,setPupilEmotion,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach,depres, setDepres, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
         const {decode} = DecodeHooks()
         const [pupilMissing, setPupilMissing] = useState()
         const [teachClass, setTeachClass] = useState()
@@ -19,12 +19,13 @@ function Teacher(props) {
               try {
                   const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/classes/`);
                   setClasses(response.data)
+                  setDepres(Math.round(response.data.classes[teach?.pupil_class[0]]?.sad_avg))
               } catch (error) {
                   console.error(error);
               }
           };
           fetchParents();
-      }, [decode]);
+      }, [decode,teach?.pupil_class[0]]);
 
         useEffect(() => {
           const fetchData = async () => {
@@ -171,12 +172,12 @@ function Teacher(props) {
     const femaleCheckboxChecked = event.target.id === 'femaleCheckbox' && event.target.checked;
   
     if (maleCheckboxChecked && !femaleCheckboxChecked) {
-      if (!genders.includes('true')) {
-        setGenders([...genders, 'true']);
+      if (!genders.includes('True')) {
+        setGenders([...genders, 'True']);
       }
     } else if (femaleCheckboxChecked && !maleCheckboxChecked) {
-      if (!genders.includes('false')) {
-        setGenders([...genders, 'false']);
+      if (!genders.includes('False')) {
+        setGenders([...genders, 'False']);
       }
     } else {
       const updatedGender = genders.filter((g) => g !== event.target.value);
@@ -218,7 +219,7 @@ function Teacher(props) {
         });
       }, []);
 
-      const fetchData = async () => {
+      const fetchData1 = async () => {
         try {
           const params = {};
       
@@ -227,13 +228,48 @@ function Teacher(props) {
           }
       
           if (pupilEmotion) {
-            params.emotions = pupilEmotion;
+            params.filter_by_emotion = pupilEmotion;
+          }
+          const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
+          const promises = pupilIds?.map(async (id) => {
+            const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, { params });
+            return response.data;
+          });
+      
+          const absentPupilsData = await Promise.all(promises);
+          setTeacherPupils(absentPupilsData);
+          setOriginalUsers(absentPupilsData);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      
+      useEffect(() => {
+        fetchData1();
+      }, [teach?.pupil_class[0]]);
+
+      const fetchData = async () => {
+
+        try {
+          const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/classes/`);
+          setDepres(Math.round(response.data.classes[pupilsClass ? pupilsClass : test]?.sad_avg))
+      } catch (error) {
+          console.error(error);
+      }
+
+        try {
+          const params = {};
+      
+          if (genders.length > 0) {
+            params.gender = genders.join(',');
           }
       
+          if (pupilEmotion) {
+            params.filter_by_emotion = pupilEmotion;
+          }
           const pupilIds = teach?.pupils[pupilsClass ? pupilsClass : test]?.map((pupil) => pupil.id);
           const promises = pupilIds?.map(async (id) => {
             const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, { params });
-            console.log(response?.data);
             return response.data;
           });
       
@@ -302,7 +338,7 @@ function Teacher(props) {
 </svg>
                   </button>
 
-                  <button className='header_icon' onClick={changeTheme}>
+                  <button className='header_icon themeIcon' onClick={changeTheme}>
                     <svg className='fon_icon header_icon' width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
   <circle cx="27.5" cy="27.5" r="27.5" fill="#FA8072"/>
   <g clip-path="url(#clip0_147_1139)">
@@ -317,7 +353,7 @@ function Teacher(props) {
                   </button>
 
 
-                  <select onChange={onPupilClass} id='classSelect' value={pupilsClass} className='select'>
+                  <select onChange={onPupilClass} id='classSelect' value={pupilsClass} className='select_teachPupil'>
                             {teachClass?.pupils?.map((item) => (
                                 <option key={item?.pupil_class} value={item?.pupil_class}>
                                     <h4>{item?.pupil_class}</h4>
@@ -386,7 +422,7 @@ function Teacher(props) {
 
 
                       <h4 className='navLinkName navLinkName1'>Уровень депрессии класса</h4>
-                      <span className='quantity'>76%</span>
+                      <span className='quantity'>{depres}%</span>
                     </NavLink>
                   </li>
 

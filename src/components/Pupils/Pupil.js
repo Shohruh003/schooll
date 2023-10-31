@@ -9,7 +9,7 @@ import { useState } from "react";
 
 
 function Pupil() {
-  const { user, setUsers, ageRange, genders, setOriginalUsers, pupilClass, setPupilCount, pupilEmotion, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
+  const { user, setUsers, ageRange, genders, setOriginalUsers, pupilClass, pupilEmotion, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
 
   const [userEmotion, setUserEmotion] = useState([])
   const style = document.createElement('style');
@@ -29,14 +29,14 @@ function Pupil() {
           params.age_range = ageRange;
         }
         if (pupilClass) {
-          params.pupil_class = pupilClass;
+          params.search = pupilClass;
         }
         if (genders.length > 0) {
           params.gender = genders.join(',');
         }
 
         if (pupilEmotion) {
-          params.emotions = pupilEmotion
+          params.filter_by_emotion = pupilEmotion
         }
 
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/', { params });
@@ -121,12 +121,13 @@ function Pupil() {
             maxConfidenceIndex = i;
           }
         }
-          
+        const newDate = new Date();
+        const formattedDate = newDate.toISOString().substring(0, 10);
         return (
 
           <li key={item.id} style={{ borderColor: theme }} onClick={() => clickItem(item)}>
             <Link className='people_link'>
-              <img className='people_image' src={userEmotion[index]?.["2023-10-30"]?.first.thumbnail || usersLogo} alt="People-img" width='100' height='100' />
+              <img className='people_image' src={userEmotion[index]?.[formattedDate]?.first.thumbnail || usersLogo} alt="People-img" width='100' height='100' />
               <p className="name_item" style={{ borderColor: theme }}>
                 <span className='people_heading'>Фамилия и имя</span>
                 <span className='people_name'>{item.full_name ? item.full_name : "Пустой"}</span>
@@ -144,18 +145,18 @@ function Pupil() {
                 <span className='people_name'>{age ? age : "0"}</span>
               </p>
               <p style={{ borderColor: theme }}
-                className={`emotions ${userEmotion[index]?.["2023-10-30"]?.last && userEmotion [index]?.["2023-10-30"]?.last?.emotion ? userEmotion[index]?.["2023-10-30"]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.["2023-10-30"]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.["2023-10-30"]?.last?.emotion === "angry" ? "Грусть" : userEmotion[index]?.["2023-10-30"]?.last?.emotion === "sad" ? "Злость" : "Пустой" : "Пустой"}`}
+                className={`emotions ${userEmotion[index]?.[formattedDate]?.last && userEmotion [index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Злость" : "Пустой" : "Пустой"}`}
               >
                 <span className='people_heading'> {
-                userEmotion[index]?.["2023-10-30"]?.last && 
-                userEmotion[index]?.["2023-10-30"]?.last?.emotion ? 
-                userEmotion[index]?.["2023-10-30"]?.last?.emotion == "neutral" ? "Нейтраль" : userEmotion[index]?.["2023-10-30"]?.last?.emotion == "happy" ? "Веселье" : userEmotion[index]?.["2023-10-30"]?.last?.emotion == "angry" ? "Грусть" : userEmotion[index]?.["2023-10-30"]?.last?.emotion == "sad" ? "Злость" : "Пустой" : 
-                userEmotion[index]?.["2023-10-30"]?.last?.emotion ? 
-                userEmotion[index]?.["2023-10-30"]?.last?.emotion 
+                userEmotion[index]?.[formattedDate]?.last && 
+                userEmotion[index]?.[formattedDate]?.last?.emotion ? 
+                userEmotion[index]?.[formattedDate]?.last?.emotion == "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion == "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion == "angry" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion == "sad" ? "Злость" : "Пустой" : 
+                userEmotion[index]?.[formattedDate]?.last?.emotion ? 
+                userEmotion[index]?.[formattedDate]?.last?.emotion 
                 : 'Пустой'} </span>
 
 
-                <span className='people_name'>{userEmotion[index]?.["2023-10-30"]?.last && userEmotion[index]?.["2023-10-30"]?.last.confidence ? userEmotion[index]?.["2023-10-30"]?.last.confidence : "0"} %</span>
+                <span className='people_name'>{userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last.confidence ? userEmotion[index]?.[formattedDate]?.last.confidence : "0"} %</span>
               </p>
             </Link>
           </li>

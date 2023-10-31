@@ -30,7 +30,7 @@ document.head.appendChild(style);
         }
 
         if (pupilEmotion) {
-          params.emotions = pupilEmotion
+          params.filter_by_emotion = pupilEmotion
         }
 
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher', { params });

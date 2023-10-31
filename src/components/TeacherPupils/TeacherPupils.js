@@ -30,28 +30,27 @@ document.head.appendChild(style);
                    const age = today.getFullYear() - birthDate.getFullYear();
   const pupils = item?.thumbnail && item?.thumbnail.length ? item?.thumbnail[0] : {
     "thumbnail": item?.main_image,
-    "create_date": "2023-09-26T16:36:37.036650Z"
+    "create_date": "0 "
 }
   const emotions = item?.emotions ? item?.emotions : {
     emotions: [
       {
         "emotions": "happy",
-        "confidence": 54,
-        "create_date": "2023-09-26T20:12:16.675505Z"
+        "confidence": 0,
+        "create_date": "0"
       }]
   }
-  const emotionsCome = emotions && emotions[0] ? emotions[0] : {
-    "emotions": "happy",
-    "confidence": 54,
-    "create_date": "2023-09-26T20:12:16.675505Z"
+  const emotionsWent = emotions && emotions[0] ? emotions[0] : {
+    "emotions": "",
+    "confidence": 0,
+    "create_date": "0"
   }
-  const emotionsWent =emotions && emotions.length > 1 ? emotions[emotions.length -1] : {
+  const emotionsCome =emotions && emotions.length > 1 ? emotions[emotions.length -1] : {
     "emotions": "happy",
-    "confidence": 54,
-    "create_date": "2023-09-26T20:12:16.675505Z"
+    "confidence": 0,
+    "create_date": "0"
   };
   const dateCome = emotionsCome.create_date;
-  
 const comeDateTime = new Date(dateCome);
 const comeHours = comeDateTime.getHours().toString().padStart(2, "0");
 const comeMinutes = comeDateTime.getMinutes().toString().padStart(2, "0");
@@ -77,14 +76,14 @@ const firstMaxConfidenceIndex = emotions?.emotions?.findIndex(
 );
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
     return (
-      <li style={{borderColor: theme}} onClick={clickItem}>
+      <li key={item?.id} style={{borderColor: theme}} onClick={clickItem}>
       <Link className='teacher_link'>
         <img className='teacher_image' src={item?.main_image ? item?.main_image : usersLogo} alt="teacher of the img" width='100' height='100' />
-        <p style={{borderColor: theme}}>
+        <p className="full_nameTeach" style={{borderColor: theme}}>
           <span className='teacher_heading'>Фамилия и имя</span>
           <span className='teacher_name'>{item?.full_name ? item?.full_name : "Пустой"}</span>
         </p>
-        <p style={{borderColor: theme}}>
+        <p className="teachPupil_time" style={{borderColor: theme}}>
           <span className='teacher_heading'>Пришел: {comeClock ? comeClock : "0"}</span>
           <span className='teacher_heading'>Ушел: {wentClock ? wentClock : "0"}</span>
         </p>

@@ -41,7 +41,7 @@
   
   .teacher_link p {
     margin: 0;
-    padding: 8px 30px 8px 30px;
+    padding: 8px 15px;
     border-left: 2px solid #FC6C85;
     text-align: start;
     color: #161B23;
@@ -58,4 +58,20 @@
     height: 70px;
     margin-left: 10px;
     border-radius: 50px;
+  }
+
+  .teacher_name{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .full_nameTeach {
+    display: block;
+    width:300px;
+  }
+
+  .teachPupil_time {
+    display: block;
+    width: 200px;
   }

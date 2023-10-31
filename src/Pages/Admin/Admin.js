@@ -13,17 +13,16 @@ import Notification from '../../Modal/Notification/Notification';
 
 function Admin(props) {
   const { isActive } = props;
-  const { setUsers,user, originalUsers, genders, setGenders,pupilCount, setPupilEmotion,classes, setClasses, teacherCount, theme, setTheme, setAgeRange, setTeacher, setPupilCount, setTeacherCount,setNotification,notificationCount, setNotificationCount, modal, setModal} = useContext(AuthContext)
+  const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilEmotion,classes, setClasses, teacherCount, theme, setTheme, setAgeRange, setTeacher, setPupilCount, setTeacherCount,setNotification,notificationCount,setPupilClass, setNotificationCount, modal, setModal} = useContext(AuthContext)
   const [adminModal, setAdminModal] = useState()
   const {decode} = DecodeHooks()
-  const [teach,setTeach] = useState()
+  const [teach, setTeach] = useState()
   useEffect(() => {
       const fetchParents = async () => {
           try {
 
               const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
               setTeach(response?.data)
-              console.log(response?.data);
           } catch (error) {
               console.error(error);
           }
@@ -211,12 +210,12 @@ fetchNotification();
     const femaleCheckboxChecked = event.target.id === 'femaleCheckbox' && event.target.checked;
   
     if (maleCheckboxChecked && !femaleCheckboxChecked) {
-      if (!genders.includes('true')) {
-        setGenders([...genders, 'true']);
+      if (!genders.includes('True')) {
+        setGenders([...genders, 'True']);
       }
     } else if (femaleCheckboxChecked && !maleCheckboxChecked) {
-      if (!genders.includes('false')) {
-        setGenders([...genders, 'false']);
+      if (!genders.includes('False')) {
+        setGenders([...genders, 'False']);
       }
     } else {
       const updatedGender = genders.filter((g) => g !== event.target.value);
@@ -240,10 +239,10 @@ fetchNotification();
 
   const handleClasChange = (event) => {
     const searchTerm = event.target.value;
-    const filteredClass = originalUsers.filter((item) =>
-      item.pupil_class.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setUsers(searchTerm === '' ? originalUsers : filteredClass);
+    // const filteredClass = originalUsers.filter((item) =>
+    //   item.pupil_class.toLowerCase().includes(searchTerm?.toLowerCase())
+    // );
+    setPupilClass(searchTerm);
   };
 
   const search_pupil = document?.querySelector('.search_pupil')
@@ -442,11 +441,11 @@ fetchNotification();
                 <div className='item_button search_danger'>
                   <span>По полу</span>
                 <div onChange={handleGenderChange}>
-                  <input className='radio_button' id="maleCheckbox" type="checkbox" value='true'/>
+                  <input className='radio_button' id="maleCheckbox" type="checkbox" value='True'/>
                 <label htmlFor="maleCheckbox" className='radio_label'>
                   Мальчик
                 </label>
-                  <input className='radio_button' id="femaleCheckbox" type="checkbox" value='false' />
+                  <input className='radio_button' id="femaleCheckbox" type="checkbox" value='False' />
                 <label htmlFor="femaleCheckbox" className='radio_label'>
                   Девочка
                 </label>

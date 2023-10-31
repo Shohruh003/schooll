@@ -14,6 +14,7 @@ function Parents () {
 	    const {theme, setTheme, modal, setModal,setNotification,notificationCount, setNotificationCount} = useContext(AuthContext)
         const {decode} = DecodeHooks()
         const [parent, setParent] = useState()
+        const [parentId, setParentId] = useState()
         useEffect(() => {
             const fetchNotification = async () => {
               try {
@@ -34,6 +35,7 @@ function Parents () {
                 try {
     
                     const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/sons/`);
+                    setParentId(response?.data[0]?.id)
                     setParent(response.data)
                 } catch (error) {
                     console.error(error);
@@ -142,7 +144,7 @@ function Parents () {
 			const fetchWeather = async () => {
 				try {
 					const response = await axios.get('https://api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=50e314a5fea145f564977fe2a4844e46');
-					setWeather(response.data.main.feels_like)
+					setWeather(response?.data?.main?.feels_like)
 				} catch (error) {
 					console.error(error);
 				}
@@ -208,6 +210,70 @@ function Parents () {
               const [week5, setWeek5] = useState()
               const [week6, setWeek6] = useState()
               const [week7, setWeek7] = useState()
+
+          useEffect(() => { 
+                const fetchPrentPupils = async () => {
+                  try {
+                      const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${parentId}/`);
+                      setProfil(response.data)
+                  } catch (error) {
+                      console.error(error);
+                  }
+
+                  try {
+                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${parentId}/weekly_diagram/`);
+                    const filteredData2 = response.data.filter(item => item.create_date === date2);
+                    const filteredData3 = response.data.filter(item => item.create_date === date3);
+                    const filteredData4 = response.data.filter(item => item.create_date === date4);
+                    const filteredData5 = response.data.filter(item => item.create_date === date5);
+                    const filteredData6 = response.data.filter(item => item.create_date === date6);
+                    const filteredData7 = response.data.filter(item => item.create_date === date7);
+
+                    setDiagram2(filteredData2[0])
+                    setDiagram3(filteredData3[0])
+                    setDiagram4(filteredData4[0])
+                    setDiagram5(filteredData5[0])
+                    setDiagram6(filteredData6[0])
+                    setDiagram7(filteredData7[0])
+
+                } catch (error) {
+                    console.error(error);
+                }
+
+
+                try {
+                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${parentId}/pie_chart_id/`);
+                    setPia(response.data)
+                } catch (error) {
+                    console.error(error);
+                }
+
+                try {
+                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${parentId}/for_week/
+                    `);
+                    setWeek(response.data)
+                    const data2 = response.data[date2]
+                    const data3 = response.data[date3]
+                    const data4 = response.data[date4]
+                    const data5 = response.data[date5]
+                    const data6 = response.data[date6]
+                    const data7 = response.data[date7]
+
+                    setWeek2(data2)
+                    setWeek3(data3)
+                    setWeek4(data4)
+                    setWeek5(data5)
+                    setWeek6(data6)
+                    setWeek7(data7)
+
+                } catch (error) {
+                    console.error(error);
+                }
+              };
+           
+              fetchPrentPupils();
+          }, [parentId]);
+
 
                       const OnParentChange = async (evt) => {
                           try {
@@ -287,9 +353,9 @@ const piHappy = Math.round(pia?.happy)
                     yValueFormatString: "#,###'%'",
                     dataPoints: [
                         { y: piAngry ? piAngry : 0 , color: "#FC6C85", name: "Злость" },
-                        { y: piSad , color: "#ffffff", name: "Грусть" },
-                        { y: piNeutral, color: "#FCEFED", name: "Нейтраль" },
-                        { y: piHappy, color: "#F9A79D", name: "Веселье"}
+                        { y: piSad ? piSad : 0 , color: "#ffffff", name: "Грусть" },
+                        { y: piNeutral ? piNeutral : 0, color: "#FCEFED", name: "Нейтраль" },
+                        { y: piHappy ? piHappy : 0, color: "#F9A79D", name: "Веселье"}
                     ]
                 }],
                 backgroundColor: "transparent",
