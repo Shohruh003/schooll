@@ -21,7 +21,7 @@ export const Private = () => {
 		const fetchClasses = async () => {
 			try {
 
-				const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
+				const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
 				setPosition(response.data.status)
 			} catch (error) {
 				console.error(error);

@@ -55,19 +55,19 @@ document.head.appendChild(style);
     emotions: [
       {
         "emotions": "happy",
-        "confidence": 54,
-        "create_date": "2023-09-26T20:12:16.675505Z"
+        "confidence": 0,
+        "create_date": "0"
       }]
   }
   const emotionsCome = emotions && emotions[0] ? emotions[0] : {
     "emotions": "happy",
-    "confidence": 54,
-    "create_date": "2023-09-26T20:12:16.675505Z"
+    "confidence": 0,
+    "create_date": "0"
   }
   const emotionsWent =emotions && emotions.length > 1 ? emotions[emotions.length -1] : {
     "emotions": "happy",
-    "confidence": 54,
-    "create_date": "2023-09-26T20:12:16.675505Z"
+    "confidence": 0,
+    "create_date": "0"
   };
   const dateCome = emotionsCome.create_date;
   
@@ -107,8 +107,8 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
           <span className='teacher_name'>{item.full_name ? item.full_name : "Пустой"}</span>
         </p>
         <p style={{borderColor: theme}}>
-          <span className='teacher_heading'>Пришел: {comeClock ? comeClock : "0"}</span>
-          <span className='teacher_heading'>Ушел: {wentClock ? wentClock : "0"}</span>
+          <span className='teacher_heading'>Пришел: {wentClock ? wentClock : "0"}</span>
+          <span className='teacher_heading'>Ушел: {comeClock ? comeClock : "0"}</span>
         </p>
         <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"}`}>
         <span className='people_heading'> {firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Злость" : "Пустой" : "Пустой"} </span>

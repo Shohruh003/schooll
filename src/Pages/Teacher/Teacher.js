@@ -35,8 +35,8 @@ function Teacher(props) {
                 const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id?.id}`);
                 return response.data;
               });
-        
               const presentPupilsData = await Promise.all(promises);
+              console.log(presentPupilsData);
               setPupilMissing(presentPupilsData);
             } catch (error) {
               console.log(error);
@@ -352,7 +352,7 @@ function Teacher(props) {
                   <select onChange={onPupilClass} id='classSelect' value={pupilsClass} className='select_teachPupil'>
                             {teachClass?.pupils?.map((item) => (
                                 <option key={item?.pupil_class} value={item?.pupil_class}>
-                                    <h4>{item?.pupil_class}</h4>
+                                    {item?.pupil_class}
                                 </option>
                             ))}
                         </select>

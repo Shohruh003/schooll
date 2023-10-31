@@ -124,7 +124,14 @@ function Pupil() {
         const newDate = new Date();
         const formattedDate = newDate.toISOString().substring(0, 10);
 
-        console.log(userEmotion[index]?.[formattedDate]);
+        const firstTime = userEmotion[index]?.[formattedDate]?.first?.time
+        const lastTime = userEmotion[index]?.[formattedDate]?.last?.time
+
+const dateTime1 = new Date(firstTime ? firstTime : '0');
+const dateTime2 = new Date(lastTime ? lastTime : '0');
+
+const newFirstTime = dateTime1.toLocaleTimeString('uz-UZ', { hour: 'numeric', minute: 'numeric' });
+const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', minute: 'numeric' });
         return (
 
           <li key={item.id} style={{ borderColor: theme }} onClick={() => clickItem(item)}>
@@ -135,8 +142,8 @@ function Pupil() {
                 <span className='people_name'>{item.full_name ? item.full_name : "Пустой"}</span>
               </p>
               <p style={{ borderColor: theme }}>
-                <span className='people_heading'>Пришел: {userEmotion[index]?.[formattedDate]?.first.time}</span>
-                <span className='people_heading'>Ушел: {userEmotion[index]?.[formattedDate]?.last.time}</span>
+                <span className='people_heading'>Пришел: {newLastTime}</span>
+                <span className='people_heading'>Ушел: {newFirstTime}</span>
               </p>
               <p style={{ borderColor: theme }}>
                 <span className='people_heading'>Класс</span>

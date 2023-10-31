@@ -14,7 +14,7 @@ import Notification from '../../Modal/Notification/Notification';
 
 function Psycholog(props) {
   const { isActive } = props;
-  const { setUsers, originalUsers, genders, setGenders,pupilCount, setPupilEmotion,classes,teacherCount, theme, setTheme, setAgeRange, setTeacher,setClasses,setPupilCount, setTeacherCount,modal, setModal,setNotification,notificationCount, setNotificationCount} = useContext(AuthContext)
+  const { setUsers, originalUsers,setPupilClass, genders, setGenders,pupilCount, setPupilEmotion,classes,teacherCount, theme, setTheme, setAgeRange, setTeacher,setClasses,setPupilCount, setTeacherCount,modal, setModal,setNotification,notificationCount, setNotificationCount} = useContext(AuthContext)
   const [agressiyaModal, setAgressiyaModal] = useState()
   const [depressiyaModal, setDepressiyaModal] = useState()
   const {decode} = DecodeHooks()
@@ -169,12 +169,12 @@ function Psycholog(props) {
     const femaleCheckboxChecked = event.target.id === 'femaleCheckbox' && event.target.checked;
   
     if (maleCheckboxChecked && !femaleCheckboxChecked) {
-      if (!genders.includes('true')) {
-        setGenders([...genders, 'true']);
+      if (!genders.includes('True')) {
+        setGenders([...genders, 'True']);
       }
     } else if (femaleCheckboxChecked && !maleCheckboxChecked) {
-      if (!genders.includes('false')) {
-        setGenders([...genders, 'false']);
+      if (!genders.includes('False')) {
+        setGenders([...genders, 'False']);
       }
     } else {
       const updatedGender = genders.filter((g) => g !== event.target.value);
@@ -199,10 +199,7 @@ function Psycholog(props) {
 
   const handleClasChange = (event) => {
     const searchTerm = event.target.value;
-    const filteredClass = originalUsers.filter((item) =>
-      item.pupil_class.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setUsers(searchTerm === '' ? originalUsers : filteredClass);
+    setPupilClass(searchTerm);
   };
 
   useEffect(() => {
@@ -437,11 +434,11 @@ const hendlStatus = (x) => {
                 <div className='item_button search_danger'>
                   <span>По полу</span>
                 <div onChange={handleGenderChange}>
-                  <input className='radio_button' id="maleCheckbox" type="checkbox" value='true'/>
+                  <input className='radio_button' id="maleCheckbox" type="checkbox" value='True'/>
                 <label htmlFor="maleCheckbox" className='radio_label'>
                   Мальчик
                 </label>
-                  <input className='radio_button' id="femaleCheckbox" type="checkbox" value='false' />
+                  <input className='radio_button' id="femaleCheckbox" type="checkbox" value='False' />
                 <label htmlFor="femaleCheckbox" className='radio_label'>
                   Девочка
                 </label>
