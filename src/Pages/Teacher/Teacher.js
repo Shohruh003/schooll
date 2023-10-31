@@ -166,7 +166,13 @@ function Teacher(props) {
     localStorage.setItem('theme', newTheme);
   };
 
-
+  const handleSearch = (event) => {
+    const searchTerm = event.target.value;
+    const filteredUsers = originalUsers.filter((item) =>
+      item.full_name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setTeacherPupils(searchTerm === '' ? originalUsers : filteredUsers);
+  };
   const handleGenderChange = (event) => {
     const maleCheckboxChecked = event.target.id === 'maleCheckbox' && event.target.checked;
     const femaleCheckboxChecked = event.target.id === 'femaleCheckbox' && event.target.checked;
@@ -187,17 +193,8 @@ function Teacher(props) {
 
   const handleEmotionChange = (event) => {
     const selectedEmotion = event.target.value;
-    setPupilEmotion(selectedEmotion);
+      setPupilEmotion(selectedEmotion);
   };
-
-  const handleSearch = (event) => {
-    const searchTerm = event.target.value;
-    const filteredUsers = originalUsers.filter((item) =>
-      item.full_name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setTeacherPupils(searchTerm === '' ? originalUsers : filteredUsers);
-  };
-
       const handleModal = () => {
           try {
             setModal(true)
@@ -222,7 +219,6 @@ function Teacher(props) {
       const fetchData1 = async () => {
         try {
           const params = {};
-      
           if (genders.length > 0) {
             params.gender = genders.join(',');
           }

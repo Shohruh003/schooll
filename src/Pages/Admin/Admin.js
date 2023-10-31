@@ -239,9 +239,6 @@ fetchNotification();
 
   const handleClasChange = (event) => {
     const searchTerm = event.target.value;
-    // const filteredClass = originalUsers.filter((item) =>
-    //   item.pupil_class.toLowerCase().includes(searchTerm?.toLowerCase())
-    // );
     setPupilClass(searchTerm);
   };
 

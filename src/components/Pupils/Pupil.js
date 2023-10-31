@@ -80,24 +80,24 @@ function Pupil() {
         const birthDate = new Date(date);
         const today = new Date();
         const age = today.getFullYear() - birthDate.getFullYear();
-
         const emotions = item.emotions ? item.emotions : {
           emotions: [
             {
               "emotions": "happy",
-              "confidence": 54,
-              "create_date": "2023-09-26T20:12:16.675505Z"
+              "confidence": 0,
+              "create_date": "0"
             }]
         }
+
         const emotionsCome = emotions && emotions[0] ? emotions[0] : {
           "emotions": "happy",
-          "confidence": 54,
-          "create_date": "2023-09-26T20:12:16.675505Z"
+          "confidence": 0,
+          "create_date": "0"
         }
         const emotionsWent = emotions && emotions.length > 1 ? emotions[emotions.length - 1] : {
           "emotions": "happy",
-          "confidence": 54,
-          "create_date": "2023-09-26T20:12:16.675505Z"
+          "confidence": 0,
+          "create_date": "0"
         };
         const dateCome = emotionsCome.create_date;
 
@@ -123,6 +123,8 @@ function Pupil() {
         }
         const newDate = new Date();
         const formattedDate = newDate.toISOString().substring(0, 10);
+
+        console.log(userEmotion[index]?.[formattedDate]);
         return (
 
           <li key={item.id} style={{ borderColor: theme }} onClick={() => clickItem(item)}>
@@ -133,8 +135,8 @@ function Pupil() {
                 <span className='people_name'>{item.full_name ? item.full_name : "Пустой"}</span>
               </p>
               <p style={{ borderColor: theme }}>
-                <span className='people_heading'>Пришел: {comeClock ? comeClock : "0"}</span>
-                <span className='people_heading'>Ушел: {wentClock ? wentClock : "0"}</span>
+                <span className='people_heading'>Пришел: {userEmotion[index]?.[formattedDate]?.first.time}</span>
+                <span className='people_heading'>Ушел: {userEmotion[index]?.[formattedDate]?.last.time}</span>
               </p>
               <p style={{ borderColor: theme }}>
                 <span className='people_heading'>Класс</span>
