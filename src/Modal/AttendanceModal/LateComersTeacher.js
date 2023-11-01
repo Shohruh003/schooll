@@ -59,8 +59,8 @@ function LateComersTeacher ({lateComersTeacher, setLateComersTeacher}) {
                 <td>{item?.full_name}</td>
                 <td>{item?.pupil_class}</td>
                 <td>
-      {item?.emotions[0]?.create_date ? (
-        new Date(item?.emotions[0]?.create_date).toLocaleTimeString('uz-UZ', {
+      {item?.emotions[item?.emotions.length - 1]?.create_date ? (
+        new Date(item?.emotions[item?.emotions.length - 1]?.create_date).toLocaleTimeString('uz-UZ', {
           hour: 'numeric',
           minute: 'numeric'
         })

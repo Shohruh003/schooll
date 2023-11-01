@@ -6,45 +6,29 @@ import { AuthContext } from '../../context/PupilContext';
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import Notification from '../../Modal/Notification/Notification';
 import TeacherPupils from '../../components/TeacherPupils/TeacherPupils';
+import usersLogo from '../../Image/photo_people.jpg'
+
 
 function Teacher(props) {
   const { isActive } = props;
-  const { setTeacherPupils, originalUsers, genders, setGenders,setPupilEmotion,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach,depres, setDepres, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
+  const { setTeacherPupils, originalUsers, genders,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach,depres,teacherPupils, setDepres, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
         const {decode} = DecodeHooks()
         const [pupilMissing, setPupilMissing] = useState()
         const [teachClass, setTeachClass] = useState()
         const [test, setTest] = useState()
+
         useEffect(() => {
           const fetchParents = async () => {
               try {
                   const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/classes/`);
                   setClasses(response.data)
-                  setDepres(Math.round(response.data.classes[teach?.pupil_class[0]]?.sad_avg))
+                  setDepres(Math.round(response.data.classes[test]?.sad_avg))
               } catch (error) {
                   console.error(error);
               }
           };
           fetchParents();
-      }, [decode,teach?.pupil_class[0]]);
-
-        useEffect(() => {
-          const fetchData = async () => {
-            try {
-              const presentPupilIds = classes?.classes?.absent_pupils?.id;
-              const promises = presentPupilIds?.map(async (id) => {
-                const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id?.id}`);
-                return response.data;
-              });
-              const presentPupilsData = await Promise.all(promises);
-              console.log(presentPupilsData);
-              setPupilMissing(presentPupilsData);
-            } catch (error) {
-              console.log(error);
-            }
-          };
-        
-          fetchData();
-        }, [classes?.classes]);
+      }, [decode,test]);
         useEffect(() => {
             const fetchParents = async () => {
                 try {
@@ -57,6 +41,24 @@ function Teacher(props) {
             };
             fetchParents();
         }, [decode]);
+
+        useEffect(() => {
+          const fetchData2 = async () => {
+            try {
+              const presentPupilIds = classes?.classes[test]?.absent_pupils?.id;
+              const promises = presentPupilIds?.map(async (id) => {
+                const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}`);
+                return response.data;
+              });
+              const presentPupilsData = await Promise.all(promises);
+              setPupilMissing(presentPupilsData);
+            } catch (error) {
+              console.log(error);
+            }
+          };
+        
+          fetchData2();
+        }, [test]);
 
 
 
@@ -173,32 +175,89 @@ function Teacher(props) {
     );
     setTeacherPupils(searchTerm === '' ? originalUsers : filteredUsers);
   };
-  const handleGenderChange = (event) => {
-    const maleCheckboxChecked = event.target.id === 'maleCheckbox' && event.target.checked;
-    const femaleCheckboxChecked = event.target.id === 'femaleCheckbox' && event.target.checked;
-  
-    if (maleCheckboxChecked && !femaleCheckboxChecked) {
-      if (!genders.includes('True')) {
-        setGenders([...genders, 'True']);
-      }
-    } else if (femaleCheckboxChecked && !maleCheckboxChecked) {
-      if (!genders.includes('False')) {
-        setGenders([...genders, 'False']);
-      }
-    } else {
-      const updatedGender = genders.filter((g) => g !== event.target.value);
-      setGenders(updatedGender);
+  const handleGenderChange = async (event) => {
+
+    var MaleCheckboxChecked = document.getElementById('maleCheckbox')
+    var FemaleCheckboxChecked = document.getElementById('femaleCheckbox')
+    var maleCheckboxChecked = MaleCheckboxChecked.checked == true ? true : false;
+    var femaleCheckboxChecked = FemaleCheckboxChecked.checked == true ? true : false;
+
+    var x = teacherPupils;
+    if ((maleCheckboxChecked && femaleCheckboxChecked) || (!maleCheckboxChecked && !femaleCheckboxChecked)) {
+
+      const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
+      const promises = pupilIds?.map(async (id) => {
+        const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`);
+        return response.data;
+      });
+
+      const absentPupilsData = await Promise.all(promises);
+      x = absentPupilsData;
+
+    } else if (maleCheckboxChecked) {
+      x = teacherPupils.filter((pupil) => pupil.gender == true)
+
+    } else if (femaleCheckboxChecked) {
+      x = teacherPupils.filter((pupil) => pupil.gender == false)
+
     }
+    setTeacherPupils(x)
+
   };
 
-  const handleEmotionChange = (event) => {
+  const handleEmotionChange = async (event) => {
     const selectedEmotion = event.target.value;
-      setPupilEmotion(selectedEmotion);
+    console.log(selectedEmotion);
+    const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
+    const promises = pupilIds?.map(async (id) => {
+      const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`);
+      return response.data;
+    });
+    const absentPupilsData = await Promise.all(promises);
+    var x = absentPupilsData;
+    console.log(x, 'boshi');
+    switch (selectedEmotion) {
+      case 'happy':
+        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'happy')
+        console.log(x, 'happy')
+        setTeacherPupils(x)
+        console.log(teacherPupils, 'teacherPupil');
+        break;
+      case 'neutral':
+        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'neutral')
+        console.log(x, 'neutral')
+        setTeacherPupils(x)
+        console.log(teacherPupils, 'teacherPupil');
+        break;
+      case 'sad':
+        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'sad')
+        console.log(x, 'sad')
+        setTeacherPupils(x)
+        console.log(teacherPupils, 'teacherPupil');
+        break;
+      case 'angry':
+        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'angry')
+        console.log(x, 'angry')
+        setTeacherPupils(x)
+        console.log(teacherPupils, 'teacherPupil');
+        break;
+      case 'fear':
+        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'fear')
+        console.log(x, 'fear')
+        setTeacherPupils(x)
+        console.log(teacherPupils, 'teacherPupil');
+        break;
+      case 'surprise':
+        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'surprise')
+        console.log(x, 'surprise')
+        setTeacherPupils(x)
+        console.log(teacherPupils, 'teacherPupil');
+        break;
+    }
   };
       const handleModal = () => {
           try {
             setModal(true)
-
               const response = axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
               setNotification(response.data.messages)
           } catch (error) {
@@ -272,6 +331,18 @@ function Teacher(props) {
           const absentPupilsData = await Promise.all(promises);
           setTeacherPupils(absentPupilsData);
           setOriginalUsers(absentPupilsData);
+        } catch (error) {
+          console.log(error);
+        }
+
+        try {
+          const presentPupilIds = classes?.classes[pupilsClass ? pupilsClass : test]?.absent_pupils?.id;
+          const promises = presentPupilIds?.map(async (id) => {
+            const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}`);
+            return response.data;
+          });
+          const presentPupilsData = await Promise.all(promises);
+          setPupilMissing(presentPupilsData);
         } catch (error) {
           console.log(error);
         }
@@ -490,7 +561,7 @@ function Teacher(props) {
   <li key={index} className="attendance_item" style={{borderColor: theme}}>
   <Link className='attendance_link'>
     <p className='attendance_name'>{item?.full_name}</p>
-    <img className='attendance_avatar' src={item?.main_image} alt='Avatar' width='50' height='50'/>
+    <img className='attendance_avatar' src={item?.main_image ? item?.main_image : usersLogo} alt='Avatar' width='50' height='50'/>
   </Link>
 </li>
 ))}
