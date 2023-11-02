@@ -80,47 +80,47 @@ function Pupil() {
         const birthDate = new Date(date);
         const today = new Date();
         const age = today.getFullYear() - birthDate.getFullYear();
-        const emotions = item.emotions ? item.emotions : {
-          emotions: [
-            {
-              "emotions": "happy",
-              "confidence": 0,
-              "create_date": "0"
-            }]
-        }
+        // const emotions = item.emotions ? item.emotions : {
+        //   emotions: [
+        //     {
+        //       "emotions": "happy",
+        //       "confidence": 0,
+        //       "create_date": "0"
+        //     }]
+        // }
 
-        const emotionsCome = emotions && emotions[0] ? emotions[0] : {
-          "emotions": "happy",
-          "confidence": 0,
-          "create_date": "0"
-        }
-        const emotionsWent = emotions && emotions.length > 1 ? emotions[emotions.length - 1] : {
-          "emotions": "happy",
-          "confidence": 0,
-          "create_date": "0"
-        };
-        const dateCome = emotionsCome.create_date;
+        // const emotionsCome = emotions && emotions[0] ? emotions[0] : {
+        //   "emotions": "happy",
+        //   "confidence": 0,
+        //   "create_date": "0"
+        // }
+        // const emotionsWent = emotions && emotions.length > 1 ? emotions[emotions.length - 1] : {
+        //   "emotions": "happy",
+        //   "confidence": 0,
+        //   "create_date": "0"
+        // };
+        // const dateCome = emotionsCome.create_date;
 
-        const comeDateTime = new Date(dateCome);
-        const comeHours = comeDateTime.getHours().toString().padStart(2, "0");
-        const comeMinutes = comeDateTime.getMinutes().toString().padStart(2, "0");
-        const comeClock = `${comeHours}:${comeMinutes}`;
+        // const comeDateTime = new Date(dateCome);
+        // const comeHours = comeDateTime.getHours().toString().padStart(2, "0");
+        // const comeMinutes = comeDateTime.getMinutes().toString().padStart(2, "0");
+        // const comeClock = `${comeHours}:${comeMinutes}`;
 
-        const dateWent = emotionsWent.create_date;
-        const wentDateTime = new Date(dateWent);
-        const wentHours = wentDateTime.getHours().toString().padStart(2, "0");
-        const wentMinutes = wentDateTime.getMinutes().toString().padStart(2, "0");
-        const wentClock = `${wentHours}:${wentMinutes}`;
+        // const dateWent = emotionsWent.create_date;
+        // const wentDateTime = new Date(dateWent);
+        // const wentHours = wentDateTime.getHours().toString().padStart(2, "0");
+        // const wentMinutes = wentDateTime.getMinutes().toString().padStart(2, "0");
+        // const wentClock = `${wentHours}:${wentMinutes}`;
 
-        let maxConfidence = -Infinity;
-        let maxConfidenceIndex = -1;
+        // let maxConfidence = -Infinity;
+        // let maxConfidenceIndex = -1;
 
-        for (let i = 0; i < emotions.length; i++) {
-          if (emotions[i].confidence > maxConfidence) {
-            maxConfidence = emotions[i].confidence;
-            maxConfidenceIndex = i;
-          }
-        }
+        // for (let i = 0; i < emotions.length; i++) {
+        //   if (emotions[i].confidence > maxConfidence) {
+        //     maxConfidence = emotions[i].confidence;
+        //     maxConfidenceIndex = i;
+        //   }
+        // }
         const newDate = new Date();
         const formattedDate = newDate.toISOString().substring(0, 10);
 
@@ -136,7 +136,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
 
           <li key={item.id} style={{ borderColor: theme }} onClick={() => clickItem(item)}>
             <Link className='people_link'>
-              <img className='people_image' src={userEmotion[index]?.[formattedDate]?.first.thumbnail || usersLogo} alt="People-img" width='100' height='100' />
+              <img className='people_image' src={item?.main_image ?  item?.main_image : usersLogo} alt="People-img" width='100' height='100' />
               <p className="name_item" style={{ borderColor: theme }}>
                 <span className='people_heading'>Фамилия и имя</span>
                 <span className='people_name'>{item.full_name ? item.full_name : "Пустой"}</span>
