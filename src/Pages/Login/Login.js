@@ -59,7 +59,6 @@ function Login() {
                 <ToastContainer />
                 <img className="btnEye" onClick={() => { const password = document.querySelector('.password'); return (password.type == "password") ? password.type = "text" : password.type = "password" }} src={eye} />
               </div>
-              <ToastContainer />
             <button className="login_button" type="submit">Войти</button>
           </form>
 

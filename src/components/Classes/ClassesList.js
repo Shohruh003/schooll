@@ -32,6 +32,7 @@ function ClassesList() {
 
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/', { params });
       setClassList(response.data.classes);
+      console.log(response.data);
       setOriginalUsers(response.data.results);
       } catch (error) {
         console.error(error);
@@ -60,7 +61,7 @@ function ClassesList() {
 
         <p style={{borderColor: theme}}>
         <span className='class_heading'>Учеников в классе</span>
-          <span className='class_name'>{item.value.existing_pupils ? item.value.existing_pupils : "Пустой"}</span>
+          <span className='class_name'>{item.value.present_pupils.count}</span>
         </p>
 
         <p className={`emotions`} style={{borderColor: theme}}>
