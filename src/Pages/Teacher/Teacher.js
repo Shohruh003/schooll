@@ -16,6 +16,13 @@ function Teacher(props) {
         const [pupilMissing, setPupilMissing] = useState()
         const [teachClass, setTeachClass] = useState()
         const [test, setTest] = useState()
+        const style = document.createElement('style');
+style.innerHTML = `
+  .teacher_list::-webkit-scrollbar-thumb {
+    background-color: ${theme};
+  }
+`;
+document.head.appendChild(style);
 
         useEffect(() => {
           const fetchParents = async () => {
@@ -556,7 +563,7 @@ function Teacher(props) {
             </ul>
           </div>
 
-          <ul className='attendance' style={{borderColor: theme}}>
+          <ul className='attendance' style={{borderColor: theme,'--scrollbar-thumb': theme}}>
 {pupilMissing?.map((item, index) => (
   <li key={index} className="attendance_item" style={{borderColor: theme}}>
   <Link className='attendance_link'>

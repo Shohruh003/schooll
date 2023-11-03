@@ -9,9 +9,9 @@ import usersLogo from '../../Image/photo_people.jpg'
 
 function TeacherPupil() {
 const {teacherPupils,theme,editAdminModal, setEditAdminModal} = useContext(AuthContext)
-  const style = document.createElement('style');
+const style = document.createElement('style');
 style.innerHTML = `
-  .people_list::-webkit-scrollbar-thumb {
+  .teacher_list::-webkit-scrollbar-thumb {
     background-color: ${theme};
   }
 `;

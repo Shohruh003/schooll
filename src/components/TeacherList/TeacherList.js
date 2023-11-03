@@ -49,7 +49,7 @@ document.head.appendChild(style);
     setEditUser(evt)
   }
   return (
-    <ul className="teacher_list">
+    <ul className="teacher_list" style={{ '--scrollbar-thumb': theme }}>
                         {teacher?.map((item) => {
   const emotions = item?.todays_emotions ? item?.todays_emotions : {
     emotions: [
