@@ -339,7 +339,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                 </select>
               </div>
               <div className='video_box'>
-                <label for="5" class="form-label">Видео:</label>
+                <label for="5" class="form-label">Видео:/Фото</label>
                 <input required ref={imgref} type="file" id="startButton2" />
               </div>
             </div>
