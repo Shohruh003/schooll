@@ -64,7 +64,7 @@ function Pupil() {
       }
     };
     fetchPupils();
-  }, [ageRange, pupilClass, genders]);
+  }, [ageRange, pupilClass, genders,pupilEmotion]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -117,8 +117,8 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
                 <span className='people_name'>{item.full_name ? item.full_name : "Пустой"}</span>
               </p>
               <p style={{ borderColor: theme }}>
-                <span className='people_heading'>Пришел: {newLastTime}</span>
-                <span className='people_heading'>Ушел: {newFirstTime}</span>
+                <span className='people_heading'>Пришел: {newFirstTime}</span>
+                <span className='people_heading'>Ушел: {newLastTime}</span>
               </p>
               <p style={{ borderColor: theme }}>
                 <span className='people_heading'>Класс</span>

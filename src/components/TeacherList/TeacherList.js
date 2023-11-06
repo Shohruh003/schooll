@@ -92,7 +92,7 @@ for (let i = 0; i < emotions.length; i++) {
   }
 }
 
-const firstMaxConfidenceIndex = emotions.findIndex(
+const firstMaxConfidenceIndex = emotions?.findIndex(
   (emotion) => emotion.confidence === maxConfidence
 );
 

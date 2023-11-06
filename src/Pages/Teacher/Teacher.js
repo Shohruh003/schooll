@@ -214,7 +214,6 @@ document.head.appendChild(style);
 
   const handleEmotionChange = async (event) => {
     const selectedEmotion = event.target.value;
-    console.log(selectedEmotion);
     const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
     const promises = pupilIds?.map(async (id) => {
       const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`);
@@ -222,44 +221,41 @@ document.head.appendChild(style);
     });
     const absentPupilsData = await Promise.all(promises);
     var x = absentPupilsData;
-    console.log(x, 'boshi');
     switch (selectedEmotion) {
       case 'happy':
         x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'happy')
-        console.log(x, 'happy')
         setTeacherPupils(x)
-        console.log(teacherPupils, 'teacherPupil');
         break;
       case 'neutral':
         x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'neutral')
-        console.log(x, 'neutral')
         setTeacherPupils(x)
-        console.log(teacherPupils, 'teacherPupil');
         break;
       case 'sad':
         x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'sad')
-        console.log(x, 'sad')
         setTeacherPupils(x)
-        console.log(teacherPupils, 'teacherPupil');
         break;
       case 'angry':
         x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'angry')
-        console.log(x, 'angry')
         setTeacherPupils(x)
-        console.log(teacherPupils, 'teacherPupil');
         break;
       case 'fear':
         x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'fear')
-        console.log(x, 'fear')
         setTeacherPupils(x)
-        console.log(teacherPupils, 'teacherPupil');
         break;
       case 'surprise':
         x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'surprise')
-        console.log(x, 'surprise')
         setTeacherPupils(x)
-        console.log(teacherPupils, 'teacherPupil');
         break;
+
+        // case "all":
+        //   setUsers(userslar);
+
+        // case 'all':
+        // x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'all')
+        // console.log(x, 'all')
+        // setTeacherPupils(x)
+        // console.log(teacherPupils, 'teacherPupil');
+        // break;
     }
   };
       const handleModal = () => {

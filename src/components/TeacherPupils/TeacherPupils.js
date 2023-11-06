@@ -45,7 +45,7 @@ document.head.appendChild(style);
     "confidence": 0,
     "create_date": "0"
   }
-  const emotionsCome =emotions && emotions.length > 1 ? emotions[emotions.length -1] : {
+  const emotionsCome =emotions && emotions.length > 1 ? emotions[emotions.length - 1] : {
     "emotions": "happy",
     "confidence": 0,
     "create_date": "0"
@@ -75,6 +75,7 @@ const firstMaxConfidenceIndex = emotions?.emotions?.findIndex(
   (emotion) => emotion?.confidence === maxConfidence
 );
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
+console.log(firstEmotionWithMaxConfidence);
     return (
       <li key={item?.id} style={{borderColor: theme}} onClick={clickItem}>
       <Link className='teacher_link'>
