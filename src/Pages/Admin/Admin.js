@@ -775,7 +775,7 @@ function Admin(props) {
                     >
                       <option
                         className="search_option"
-                        value="all"
+                        value="" disabled selected hidden
                       >
                         По ЭС
                       </option>
