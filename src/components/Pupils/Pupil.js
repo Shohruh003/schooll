@@ -9,7 +9,7 @@ import { useState } from "react";
 
 
 function Pupil() {
-  const { user, setUsers, ageRange, genders, setOriginalUsers, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
+  const { user, setUsers,pupilEmotion, ageRange, genders, setOriginalUsers, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
 
   const [userEmotion, setUserEmotion] = useState([])
   const [page, setPage] = useState(1);
@@ -43,10 +43,22 @@ function Pupil() {
           params.gender = genders.join(',');
         }
 
-        const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`, { params });
+        if (pupilEmotion) {
+          params.filter_by_emotion = pupilEmotion;
+        }
+
+        if (params?.length != undefined && params?.length != 'all') {
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/`, { params });
+        const arr = response.data.results
+        setUsers(arr);
+        setOriginalUsers(response.data.results);
+        }else{
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`);
         const arr = response.data.results
         setUsers([...user, ...arr]);
         setOriginalUsers(response.data.results);
+        }
+        
       } catch (error) {
         console.error(error);
       }
@@ -117,9 +129,9 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
                 <span className='people_name'>{age ? age : "0"}</span>
               </p>
               <p style={{ borderColor: theme }}
-                className={`emotions ${userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Пустой" : 'Пустой'}`}
+                className={`emotions ${userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Пустой" : 'Пустой'}`}
               >
-                <span className='people_heading'> {userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Пустой" : 'Пустой'} </span>
+                <span className='people_heading'> {userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Пустой" : 'Пустой'} </span>
 
 
                 <span className='people_name'>{userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last.confidence ? userEmotion[index]?.[formattedDate]?.last.confidence : "0"} %</span>
