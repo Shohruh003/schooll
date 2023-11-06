@@ -193,8 +193,6 @@ function Parents () {
               const date5 = result[4];
               const date6 = result[5];
               const date7 = result[6];
-
-
               const [diagram2, setDiagram2] = useState()
               const [diagram3, setDiagram3] = useState()
               const [diagram4, setDiagram4] = useState()
@@ -228,7 +226,6 @@ function Parents () {
                     const filteredData5 = response.data.filter(item => item.create_date === date5);
                     const filteredData6 = response.data.filter(item => item.create_date === date6);
                     const filteredData7 = response.data.filter(item => item.create_date === date7);
-
                     setDiagram2(filteredData2[0])
                     setDiagram3(filteredData3[0])
                     setDiagram4(filteredData4[0])
@@ -404,102 +401,66 @@ const piHappy = Math.round(pia?.happy)
                 }
 
 
+                        const formattedTime2 = new Date(week2?.first?.time).toLocaleTimeString('uz-UZ', {
+                            hour: 'numeric',
+                            minute: 'numeric'
+                          })
 
-                        const pupilss = profil?.thumbnail && profil?.thumbnail.length ? profil?.thumbnail[0] : {
-                            "thumbnail": profil?.main_image,
-                            "create_date": "2023-09-26T16:36:37.036650Z"
-                        }
-                          const emotions = profil?.emotions ? profil?.emotions : {
-                            emotions: [
-                              {
-                                "emotions": "happy",
-                                "confidence": 54,
-                                "create_date": "0"
-                              }]
-                          }
-                          const emotionsCome = emotions && emotions[0] ? emotions[0] : {
-                            "emotions": "happy",
-                            "confidence": 54,
-                            "create_date": "0"
-                          }
-                          const emotionsWent =emotions && emotions.length > 1 ? emotions[emotions.length -1] : {
-                            "emotions": "happy",
-                            "confidence": 54,
-                            "create_date": "0"
-                          };
-                          const dateCome = emotionsCome.create_date;
-                          
-                        const comeDateTime = new Date(dateCome);
-                        const comeHours = comeDateTime.getHours().toString().padStart(2, "0");
-                        const comeMinutes = comeDateTime.getMinutes().toString().padStart(2, "0");
-                        const comeClock = `${comeHours}:${comeMinutes}`;
-                        
-                        const dateWent = emotionsWent.create_date;
-                        const wentDateTime = new Date(dateWent);
-                        const wentHours = wentDateTime.getHours().toString().padStart(2, "0");
-                        const wentMinutes = wentDateTime.getMinutes().toString().padStart(2, "0");
-                        const wentClock = `${wentHours}:${wentMinutes}`;
+                          const formattedTime3 = new Date(week3?.first?.time).toLocaleTimeString('uz-UZ', {
+                            hour: 'numeric',
+                            minute: 'numeric'
+                          })
+
+                          const formattedTime4 = new Date(week4?.first?.time).toLocaleTimeString('uz-UZ', {
+                            hour: 'numeric',
+                            minute: 'numeric'
+                          })
+
+                          const formattedTime5 = new Date(week5?.first?.time).toLocaleTimeString('uz-UZ', {
+                            hour: 'numeric',
+                            minute: 'numeric'
+                          })
+
+                          const formattedTime6 = new Date(week6?.first?.time).toLocaleTimeString('uz-UZ', {
+                            hour: 'numeric',
+                            minute: 'numeric'
+                          })
+
+                          const formattedTime7 = new Date(week7?.first?.time).toLocaleTimeString('uz-UZ', {
+                            hour: 'numeric',
+                            minute: 'numeric'
+                          })
 
 
-                        const dateTime2 = new Date(week2?.first?.time);
-                        const hours2 = dateTime2.getHours();
-                        const minutes2 = dateTime2.getMinutes();
-                        const formattedTime2 = `${hours2}:${minutes2}`;
+                        const formattedTime2week = new Date(week2?.last?.time).toLocaleTimeString('uz-UZ', {
+                            hour: 'numeric',
+                            minute: 'numeric'
+                          })
 
-                        const dateTime3 = new Date(week3?.first?.time);
-                        const hours3 = dateTime3.getHours();
-                        const minutes3 = dateTime3.getMinutes();
-                        const formattedTime3 = `${hours3}:${minutes3}`;
+                          const formattedTime3week = new Date(week3?.last?.time).toLocaleTimeString('uz-UZ', {
+                            hour: 'numeric',
+                            minute: 'numeric'
+                          })
 
-                        const dateTime4 = new Date(week4?.first?.time);
-                        const hours4 = dateTime4.getHours();
-                        const minutes4 = dateTime4.getMinutes();
-                        const formattedTime4 = `${hours4}:${minutes4}`;
+                          const formattedTime4week = new Date(week4?.last?.time).toLocaleTimeString('uz-UZ', {
+                            hour: 'numeric',
+                            minute: 'numeric'
+                          })
 
-                        const dateTime5 = new Date(week5?.first?.time);
-                        const hours5 = dateTime5.getHours();
-                        const minutes5 = dateTime5.getMinutes();
-                        const formattedTime5 = `${hours5}:${minutes5}`;
+                          const formattedTime5week = new Date(week5?.last?.time).toLocaleTimeString('uz-UZ', {
+                            hour: 'numeric',
+                            minute: 'numeric'
+                          })
 
-                        const dateTime6 = new Date(week6?.first?.time);
-                        const hours6 = dateTime6.getHours();
-                        const minutes6 = dateTime6.getMinutes();
-                        const formattedTime6 = `${hours6}:${minutes6}`;
+                          const formattedTime6week = new Date(week6?.last?.time).toLocaleTimeString('uz-UZ', {
+                            hour: 'numeric',
+                            minute: 'numeric'
+                          })
 
-                        const dateTime7 = new Date(week7?.first?.time);
-                        const hours7 = dateTime7.getHours();
-                        const minutes7 = dateTime7.getMinutes();
-                        const formattedTime7 = `${hours7}:${minutes7}`;
-
-                        const dateTime2week = new Date(week2?.last?.time);
-                        const hours2week = dateTime2week.getHours();
-                        const minutes2week = dateTime2week.getMinutes();
-                        const formattedTime2week = `${hours2week}:${minutes2week}`;
-
-                        const dateTime3week = new Date(week3?.last?.time);
-                        const hours3week = dateTime3week.getHours();
-                        const minutes3week = dateTime3week.getMinutes();
-                        const formattedTime3week = `${hours3week}:${minutes3week}`;
-
-                        const dateTime4week = new Date(week4?.last?.time);
-                        const hours4week = dateTime4week.getHours();
-                        const minutes4week = dateTime4week.getMinutes();
-                        const formattedTime4week = `${hours4week}:${minutes4week}`;
-
-                        const dateTime5week = new Date(week5?.last?.time);
-                        const hours5week = dateTime5week.getHours();
-                        const minutes5week = dateTime5week.getMinutes();
-                        const formattedTime5week = `${hours5week}:${minutes5week}`;
-
-                        const dateTime6week = new Date(week6?.last?.time);
-                        const hours6week = dateTime6week.getHours();
-                        const minutes6week = dateTime6week.getMinutes();
-                        const formattedTime6week = `${hours6week}:${minutes6week}`;
-
-                        const dateTime7week = new Date(week7?.last?.time);
-                        const hours7week = dateTime7week.getHours();
-                        const minutes7week = dateTime7week.getMinutes();
-                        const formattedTime7week = `${hours7week}:${minutes7week}`;
+                          const formattedTime7week = new Date(week7?.last?.time).toLocaleTimeString('uz-UZ', {
+                            hour: 'numeric',
+                            minute: 'numeric'
+                          })
 	return (
 		<div className="school">
 			<div className='container'>

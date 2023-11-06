@@ -32,7 +32,6 @@ function ClassesList() {
 
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/', { params });
       setClassList(response.data.classes);
-      console.log(response.data);
       setOriginalUsers(response.data.results);
       } catch (error) {
         console.error(error);
@@ -46,6 +45,8 @@ function ClassesList() {
   return (
     <ul className="class_list">
                         {arr?.map((item) => {
+                          const emotionClassConfidance = Math.floor(100 - item?.value?.sad_avg)
+                          const emotionClass = emotionClassConfidance && emotionClassConfidance ? emotionClassConfidance > 80 ?  "Веселье" : emotionClassConfidance > 64 ? "Нейтраль" : emotionClassConfidance > 48 ? "Удивление" : emotionClassConfidance > 32 ? "Злость" : emotionClassConfidance > 16 ? "Страх" : emotionClassConfidance < 16 ? "Грусть" : "Пустой" : 'Пустой'
 
     return (
       <li key={item.key} style={{borderColor: theme}}>
@@ -64,9 +65,9 @@ function ClassesList() {
           <span className='class_name'>{item.value.present_pupils.count}</span>
         </p>
 
-        <p className={`emotions`} style={{borderColor: theme}}>
-        <span className='class_heading'>Пустой</span>
-          <span className='class_name'>0 %</span>
+        <p className={`emotions emotionClass ${emotionClass}`} style={{borderColor: theme}}>
+        <span className='class_heading'>{emotionClass}</span>
+          <span className='class_name'>{emotionClassConfidance} %</span>
         </p>
       </Link>
     </li>

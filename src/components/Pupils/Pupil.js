@@ -9,9 +9,10 @@ import { useState } from "react";
 
 
 function Pupil() {
-  const { user, setUsers, ageRange, genders, setOriginalUsers, pupilClass, pupilEmotion, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
+  const { user, setUsers, ageRange, genders, setOriginalUsers, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
 
   const [userEmotion, setUserEmotion] = useState([])
+  const [page, setPage] = useState(1);
   const style = document.createElement('style');
   style.innerHTML = `
   .people_list::-webkit-scrollbar-thumb {
@@ -19,6 +20,13 @@ function Pupil() {
   }
 `;
   document.head.appendChild(style);
+
+  const handleScroll = (e) => {
+    const element = e.target;
+    if (Math.floor(element.scrollHeight - element.scrollTop) == element.clientHeight ) {
+      setPage(page + 1)
+    }
+  };
 
   useEffect(() => {
 
@@ -35,19 +43,16 @@ function Pupil() {
           params.gender = genders.join(',');
         }
 
-        if (pupilEmotion) {
-          params.filter_by_emotion = pupilEmotion
-        }
-
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/', { params });
-        setUsers(response.data.results);
+        const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`, { params });
+        const arr = response.data.results
+        setUsers([...user, ...arr]);
         setOriginalUsers(response.data.results);
       } catch (error) {
         console.error(error);
       }
     };
     fetchPupils();
-  }, [ageRange, pupilClass, genders, pupilEmotion]);
+  }, [page,ageRange, pupilClass, genders]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,55 +77,13 @@ function Pupil() {
     setEditUser(evt)
   }
 
-
   return (
-    <ul className="people_list" style={{ '--scrollbar-thumb': theme }}>
+    <ul onScroll={(e) => handleScroll(e)} className="people_list" style={{ '--scrollbar-thumb': theme }}>
       {user?.map((item, index) => {
         const date = item.birth_date;
         const birthDate = new Date(date);
         const today = new Date();
         const age = today.getFullYear() - birthDate.getFullYear();
-        // const emotions = item.emotions ? item.emotions : {
-        //   emotions: [
-        //     {
-        //       "emotions": "happy",
-        //       "confidence": 0,
-        //       "create_date": "0"
-        //     }]
-        // }
-
-        // const emotionsCome = emotions && emotions[0] ? emotions[0] : {
-        //   "emotions": "happy",
-        //   "confidence": 0,
-        //   "create_date": "0"
-        // }
-        // const emotionsWent = emotions && emotions.length > 1 ? emotions[emotions.length - 1] : {
-        //   "emotions": "happy",
-        //   "confidence": 0,
-        //   "create_date": "0"
-        // };
-        // const dateCome = emotionsCome.create_date;
-
-        // const comeDateTime = new Date(dateCome);
-        // const comeHours = comeDateTime.getHours().toString().padStart(2, "0");
-        // const comeMinutes = comeDateTime.getMinutes().toString().padStart(2, "0");
-        // const comeClock = `${comeHours}:${comeMinutes}`;
-
-        // const dateWent = emotionsWent.create_date;
-        // const wentDateTime = new Date(dateWent);
-        // const wentHours = wentDateTime.getHours().toString().padStart(2, "0");
-        // const wentMinutes = wentDateTime.getMinutes().toString().padStart(2, "0");
-        // const wentClock = `${wentHours}:${wentMinutes}`;
-
-        // let maxConfidence = -Infinity;
-        // let maxConfidenceIndex = -1;
-
-        // for (let i = 0; i < emotions.length; i++) {
-        //   if (emotions[i].confidence > maxConfidence) {
-        //     maxConfidence = emotions[i].confidence;
-        //     maxConfidenceIndex = i;
-        //   }
-        // }
         const newDate = new Date();
         const formattedDate = newDate.toISOString().substring(0, 10);
 
@@ -154,15 +117,9 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
                 <span className='people_name'>{age ? age : "0"}</span>
               </p>
               <p style={{ borderColor: theme }}
-                className={`emotions ${userEmotion[index]?.[formattedDate]?.last && userEmotion [index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Злость" : "Пустой" : "Пустой"}`}
+                className={`emotions ${userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Пустой" : 'Пустой'}`}
               >
-                <span className='people_heading'> {
-                userEmotion[index]?.[formattedDate]?.last && 
-                userEmotion[index]?.[formattedDate]?.last?.emotion ? 
-                userEmotion[index]?.[formattedDate]?.last?.emotion == "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion == "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion == "angry" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion == "sad" ? "Злость" : "Пустой" : 
-                userEmotion[index]?.[formattedDate]?.last?.emotion ? 
-                userEmotion[index]?.[formattedDate]?.last?.emotion 
-                : 'Пустой'} </span>
+                <span className='people_heading'> {userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Пустой" : 'Пустой'} </span>
 
 
                 <span className='people_name'>{userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last.confidence ? userEmotion[index]?.[formattedDate]?.last.confidence : "0"} %</span>
