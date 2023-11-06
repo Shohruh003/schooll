@@ -47,24 +47,24 @@ function Pupil() {
           params.filter_by_emotion = pupilEmotion;
         }
 
-        if (params?.length != undefined && params?.length != 'all') {
+        // if (params?.length != undefined && params?.length != 'all') {
           const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/`, { params });
         const arr = response.data.results
         setUsers(arr);
         setOriginalUsers(response.data.results);
-        }else{
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`);
-        const arr = response.data.results
-        setUsers([...user, ...arr]);
-        setOriginalUsers(response.data.results);
-        }
+        // }else{
+        //   const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`);
+        // const arr = response.data.results
+        // setUsers([...user, ...arr]);
+        // setOriginalUsers(response.data.results);
+        // }
         
       } catch (error) {
         console.error(error);
       }
     };
     fetchPupils();
-  }, [page,ageRange, pupilClass, genders]);
+  }, [ageRange, pupilClass, genders]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,7 +90,7 @@ function Pupil() {
   }
 
   return (
-    <ul onScroll={(e) => handleScroll(e)} className="people_list" style={{ '--scrollbar-thumb': theme }}>
+    <ul className="people_list" style={{ '--scrollbar-thumb': theme }}>
       {user?.map((item, index) => {
         const date = item.birth_date;
         const birthDate = new Date(date);
