@@ -70,7 +70,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     const password1 = document.querySelector('#pass3'); const password2 = document.querySelector('#pass5');
     if (password1.value !== password2.value) { return alert("Tasdiqlash paroli xato !") };
     const formData = new FormData()
-    formData.append('main_video', imgref.current.files[0] ? imgref.current.files[0] : editUser?.main_video)
+    formData.append('main_image', imgref.current.files[0] ? imgref.current.files[0] : editUser?.main_image)
     formData.append('email', user?.email ? user?.email : editUser?.email)
     formData.append('full_name', user?.full_name ? user?.full_name : editUser?.full_name)
     formData.append('birth_date', user?.birth_date ? user?.birth_date : editUser?.birth_date)
@@ -84,7 +84,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     if (user?.status === 'pupil') {
       const apiUrl = `https://www.api.yomon-emas.uz/api/users/pupils/${editUser?.id}/`;
       formData.delete('password')
-      formData.delete('main_video')
+      formData.delete('main_image')
       formData.delete('email')
       formData.delete('status')
 
@@ -105,7 +105,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
         const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/${editUser?.id}/update_user/`;
         formData.delete('parent')
         formData.delete('is_morning')
-        formData.delete('main_video')
+        formData.delete('main_image')
         axios.patch(apiUrl, formData)
         .then((response) => {
           console.log(response.data);
@@ -122,7 +122,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
         const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/${editUser?.id}/update_user/`;
         formData.delete('parent')
         formData.delete('is_morning')
-        formData.delete('main_video')
+        formData.delete('main_image')
         formData.delete('pupil_class')
         axios.patch(apiUrl, formData)
         .then((response) => {
@@ -140,7 +140,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
         const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/${editUser?.id}/update_user/`;
         formData.delete('parent')
         formData.delete('is_morning')
-        formData.delete('main_video')
+        formData.delete('main_image')
         formData.delete('pupil_class')
         axios.patch(apiUrl, formData)
         .then((response) => {
@@ -304,9 +304,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
               <div className='box2_item'>
                 <label class="form-label">Укажите пол</label><br />
                 <div className='d-flex align-items-center gap-2'>
-                  <input 
-                  // checked={editUser?.gender ?  true : false}   
-                  // onClick={(e)=> {e.target.checked ? e.target.name = false : e.target.checked = true}} 
+                  <input
                   onChange={(event) => {
                     setUser({
                       ...user,
@@ -318,9 +316,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
                 <div className="d-flex align-items-center justify-content-between gap-2">
                   <div className="d-flex align-items-center gap-2">
                     <input  
-                    // checked={editUser?.gender? false : true}  
-                    id='girl'   
-                    //  onClick={(e)=> {e.target.checked ? e.target.checked = false : e.target.checked = true}} 
+                    id='girl'
                      onChange={(event) => {
                       setUser({
                         ...user,
@@ -334,8 +330,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
               <div className='box2_item'>
                 <label class="form-label">Укажите смену</label><br />
                 <div className='d-flex align-items-center gap-2'>
-                  <input  
-                  // checked={editUser?.is_morning ? true: false}
+                  <input
                    onChange={(event) => {
                     setUser({
                       ...user,
@@ -346,8 +341,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
                 </div>
                 <div className="d-flex align-items-center justify-content-between gap-2">
                   <div className="d-flex align-items-center gap-2">
-                    <input  
-                    // checked={editUser?.is_morning? false : true} 
+                    <input
                     id='second' onChange={(event) => {
                       setUser({
                         ...user,

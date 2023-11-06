@@ -85,7 +85,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     if (password1.value !== password2.value) { return alert("Tasdiqlash paroli xato !") };
 
     const formData = new FormData()
-    formData.append('main_video', imgref.current.files[0])
+    formData.append('main_image', imgref.current.files[0])
     formData.append('email', user?.email)
     formData.append('full_name', user?.full_name)
     formData.append('birth_date', user?.birth_date)
@@ -339,7 +339,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                 </select>
               </div>
               <div className='video_box'>
-                <label for="5" class="form-label">Видео:/Фото</label>
+                <label for="5" class="form-label">Фото</label>
                 <input required ref={imgref} type="file" id="startButton2" />
               </div>
             </div>
