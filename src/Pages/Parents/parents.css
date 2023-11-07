@@ -303,8 +303,7 @@
 
   /* ///////////////////////////////////// Responsive ======================== */
 
-
-  @media screen and (max-width: 1300px) {
+  @media screen and (max-width: 1400px) {
     .column .canvasjs-chart-canvas {
         width: 90% !important;
         height: 180px !important;
@@ -365,21 +364,21 @@
     } */
 
     .avatar_chartInner .canvasjs-chart-canvas {
-        width: 180px !important;
+        width: 200px !important;
         height: 100px !important;
         margin-left: -30px;
-        margin-top: 90px !important;
-        display: none;
+        margin-top: 40px !important;
+        /* display: none; */
     }
 
     .chart_about {
-        display: flex;
+        /* display: flex;
         flex-wrap: wrap;
-        align-items: flex-start;
+        align-items: flex-start; */
     }
 
     .chart_about span {
-        font-size: 12px;
+        font-size: 10px;
         margin: 0px !important;
     }
 
@@ -436,14 +435,23 @@
     p {
         font-size: 15px !important;
     }
-
+    
     .week_list img {
         width: 50px;
+    }
+    
+    .week_item span {
+        width: 10px !important;
+        font-size: 10px !important;
+        margin: 0px !important;
+    }
+    .week_list .chart_percentage {
+        width: 10px !important;
+        font-size: 10px;
     }
 
     .empty_div {
         display: none;
     }
 
-    .chat {}
 }
