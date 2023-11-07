@@ -524,27 +524,11 @@ function Admin(props) {
             <div className="adminBoard_header">
               <div className="admin_board">
                 <p className="admin_boardHead">Доска</p>
-                <Link className="header_icon" to="/">
-                  <svg
-                    className="domIcons"
-                    width="50"
-                    height="50"
-                    viewBox="0 0 50 50"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle cx="25" cy="25" r="25" fill="#F9A298" />
-                    <path
-                      d="M33 20.093L30 17.093V15H33V20.093ZM37 26H34V36H16V26H13L25 14L37 26ZM27 28H23V34H27V28Z"
-                      fill="white"
-                    />
-                  </svg>
-                </Link>
                 <button className="header_icon" onClick={handleModal}>
                   <svg
-                    className=" header_icon"
-                    width="60"
-                    height="60"
+                    className="header_icon"
+                    width="57"
+                    height="57"
                     viewBox="0 0 60 60"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -578,6 +562,23 @@ function Admin(props) {
                     {notificationCount}
                   </span>
                 </button>
+                <Link className="header_icon" to="/">
+                  <svg
+                    className="domIcons"
+                    width="50"
+                    height="50"
+                    viewBox="0 0 50 50"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="25" cy="25" r="25" fill="#F9A298" />
+                    <path
+                      d="M33 20.093L30 17.093V15H33V20.093ZM37 26H34V36H16V26H13L25 14L37 26ZM27 28H23V34H27V28Z"
+                      fill="white"
+                    />
+                  </svg>
+                </Link>
+                
               </div>
               <p className="admin_boardSpan">администратора</p>
             </div>
@@ -741,7 +742,7 @@ function Admin(props) {
                       onChange={handleClasChange}
                     />
                   </li>
-
+                  
                   <li className="panel_item">
                     <div className="item_button search_danger">
                       <span>По полу</span>

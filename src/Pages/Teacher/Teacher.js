@@ -421,15 +421,6 @@ document.head.appendChild(style);
   </defs>
                     </svg>
                   </button>
-
-
-                  <select onChange={onPupilClass} id='classSelect' value={pupilsClass} className='select_teachPupil'>
-                            {teachClass?.pupils?.map((item) => (
-                                <option key={item?.pupil_class} value={item?.pupil_class}>
-                                    {item?.pupil_class}
-                                </option>
-                            ))}
-                        </select>
               </div>
 
               <div className='adminBoard_header'>
@@ -555,6 +546,16 @@ document.head.appendChild(style);
                   <option className='search_option' value="fear">Страх</option>
                   <option className='search_option' value="surprise">Удивление</option>
                 </select>
+
+                <div className='classSelecttt'>
+                <select style={{borderColor: theme}} onChange={onPupilClass} id='classSelect' value={pupilsClass} className='select_teachPupil'>
+                            {teachClass?.pupils?.map((item) => (
+                                <option key={item?.pupil_class} value={item?.pupil_class}>
+                                    {item?.pupil_class}
+                                </option>
+                            ))}
+                        </select>
+                </div>
               </li>
             </ul>
           </div>

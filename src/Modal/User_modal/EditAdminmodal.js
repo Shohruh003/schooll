@@ -208,9 +208,9 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
             </Modal.Title>
           </thead>
           <tbody className='modal_add'>
-           
+          
             <div className='input_box'>
-              <label for="1" class="form-label">email</label>
+              <label for="1" class="form-label">Email</label>
               <input defaultValue={editUser?.email} disabled onChange={(event) => {
                 setUser({
                   ...user,
@@ -355,9 +355,9 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
             </div>
             <div className='vid-box'>
               <div className='video_box'>
-                <label for="5" class="form-label">Статус:</label>
+                <label for="5" class="form-label">Роль:</label>
                 <select onChange={changeOption}>
-                  <option disabled selected hidden>Статус:</option>
+                  <option disabled selected hidden>Роль:</option>
                   <option value='pupil'>ученик</option>
                   <option value='psychologist'>психолог</option>
                   <option value='teacher'>учитель</option>
@@ -365,7 +365,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
                 </select>
               </div>
               <div className='video_box '>
-                <label for="5" class="form-label">Видео:/Фото</label>
+                <label for="5" class="form-label">Фото:</label>
                 <input  ref={imgref} type="file" id="startButton2" />
               </div>
             </div>

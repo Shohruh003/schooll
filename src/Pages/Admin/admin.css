@@ -1,6 +1,5 @@
 .admin_page {
   padding-top: 10px;
-  /* background-color: #fafafa; */
 }
 
 .header {
@@ -432,4 +431,205 @@
 
 .close_button {
   margin-right: 40px;
+}
+
+
+
+
+/* ==========================Responsive====================== */
+
+
+
+@media screen and (max-width: 1400px) {
+  .admin_header {
+    width: 750px !important;
+  }
+  
+  .search_label {
+    width: 250px !important;
+    height: 50px !important;
+  }
+  
+  .search_input {
+    width: 200px !important;
+  }
+  
+  .site-logo {
+    width: 300px !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .admin_header {
+    width: 650px !important;
+  }
+  
+  .search_label {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 200px !important;
+    height: 40px !important;
+  }
+  
+  .search_input {
+    display: flex !important;
+    width: 160px !important;
+    min-width: 160px !important;
+  }
+  
+  .site-logo {
+    width: 250px !important;
+  }
+
+
+  .admin_panel{
+    width: 250px !important;
+  }
+
+  .admin_panelImg {
+    width: 150px !important;
+  }
+
+  .admin_boardHead {
+    font-size: 45px !important;
+  }
+  
+  .admin_boardSpan {
+    font-size: 30px !important;
+  }
+  
+  .adminBoard_header {
+    width: 250px !important;
+  }
+
+  .header_icon , .domIcons{
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .search_icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .languageIcon > svg {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .admin_header {
+    width: 480px !important;
+  }
+  
+  .search_label {
+    width: 150px !important;
+    height: 30px !important;
+  }
+  
+  .search_input {
+    width: 120px !important;
+    min-width: 120px !important;
+    font-size: 14px !important;
+  }
+
+  
+  .header_icon , .domIcons{
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .search_icon {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  .languageIcon > svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  
+  .site-logo {
+    width: 200px !important;
+  }
+
+
+  .admin_panel{
+    width: 170px !important;
+    padding: 10px 10px 10px 10px !important;
+    margin-left: auto !important;
+  }
+
+  .admin_panelImg {
+    width: 80px !important;
+  }
+
+  .admin_boardHead {
+    font-size: 30px !important;
+  }
+  
+  .admin_boardSpan {
+    font-size: 20px !important;
+  }
+  
+  .adminBoard_header {
+    width: 180px !important;
+  }
+
+  .header-link {
+    width: 150px !important;
+    height: 170px !important;
+    padding: 10px;
+  }
+  
+  .navLinkIcon {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  
+  .navLinkIcon0{
+    width: 70px !important;
+    height: 80px !important;
+  }
+  
+  .navLinkName {
+    font-size: 16px !important;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .quantity{
+    font-size: 16px !important;
+  }
+
+  .item_button {
+    width: 150px !important;
+    padding: 5px 0 !important;
+    font-size: 14px !important;
+  }
+
+  .panel_button {
+      margin-top: 20px;
+      padding: 5px 18px !important;
+      font-size: 16px !important;
+  }
+  
+  .c1 , .c2 {
+    width: 25px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .age-search {
+    width: 150px !important;
+    padding: 10px 15px !important;
+  }   
+  
+  .age-search span {
+    font-size: 10px !important;
+  }
+
+  .search_pupil {
+    padding-left: 10px !important;
+  }
 }
