@@ -479,3 +479,156 @@
 .notification_button {
   margin-right: 15px;
 }
+
+
+
+
+/* ============================Responsive======================== */
+
+
+@media screen and (max-width: 1400px) {
+  .psychologListLink {
+    width: 150px !important;
+    height: 170px !important;
+  }
+
+  .navLinkIcon {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  
+  .navLinkIcon0{
+    width: 70px !important;
+    height: 80px !important;
+  }
+
+  .psychologLink {
+    font-size: 16px !important;
+  }
+  
+  .psychologQuantity{
+    font-size: 16px !important;
+  }
+
+  .psycholog_emotionDiv {
+    width: 200px;
+    padding: 10px;
+  }
+  
+  .emotionDiv_heading {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .emotionDiv_button {
+    width: 150px;
+    padding: 10px 10px;
+    font-size: 18px;
+  }
+  
+  .emotionDiv_span{
+    bottom: 25px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .psychologListLink {
+    width: 120px !important;
+    height: 130px !important;
+  }
+
+  .navLinkIcon {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  
+  .navLinkIcon0{
+    width: 40px !important;
+    height: 50px !important;
+  }
+
+  .psychologLink {
+    font-size: 12px !important;
+  }
+  
+  .psychologQuantity{
+    font-size: 12px !important;
+  }
+
+  .psycholog_emotionDiv {
+    width: 150px;
+    padding: 10px;
+  }
+  
+  .emotionDiv_heading {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .emotionDiv_button {
+    width: 100px;
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+  
+  .emotionDiv_span{
+    bottom: 20px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .psychologListLink {
+    width: 100px !important;
+    height: 130px !important;
+  }
+
+  .navLinkIcon {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  
+  .navLinkIcon0{
+    width: 40px !important;
+    height: 50px !important;
+  }
+
+  .psychologLink {
+    font-size: 10px !important;
+  }
+  
+  .psychologQuantity{
+    font-size: 12px !important;
+  }
+
+  .psycholog_emotionDiv {
+    width: 150px;
+    padding: 10px;
+  }
+  
+  .emotionDiv_heading {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .emotionDiv_button {
+    width: 100px;
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+  
+  .emotionDiv_span{
+    bottom: 20px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -298,3 +298,152 @@
   .avatar_dashboard {
     border: none;
   }
+
+
+
+  /* ///////////////////////////////////// Responsive ======================== */
+
+
+  @media screen and (max-width: 1300px) {
+    .column .canvasjs-chart-canvas {
+        width: 90% !important;
+        height: 180px !important;
+        margin-left: -40px;
+    }
+
+    .avatar_chartInner .canvasjs-chart-canvas {
+        width: 319px !important;
+        height: 156px !important;
+        margin-left: -40px;
+    }
+
+    .avatar_chartInner {
+        padding: 10px 15px;
+    }
+
+    .chart_about span {
+        font-size: 14px;
+    }
+
+    .langTheme {
+        /* display: flex; */
+    }
+
+    .langTheme svg {
+        width: 45px !important;
+    }
+
+    .logo-dashboard {
+        width: 300px;
+        margin-bottom: -10px;
+    }
+
+    .weather {
+        width: 180px;
+        height: 50px;
+        padding: 5px 10px;
+    }
+
+    .weather .weather_number {
+        font-size: 40px !important;
+    }
+
+    .avatar_about span {
+        font-size: 18px;
+    }
+
+    .week_list img {
+        width: 50px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    /* .column .canvasjs-chart-canvas {
+        width: 90% !important;
+        height: 180px !important;
+        margin-left: -40px;
+    } */
+
+    .avatar_chartInner .canvasjs-chart-canvas {
+        width: 180px !important;
+        height: 100px !important;
+        margin-left: -30px;
+        margin-top: 90px !important;
+        display: none;
+    }
+
+    .chart_about {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .chart_about span {
+        font-size: 12px;
+        margin: 0px !important;
+    }
+
+    .chat_icon {
+        display: none;
+    }
+
+    .chat_content {
+        width: 90%;
+        height: 110%;
+        margin: 0 auto;
+    }
+
+    .avatar_chartInner {
+        padding: 10px 15px;
+    }
+
+
+    .langTheme {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .langTheme svg {
+        width: 35px !important;
+    }
+
+    .langTheme select {
+        width: 80px !important;
+    }
+
+    .logo-dashboard {
+        width: 300px;
+        margin-bottom: -10px;
+    }
+
+    .weather {
+        width: 130px;
+        height: 40px;
+        padding: 5px 10px;
+    }
+
+    .weather .weather_date {
+        font-size: 12px;
+        margin-top: 15px;
+    }
+
+    .weather .weather_number {
+        font-size: 40px !important;
+    }
+
+    .avatar_about span,
+    p {
+        font-size: 15px !important;
+    }
+
+    .week_list img {
+        width: 50px;
+    }
+
+    .empty_div {
+        display: none;
+    }
+
+    .chat {}
+}
