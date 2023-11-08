@@ -112,7 +112,7 @@
     position: absolute;
     width: 330px;
     height: auto;
-    left: -5%;
+    left: -10%;
     top: -10%;
 }
 
@@ -151,6 +151,19 @@
     background-color: #FA8072;
 }
 .logout_dashboard {
+    display: block;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 50px;
+    color: #ffffff;
+    background-color: #FA8072;
+    z-index: 5;
+    cursor: pointer;
+  }
+
+  .logout {
     display: block;
     font-size: 24px;
     font-weight: 600;

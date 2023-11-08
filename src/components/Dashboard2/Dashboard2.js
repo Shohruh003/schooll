@@ -6,7 +6,7 @@ import logo from '../../Image/logotad.svg'
 import gif from '../../Gif/happy-gif-unscreen.gif'
 import teacherImg from '../../Gif/teacher-normal-gif.gif'
 import all from '../../Image/all.svg'
-import boyTwo from '../../Gif/happy-gif-right-bg.gif'
+import boyTwo from '../../Gif/aggressive-unscreen.gif'
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import { AuthContext } from '../../context/PupilContext';
 
