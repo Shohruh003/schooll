@@ -150,7 +150,7 @@
     color: #ffffff;
     background-color: #FA8072;
 }
-.logout {
+.logout_dashboard {
     display: block;
     font-size: 24px;
     font-weight: 600;
@@ -163,11 +163,11 @@
     cursor: pointer;
   }
 
-  .dashboard2_headerButton:hover, .logout:hover {
+  .dashboard2_headerButton:hover, .logout_dashboard:hover {
     background-color: rgba(250, 128, 114, 0.9);
   }
 
-  .dashboard2_headerButton:active, .logout:active {
+  .dashboard2_headerButton:active, .logout_dashboard:active {
     background-color: rgba(250, 128, 114, 1);
   }
   .card-one, .card-two{
@@ -200,3 +200,222 @@
     margin-left: 250px;
     margin-bottom: 40px;
 }
+
+
+
+/* ==========================Responsive=============================== */
+
+
+@media screen and (max-width: 1400px) {
+    .dashboard2 li {
+        width: 450px;
+        height: 397px;
+        padding: 10px 25px;
+        font-size: 20px;
+    }
+
+    .card-two button, .card-one button {
+        margin-left: 200px !important;
+        padding: 10px !important;
+        width: 200px !important;
+    }
+    
+    .dashboard2 li h2 {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+
+    .boyTwo {
+        width: 330px;
+        left: -15%;
+        top: -10%;
+    }
+
+    .card-there button {
+        width: 170px !important;
+        height: 170px;
+        margin-top: 30px;
+    }
+
+    .card-there img{
+        width: 200px !important;
+        height: 200px !important;
+    }
+    
+  }
+
+  @media screen and (max-width: 1290px) {
+    .dashboard2_headerButton {
+        font-size: 20px;
+        padding: 8px 20px;
+        margin-right: 60px;;
+    }
+    .logout_dashboard {
+        font-size: 20px;
+        padding: 8px 20px;
+      }
+      .dashboard2_heading h1 {
+        width: 600px;
+        font-size: 24px;
+      }
+
+      .dashboard-left {
+        font-size: 24px !important;
+      }
+    
+  }
+
+  @media screen and (max-width: 1190px) {
+    .dashboard2 li {
+        width: 400px;
+        height: 397px;
+        padding: 10px 25px;
+        font-size: 20px;
+    }
+
+    .gifImg {
+        width: 300px;
+        height: auto;
+        left: -70px;
+        top: -50px;
+    }
+    
+    .teacherGif {
+        width: 290px;
+        height: auto;
+        left: -50px;
+        top: -60px;
+    }
+
+    .card-itemTwo p {
+        margin-left: 200px;
+        margin-bottom: 30px;
+    }
+
+    .card-two button, .card-one button {
+        margin-left: 150px !important;
+        padding: 10px !important;
+        width: 200px !important;
+    }
+    
+    .dashboard2 li h2 {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+
+    .boyTwo {
+        width: 300px;
+        left: -15%;
+        top: -10%;
+    }
+
+    .card-there button {
+        width: 150px !important;
+        height: 150px;
+        margin-top: 30px;
+    }
+
+    .card-there img{
+        width: 200px !important;
+        height: 200px !important;
+    }
+
+    .card-last button {
+        width: 200px !important;
+        height: 200px;
+        border-radius: 50% !important;
+        padding: 17px 40px !important;
+    }
+    .card-last button span{
+       font-size: 50px;
+       display: block;
+    }
+    
+  }
+
+  @media screen and (max-width: 1090px) {
+    .dashboard2 ul {
+        justify-content: space-around;
+    }
+    .dashboard2 li {
+        width: 300px;
+        height: 350px;
+        padding: 10px 25px;
+        font-size: 20px;
+    }
+
+    .gifImg {
+        width: 250px;
+        height: auto;
+        left: -60px;
+        top: -30px;
+    }
+    
+    .teacherGif {
+        width: 240px;
+        height: auto;
+        left: -50px;
+        top: -40px;
+    }
+
+    .card-itemTwo p {
+        margin-left: 140px;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
+    .card-one p {
+        font-size: 14px;
+    }
+
+    .card-two button {
+        margin-left: 100px !important;
+        padding: 10px !important;
+        font-size: 18px !important;
+        width: 130px !important;
+    }
+
+    .card-one .card-item button {
+        margin-left: 50px !important;
+        padding: 10px !important;
+        font-size: 18px !important;
+        width: 130px !important;
+    }
+    
+    .dashboard2 li h2 {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+
+    .boyTwo {
+        width: 250px;
+        left: -15%;
+        top: -10%;
+    }
+
+    .card-there button {
+        width: 120px !important;
+        height: 120px;
+        margin-top: 30px;
+        font-size: 20px !important;
+    }
+
+    .card-there img{
+        width: 150px !important;
+        height: 150px !important;
+    }
+
+    .card-last button {
+        width: 150px !important;
+        height: 150px;
+        border-radius: 50% !important;
+        padding: 10px 20px !important;
+        font-size: 22px !important;
+        margin-top: 20px;
+    }
+
+    .card-last button span{
+        font-size: 32px !important;
+     }
+    
+  }
