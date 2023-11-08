@@ -116,6 +116,22 @@
     top: -10%;
 }
 
+.card-there-body{
+    position: relative;
+}
+
+.card-there p{
+margin-right: 200px;
+}
+
+.allGiff {
+    position: absolute;
+    width: 330px;
+    height: auto;
+    left: 40%;
+    top: -60%;
+}
+
 .card-last div{
     display: block;
     width: 60%;
@@ -250,10 +266,17 @@
         margin-top: 30px;
     }
 
-    .card-there img{
-        width: 200px !important;
-        height: 200px !important;
-    }
+
+    .card-there p{
+        margin-right: 150px;
+        }
+        
+        .allGiff {
+            width: 330px !important;
+            height: auto;
+            left: 35%;
+            top: -55%;
+        }
     
   }
 
@@ -279,6 +302,16 @@
   }
 
   @media screen and (max-width: 1190px) {
+    .card-there p{
+        margin-right: 150px;
+        }
+        
+        .allGiff {
+            width: 300px !important;
+            height: auto;
+            left: 35%;
+            top: -70%;
+        }
     .dashboard2 li {
         width: 400px;
         height: 397px;
@@ -328,11 +361,6 @@
         margin-top: 30px;
     }
 
-    .card-there img{
-        width: 200px !important;
-        height: 200px !important;
-    }
-
     .card-last button {
         width: 200px !important;
         height: 200px;
@@ -347,6 +375,16 @@
   }
 
   @media screen and (max-width: 1090px) {
+    .card-there p{
+        margin-right: 100px;
+        }
+        
+        .allGiff {
+            width: 250px !important;
+            height: auto;
+            left: 30%;
+            top: -70%;
+        }
     .dashboard2 ul {
         justify-content: space-around;
     }
@@ -413,10 +451,6 @@
         font-size: 20px !important;
     }
 
-    .card-there img{
-        width: 150px !important;
-        height: 150px !important;
-    }
 
     .card-last button {
         width: 150px !important;

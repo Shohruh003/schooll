@@ -98,7 +98,7 @@ function Dashboard2() {
                         <p>Общий эмоциональный <br />фон школы</p>
                         <div className='card-there-body'>
                             <button>Всё хорошо</button>
-                            <img src={all} alt='allIcon' />
+                            <img className='allGiff' src={gif} alt='allIcon' />
                         </div>
                     </li>
                     <li className='card-last'>

@@ -426,15 +426,8 @@ document.head.appendChild(style);
               <div className='adminBoard_header'>
                 <div className='admin_board'>
                   <p className='admin_boardHead'>Доска</p> 
-                  <Link className='header_icon' to='/'>
-                  <svg className='domIcons' width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="25" cy="25" r="25" fill="#F9A298"/>
-<path d="M33 20.093L30 17.093V15H33V20.093ZM37 26H34V36H16V26H13L25 14L37 26ZM27 28H23V34H27V28Z" fill="white"/>
-</svg>
-
-                  </Link>
                   <button className='header_icon' onClick={handleModal}>
-                    <svg className=' header_icon' width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className=' header_icon' width="57" height="57" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
   <circle cx="30" cy="30" r="30" fill="#FA8072"/>
   <g clip-path="url(#clip0_147_1132)">
   <path d="M35.2069 19.5027C34.4019 19.0352 33.9044 18.1652 33.9069 17.2277V17.2239C33.9069 15.7589 32.7331 14.5714 31.2856 14.5714C29.8381 14.5714 28.6644 15.7589 28.6644 17.2239V17.2277C28.6669 18.1664 28.1694 19.0352 27.3644 19.5027C21.5294 22.8927 24.8819 34.1464 18.7856 36.1352V38.3214H43.7856V36.1352C37.6894 34.1464 41.0419 22.8927 35.2069 19.5027ZM31.2856 15.8214C31.9756 15.8214 32.5356 16.3827 32.5356 17.0714C32.5356 17.7614 31.9756 18.3214 31.2856 18.3214C30.5956 18.3214 30.0356 17.7614 30.0356 17.0714C30.0356 16.3827 30.5956 15.8214 31.2856 15.8214ZM35.0356 40.8214C35.0356 42.8189 33.2956 44.5714 31.3219 44.5714C29.3481 44.5714 27.5356 42.8189 27.5356 40.8214H35.0356ZM41.3044 25.1702C40.9969 23.2902 40.1381 20.5677 37.7831 18.2764L39.5281 16.4839C41.7781 18.6739 43.2456 21.5389 43.7719 24.7664L41.3044 25.1702ZM18.7856 24.7677C19.3119 21.5389 20.7794 18.6752 23.0294 16.4839L24.7744 18.2764C22.4194 20.5677 21.5594 23.2902 21.2531 25.1702L18.7856 24.7677Z" fill="white"/>
@@ -447,6 +440,14 @@ document.head.appendChild(style);
                     </svg>
                     <span className='sms_count' style={notificationCount ? {display: 'block'} : {display: 'none'}}>{notificationCount}</span>
                   </button>
+                  <Link className='header_icon' to='/'>
+                  <svg className='domIcons' width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="25" cy="25" r="25" fill="#F9A298"/>
+<path d="M33 20.093L30 17.093V15H33V20.093ZM37 26H34V36H16V26H13L25 14L37 26ZM27 28H23V34H27V28Z" fill="white"/>
+</svg>
+
+                  </Link>
+
                 </div>
                 <p className='admin_boardSpan'>Преподавателя</p>
               </div>
