@@ -419,3 +419,36 @@
      }
     
   }
+
+  @media screen and (max-width: 1070px) {
+    .logout_dashboard {
+        font-size: 20px;
+        padding: 8px 20px;
+      }
+      .dashboard2_heading h1 {
+        width: 400px;
+        font-size: 22px !important;
+      }
+
+      .dashboard-left {
+        font-size: 22px !important;
+      }
+    
+  }
+
+  @media screen and (max-width: 860px) {
+    .dashboard2_headerButton {
+        font-size: 16px;
+        padding: 8px 20px;
+        margin-right: 60px;;
+    }
+    .logout_dashboard {
+        font-size: 16px;
+        padding: 8px 20px;
+      }
+      .dashboard2_heading h1 {
+        width: 200px;
+        font-size: 22px !important;
+      }
+    
+  }
