@@ -14,7 +14,7 @@ function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const promises = classes?.extra?.angry?.map(async (item) => {
+        const promises = classes?.extra?.sad?.map(async (item) => {
           const response = await axios.get(
             `https://www.api.yomon-emas.uz/api/users/pupils/${item?.id}`
           );

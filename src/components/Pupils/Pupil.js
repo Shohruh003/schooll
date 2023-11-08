@@ -21,12 +21,14 @@ function Pupil() {
 `;
   document.head.appendChild(style);
 
-  const handleScroll = (e) => {
+  const handleScroll = async (e) => {
     const element = e.target;
-    if (Math.floor(element.scrollHeight - element.scrollTop) == element.clientHeight ) {
-      setPage(page + 1)
+    if (Math.floor(element.scrollHeight - element.scrollTop) == element.clientHeight) {
+      if (page < 5) {
+        setPage(page + 1)
+      }
     }
-  };
+  }
 
   useEffect(() => {
 
@@ -44,27 +46,25 @@ function Pupil() {
         }
 
         if (pupilEmotion) {
-          params.filter_by_emotion = pupilEmotion;
+          params.filter_by_emotion = pupilEmotion
         }
 
-        // if (params?.length != undefined && params?.length != 'all') {
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/`, { params });
-        const arr = response.data.results
-        setUsers(arr);
-        setOriginalUsers(response.data.results);
-        // }else{
-        //   const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`);
-        // const arr = response.data.results
-        // setUsers([...user, ...arr]);
-        // setOriginalUsers(response.data.results);
-        // }
-        
+        if (Object.keys(params).length > 0) {
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=1`, { params });
+          const arr = response.data.results
+          setUsers(arr);
+          setOriginalUsers(response.data);
+        } else if (page <= 3) {
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`);
+          const arr = response.data.results
+          setUsers([...user, ...arr]);
+        }
       } catch (error) {
         console.error(error);
       }
     };
     fetchPupils();
-  }, [ageRange, pupilClass, genders,pupilEmotion]);
+  }, [page, ageRange, pupilClass, genders, pupilEmotion]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,7 +90,7 @@ function Pupil() {
   }
 
   return (
-    <ul className="people_list" style={{ '--scrollbar-thumb': theme }}>
+    <ul onScroll={(e) => handleScroll(e)} className="people_list" style={{ '--scrollbar-thumb': theme }}>
       {user?.map((item, index) => {
         const date = item.birth_date;
         const birthDate = new Date(date);

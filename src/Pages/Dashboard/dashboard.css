@@ -131,3 +131,152 @@ border-bottom: 3px solid #FC6C85;
   font-size: 14px;
   margin-top: 25px;
 }
+
+
+/* ==========================Responsive=============================== */
+
+
+@media screen and (max-width: 1400px) {
+  .canvas{
+    width: 500px;
+    border: 3px solid #FC6C85;
+    border-radius: 40px;
+    margin-bottom: 10px;
+  }
+
+  .canvasjs-chart-container {
+    margin-top: 10px;
+    margin-left: -60px;
+  }
+  .canvasjs-chart-canvas {
+    width: 90% !important;
+    height: auto !important;
+}
+}
+
+
+@media screen and (max-width: 1200px) {
+  .canvas{
+    width: 400px;
+    height: 310px;
+  }
+
+  .canvasjs-chart-container {
+    margin-top: 10px;
+    margin-left: -60px;
+  }
+  .canvasjs-chart-canvas {
+    width: 90% !important;
+    height: auto !important;
+}
+
+.dashboard_modal {
+  font-size: 18px;
+  padding: 10px 0;
+}
+
+.weather{
+  width: 250px;
+  height: 36px !important;
+  padding: 5px !important;
+}
+
+.weather_number {
+  font-size: 24px !important;
+  margin-top: 15px;
+}
+
+.weather_date {
+  font-size: 10px;
+  margin-top: 15px;
+}
+
+.weather_monstr{
+  width: 36px !important;
+  height: 33px !important;
+}
+
+.celcy{
+  width: 15px;
+  height: 15px;
+}
+
+.logout {
+  padding: 7px !important;
+  font-size: 14px !important;
+}
+
+.dashboard_icon {
+  width: 36px;
+  height: 36px;
+}
+
+.admin_link {
+  font-size: 14px;
+  padding: 10px 15px;
+}
+
+}
+
+@media screen and (max-width: 1200px) {
+  .canvas{
+    width: 300px;
+    height: 250px;
+  }
+
+.dashboard_modal {
+  font-size: 18px;
+  padding: 10px 0;
+  border: 3px solid #FC6C85;
+}
+
+.weather{
+  width: 150px !important;
+  height: 32px !important;
+  padding: 2 !important;
+}
+
+.weather_number {
+  font-size: 16px !important;
+  margin-top: 12px;
+}
+
+.weather_date {
+  font-size: 10px !important;
+  margin-top: 13px !important;
+}
+
+.weather_monstr{
+  width: 36px !important;
+  height: 30px !important;
+}
+
+.celcy{
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.logout {
+  padding: 5px !important;
+  font-size: 14px !important;
+}
+
+.dashboard_icon {
+  width: 32px;
+  height: 32px;
+}
+
+.admin_link {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.language_dashboard, .theme_dashboard {
+  margin-right: 10px !important;
+}
+
+.logo-dashboard {
+  width: 230px !important;
+}
+
+}

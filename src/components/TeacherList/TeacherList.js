@@ -102,17 +102,23 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
       <li key={item.id} style={{borderColor: theme}} onClick={() => clickItem(item)}>
       <Link className='teacher_link'>
         <img className='teacher_image' src={item?.main_image ? item?.main_image : usersLogo} alt="teacher of the img" width='100' height='100' />
-        <p style={{borderColor: theme}}>
+        <p className="name_item" style={{borderColor: theme}}>
+          <div>
           <span className='teacher_heading'>Фамилия и имя</span>
           <span className='teacher_name'>{item.full_name ? item.full_name : "Пустой"}</span>
+          </div>
         </p>
-        <p style={{borderColor: theme}}>
+        <p  className="timeTeacher" style={{borderColor: theme}}>
+          <div>
           <span className='teacher_heading'>Пришел: {wentClock ? wentClock : "0"}</span>
           <span className='teacher_heading'>Ушел: {comeClock ? comeClock : "0"}</span>
+          </div>
         </p>
         <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence.emotions === "surprise" ? "Удивление" : "Пустой" : "Пустой"}`}>
+        <div>
         <span className='people_heading'> {firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence.emotions === "surprise" ? "Удивление" : "Пустой" : "Пустой"} </span>
           <span className='people_name'>{firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.confidence : "0"} %</span>
+        </div>
         </p>
       </Link>
     </li>

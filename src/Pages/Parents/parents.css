@@ -324,10 +324,6 @@
         font-size: 14px;
     }
 
-    .langTheme {
-        /* display: flex; */
-    }
-
     .langTheme svg {
         width: 45px !important;
     }
@@ -369,12 +365,6 @@
         margin-left: -30px;
         margin-top: 40px !important;
         /* display: none; */
-    }
-
-    .chart_about {
-        /* display: flex;
-        flex-wrap: wrap;
-        align-items: flex-start; */
     }
 
     .chart_about span {

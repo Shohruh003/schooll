@@ -52,22 +52,30 @@ function ClassesList() {
       <li key={item.key} style={{borderColor: theme}}>
       <Link className='class_link'>
         <div className="class_heading1">
+          <div>
           <span className='class_heading class_heading0'>Класс</span>
           <span className='class_name'>{item.key ? item.key : "Пустой"}</span>
+          </div>
         </div>
         <p style={{borderColor: theme}}>
+          <div>
           <span className='class_heading'>Всего учеников</span>
           <span className='class_name'>{item.value.all_pupils_count ? item.value.all_pupils_count : "Пустой"}</span>
+          </div>
         </p>
 
         <p style={{borderColor: theme}}>
+        <div>
         <span className='class_heading'>Учеников в классе</span>
           <span className='class_name'>{item.value.present_pupils.count}</span>
+        </div>
         </p>
 
         <p className={`emotions emotionClass ${emotionClass}`} style={{borderColor: theme}}>
+        <div>
         <span className='class_heading'>{emotionClass}</span>
           <span className='class_name'>{emotionClassConfidance} %</span>
+        </div>
         </p>
       </Link>
     </li>

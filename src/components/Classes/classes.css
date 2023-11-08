@@ -76,3 +76,79 @@
 .emotions{
   margin: 0 !important;
 }
+
+
+
+
+/* ===============================Responsive==================================== */
+
+@media screen and (max-width: 1200px) {
+  .class_link p {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 10px !important;
+  }
+  .class_heading {
+    font-size: 16px !important;
+  }
+
+  .class_name {
+    font-size: 16px !important;
+  }
+
+  .timeclass span {
+    font-size: 14px !important;
+  }
+  
+  .class_link p {
+    padding: 0 5px !important;
+    height: 70px !important;
+  }
+  
+  .name_item{
+    max-width: 200px !important;
+    min-width: 200px !important;
+  }
+
+  .class_image {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .class_heading {
+    font-size: 12px !important;
+  }
+
+  .class_name {
+    font-size: 12px !important;
+  }
+
+  .timeclass span {
+    font-size: 10px !important;
+  }
+  
+  .class_link p {
+    height: 50px !important;
+    padding: 0 5px !important;
+  }
+  
+  .name_item{
+    max-width: 150px !important;
+    min-width: 150px !important;
+  }
+
+  .class_image {
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    min-width: 40px !important;
+  }
+
+  .timeclass {
+    max-width: 100px;
+    min-width: 100px !important;
+  }
+}
