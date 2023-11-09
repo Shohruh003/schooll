@@ -299,21 +299,27 @@
     border: none;
   }
 
+  .parent_dom {
+    margin-left: 10px;
+  }
 
 
   /* ///////////////////////////////////// Responsive ======================== */
 
   @media screen and (max-width: 1400px) {
-    .column .canvasjs-chart-canvas {
-        width: 90% !important;
-        height: 180px !important;
-        margin-left: -40px;
+    .logo-parent{
+        width: 450px !important;
+        margin-bottom: -2px !important;
     }
 
     .avatar_chartInner .canvasjs-chart-canvas {
         width: 319px !important;
         height: 156px !important;
         margin-left: -40px;
+    }
+
+    .chart .canvasjs-chart-canvas {
+        margin-left: 30px;
     }
 
     .avatar_chartInner {
@@ -328,14 +334,14 @@
         width: 45px !important;
     }
 
-    .logo-dashboard {
+    .logo-parent {
         width: 300px;
         margin-bottom: -10px;
     }
 
     .weather {
         width: 180px;
-        height: 50px;
+        height: 50px !important;
         padding: 5px 10px;
     }
 
@@ -348,100 +354,169 @@
     }
 
     .week_list img {
-        width: 50px;
+        width: 70px;
     }
 }
 
-@media screen and (max-width: 1000px) {
-    /* .column .canvasjs-chart-canvas {
-        width: 90% !important;
-        height: 180px !important;
-        margin-left: -40px;
-    } */
-
-    .avatar_chartInner .canvasjs-chart-canvas {
-        width: 200px !important;
-        height: 100px !important;
-        margin-left: -30px;
-        margin-top: 40px !important;
-        /* display: none; */
+@media screen and (max-width: 1200px) {
+    .avatarImg {
+        width: 40px;
+        height: 40px;
     }
+    .logo-parent{
+        width: 350px !important;
+        margin-bottom: -8px !important;
+    }   
 
-    .chart_about span {
-        font-size: 10px;
-        margin: 0px !important;
-    }
-
-    .chat_icon {
-        display: none;
-    }
-
-    .chat_content {
-        width: 90%;
-        height: 110%;
-        margin: 0 auto;
+    .chart .canvasjs-chart-canvas {
+        margin-left: 20px;
+        margin-top: 10px;
     }
 
     .avatar_chartInner {
         padding: 10px 15px;
     }
 
-
-    .langTheme {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
+    .chart_about span {
+        font-size: 14px;
     }
 
     .langTheme svg {
-        width: 35px !important;
+        width: 45px !important;
     }
 
-    .langTheme select {
-        width: 80px !important;
-    }
-
-    .logo-dashboard {
+    .logo-parent {
         width: 300px;
         margin-bottom: -10px;
     }
 
-    .weather {
-        width: 130px;
-        height: 40px;
-        padding: 5px 10px;
+    .theme_parent{
+        width: 40px !important;
+        height: 40px !important;
     }
 
-    .weather .weather_date {
-        font-size: 12px;
-        margin-top: 15px;
+    .weather {
+        width: 180px;
+        height: 40px !important;
+        padding: 5px 10px;
     }
 
     .weather .weather_number {
         font-size: 40px !important;
     }
 
-    .avatar_about span,
-    p {
-        font-size: 15px !important;
+    .avatar_about span {
+        font-size: 18px;
     }
-    
+
     .week_list img {
-        width: 50px;
+        width: 60px;
     }
-    
-    .week_item span {
-        width: 10px !important;
+}
+
+@media screen and (max-width: 992px) {
+    .avatarImg {
+        width: 40px;
+        height: 40px;
+    }
+    .logo-parent{
+        width: 220px !important;
+        margin-right: 5px;
+        margin-bottom: -15px !important;
+    }   
+    .select{
+        font-size: 12px;
+    }
+    .chart_name{
         font-size: 10px !important;
-        margin: 0px !important;
     }
-    .week_list .chart_percentage {
-        width: 10px !important;
+
+    .chart_percentage{
+        width: 20px;
+        height: 20px;
+        font-size: 8px !important;
+    }
+
+    .chart .canvasjs-chart-canvas {
+        width: 230px !important;
+        height: auto !important;
+        margin-left: 20px;
+        margin-top: 50px;
+    }
+
+    .avatar_chartInner {
+        padding: 10px 15px;
+    }
+
+    .chart_about span {
+        font-size: 14px;
+    }
+
+    .langTheme svg {
+        width: 32px !important;
+    }
+
+    .logo-parent {
+        width: 300px;
+        margin-bottom: -10px;
+    }
+
+    .weather {
+        width: 100px !important;
+        height: 36px !important;
+        padding: 5px 10px;
+    }
+
+    .weather .weather_number {
+        font-size: 32px !important;
+    }
+
+    .weather_date{
+        font-size: 6px !important;
+        margin-top: 20px !important;
+    }
+
+    .weather svg{
+        margin-top: -5px !important;
+    }
+    .weather .weather_monstr{
+        margin-top: -1px !important;
+    }
+    .avatar_about span {
+        font-size: 16px;
+    }
+    .avatar_name{
+        font-size: 16px;
+    }
+
+    .week_list img {
+        width: 60px;
+    }
+
+    .days {
         font-size: 10px;
     }
-
-    .empty_div {
-        display: none;
+    
+    .column div {
+        height: 120px !important;
+    }
+    .chat_name{
+        font-size: 8px;
     }
 
+    .chat_position{
+        font-size: 6px;
+    }
+
+    .chat_avatarImg{
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+    }
+
+    .chat_count{
+        width: 20px;
+        height: 20px;
+        font-size: 8px;
+    }
 }

@@ -75,7 +75,6 @@ const firstMaxConfidenceIndex = emotions?.emotions?.findIndex(
   (emotion) => emotion?.confidence === maxConfidence
 );
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
-console.log(firstEmotionWithMaxConfidence);
     return (
       <li key={item?.id} style={{borderColor: theme}} onClick={clickItem}>
       <Link className='teacher_link'>

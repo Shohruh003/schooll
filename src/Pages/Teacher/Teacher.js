@@ -515,7 +515,7 @@ document.head.appendChild(style);
               </div>
           </div>
 
-          <div>
+          <div className='admin_panelInner'>
           <div className="admin_panel">
             <h4 className="panel_heading">фильтрация</h4>
 

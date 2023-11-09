@@ -441,6 +441,9 @@
 
 
 @media screen and (max-width: 1400px) {
+  .admin_panel{
+    margin-left: auto !important;
+  }
   .admin_header {
     width: 750px !important;
   }
@@ -460,6 +463,27 @@
 }
 
 @media screen and (max-width: 1200px) {
+  .attendance {
+    width: 250px;
+    margin-top: 20px;
+    padding: 10px 10px 0 10px;
+  }
+  
+  .attendance_name{
+    margin: 0;
+    font-size: 13px !important;
+    font-weight: 400;
+    color: #161B23;
+  }
+  
+  .attendance_avatar {
+    border-radius: 50px;
+  }
+
+
+  .admin_panel{
+    margin-left: auto !important;
+  }
   .admin_header {
     width: 650px !important;
   }
@@ -519,6 +543,22 @@
 }
 
 @media screen and (max-width: 991px) {
+  .attendance {
+    width: 170px;
+  }
+  
+  .attendance_name{
+    margin: 0;
+    font-size: 12px !important;
+  }
+  
+  .attendance_avatar {
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    min-width: 40px !important;
+  }
+
   .admin_header {
     width: 480px !important;
   }
