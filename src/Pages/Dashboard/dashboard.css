@@ -105,6 +105,7 @@ border-bottom: 3px solid #FC6C85;
   color: #FC6C85;
   border: 4px solid #FC6C85;
   border-radius: 40px;
+  z-index: 7 !important;
 }
 
 .weather{
@@ -137,6 +138,10 @@ border-bottom: 3px solid #FC6C85;
 
 
 @media screen and (max-width: 1400px) {
+  .logo-dashboard {
+    width: 420px !important;
+    margin-bottom: -4px;
+  }
   .canvas{
     width: 500px;
     border: 3px solid #FC6C85;
@@ -157,13 +162,13 @@ border-bottom: 3px solid #FC6C85;
 
 @media screen and (max-width: 1200px) {
   .canvas{
-    width: 400px;
-    height: 310px;
+    width: 400px !important;
+    height: 310px !important;
   }
 
   .canvasjs-chart-container {
-    margin-top: 10px;
-    margin-left: -60px;
+    margin-top: 10px !important;
+    margin-left: -60px !important;
   }
   .canvasjs-chart-canvas {
     width: 90% !important;
@@ -171,8 +176,8 @@ border-bottom: 3px solid #FC6C85;
 }
 
 .dashboard_modal {
-  font-size: 18px;
-  padding: 10px 0;
+  font-size: 18px !important;
+  padding: 10px 0 !important;
 }
 
 .weather{
@@ -187,8 +192,8 @@ border-bottom: 3px solid #FC6C85;
 }
 
 .weather_date {
-  font-size: 10px;
-  margin-top: 15px;
+  font-size: 10px !important;
+  margin-top: 15px !important;
 }
 
 .weather_monstr{
@@ -219,6 +224,10 @@ border-bottom: 3px solid #FC6C85;
 }
 
 @media screen and (max-width: 1200px) {
+  .school .logo-dashboard {
+    width: 350px !important;
+    margin-bottom: -7px;
+  }
   .canvas{
     width: 300px;
     height: 250px;
@@ -258,17 +267,112 @@ border-bottom: 3px solid #FC6C85;
 
 .logout {
   padding: 5px !important;
-  font-size: 14px !important;
+  font-size: 20px !important;
 }
 
 .dashboard_icon {
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
 }
 
 .admin_link {
-  font-size: 12px;
+  font-size: 16px;
   padding: 5px 10px;
+}
+
+.dashboard_modal {
+  z-index: 5;
+}
+
+.language_dashboard, .theme_dashboard {
+  margin-right: 10px !important;
+}
+
+.logo-dashboard {
+  width: 230px !important;
+}
+
+}
+
+@media screen and (max-width: 991px) {
+
+  .canvas div {
+    height: 250px !important;
+  }
+
+  .canvasjs-chart-container > .canvasjs-chart-tootip div {
+    display: block !important;
+    height: 20px !important;
+  }
+  .school .logo-dashboard {
+    width: 250px !important;
+    margin-bottom: -14px;
+  }
+  .canvas{
+    width: 300px !important;
+    height: 250px !important;
+  }
+
+.dashboard_modal {
+  font-size: 18px !important;
+  padding: 10px 0;
+  border: 3px solid #FC6C85;
+}
+
+.school .weather{
+  width: 120px !important;
+  height: 28px !important;
+  padding: 2 !important;
+}
+
+.school .weather_number {
+  font-size: 12px !important;
+  margin-top: 10px;
+}
+
+.school .weather_date {
+  font-size: 8px !important;
+  margin-top: 10px !important;
+}
+
+.school .weather_monstr{
+  width: 26px !important;
+  height: 20px !important;
+}
+
+.celcy{
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.logout {
+  padding: 5px !important;
+  font-size: 12px !important;
+}
+
+.dashboard_icon {
+  width: 42px;
+  height: 42px;
+  margin-bottom: -5px !important;
+}
+
+.school .langTheme {
+  display: flex !important;
+  align-items: flex-end !important;
+}
+.school .admin_link {
+  font-size: 14px !important;
+  padding: 5px 10px;
+  margin-bottom: 0px !important;
+}
+
+.dashboard_modal {
+  width: 100% !important;
+  z-index: 5;
+}
+
+.item_text {
+  font-size: 20px !important;
 }
 
 .language_dashboard, .theme_dashboard {
