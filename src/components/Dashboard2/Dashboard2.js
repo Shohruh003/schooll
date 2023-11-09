@@ -63,7 +63,7 @@ function Dashboard2() {
             </div>
             <div className='dashboard-body'>
                 <div className='dashboard-left'>
-                    <h2>СРЕДНЯЯ <br />ШКОЛА №64 <br />г. Ташкента</h2>
+                    <h2>СРЕДНЯЯ <br />ШКОЛА №121 <br />г. Ташкента</h2>
                     <img src={logo} alt='logo' />
                 </div>
                 <ul>
