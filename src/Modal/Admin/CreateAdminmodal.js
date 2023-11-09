@@ -327,7 +327,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                     <input type="checkbox" list="datalistOptions" onChange={handleCheckboxChange} id="6" />
                   </div>
             </div>
-            <div className='vid-box'>
+              <div className='vid-box'>
               <div className='video_box'>
                 <label for="5" class="form-label">Роль:</label>
                 <select onChange={changeOption}>
@@ -340,7 +340,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
               </div>
               <div className='video_box'>
                 <label for="5" class="form-label">Фото</label>
-                <input required ref={imgref} type="file" id="startButton2" />
+                <input required ref={imgref} type="file" id="startButton2" placeholder='file' />
               </div>
             </div>
             <div className='button_box'>
