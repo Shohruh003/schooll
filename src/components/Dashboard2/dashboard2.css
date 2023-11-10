@@ -593,7 +593,7 @@ margin-right: 200px;
 
   @media screen and (max-width: 370px) {
     .dashboard2_heading h2 {
-        font-size: 16px;
+        font-size: 14px !important;
         padding: 3px 10px;
 
     }
@@ -602,4 +602,13 @@ margin-right: 200px;
         font-size: 20px;
         padding: 9px 20px;
       }
+  }
+
+  @media screen and (max-width: 350px) {
+    .dashboard2_heading {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between;
+        padding: 10px;
+    }
   }
