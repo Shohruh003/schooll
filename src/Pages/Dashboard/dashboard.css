@@ -492,6 +492,10 @@ border-bottom: 3px solid #FC6C85;
     margin: 0 auto;
     width: 400px;
   }
+
+  .canvasjs-chart-container .canvasjs-chart-tooltip {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 500px) {

@@ -178,7 +178,7 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 		data: [{
 			type: "doughnut",
 			showInLegend: true,
-			toolTipContent: "<b>{name}</b>: (#percent%)",
+			// toolTipContent: "<b>{name}</b>: (#percent%)",
 			indexLabel: "{name} - #percent%",
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
@@ -199,7 +199,7 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 	const pupils = {
 		animationEnabled: true,
 		subtitles: [{
-						verticalAlign: "center",
+			verticalAlign: "center",
 			fontSize: 24,
 			dockInsidePlotArea: true,
 		}],
@@ -209,7 +209,7 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 		data: [{
 			type: "doughnut",
 			showInLegend: true,
-			toolTipContent: "<b>{name}</b>: (#percent%)",
+			// toolTipContent: "<b>{name}</b>: (#percent%)",
 			indexLabel: "{name} - #percent%",
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
