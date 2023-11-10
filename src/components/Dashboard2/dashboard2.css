@@ -592,6 +592,9 @@ margin-right: 200px;
   }
 
   @media screen and (max-width: 400px) {
+    .dashboard2{
+        overflow-x: hidden;
+    }
     .dashboard2_heading h2 {
         font-size: 14px !important;
         padding: 3px 10px;
