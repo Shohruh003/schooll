@@ -591,6 +591,19 @@ margin-right: 200px;
       }
   }
 
+  @media screen and (max-width: 400px) {
+    .dashboard2_heading h2 {
+        font-size: 14px !important;
+        padding: 3px 10px;
+
+    }
+
+    .logout_dashboard {
+        font-size: 20px;
+        padding: 7px 20px;
+      }
+  }
+
   @media screen and (max-width: 370px) {
     .dashboard2_heading h2 {
         font-size: 14px !important;
@@ -600,7 +613,7 @@ margin-right: 200px;
 
     .logout_dashboard {
         font-size: 20px;
-        padding: 9px 20px;
+        padding: 7px 20px;
       }
   }
 
