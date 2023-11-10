@@ -114,3 +114,53 @@
   width: 20px;
   cursor: pointer;
 }
+
+
+@media screen and (max-width: 1105px) {
+  .login .login_content {
+    padding: 20px 100px !important;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .login .login_content {
+    padding: 20px 70px !important;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .login .login_content {
+    padding: 20px 40px !important;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .login_img {
+    display: none;
+  }
+  .login .login_content {
+    width: 300px !important;
+    height: 100vh;
+    padding:0 !important;
+    margin: 0 auto;
+    border: none;
+    background-color: white;
+  }
+
+  .login_logoName {
+    text-transform: uppercase;
+    color: #00B8D7;
+  }
+
+  .login_heading {
+    font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .login_heading {
+    font-size: 24px;
+  }
+}
