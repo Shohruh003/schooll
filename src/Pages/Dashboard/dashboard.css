@@ -133,6 +133,14 @@ border-bottom: 3px solid #FC6C85;
   margin-top: 25px;
 }
 
+.responsive_dashboard{
+  display: none;
+}
+
+.adminRes_link {
+  display: none;
+}
+
 
 /* ==========================Responsive=============================== */
 
@@ -383,4 +391,112 @@ border-bottom: 3px solid #FC6C85;
   width: 230px !important;
 }
 
+}
+
+
+@media screen and (max-width: 770px) {
+
+  .dashboard_inner {
+    width: 500px;
+  }
+
+  .adminRes_link {
+    display: block;
+    width: 300px;
+    font-size: 20px !important;
+    font-weight: 700;
+    padding: 14px 20px;
+    margin: 10px auto 0 auto;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    background-color: #FA8072;
+    border-radius: 12px;
+  }
+
+.dashboard_icon {
+  width: 30px;
+  height: 30px;
+  margin-top: -5px;
+}
+
+  .header_dashboard .langTheme{
+    display: none !important;
+  }
+
+  .weather{
+    display: none;
+  }
+
+  .weather_res{
+    display: flex;
+    justify-content: space-between;
+    width: 150px !important;
+    height: 30px;
+    padding: 10px;
+    margin-right: 10px;
+    color: #ffffff;
+    background-color: #FA8072;
+    border-radius: 10px;
+  }
+  
+  .weather_numberRes {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
+  }
+
+  .weather_dateRes {
+    font-size: 10px;
+    margin-top: 5px;
+  }
+
+  .celcyRes{
+    width: 12px !important;
+    height: 12px !important;
+    margin-top: -8px !important;
+  }
+
+  .weather_monstrRes{
+    width: 26px !important;
+    height: 20px !important;
+    margin-top: -5px !important;
+  }
+  
+
+  .responsive_dashboard{
+    display: flex;
+    align-items: center;
+    background-color: transparent !important;
+  }
+
+  .userList{
+    flex-direction: column;
+  }
+
+  .item_text{
+    margin: 0;
+    text-align: center;
+  }
+
+  .userItem{
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .dashboard_inner {
+    margin: 0 auto;
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .dashboard_inner {
+    margin: 0 auto;
+    width: 300px;
+  }
 }
