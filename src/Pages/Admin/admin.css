@@ -706,6 +706,10 @@
 
 @media screen and (max-width: 767px) {
 
+  .attendance{
+    display: none;
+  }
+
   .panel_buttonRes {
     display: block;
     padding: 7px 30px;

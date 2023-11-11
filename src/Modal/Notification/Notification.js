@@ -25,7 +25,6 @@ function Notification () {
           </Modal.Title>
         {
           notification?.map((e) => {
-            console.log(e);
             return (
               <Modal.Body>
               <h4>{e?.title}</h4>
