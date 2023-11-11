@@ -207,7 +207,6 @@ function Parents () {
               const [week5, setWeek5] = useState()
               const [week6, setWeek6] = useState()
               const [week7, setWeek7] = useState()
-
               const weekdays = ['Вс','Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
              
               const week7day = new Date(date7);
@@ -365,15 +364,21 @@ const piHappy = Math.round(pia?.happy)
                     yValueFormatString: "#,###'%'",
                     dataPoints: [
                         { y: piAngry ? piAngry : 0 , color: "#FC6C85", name: "Злость" },
-                        { y: piSad ? piSad : 0 , color: "#ffffff", name: "Грусть" },
-                        { y: piNeutral ? piNeutral : 0, color: "#FCEFED", name: "Нейтраль" },
-                        { y: piHappy ? piHappy : 0, color: "#F9A79D", name: "Веселье"}
+                        { y: piSad ? piSad : 0 , color: "#808080", name: "Грусть" },
+                        { y: piNeutral ? piNeutral : 0, color: "#008000", name: "Нейтраль" },
+                        { y: piHappy ? piHappy : 0, color: "#ffa500", name: "Веселье"}
                     ]
                 }],
                 backgroundColor: "transparent",
             }
 
-        
+        const colors2 = diagram2?.emotion === 'neutral' ? '#008000' : diagram2?.emotion === 'sad' ? '#808080' : diagram2?.emotion === 'angry' ? '#FC6C85' : diagram2?.emotion === 'happy' ? "#ffa500" : ' ';
+        const colors3 = diagram3?.emotion === 'neutral' ? '#008000' : diagram3?.emotion === 'sad' ? '#808080' : diagram3?.emotion === 'angry' ? '#FC6C85' : diagram3?.emotion === 'happy' ? "#ffa500" : ' ';
+        const colors4 = diagram4?.emotion === 'neutral' ? '#008000' : diagram4?.emotion === 'sad' ? '#808080' : diagram4?.emotion === 'angry' ? '#FC6C85' : diagram4?.emotion === 'happy' ? "#ffa500" : ' ';
+        const colors5 = diagram5?.emotion === 'neutral' ? '#008000' : diagram5?.emotion === 'sad' ? '#808080' : diagram5?.emotion === 'angry' ? '#FC6C85' : diagram5?.emotion === 'happy' ? "#ffa500" : ' ';
+        const colors6 = diagram6?.emotion === 'neutral' ? '#008000' : diagram6?.emotion === 'sad' ? '#808080' : diagram6?.emotion === 'angry' ? '#FC6C85' : diagram6?.emotion === 'happy' ? "#ffa500" : ' ';
+        const colors7 = diagram7?.emotion === 'neutral' ? '#008000' : diagram7?.emotion === 'sad' ? '#808080' : diagram7?.emotion === 'angry' ? '#FC6C85' : diagram7?.emotion === 'happy' ? "#ffa500" : ' ';
+
         function findLargestSection(pupils) {
                     let largestSectionIndex = 0;
                     let largestSectionValue = pupils.data[0].dataPoints[0].y;
@@ -401,12 +406,12 @@ const piHappy = Math.round(pia?.happy)
                     {
                         type: "column",
                         dataPoints: [
-                            { label: date2 + ' - ' + weekday2, color: "#FC6C85", y: diagram2?.confidence   },
-                            { label: date3 + ' - ' + weekday3,color: "#ffffff", y: diagram3?.confidence   },
-                            { label: date4 + ' - ' + weekday4,color: "#FCEFED",  y: diagram4?.confidence   },
-                            { label: date5 + ' - ' + weekday5, color: "#F9A79D", y: diagram5?.confidence   },
-                            { label: date6 + ' - ' + weekday6,color: "#FCEFED",  y: diagram6?.confidence   },
-                            { label: date7 + ' - ' + weekday7, color: "#F9A79D", y: diagram7?.confidence  }
+                            { label: date2 + ' - ' + weekday2,color: colors2, y: diagram2?.confidence   },
+                            { label: date3 + ' - ' + weekday3,color: colors3, y: diagram3?.confidence   },
+                            { label: date4 + ' - ' + weekday4,color: colors4,  y: diagram4?.confidence   },
+                            { label: date5 + ' - ' + weekday5, color: colors5, y: diagram5?.confidence   },
+                            { label: date6 + ' - ' + weekday6,color: colors6,  y: diagram6?.confidence   },
+                            { label: date7 + ' - ' + weekday7, color: colors7, y: diagram7?.confidence  }
                         ],
                     }
                     ],

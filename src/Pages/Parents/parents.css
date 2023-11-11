@@ -70,7 +70,7 @@
     margin-right: 10px;
     font-size: 10px;
     font-weight: 600;
-    color: black;
+    color: white;
     border-radius: 50px;
 }
 
@@ -244,15 +244,15 @@
 }
 
 .chart_percentage1 {
-    background-color: #F9A79D;
+    background-color: #ffa500;
 }
 
 .chart_percentage2 {
-    background-color: #FCEFED;
+    background-color: #008000;
 }
 
 .chart_percentage3 {
-    background-color: #ffffff;
+    background-color: #808080;
 }
 
 .chart_percentage4 {
@@ -435,6 +435,7 @@
         width: 20px;
         height: 20px;
         font-size: 8px !important;
+        color: white;
     }
 
     .chart .canvasjs-chart-canvas {
