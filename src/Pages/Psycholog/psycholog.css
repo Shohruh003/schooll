@@ -632,3 +632,68 @@
     height: 20px;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .psychologListLink {
+    width: 80px !important;
+    height: 110px !important;
+  }
+
+  .navLinkIcon {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  
+  .navLinkIcon0{
+    width: 40px !important;
+    height: 50px !important;
+  }
+
+  .psychologLink {
+    margin: 0 !important;
+    font-size: 8px !important;
+  }
+  
+  .psychologQuantity{
+    font-size: 10px !important;
+  }
+
+  .psycholog_emotionDiv {
+    width: 120px;
+    height: 110px;
+    padding: 5px;
+  }
+  
+  .emotionDiv_heading {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  
+  .emotionDiv_button {
+    width: 100px;
+    padding: 7px 10px;
+    font-size: 10px;
+  }
+  
+  .emotionDiv_span{
+    bottom: 17px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .psycholog_emotionDiv {
+    width: 100px;
+    height: 110px;
+    padding: 5px;
+  }
+    
+  .emotionDiv_button {
+    width: 80px;
+    padding: 7px 10px;
+    font-size: 10px;
+  }
+}
