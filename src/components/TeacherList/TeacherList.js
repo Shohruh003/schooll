@@ -108,7 +108,7 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
           <span className='teacher_name'>{item.full_name ? item.full_name : "Пустой"}</span>
           </div>
         </p>
-        <p  className="timeTeacher" style={{borderColor: theme}}>
+        <p className="timeTeacher" style={{borderColor: theme}}>
           <div>
           <span className='teacher_heading'>Пришел: {wentClock ? wentClock : "0"}</span>
           <span className='teacher_heading'>Ушел: {comeClock ? comeClock : "0"}</span>

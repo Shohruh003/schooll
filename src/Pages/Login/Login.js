@@ -49,7 +49,7 @@ function Login() {
             <p className='login_logoText'>Face IDS School</p>
 
             <form className="login_form" onSubmit={handleUserLogin}>
-          <p className="login_text">Войдите в систему</p>
+            <p className="login_text">Войдите в систему</p>
 
               <input className="login_input" type="email" name="email" placeholder="Email" />
 
@@ -60,10 +60,10 @@ function Login() {
                 <img className="btnEye" onClick={() => { const password = document.querySelector('.password'); return (password.type == "password") ? password.type = "text" : password.type = "password" }} src={eye} />
               </div>
             <button className="login_button" type="submit">Войти</button>
-          </form>
+            </form>
 
-          <img className='login_logo' src={TadIndustries} alt="Tad industries logo" width='103' height='171'/>
-          <p className='login_logoName'>Tad Industries</p>
+            <img className='login_logo' src={TadIndustries} alt="Tad industries logo" width='103' height='171'/>
+            <p className='login_logoName'>Tad Industries</p>
           </div>
         </div>
       </div>
