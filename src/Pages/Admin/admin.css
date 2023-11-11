@@ -337,7 +337,7 @@
 }
 
 .radio_button{
-  margin-right: 4px;
+  margin:5px 10px;
   transform: scale(1.3);
 }
 
@@ -433,8 +433,20 @@
   margin-right: 40px;
 }
 
-
-
+.panel_buttonRes {
+  display: none;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding: 7px 30px;
+  font-size: 22px;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  color: #ffffff;  
+  background-color: #FA8072;
+}
 
 /* ==========================Responsive====================== */
 
@@ -671,5 +683,219 @@
 
   .search_pupil {
     padding-left: 10px !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+
+  .panel_buttonRes {
+    display: block;
+    padding: 7px 30px;
+    font-size: 22px;
+  }
+  
+  .admin_page{
+    overflow-x: hidden !important;
+  }
+
+  .admin_inner {
+    flex-direction: column-reverse;
+  }
+  .admin_panelInner {
+    width: 100% !important;
+  }
+
+  .admin_panel {
+    width: 100% !important;
+    margin: 0 0 10px 0 !important;
+  }
+
+  .panel_heading {
+    margin-top: 0;
+  }
+
+  .panel_list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .age-search {
+    padding: 10px 10px !important;
+  }
+
+  .search_pupil{
+    font-size: 18px !important;
+    padding: 8px 0 !important;
+    padding-left: 15px;
+  }
+
+  .radio_button {
+    margin:2px 5px;
+  }
+
+  .item_button {
+    padding: 5px 0;
+  }
+
+  .search_select {
+    height: 50px !important;
+    padding: 4px 10px !important;
+  }
+
+  .search_danger label {
+    font-size: 10px !important;
+  }
+
+  .panel_list li {
+    margin: 0 0 10px 0 !important;
+  }
+
+  .panel_button{
+    display: none !important;
+  }
+  .header {
+    flex-wrap: wrap;
+  }
+
+  .admin_header {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+
+  .panel_heading {
+    margin: 0;
+    padding: 5px 0 !important;
+  }
+
+  
+  .panel_list li {
+    margin: 5px 0 0 0 !important;
+  }
+
+  .panel_heading {
+    font-size: 18px !important;
+  }
+
+  .panel_list {
+    justify-content: space-around;
+  }
+
+  .age-search {
+    display: flex !important;
+    align-items: center !important;
+    width: 100px !important;
+    padding: 5px 5px !important;
+  }
+
+  .age-search span {
+    font-size: 6px !important;
+  }
+
+  .panel_item .search_pupil{
+    font-size: 12px !important;
+    padding: 8px 0 !important;
+    padding-left: 15px;
+  }
+
+  .radio_button {
+    width: 10px;
+    height: 10px;
+    margin:2px 5px;
+  }
+
+  .ageSearch {
+    width: 20px;
+    height: 20px;
+  }
+  .item_button {
+    font-size: 16px !important;
+    width: 100px !important;
+    padding: 2px 0 !important;
+  }
+
+  .item_button span {
+    font-size: 8px !important;
+  }
+
+  .search_select {
+    height: 35px !important;
+    width: 100px !important;
+    padding: 4px 10px !important;
+  }
+
+  .search_danger label {
+    font-size: 8px !important;
+  }
+
+  .panel_buttonRes {
+    padding: 7px 30px;
+    font-size: 20px;
+  }
+
+  .site-logo{
+    width: 200px !important;
+  }
+  .header-link {
+    width: 120px !important;
+    height: 130px !important;
+  }
+
+  .navLinkName{
+    font-size: 12px !important;
+  }
+}
+
+
+@media screen and (max-width: 444px) {
+
+  .search_label {
+    width: 300px !important;
+  }
+
+  .adminBoard_header {
+    padding: 0 !important;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .panel_buttonRes {
+    padding: 5px 30px;
+    font-size: 18px;
+  }
+
+  .search_label {
+    width: 280px !important;
+  }
+}
+
+@media screen and (max-width: 390px) {
+
+  .search_label {
+    width: 250px !important;
+  }
+
+  .header-link {
+    width: 100px !important;
+    height: 115px !important;
+  }
+
+  .navLinkName{
+    font-size: 10px !important;
+    margin-top: 5px !important;
+  }
+
+  .quantity{
+    font-size: 12px !important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+
+  .search_label {
+    width: 220px !important;
   }
 }

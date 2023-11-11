@@ -178,7 +178,7 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 		data: [{
 			type: "doughnut",
 			showInLegend: true,
-			// toolTipContent: "<b>{name}</b>: (#percent%)",
+			toolTipContent: "<b>{name}</b>: (#percent%)",
 			indexLabel: "{name} - #percent%",
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
@@ -209,7 +209,7 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 		data: [{
 			type: "doughnut",
 			showInLegend: true,
-			// toolTipContent: "<b>{name}</b>: (#percent%)",
+			toolTipContent: "<b>{name}</b>: (#percent%)",
 			indexLabel: "{name} - #percent%",
 			yValueFormatString: "#,###'%'",
 			dataPoints: [

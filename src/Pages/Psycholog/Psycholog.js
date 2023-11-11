@@ -195,73 +195,77 @@ function Psycholog(props) {
   };
 
   fetchPupils();
-  const handleEmotionChange = async (event) => {
+  const handleEmotionChange = (event) => {
     const selectedEmotion = event.target.value;
-    const pupilIds = userslar?.map((pupil) => pupil.id);
-    const promises = pupilIds?.map(async (id) => {
-      const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`);
-      return response.data;
-    });
-    const absentPupilsData = await Promise.all(promises);
-    var pup = absentPupilsData;
-    switch (selectedEmotion) {
-      case "happy":
-        pup = pup?.filter(
-          (pupil) =>
-            pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "happy"
-        );
-        setUsers(pup);
-        break;
-      case "neutral":
-        pup = pup?.filter(
-          (pupil) =>
-            pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "neutral"
-        );
-        setUsers(pup);
-        break;
-      case "sad":
-        pup = pup?.filter(
-          (pupil) =>
-            pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "sad"
-        );
-        setUsers(pup);
-        break;
-      case "angry":
-        pup = pup?.filter(
-          (pupil) =>
-            pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "angry"
-        );
-        setUsers(pup);
-        break;
-      case "fear":
-        pup = pup?.filter(
-          (pupil) =>
-            pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "fear"
-        );
-        setUsers(pup);
-        break;
-      case "surprise":
-        pup = pup?.filter(
-          (pupil) =>
-            pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions ==
-            "surprise"
-        );
-        setUsers(pup);
-        break;
-        case "all":
-          setUsers(userslar);
-    }
+    setPupilEmotion(selectedEmotion);
   };
+  // const handleEmotionChange = async (event) => {
+  //   const selectedEmotion = event.target.value;
+  //   const pupilIds = userslar?.map((pupil) => pupil.id);
+  //   const promises = pupilIds?.map(async (id) => {
+  //     const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`);
+  //     return response.data;
+  //   });
+  //   const absentPupilsData = await Promise.all(promises);
+  //   var pup = absentPupilsData;
+  //   switch (selectedEmotion) {
+  //     case "happy":
+  //       pup = pup?.filter(
+  //         (pupil) =>
+  //           pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "happy"
+  //       );
+  //       setUsers(pup);
+  //       break;
+  //     case "neutral":
+  //       pup = pup?.filter(
+  //         (pupil) =>
+  //           pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "neutral"
+  //       );
+  //       setUsers(pup);
+  //       break;
+  //     case "sad":
+  //       pup = pup?.filter(
+  //         (pupil) =>
+  //           pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "sad"
+  //       );
+  //       setUsers(pup);
+  //       break;
+  //     case "angry":
+  //       pup = pup?.filter(
+  //         (pupil) =>
+  //           pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "angry"
+  //       );
+  //       setUsers(pup);
+  //       break;
+  //     case "fear":
+  //       pup = pup?.filter(
+  //         (pupil) =>
+  //           pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "fear"
+  //       );
+  //       setUsers(pup);
+  //       break;
+  //     case "surprise":
+  //       pup = pup?.filter(
+  //         (pupil) =>
+  //           pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions ==
+  //           "surprise"
+  //       );
+  //       setUsers(pup);
+  //       break;
+  //       case "all":
+  //         setUsers(userslar);
+  //   }
+  // };
 
 
-  const handleSearch = (event) => {
-    const searchTerm = event.target.value;
-    const filteredUsers = originalUsers.filter((item) =>
-      item.full_name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setUsers(searchTerm === '' ? originalUsers : filteredUsers);
-    setTeacher(searchTerm === '' ? originalUsers : filteredUsers);
-  };
+  // const handleSearch = (event) => {
+  //   const searchTerm = event.target.value;
+  //   const filteredUsers = originalUsers?.filter((item) =>
+  //     item.full_name.toLowerCase().includes(searchTerm.toLowerCase())
+  //   );
+  //   setUsers(searchTerm === '' ? originalUsers : filteredUsers);
+  //   setTeacher(searchTerm === '' ? originalUsers : filteredUsers);
+  // };
 
   const handleClasChange = (event) => {
     const searchTerm = event.target.value;
@@ -347,7 +351,7 @@ const hendlStatus = (x) => {
 
               <div className='domIcon'>
               <label className='search_label' style={{borderColor: theme}}>
-                <input className='search_input header_icon' type="text" placeholder='Искать...' onChange={handleSearch}/>
+                <input className='search_input header_icon' type="text" placeholder='Искать...' onChange={handleClasChange}/>
                 <svg className='search_icon' width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="25" cy="25" r="25" fill={theme}/>
 <path d="M28.97 30.031C27.491 31.269 25.586 32.016 23.509 32.016C18.812 32.016 15 28.204 15 23.508C15 18.812 18.812 15 23.509 15C28.204 15 32.017 18.812 32.017 23.508C32.017 25.586 31.27 27.492 30.032 28.969L34.781 33.719C34.927 33.865 35 34.057 35 34.25C35 34.837 34.463 35 34.25 35C34.058 35 33.866 34.927 33.719 34.78L28.97 30.031ZM23.509 16.501C19.641 16.501 16.502 19.641 16.502 23.508C16.502 27.375 19.641 30.515 23.509 30.515C27.375 30.515 30.516 27.375 30.516 23.508C30.516 19.641 27.375 16.501 23.509 16.501Z" fill="white"/>
@@ -500,13 +504,15 @@ const hendlStatus = (x) => {
                 <div className='item_button search_danger'>
                   <span>По полу</span>
                 <div onChange={handleGenderChange}>
-                  <input className='radio_button' id="maleCheckbox" type="checkbox" value='True'/>
+                  
                 <label htmlFor="maleCheckbox" className='radio_label'>
                   Мальчик
+                  <input className='radio_button' id="maleCheckbox" type="checkbox" value='True'/>
                 </label>
-                  <input className='radio_button' id="femaleCheckbox" type="checkbox" value='False' />
+                  
                 <label htmlFor="femaleCheckbox" className='radio_label'>
                   Девочка
+                  <input className='radio_button' id="femaleCheckbox" type="checkbox" value='False' />
                 </label>
                 </div>
                 </div>

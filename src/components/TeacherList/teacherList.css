@@ -160,3 +160,89 @@
     min-width: 100px !important;
   }
 }
+
+
+@media screen and (max-width: 500px) {
+  .teacher_heading {
+    font-size: 10px !important;
+  }
+
+  .teacher_name {
+    font-size: 10px !important;
+  }
+
+  .timeTeacher span {
+    font-size: 8px !important;
+  }
+  
+  .teacher_link p {
+    padding: 0 3px !important;
+  }
+  
+  .name_item{
+    max-width: 100px !important;
+    min-width: 100px !important;
+  }
+
+  .teacher_image {
+    width: 35px !important;
+    height: 35px !important;
+    max-width: 35px !important;
+    min-width: 35px !important;
+  }
+
+  .timeTeacher {
+    max-width: 70px;
+    min-width: 70px !important;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .teacher_link .name_item{
+    max-width: 110px !important;
+    min-width: 110px !important;  
+  }
+
+  .teacher_link .teacher_heading {
+    font-size: 8px !important;
+  }
+
+  .teacher_link .teacher_name {
+    font-size: 8px !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .teacher_link .teacher_heading {
+    font-size: 10px !important;
+  }
+
+  .teacher_link .teacher_name {
+    font-size: 10px !important;
+  }
+
+  .teacher_link .timeTeacher span {
+    font-size: 8px !important;
+  }
+  
+  .teacher_link p {
+    padding: 0 3px !important;
+  }
+  
+  .teacher_link .name_item{
+    max-width: 120px !important;
+    min-width: 120px !important;
+  }
+
+  .teacher_image {
+    width: 30px !important;
+    height: 30px !important;
+    max-width: 30px !important;
+    min-width: 30px !important;
+  }
+
+  .timeTeacher {
+    max-width: 80px;
+    min-width: 80px !important;
+  }
+}

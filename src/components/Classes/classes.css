@@ -140,15 +140,97 @@
     min-width: 150px !important;
   }
 
-  .class_image {
-    width: 40px !important;
-    height: 40px !important;
-    max-width: 40px !important;
-    min-width: 40px !important;
-  }
-
   .timeclass {
     max-width: 100px;
     min-width: 100px !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .class_heading {
+    font-size: 10px !important;
+  }
+
+  .class_name {
+    font-size: 10px !important;
+  }
+
+  .timeclass span {
+    font-size: 8px !important;
+  }
+  
+  .class_link p {
+    padding: 0 3px !important;
+  }
+  
+  .name_item{
+    max-width: 100px !important;
+    min-width: 100px !important;
+  }
+
+  .class_image {
+    width: 35px !important;
+    height: 35px !important;
+    max-width: 35px !important;
+    min-width: 35px !important;
+  }
+
+  .timeclass {
+    max-width: 70px;
+    min-width: 70px !important;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .class_heading1 {
+    margin: 0 auto;
+    padding: 0 10px !important;
+  }
+  .class_link .name_item{
+    max-width: 110px !important;
+    min-width: 110px !important;  
+  }
+
+  .class_link .class_heading {
+    font-size: 8px !important;
+  }
+
+  .class_link .class_name {
+    font-size: 8px !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .class_link .class_heading {
+    font-size: 10px !important;
+  }
+
+  .class_link .class_name {
+    font-size: 10px !important;
+  }
+
+  .class_link .timeclass span {
+    font-size: 8px !important;
+  }
+  
+  .class_link p {
+    padding: 0 3px !important;
+  }
+  
+  .class_link .name_item{
+    max-width: 120px !important;
+    min-width: 120px !important;
+  }
+
+  .class_image {
+    width: 30px !important;
+    height: 30px !important;
+    max-width: 30px !important;
+    min-width: 30px !important;
+  }
+
+  .timeclass {
+    max-width: 80px;
+    min-width: 80px !important;
   }
 }

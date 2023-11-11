@@ -154,6 +154,7 @@ function Admin(props) {
     const adminPanel = document.querySelector(".admin_panel");
     const itemButtons = document.querySelectorAll(".item_button");
     const panelButton = document.querySelector(".panel_button");
+    const panelButtonRes = document.querySelector(".panel_buttonRes");
     const ageSearch = document.querySelectorAll(".ageSearch");
     const smsCount = document.querySelector(".sms_count");
     const panelItem = document.querySelector(".age-search");
@@ -178,6 +179,7 @@ function Admin(props) {
         e.style.borderColor = "#FC6C85";
       });
       panelButton.style.backgroundColor = "#F9A298";
+      panelButtonRes.style.backgroundColor = "#F9A298";
       smsCount.style.backgroundColor = "#F9A298";
       headerIcons.forEach((e) => {
         e.setAttribute("fill", "#F9A298");
@@ -210,6 +212,7 @@ function Admin(props) {
         e.style.backgroundColor = "transparent";
       });
       panelButton.style.backgroundColor = "#81B37A";
+      panelButtonRes.style.backgroundColor = "#81B37A";
       smsCount.style.backgroundColor = "#81B37A";
       ageSearch.forEach((e) => {
         e.style.borderColor = "#81B37A";
@@ -387,7 +390,7 @@ function Admin(props) {
                   className="search_input header_icon"
                   type="text"
                   placeholder="Искать..."
-                  onChange={handleSearch}
+                  onChange={handleClasChange}
                 />
                 <svg
                   className="search_icon"
@@ -660,6 +663,14 @@ function Admin(props) {
                 <Route path="/teacher" element={<TeacherList />} />
                 <Route path="/class" element={<ClassesList />} />
               </Routes>
+
+              <button
+                className="panel_buttonRes"
+                type="button"
+                onClick={() => setAdminModal(true)}
+              >
+                Создать профиль
+              </button>
             </div>
 
             <div className="admin_panelInner">
@@ -689,23 +700,25 @@ function Admin(props) {
                     <div className="item_button search_danger">
                       <span>По полу</span>
                       <div onChange={handleGenderChange}>
-                        <input
+                        
+                        <label htmlFor="maleCheckbox" className="radio_label">
+                          Мальчик
+                          <input
                           className="radio_button"
                           id="maleCheckbox"
                           type="checkbox"
                           value="True"
                         />
-                        <label htmlFor="maleCheckbox" className="radio_label">
-                          Мальчик
                         </label>
-                        <input
+                        
+                        <label htmlFor="femaleCheckbox" className="radio_label">
+                          Девочка
+                          <input
                           className="radio_button"
                           id="femaleCheckbox"
                           type="checkbox"
                           value="False"
                         />
-                        <label htmlFor="femaleCheckbox" className="radio_label">
-                          Девочка
                         </label>
                       </div>
                     </div>
