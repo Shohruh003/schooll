@@ -63,9 +63,10 @@ function Parents () {
 
 	const applyTheme = () => {
 		const body = document.body;
-		const header = document.querySelector('.header_dashboard')
+		const header = document.querySelector('.header_parent')
 		const dashboardIcons = document.querySelectorAll('.dashboard_icon circle')
 		const weather = document.querySelector('.weather')
+		const weatherParent = document.querySelector('.weather_parent')
         const headerIcons = document.querySelectorAll('.header_icon circle')
         const smsCount = document.querySelector('.sms_count')
         const avatarAbout = document.querySelector('.avatar_about')
@@ -73,7 +74,6 @@ function Parents () {
         const emotionWeek = document.querySelector('.emotion_week')
         const chartAbout = document.querySelector('.avatar_chartInner')
         const chat = document.querySelector('.chat')
-        const chatIcon = document.querySelector('.chat_icon')
 
 
 
@@ -92,6 +92,7 @@ function Parents () {
 				});
 			})
 			weather.style.backgroundColor = 'rgba(250, 128, 114, 0.7)';
+			weatherParent.style.backgroundColor = 'rgba(250, 128, 114, 0.7)';
             headerIcons.forEach((e) => {
                 e.setAttribute('fill', '#F9A298')
               })
@@ -101,7 +102,6 @@ function Parents () {
             emotionWeek.style.backgroundColor = 'rgba(252, 108, 133, 0.15)'
             chartAbout.style.backgroundColor = 'rgba(252, 108, 133, 0.15)'
             chat.style.backgroundColor = '#F4C4C5'
-			chatIcon.style.backgroundColor = '#F5EFEF';
             
 		} else if (theme === '#81B37A') {
 			body.style.backgroundColor = '#E4F0E2';
@@ -117,6 +117,7 @@ function Parents () {
 				});
 			})
 			weather.style.backgroundColor = '#81B37A';
+			weatherParent.style.backgroundColor = '#81B37A';
             headerIcons.forEach((e) => {
                 e.setAttribute('fill', '#ACCAA8')
               })
@@ -126,8 +127,6 @@ function Parents () {
             emotionWeek.style.backgroundColor = 'rgba(129, 179, 122, 0.15)'
             chartAbout.style.backgroundColor = 'rgba(129, 179, 122, 0.15)'
             chat.style.backgroundColor = '#9BC196'
-			chatIcon.style.backgroundColor = '#E4F0E2';
-
 		}
 	};
 
@@ -485,7 +484,7 @@ const piHappy = Math.round(pia?.happy)
 		<div className="school">
 			<div className='container'>
 
-				<div className="header_dashboard">
+				<div className="header_parent">
 					<svg className='logo-parent' width="467" height="54" viewBox="0 0 467 54" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<rect width="467" height="54" fill={theme}/>
 						<path d="M27.8945 14.0791H41.7178V17.3818H31.6055V24.6182H41.7178V27.9209H31.6055V40H27.8945V14.0791Z" fill="white"/>
@@ -503,7 +502,25 @@ const piHappy = Math.round(pia?.happy)
 						<path d="M374.374 14.0791H377.751V40H374.374V14.0791Z" fill="white"/>
 					</svg>
 
-					<div className='weather'>
+					<div className='weather_parent'>
+					<svg className='weather_monstr' width="50" height="47" viewBox="0 0 50 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_71_1472)">
+<path d="M42.5458 15.8227C42.175 9.01871 36.2313 3.66096 29.1458 4.26305C26.8813 1.65259 23.5354 0 19.7917 0C13.1833 0 7.80417 5.14302 7.45417 11.6123C3.21875 12.3681 0 16.0438 0 20.4668C0 25.4393 4.06042 29.4729 9.07083 29.4729H11.8333C13.4396 31.995 16.2583 33.6833 19.4875 33.6833H40.9271C45.9396 33.6833 50 29.6498 50 24.6773C50 20.2542 46.7813 16.5785 42.5458 15.8227ZM10.4729 25.2625H9.07083C6.36875 25.2625 4.16667 23.1131 4.16667 20.4668C4.16667 16.008 8.55 14.9996 11.4333 15.1764C11.3292 12.3239 11.7188 4.21042 19.7917 4.21042C21.8063 4.21042 23.3625 4.73672 24.5625 5.56828C20.7646 7.50717 18.1125 11.3471 17.8708 15.8227C13.6583 16.5743 10.1688 20.3005 10.4729 25.2625ZM40.9271 29.4729H19.4875C16.7854 29.4729 14.5833 27.3235 14.5833 24.6773C14.5833 20.2184 18.9667 19.21 21.85 19.3869C21.7458 16.5343 22.1354 8.42083 30.2083 8.42083C38.0646 8.42083 39.0187 16.3596 38.5667 19.3869C41.7104 19.1658 45.8333 20.3068 45.8333 24.6773C45.8333 27.3235 43.6313 29.4729 40.9271 29.4729ZM11.1542 44.0683L14.4667 40.7211L15.9375 42.2094L12.625 45.5567L11.1542 44.0683ZM20.975 45.5399L24.2875 42.1905L22.8146 40.7021L19.5021 44.0515L20.975 45.5399ZM15.9375 39.2327L17.4104 40.7211L20.8167 37.2769L19.3438 35.7885L15.9375 39.2327ZM9.67917 45.5567L6.25 49.0198L7.72292 50.5082L11.1521 47.043L9.67917 45.5567ZM29.3146 45.5799L32.6292 42.2305L31.1563 40.7421L27.8417 44.0915L29.3146 45.5799ZM18.0292 45.5399L14.5833 49.0198L16.0562 50.5082L19.5021 47.0283L18.0292 45.5399ZM32.6292 39.2537L34.1021 40.7421L37.5167 37.2917L36.0438 35.8033L32.6292 39.2537ZM26.3708 45.5799L22.9479 49.0366L24.4229 50.525L27.8438 47.0683L26.3708 45.5799Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_71_1472">
+<rect width="50" height="47" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+					<span className='weather_number'>{Number(weather).toFixed() - 273}</span>
+					<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.19239 7C6.74763 7 7.20009 7.449 7.20009 8C7.20009 8.551 6.74763 9 6.19239 9C5.63716 9 5.1847 8.551 5.1847 8C5.1847 7.449 5.63716 7 6.19239 7ZM6.19239 6C5.07889 6 4.17701 6.895 4.17701 8C4.17701 9.105 5.07889 10 6.19239 10C7.30589 10 8.20778 9.105 8.20778 8C8.20778 6.895 7.30589 6 6.19239 6ZM18.2686 13.949C18.1769 15.206 17.7093 16.195 16.8659 16.917C16.0234 17.639 14.912 18 13.5314 18C12.0229 18 10.8358 17.496 9.97124 16.488C9.10664 15.48 8.67434 14.096 8.67434 12.337V11.623C8.67434 10.5 8.87386 9.511 9.2719 8.655C9.67095 7.8 10.2403 7.143 10.982 6.686C11.7226 6.229 12.5832 6 13.5637 6C14.922 6 16.0154 6.361 16.8457 7.083C17.6761 7.805 18.1547 8.818 18.2847 10.123H15.8602C15.8007 9.369 15.5891 8.822 15.2253 8.483C14.8616 8.143 14.3083 7.974 13.5647 7.974C12.7565 7.974 12.1519 8.262 11.7498 8.836C11.3488 9.411 11.1422 10.303 11.1311 11.511V12.393C11.1311 13.655 11.3236 14.578 11.7085 15.16C12.0934 15.743 12.7011 16.034 13.5314 16.034C14.2801 16.034 14.8394 15.864 15.2082 15.525C15.577 15.185 15.7886 14.66 15.8431 13.949H18.2686ZM12.2385 2C17.795 2 22.3155 6.486 22.3155 12C22.3155 17.514 17.795 22 12.2385 22C6.68213 22 2.16162 17.514 2.16162 12C2.16162 6.486 6.68213 2 12.2385 2ZM12.2385 0C5.56057 0 0.14624 5.373 0.14624 12C0.14624 18.627 5.56057 24 12.2385 24C18.9165 24 24.3309 18.627 24.3309 12C24.3309 5.373 18.9165 0 12.2385 0Z" fill="white"/>
+</svg>
+					<span className='weather_date'>{`${day}/${month}/${year}`}</span>
+
+					</div>
+                    <div className='weather'>
 					<svg className='weather_monstr' width="50" height="47" viewBox="0 0 50 47" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_71_1472)">
 <path d="M42.5458 15.8227C42.175 9.01871 36.2313 3.66096 29.1458 4.26305C26.8813 1.65259 23.5354 0 19.7917 0C13.1833 0 7.80417 5.14302 7.45417 11.6123C3.21875 12.3681 0 16.0438 0 20.4668C0 25.4393 4.06042 29.4729 9.07083 29.4729H11.8333C13.4396 31.995 16.2583 33.6833 19.4875 33.6833H40.9271C45.9396 33.6833 50 29.6498 50 24.6773C50 20.2542 46.7813 16.5785 42.5458 15.8227ZM10.4729 25.2625H9.07083C6.36875 25.2625 4.16667 23.1131 4.16667 20.4668C4.16667 16.008 8.55 14.9996 11.4333 15.1764C11.3292 12.3239 11.7188 4.21042 19.7917 4.21042C21.8063 4.21042 23.3625 4.73672 24.5625 5.56828C20.7646 7.50717 18.1125 11.3471 17.8708 15.8227C13.6583 16.5743 10.1688 20.3005 10.4729 25.2625ZM40.9271 29.4729H19.4875C16.7854 29.4729 14.5833 27.3235 14.5833 24.6773C14.5833 20.2184 18.9667 19.21 21.85 19.3869C21.7458 16.5343 22.1354 8.42083 30.2083 8.42083C38.0646 8.42083 39.0187 16.3596 38.5667 19.3869C41.7104 19.1658 45.8333 20.3068 45.8333 24.6773C45.8333 27.3235 43.6313 29.4729 40.9271 29.4729ZM11.1542 44.0683L14.4667 40.7211L15.9375 42.2094L12.625 45.5567L11.1542 44.0683ZM20.975 45.5399L24.2875 42.1905L22.8146 40.7021L19.5021 44.0515L20.975 45.5399ZM15.9375 39.2327L17.4104 40.7211L20.8167 37.2769L19.3438 35.7885L15.9375 39.2327ZM9.67917 45.5567L6.25 49.0198L7.72292 50.5082L11.1521 47.043L9.67917 45.5567ZM29.3146 45.5799L32.6292 42.2305L31.1563 40.7421L27.8417 44.0915L29.3146 45.5799ZM18.0292 45.5399L14.5833 49.0198L16.0562 50.5082L19.5021 47.0283L18.0292 45.5399ZM32.6292 39.2537L34.1021 40.7421L37.5167 37.2917L36.0438 35.8033L32.6292 39.2537ZM26.3708 45.5799L22.9479 49.0366L24.4229 50.525L27.8438 47.0683L26.3708 45.5799Z" fill="white"/>
@@ -523,14 +540,9 @@ const piHappy = Math.round(pia?.happy)
 					</div>
 
 					<div className='langTheme'>
-                    <button className='theme_dashboard dashboard_button' onClick={changeTheme}>
-							<svg className='theme-dash dashboard_icon theme_parent' width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<circle cx="27.5" cy="27.5" r="27.5" fill="#FA8072"/>
-								<path d="M18.5838 39.0163C23.8397 39.4518 21.9571 33.8681 26.82 33.8165L28.9261 35.5743C29.4509 41.9199 21.6901 43.335 18.5838 39.0163ZM34.6999 30.8637C36.335 28.2982 41.3996 19.693 41.3996 19.693C41.8029 18.9792 40.9069 18.2344 40.2813 18.7614C40.2813 18.7614 32.7509 25.3087 30.5291 27.3838C28.7737 29.0247 28.7657 29.774 28.1973 32.4794L30.1223 34.0835C32.6741 33.0351 33.4086 32.893 34.6999 30.8637ZM20.9511 35.305C21.7142 34.0056 22.954 31.8938 26.0466 31.5673C26.5439 29.1759 26.7421 27.786 28.965 25.7098C30.5383 24.2408 34.6232 20.6578 37.0099 18.5724C35.8641 16.0424 32.265 13.9627 27.6393 14.0005C20.0493 14.0635 13.9397 20.2625 14.0004 27.8559C14.0268 31.1914 15.2391 34.2394 17.2317 36.6044C19.0857 37.0959 19.9542 37.0031 20.9511 35.305ZM28.9169 17.1607C30.1796 17.1538 31.2143 18.1702 31.2269 19.4329C31.2315 20.6968 30.2163 21.7349 28.9513 21.7429C27.6851 21.7532 26.6504 20.7346 26.6436 19.4696C26.6287 18.2023 27.6473 17.171 28.9169 17.1607ZM22.0453 19.4535C23.3081 19.4421 24.3462 20.4584 24.3508 21.7257C24.3645 22.993 23.3424 24.0231 22.082 24.0357C20.8147 24.0437 19.78 23.0262 19.772 21.7578C19.7617 20.4939 20.7769 19.4615 22.0453 19.4535ZM19.7502 26.3262C21.0175 26.3182 22.0534 27.3369 22.0602 28.6007C22.0717 29.8657 21.0519 30.9016 19.7846 30.9096C18.5185 30.9187 17.4872 29.9012 17.4803 28.6351C17.4677 27.3689 18.4875 26.3388 19.7502 26.3262ZM31.2441 36.1025C31.2682 38.668 30.2335 40.3627 29.3168 41.3584L29.2641 41.4088C35.2854 40.7317 39.6476 36.4772 36.4439 32.3694C34.8707 34.7149 33.5403 35.1675 31.2441 36.1025Z" fill="white"/>
-							</svg>
-						</button>
 
-						<button className='avatar_dashboard' style={{borderColor: theme}}>
+						<div>
+                        <button className='avatar_dashboard' style={{borderColor: theme}}>
                             <img className='avatarImg' src={profil?.main_image} alt='Avatar' width='55' height='55'/>
 						</button>
 
@@ -541,6 +553,15 @@ const piHappy = Math.round(pia?.happy)
                                 </option>
                             ))}
                         </select>
+                        </div>
+
+                        <div>
+                        <button className='theme_dashboard dashboard_button' onClick={changeTheme}>
+							<svg className='theme-dash dashboard_icon theme_parent' width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="27.5" cy="27.5" r="27.5" fill="#FA8072"/>
+								<path d="M18.5838 39.0163C23.8397 39.4518 21.9571 33.8681 26.82 33.8165L28.9261 35.5743C29.4509 41.9199 21.6901 43.335 18.5838 39.0163ZM34.6999 30.8637C36.335 28.2982 41.3996 19.693 41.3996 19.693C41.8029 18.9792 40.9069 18.2344 40.2813 18.7614C40.2813 18.7614 32.7509 25.3087 30.5291 27.3838C28.7737 29.0247 28.7657 29.774 28.1973 32.4794L30.1223 34.0835C32.6741 33.0351 33.4086 32.893 34.6999 30.8637ZM20.9511 35.305C21.7142 34.0056 22.954 31.8938 26.0466 31.5673C26.5439 29.1759 26.7421 27.786 28.965 25.7098C30.5383 24.2408 34.6232 20.6578 37.0099 18.5724C35.8641 16.0424 32.265 13.9627 27.6393 14.0005C20.0493 14.0635 13.9397 20.2625 14.0004 27.8559C14.0268 31.1914 15.2391 34.2394 17.2317 36.6044C19.0857 37.0959 19.9542 37.0031 20.9511 35.305ZM28.9169 17.1607C30.1796 17.1538 31.2143 18.1702 31.2269 19.4329C31.2315 20.6968 30.2163 21.7349 28.9513 21.7429C27.6851 21.7532 26.6504 20.7346 26.6436 19.4696C26.6287 18.2023 27.6473 17.171 28.9169 17.1607ZM22.0453 19.4535C23.3081 19.4421 24.3462 20.4584 24.3508 21.7257C24.3645 22.993 23.3424 24.0231 22.082 24.0357C20.8147 24.0437 19.78 23.0262 19.772 21.7578C19.7617 20.4939 20.7769 19.4615 22.0453 19.4535ZM19.7502 26.3262C21.0175 26.3182 22.0534 27.3369 22.0602 28.6007C22.0717 29.8657 21.0519 30.9016 19.7846 30.9096C18.5185 30.9187 17.4872 29.9012 17.4803 28.6351C17.4677 27.3689 18.4875 26.3388 19.7502 26.3262ZM31.2441 36.1025C31.2682 38.668 30.2335 40.3627 29.3168 41.3584L29.2641 41.4088C35.2854 40.7317 39.6476 36.4772 36.4439 32.3694C34.8707 34.7149 33.5403 35.1675 31.2441 36.1025Z" fill="white"/>
+							</svg>
+						</button>
 
                         <button className='header_icon' onClick={handleModal}>
                     <svg className=' header_icon' width="57" height="57" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -563,6 +584,7 @@ const piHappy = Math.round(pia?.happy)
 <path d="M33 20.093L30 17.093V15H33V20.093ZM37 26H34V36H16V26H13L25 14L37 26ZM27 28H23V34H27V28Z" fill="white"/>
 </svg>
                   </Link>
+                        </div>
 					</div>
 
 				</div>
@@ -596,60 +618,60 @@ const piHappy = Math.round(pia?.happy)
                             <ul className='week_list'>
                                 <li className='week_item'>
                                     <p>{weekday2}</p>
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week2?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime2}</span>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week2?.first?.thumbnail}/>
+                                    <span className='weekItem_time'>{formattedTime2 === 'Invalid Date' ? '0' : formattedTime2}</span>
                                     <span className='days'>{date2}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week2?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime2week}</span>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week2?.last?.thumbnail}/>
+                                    <span className='weekItem_time'>{formattedTime2week === 'Invalid Date' ? '0' : formattedTime2week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday3}</p>
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week3?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime3}</span>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week3?.first?.thumbnail}/>
+                                    <span className='weekItem_time'>{formattedTime3 === 'Invalid Date' ? '0' : formattedTime3}</span>
                                     <span className='days'>{date3}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week3?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime3week}</span>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week3?.last?.thumbnail}/>
+                                    <span className='weekItem_time'>{formattedTime3week === 'Invalid Date' ? '0' : formattedTime3week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday4}</p>
 
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week4?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime4}</span>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week4?.first?.thumbnail}/>
+                                    <span className='weekItem_time'>{formattedTime4 === 'Invalid Date' ? '0' : formattedTime4}</span>
                                     <span className='days'>{date4}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week4?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime4week}</span>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week4?.last?.thumbnail}/>
+                                    <span className='weekItem_time'>{formattedTime4week === 'Invalid Date' ? '0' : formattedTime4week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday5}</p>
 
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week5?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime5}</span>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week5?.first?.thumbnail}/>
+                                    <span className='weekItem_time'>{formattedTime5 === 'Invalid Date' ? '0' : formattedTime5}</span>
                                     <span className='days'>{date5}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week5?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime5week}</span>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week5?.last?.thumbnail}/>
+                                    <span className='weekItem_time'>{formattedTime5week === 'Invalid Date' ? '0' : formattedTime5week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday6}</p>
 
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week6?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime6}</span>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week6?.first?.thumbnail}/>
+                                    <span className='weekItem_time'>{formattedTime6 === 'Invalid Date' ? '0' : formattedTime6}</span>
                                     <span className='days'>{date6}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week6?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime6week}</span>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week6?.last?.thumbnail}/>
+                                    <span className='weekItem_time'>{formattedTime6week === 'Invalid Date' ? '0' : formattedTime6week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday7}</p>
 
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week7?.first?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime7}</span>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week7?.first?.thumbnail}/>
+                                    <span className='weekItem_time'>{formattedTime7 === 'Invalid Date' ? '0' : formattedTime7}</span>
                                     <span className='days'>{date7}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week7?.last?.thumbnail} alt='Avatar' width='80' height='100'/>
-                                    <span className='weekItem_time'>{formattedTime7week}</span>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week7?.last?.thumbnail}/>
+                                    <span className='weekItem_time'>{formattedTime7week === 'Invalid Date' ? '0' : formattedTime7week}</span>
                                 </li>
                             </ul>
                         </div>
@@ -684,13 +706,6 @@ const piHappy = Math.round(pia?.happy)
 
 
                         <div className='chat'>
-                            <div className='chat_icon'>
-                            <svg width="38" height="39" viewBox="0 0 38 39" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M36.4167 38.4185H1.58333V35.2576H3.16667V24.1943H0L4.75 9.97013H13.3459L17.4167 6.48836V0.487335H25.3333L23.75 2.84381L25.3333 5.22873H19L24.6541 9.97013H33.25L38 24.1943H34.8333V35.2576H36.4167V38.4185ZM17.4167 30.5162H15.8333V36.838H17.4167V30.5162ZM22.1667 30.5162H20.5833V36.838H22.1667V30.5162ZM31.6667 24.1943H6.33333V35.2576H12.6667V27.3552H25.3333V35.2576H31.6667V24.1943ZM7.91667 30.5162H11.0833V33.6771H7.91667V30.5162ZM30.0833 30.5162V33.6771H26.9167V30.5162H30.0833ZM7.91667 25.7748H11.0833V28.9357H7.91667V25.7748ZM26.9167 25.7748H30.0833V28.9357H26.9167V25.7748ZM28.3496 13.1311L26.296 15.5223L19 9.28104L11.704 15.5223L9.65042 13.1311H7.03317L4.39375 21.0334H33.6063L30.9668 13.1311H28.3496ZM19 12.3408C21.185 12.3408 22.9583 14.1109 22.9583 16.292C22.9583 18.473 21.185 20.2431 19 20.2431C16.815 20.2431 15.0417 18.473 15.0417 16.292C15.0417 14.1109 16.815 12.3408 19 12.3408ZM19 14.7115H17.7919V17.5564H20.5833V16.292H19V14.7115Z" fill={theme}/>
-</svg>
-
-                            </div>
-
                             <div className='chat_content'>
                                 <h3 className='chat_heading' style={theme === '#81B37A' ? {backgroundColor: '#E4F0E2'} : {backgroundColor: '#F5EFEF'}}>Чат с учителями</h3>
 
@@ -729,7 +744,6 @@ const piHappy = Math.round(pia?.happy)
                                     </li>
                                     
                                 </ul>
-                                <div className='empty_div' style={theme === '#81B37A' ? {backgroundColor: '#E4F0E2'} : {backgroundColor: '#F5EFEF'}}></div>
                                 <Notification modal={modal} setModal={setModal}/>
                             </div>
                         </div>

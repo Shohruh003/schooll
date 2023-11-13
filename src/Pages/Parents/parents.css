@@ -16,6 +16,9 @@
 .avatar_inner {
     width: 65%;
 }
+.langTheme {
+    display: flex;
+}
 
 .avatar_about{
     display: flex;
@@ -154,7 +157,7 @@
 }
 
 .chat_content {
-    width: 75%;
+    width: 100%;
     border-radius: 10px;
     text-align: center;
 }
@@ -178,17 +181,25 @@
 
 .chat_list {
     overflow-y: auto;
-    max-height: 350px;
+    max-height: 88%;
     list-style-type: none;
     margin: 0;
     padding: 0;
     padding-top: 10px;
     margin-bottom: 10px;
-    height: 75%;
+    height: 88%;
     border-radius: 10px;
     background-color: #F5EFEF;
 }
 
+.header_parent{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 3px solid #FC6C85;
+    }
 .chat_item {
     width: 90%;
     border: 2px solid #F4C4C5;
@@ -303,6 +314,9 @@
     margin-left: 10px;
   }
 
+  .weather_parent {
+    display: none;
+  }
 
   /* ///////////////////////////////////// Responsive ======================== */
 
@@ -519,5 +533,95 @@
         width: 20px;
         height: 20px;
         font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .header_parent{
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding-top: 20px;
+        margin-bottom: 10px;
+        border-bottom: 3px solid #FC6C85;
+        }
+
+        
+  
+.weather{
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    height: 55px;
+    padding: 10px;
+    color: #ffffff;
+    background-color: #FA8072;
+    border-radius: 10px;
+  }
+  
+  .weather_number {
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    margin-top: 18px;
+  }
+  
+  .weather_date {
+    font-size: 14px;
+    margin-top: 25px;
+  }
+
+  .langTheme {
+    width: 100% !important;
+    margin-top: 10px;
+    justify-content: space-between;
+  }
+
+  .avatar{
+    flex-direction: column;
+  }
+
+  .avatar_inner {
+    width: 100%;
+  }
+
+  .avatar_chat {
+    width: 100%;
+    margin-top: 15px;
+  }
+ .column {
+    height: 200px;
+ } 
+
+ .avatar_chartInner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 15px;
+
+ }
+ .chart_about{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 150px;
+    flex-wrap: wrap;
+ }
+
+ .chart_about p {
+    width: 70px;
+ }
+
+ .avatar_chartInner .canvasjs-chart-canvas {
+    left:300% !important;
+ }
+}
+
+@media screen and (max-width: 450px) {
+    .avatar_about p, .avatar_about span {
+        font-size: 12px;
     }
 }
