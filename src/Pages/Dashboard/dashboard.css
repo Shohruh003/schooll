@@ -429,7 +429,12 @@ border-bottom: 3px solid #FC6C85;
   }
 
   .weather{
-    display: none;
+    display: none !important;
+  }
+
+  .responsive_dashboard {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .weather_res{
