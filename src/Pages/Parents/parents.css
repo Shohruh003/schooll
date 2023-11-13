@@ -553,6 +553,9 @@
 }
 
 @media screen and (max-width: 770px) {
+    .school {
+        overflow-x: hidden !important;
+    }
     .header_parent .theme_parent{
         width: 30px !important;
         height: 30px !important;
