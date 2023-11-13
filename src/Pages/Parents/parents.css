@@ -433,6 +433,22 @@
         width: 40px;
         height: 40px;
     }
+
+    .header_parent .theme_parent{
+        width: 30px !important;
+        height: 30px !important;
+        margin-bottom: 1px !important;
+    }
+
+    .notification_parent {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .header_parent .domIcons {
+        width: 30px !important;
+        height: 30px !important;
+    }
     .logo-parent{
         width: 220px !important;
         margin-right: 5px;
@@ -537,6 +553,11 @@
 }
 
 @media screen and (max-width: 770px) {
+    .header_parent .theme_parent{
+        width: 30px !important;
+        height: 30px !important;
+        margin-bottom: -5px !important;
+    }
     .header_parent{
         display: flex;
         align-items: flex-end;

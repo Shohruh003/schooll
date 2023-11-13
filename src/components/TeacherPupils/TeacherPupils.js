@@ -8,7 +8,7 @@ import usersLogo from '../../Image/photo_people.jpg'
 
 
 function TeacherPupil() {
-const {teacherPupils,theme,editAdminModal, setEditAdminModal} = useContext(AuthContext)
+const {position,teacherPupils,theme,editAdminModal, setEditAdminModal} = useContext(AuthContext)
 const style = document.createElement('style');
 style.innerHTML = `
   .teacher_list::-webkit-scrollbar-thumb {
@@ -19,7 +19,9 @@ document.head.appendChild(style);
 
 
   const clickItem = () => {
-    setEditAdminModal(true)
+    if (position === 'admin') {
+      setEditAdminModal(true)
+    }
   }
   return (
     <ul className="teacher_list" style={{'--scrollbar-thumb': theme}}>

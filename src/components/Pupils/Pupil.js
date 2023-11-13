@@ -9,7 +9,7 @@ import { useState } from "react";
 
 
 function Pupil() {
-  const { user, setUsers,pupilEmotion, ageRange, genders, setOriginalUsers, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
+  const { user,position, setUsers,pupilEmotion, ageRange, genders, setOriginalUsers, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
 
   const [userEmotion, setUserEmotion] = useState([])
   const [page, setPage] = useState(1);
@@ -85,8 +85,10 @@ function Pupil() {
   }, [user]);
 
   const clickItem = (evt) => {
-    setEditAdminModal(true)
     setEditUser(evt)
+    if (position === 'admin') {
+      setEditAdminModal(true)
+    }
   }
 
   return (

@@ -8,7 +8,7 @@ import usersLogo from '../../Image/photo_people.jpg'
 
 
 function TeacherList() {
-  const {genders, setOriginalUsers,pupilClass,pupilEmotion,teacher, setTeacher,theme,editAdminModal, setEditAdminModal, setEditUser} = useContext(AuthContext)
+  const {genders,position, setOriginalUsers,pupilClass,pupilEmotion,teacher, setTeacher,theme,editAdminModal, setEditAdminModal, setEditUser} = useContext(AuthContext)
   const style = document.createElement('style');
 style.innerHTML = `
   .teacher_list::-webkit-scrollbar-thumb {
@@ -45,8 +45,10 @@ document.head.appendChild(style);
   }, [pupilClass, genders, pupilEmotion]);
 
   const clickItem = (evt) => {
-    setEditAdminModal(true)
     setEditUser(evt)
+    if (position === 'admin') {
+      setEditAdminModal(true)
+    }
   }
   return (
     <ul className="teacher_list" style={{ '--scrollbar-thumb': theme }}>

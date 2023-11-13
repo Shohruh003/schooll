@@ -14,7 +14,7 @@ import Notification from '../../Modal/Notification/Notification';
 
 function Psycholog(props) {
   const { isActive } = props;
-  const { setUsers, originalUsers,setPupilClass, genders, setGenders,pupilCount, setPupilEmotion,classes,teacherCount, theme, setTheme, setAgeRange, setTeacher,setClasses,setPupilCount, setTeacherCount,modal, setModal,setNotification,notificationCount, setNotificationCount} = useContext(AuthContext)
+  const { setPupilClass, genders, setGenders,pupilCount, setPupilEmotion,classes,teacherCount, theme, setTheme, setAgeRange,setClasses,setPupilCount, setTeacherCount,modal, setModal,setNotification,notificationCount, setNotificationCount} = useContext(AuthContext)
   const [agressiyaModal, setAgressiyaModal] = useState()
   const [depressiyaModal, setDepressiyaModal] = useState()
   const {decode} = DecodeHooks()
@@ -199,73 +199,6 @@ function Psycholog(props) {
     const selectedEmotion = event.target.value;
     setPupilEmotion(selectedEmotion);
   };
-  // const handleEmotionChange = async (event) => {
-  //   const selectedEmotion = event.target.value;
-  //   const pupilIds = userslar?.map((pupil) => pupil.id);
-  //   const promises = pupilIds?.map(async (id) => {
-  //     const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`);
-  //     return response.data;
-  //   });
-  //   const absentPupilsData = await Promise.all(promises);
-  //   var pup = absentPupilsData;
-  //   switch (selectedEmotion) {
-  //     case "happy":
-  //       pup = pup?.filter(
-  //         (pupil) =>
-  //           pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "happy"
-  //       );
-  //       setUsers(pup);
-  //       break;
-  //     case "neutral":
-  //       pup = pup?.filter(
-  //         (pupil) =>
-  //           pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "neutral"
-  //       );
-  //       setUsers(pup);
-  //       break;
-  //     case "sad":
-  //       pup = pup?.filter(
-  //         (pupil) =>
-  //           pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "sad"
-  //       );
-  //       setUsers(pup);
-  //       break;
-  //     case "angry":
-  //       pup = pup?.filter(
-  //         (pupil) =>
-  //           pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "angry"
-  //       );
-  //       setUsers(pup);
-  //       break;
-  //     case "fear":
-  //       pup = pup?.filter(
-  //         (pupil) =>
-  //           pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == "fear"
-  //       );
-  //       setUsers(pup);
-  //       break;
-  //     case "surprise":
-  //       pup = pup?.filter(
-  //         (pupil) =>
-  //           pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions ==
-  //           "surprise"
-  //       );
-  //       setUsers(pup);
-  //       break;
-  //       case "all":
-  //         setUsers(userslar);
-  //   }
-  // };
-
-
-  // const handleSearch = (event) => {
-  //   const searchTerm = event.target.value;
-  //   const filteredUsers = originalUsers?.filter((item) =>
-  //     item.full_name.toLowerCase().includes(searchTerm.toLowerCase())
-  //   );
-  //   setUsers(searchTerm === '' ? originalUsers : filteredUsers);
-  //   setTeacher(searchTerm === '' ? originalUsers : filteredUsers);
-  // };
 
   const handleClasChange = (event) => {
     const searchTerm = event.target.value;
