@@ -159,7 +159,7 @@
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .login_heading {
     margin-top: 20px;
     font-size: 22px;
