@@ -39,13 +39,16 @@ document.head.appendChild(style);
         "create_date": "0"
       }]
   }
+
   const emotionsWent = emotions && emotions[0] ? emotions[0] : {
     "emotions": "",
     "confidence": 0,
     "create_date": "0"
   }
-  const emotionsCome =emotions && emotions.length > 1 ? emotions[emotions.length - 1] : {
-    "emotions": "happy",
+console.log(emotions[emotions.length -1]?.emotions);
+console.log(emotions[emotions.length -1]?.confidence);
+  const emotionsCome =emotions && emotions.length > 0 ? emotions[emotions.length - 1] : {
+    "emotions": "",
     "confidence": 0,
     "create_date": "0"
   };
@@ -61,19 +64,22 @@ const wentHours = wentDateTime.getHours().toString().padStart(2, "0");
 const wentMinutes = wentDateTime.getMinutes().toString().padStart(2, "0");
 const wentClock = `${wentHours}:${wentMinutes}`;
 
-let maxConfidence = -Infinity;
-let maxConfidenceIndex = -1;
+// let maxConfidence = -Infinity;
+// let maxConfidenceIndex = -1;
 
-for (let i = 0; i < emotions.length; i++) {
-  if (emotions[i].confidence > maxConfidence) {
-    maxConfidence = emotions[i].confidence;
-    maxConfidenceIndex = i;
-  }
-}
-const firstMaxConfidenceIndex = emotions?.emotions?.findIndex(
-  (emotion) => emotion?.confidence === maxConfidence
-);
-const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
+// for (let i = 0; i < emotions.length; i++) {
+//   if (emotions[i].confidence > maxConfidence) {
+//     maxConfidence = emotions[i].confidence;
+//     maxConfidenceIndex = i;
+//   }
+// }
+// const firstMaxConfidenceIndex = emotions?.emotions?.findIndex(
+//   (emotion) => emotion?.confidence === maxConfidence
+// );
+// const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
+
+
+
     return (
       <li key={item?.id} style={{borderColor: theme}} onClick={clickItem}>
       <Link className='teacher_link'>
@@ -94,9 +100,9 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
           <span className='teacher_heading'>Возраст</span>
           <span className='teacher_name'>{age ? age : "0"}</span>
         </p>
-        <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence?.emotions ? firstEmotionWithMaxConfidence?.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence?.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence?.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence?.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence?.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence?.emotions === "surprise" ? "Удивление" : "Пустой" : "Пустой"}`}> 
-        <span className='teacher_heading'> {firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence?.emotions ? firstEmotionWithMaxConfidence?.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence?.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence?.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence?.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence?.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence?.emotions === "surprise" ? "Удивление" : "Пустой" : "Пустой"} </span>
-          <span className='teacher_name'>{firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence?.emotions ? firstEmotionWithMaxConfidence?.confidence : "0"} %</span>
+        <p style={{borderColor: theme}} className={`emotions ${emotions[emotions.length -1] && emotions[emotions.length -1]?.emotions ? emotions[emotions.length -1]?.emotions === "neutral" ? "Нейтраль" : emotions[emotions.length -1]?.emotions === "happy" ? "Веселье" : emotions[emotions.length -1]?.emotions === "angry" ? "Злость" : emotions[emotions.length -1]?.emotions === "sad" ? "Грусть" : emotions[emotions.length -1]?.emotions === "fear" ? "Страх" : emotions[emotions.length -1]?.emotions === "surprise" ? "Удивление" : "Пустой" : "Пустой"}`}> 
+        <span className='teacher_heading'> {emotions[emotions.length -1] && emotions[emotions.length -1]?.emotions ? emotions[emotions.length -1]?.emotions === "neutral" ? "Нейтраль" : emotions[emotions.length -1]?.emotions === "happy" ? "Веселье" : emotions[emotions.length -1]?.emotions === "angry" ? "Злость" : emotions[emotions.length -1]?.emotions === "sad" ? "Грусть" : emotions[emotions.length -1]?.emotions === "fear" ? "Страх" : emotions[emotions.length -1]?.emotions === "surprise" ? "Удивление" : "Пустой" : "Пустой"} </span>
+          <span className='teacher_name'>{emotions[emotions.length -1] && emotions[emotions.length -1]?.emotions ? emotions[emotions.length -1]?.confidence : "0"} %</span>
         </p>
       </Link>
     </li>
