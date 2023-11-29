@@ -22,9 +22,6 @@ document.head.appendChild(style);
     const fetchPupils = async () => {
       try {
         const params = {};
-        if (pupilClass) {
-          params.pupil_class = pupilClass;
-        }
         if (genders.length > 0) {
           params.gender = genders.join(',');
         }
@@ -33,13 +30,17 @@ document.head.appendChild(style);
           params.filter_by_emotion = pupilEmotion
         }
 
+        if (pupilClass) {
+          params.search = pupilClass;
+        }
+
         const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher', { params });
       setTeacher(response.data.results);
       setOriginalUsers(response.data.results);
       } catch (error) {
         console.error(error);
       }
-    };
+    };  
 
     fetchPupils();
   }, [pupilClass, genders, pupilEmotion]);

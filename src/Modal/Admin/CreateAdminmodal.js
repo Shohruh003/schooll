@@ -224,7 +224,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
               <input type="password" name='password2' disabled class="form-control" list="datalistOptions" id="pass5" placeholder="*********" />
               <img src={eye} className="btnpass5" onClick={() => { const password2 = document.querySelector('#pass5'); return (password2.type == "password") ? password2.type = "text" : password2.type = "password" }} />
             </div>
-            <div className='input_box'>
+            <div className='input_box input_boxClass'>
               <label for="7" class="form-label class-lable">Класс</label>
               <select onChange={(event) => {
                 setUser({

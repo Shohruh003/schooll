@@ -11,7 +11,7 @@ import usersLogo from '../../Image/photo_people.jpg'
 
 function Teacher(props) {
   const { isActive } = props;
-  const { setTeacherPupils, originalUsers, genders,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach,depres,teacherPupils, setDepres, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
+  const { setTeacherPupils, genders,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach,depres,teacherPupils, setDepres, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
         const {decode} = DecodeHooks()
         const [pupilMissing, setPupilMissing] = useState()
         const [teachClass, setTeachClass] = useState()
@@ -177,10 +177,7 @@ document.head.appendChild(style);
 
   const handleSearch = (event) => {
     const searchTerm = event.target.value;
-    const filteredUsers = originalUsers.filter((item) =>
-      item.full_name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setTeacherPupils(searchTerm === '' ? originalUsers : filteredUsers);
+    setTeacherPupils(searchTerm);
   };
   const handleGenderChange = async (event) => {
 
@@ -287,6 +284,10 @@ document.head.appendChild(style);
       
           if (pupilEmotion) {
             params.filter_by_emotion = pupilEmotion;
+          }
+
+          if (teacherPupils) {
+            params.search = teacherPupils;
           }
           const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
           const promises = pupilIds?.map(async (id) => {

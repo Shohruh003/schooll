@@ -23,7 +23,7 @@ border-bottom: 3px solid #FC6C85;
 
 .userList {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   list-style-type: none;
   margin: 0;
@@ -484,6 +484,7 @@ border-bottom: 3px solid #FC6C85;
 
   .userList{
     flex-direction: column;
+    align-items: center;
   }
 
   .item_text{

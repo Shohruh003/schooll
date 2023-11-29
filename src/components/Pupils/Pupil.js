@@ -12,7 +12,9 @@ function Pupil() {
   const { user,position, setUsers,pupilEmotion, ageRange, genders, setOriginalUsers, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
 
   const [userEmotion, setUserEmotion] = useState([])
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
+  let page = 1;
+  console.log(page);
   const style = document.createElement('style');
   style.innerHTML = `
   .people_list::-webkit-scrollbar-thumb {
@@ -23,10 +25,13 @@ function Pupil() {
 
   const handleScroll = async (e) => {
     const element = e.target;
-    if (Math.floor(element.scrollHeight - element.scrollTop) == element.clientHeight) {
-      if (page < 5) {
-        setPage(page + 1)
-      }
+
+    // console.log(Math.floor(element.scrollHeight - element.scrollTop) - 1);
+    // console.log(element.clientHeight);
+    if (Math.floor(element.scrollHeight - element.scrollTop) - 1 < element.clientHeight) {
+      // if (page < 20) {
+        page = page++
+      // }
     }
   }
 
@@ -49,12 +54,28 @@ function Pupil() {
           params.filter_by_emotion = pupilEmotion
         }
 
+    //     let page = 1;
+    // let allData = [];
+
+    // while (true) {
+    //   const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils?page=${page}`);
+    //   const data = response.data.results;
+
+    //   if (data.length === 0) {
+    //     break;
+    //   }
+      
+    //   allData = allData.concat(data);
+    //   page++;
+    //   setUsers(allData)
+    // }
+
         if (Object.keys(params).length > 0) {
           const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=1`, { params });
           const arr = response.data.results
           setUsers(arr);
           setOriginalUsers(response.data);
-        } else if (page <= 3) {
+        } else if (page <= 20) {
           const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`);
           const arr = response.data.results
           setUsers([...user, ...arr]);
@@ -64,7 +85,7 @@ function Pupil() {
       }
     };
     fetchPupils();
-  }, [page, ageRange, pupilClass, genders, pupilEmotion]);
+  }, [ ageRange, pupilClass, genders, pupilEmotion]);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -30,10 +30,7 @@ document.head.appendChild(style);
                    const birthDate = new Date(date);
                    const today = new Date();
                    const age = today.getFullYear() - birthDate.getFullYear();
-  const pupils = item?.thumbnail && item?.thumbnail.length ? item?.thumbnail[0] : {
-    "thumbnail": item?.main_image,
-    "create_date": "0 "
-}
+
   const emotions = item?.emotions ? item?.emotions : {
     emotions: [
       {
