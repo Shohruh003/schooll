@@ -30,7 +30,7 @@ document.head.appendChild(style);
         useEffect(() => {
           const fetchParents = async () => {
               try {
-                  const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/classes/`, {
+                  const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/classes/`, {
                     headers: {
                       Authorization: `Bearer ${token}`,
                     }
@@ -46,7 +46,7 @@ document.head.appendChild(style);
         useEffect(() => {
             const fetchParents = async () => {
                 try {
-                    const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/users/${decode}/`,  {
+                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`,  {
                       headers: {
                         Authorization: `Bearer ${token}`,
                       }
@@ -65,7 +65,7 @@ document.head.appendChild(style);
             try {
               const presentPupilIds = classes?.classes[test]?.absent_pupils?.id;
               const promises = presentPupilIds?.map(async (id) => {
-                const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}`, {
+                const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`, {
                   headers: {
                     Authorization: `Bearer ${token}`,
                   }
@@ -87,7 +87,7 @@ document.head.appendChild(style);
             useEffect(() => {
       const fetchNotification = async () => {
         try {
-            const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,{
+            const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,{
               headers: {
                 Authorization: `Bearer ${token}`,
               }
@@ -210,7 +210,7 @@ document.head.appendChild(style);
 
       const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
       const promises = pupilIds?.map(async (id) => {
-        const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, {
+        const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
@@ -236,7 +236,7 @@ document.head.appendChild(style);
     const selectedEmotion = event.target.value;
     const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
     const promises = pupilIds?.map(async (id) => {
-      const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, {
+      const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         }
@@ -285,7 +285,7 @@ document.head.appendChild(style);
       const handleModal = () => {
           try {
             setModal(true)
-              const response = axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`, {
+              const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`, {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 }
@@ -297,7 +297,7 @@ document.head.appendChild(style);
       };
 
       useEffect(() => {
-        axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/users/${decode}/teacher_pupils`, {
+        axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/teacher_pupils`, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
@@ -326,7 +326,7 @@ document.head.appendChild(style);
           }
           const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
           const promises = pupilIds?.map(async (id) => {
-            const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, {
+            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, {
               params,
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -350,7 +350,7 @@ document.head.appendChild(style);
       const fetchData = async () => {
 
         try {
-          const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/classes/`,  {
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/classes/`,  {
             headers: {
               Authorization: `Bearer ${token}`,
             }
@@ -372,7 +372,7 @@ document.head.appendChild(style);
           }
           const pupilIds = teach?.pupils[pupilsClass ? pupilsClass : test]?.map((pupil) => pupil.id);
           const promises = pupilIds?.map(async (id) => {
-            const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`,  {
+            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}/`,  {
               params,
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -391,7 +391,7 @@ document.head.appendChild(style);
         try {
           const presentPupilIds = classes?.classes[pupilsClass ? pupilsClass : test]?.absent_pupils?.id;
           const promises = presentPupilIds?.map(async (id) => {
-            const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}`, {
+            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               }

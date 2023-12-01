@@ -194,7 +194,7 @@ function Psycholog(props) {
   const fetchPupils = async () => {
     try {
      const response = await axios.get(
-        `https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/`,config
+        `https://www.api.yomon-emas.uz/api/users/pupils/`,config
       );
       userslar = await response.data.results;
     } catch (error) {
