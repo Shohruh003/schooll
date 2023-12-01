@@ -43,6 +43,7 @@ function Admin(props) {
       Authorization: `Bearer ${token}`,
     }
   }
+  
   useEffect(() => {
     const fetchParents = async () => {
       try {
@@ -261,62 +262,6 @@ function Admin(props) {
       setGenders(updatedGender);
     }
   };
-
-//   const handleEmotionChange = async (event) => {
-//     const selectedEmotion = event.target.value;
-//     const pupilIds = user?.map((pupil) => pupil.id);
-//     console.log(pupilIds);
-//     const promises = pupilIds?.map(async (id) => {
-//       const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/47/for_week/`);
-//       return response.data;
-//     });
-//     const absentPupilsData = await Promise.all(promises);
-//     var x = absentPupilsData;
-//     const date = new Date();
-
-// const year = date.getFullYear();
-// const month = String(date.getMonth() + 1).padStart(2, '0');
-// const day = String(date.getDate()).padStart(2, '0');
-
-// const formattedDate = `${year}-${month}-${day}`;
-//     switch (selectedEmotion) {
-//       case 'happy':
-//         x = x.filter((pupil) => console.log(pupil[formattedDate]))
-//         setUsers(x)
-//         break;
-//       case 'neutral':
-//         x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'neutral')
-//         setUsers(x)
-//         break;
-//       case 'sad':
-//         x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'sad')
-//         setUsers(x)
-//         break;
-//       case 'angry':
-//         x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'angry')
-//         setUsers(x)
-//         break;
-//       case 'fear':
-//         x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'fear')
-//         setUsers(x)
-//         break;
-//       case 'surprise':
-//         x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'surprise')
-//         setUsers(x)
-//         break;
-
-//         // case "all":
-//         //   setUsers(userslar);
-
-//         // case 'all':
-//         // x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'all')
-//         // console.log(x, 'all')
-//         // setTeacherPupils(x)
-//         // console.log(teacherPupils, 'teacherPupil');
-//         // break;
-//     }
-//   };
-  
 
   const handleEmotionChange = (event) => {
     const selectedEmotion = event.target.value;
@@ -777,7 +722,7 @@ function Admin(props) {
                     >
                       <option
                         className="search_option"
-                        value="" disabled selected hidden
+                        value=""
                       >
                         По ЭС
                       </option>
