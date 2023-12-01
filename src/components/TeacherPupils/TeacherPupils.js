@@ -34,7 +34,7 @@ document.head.appendChild(style);
   const emotions = item?.emotions ? item?.emotions : {
     emotions: [
       {
-        "emotions": "happy",
+        "emotions": "",
         "confidence": 0,
         "create_date": "0"
       }]
@@ -45,8 +45,6 @@ document.head.appendChild(style);
     "confidence": 0,
     "create_date": "0"
   }
-console.log(emotions[emotions.length -1]?.emotions);
-console.log(emotions[emotions.length -1]?.confidence);
   const emotionsCome =emotions && emotions.length > 0 ? emotions[emotions.length - 1] : {
     "emotions": "",
     "confidence": 0,
@@ -89,8 +87,8 @@ const wentClock = `${wentHours}:${wentMinutes}`;
           <span className='teacher_name'>{item?.full_name ? item?.full_name : "Пустой"}</span>
         </p>
         <p className="teachPupil_time" style={{borderColor: theme}}>
-          <span className='teacher_heading'>Пришел: {comeClock ? comeClock : "0"}</span>
-          <span className='teacher_heading'>Ушел: {wentClock ? wentClock : "0"}</span>
+          <span className='teacher_heading'>Пришел: {comeClock === "00:00" ? "--:--" : comeClock}</span>
+          <span className='teacher_heading'>Ушел: {wentClock === "00:00" ? "--:--" : wentClock}</span>
         </p>
         <p style={{borderColor: theme}}>
           <span className='teacher_heading'>Класс</span>

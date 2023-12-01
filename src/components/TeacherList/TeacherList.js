@@ -61,18 +61,18 @@ document.head.appendChild(style);
   const emotions = item?.todays_emotions ? item?.todays_emotions : {
     emotions: [
       {
-        "emotions": "happy",
+        "emotions": "Пустой",
         "confidence": 0,
         "create_date": "0"
       }]
   }
   const emotionsCome = emotions && emotions[0] ? emotions[0] : {
-    "emotions": "happy",
+    "emotions": "Пустой",
     "confidence": 0,
     "create_date": "0"
   }
   const emotionsWent =emotions && emotions.length > 1 ? emotions[emotions.length -1] : {
-    "emotions": "happy",
+    "emotions": "Пустой",
     "confidence": 0,
     "create_date": "0"
   };
@@ -117,8 +117,8 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
         </p>
         <p className="timeTeacher" style={{borderColor: theme}}>
           <div>
-          <span className='teacher_heading'>Пришел: {wentClock ? wentClock : "0"}</span>
-          <span className='teacher_heading'>Ушел: {comeClock ? comeClock : "0"}</span>
+          <span className='teacher_heading'>Пришел: {wentClock === "00:00" ? "--:--" : wentClock}</span>
+          <span className='teacher_heading'>Ушел: {comeClock === "00:00" ? "--:--" : comeClock}</span>
           </div>
         </p>
         <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence.emotions === "surprise" ? "Удивление" : "Пустой" : "Пустой"}`}>
