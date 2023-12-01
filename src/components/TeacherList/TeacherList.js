@@ -11,12 +11,6 @@ import { LoginHooks } from "../../Hooks/LoginHooks";
 function TeacherList() {
   const {genders,position, setOriginalUsers,pupilClass,pupilEmotion,teacher, setTeacher,theme,editAdminModal, setEditAdminModal, setEditUser} = useContext(AuthContext)
   const {token} = LoginHooks()
-
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
   const style = document.createElement('style');
 style.innerHTML = `
   .teacher_list::-webkit-scrollbar-thumb {
@@ -42,7 +36,9 @@ document.head.appendChild(style);
           params.search = pupilClass;
         }
 
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher', { params },config);
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher', { params,headers: {
+          Authorization: `Bearer ${token}`,
+        } });
       setTeacher(response.data.results);
       setOriginalUsers(response.data.results);
       } catch (error) {

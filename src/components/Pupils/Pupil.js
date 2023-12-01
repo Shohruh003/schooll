@@ -22,7 +22,6 @@ function Pupil() {
   }
   // const [page, setPage] = useState(1);
   let page = 1;
-  console.log(page);
   const style = document.createElement('style');
   style.innerHTML = `
   .people_list::-webkit-scrollbar-thumb {
@@ -79,7 +78,11 @@ function Pupil() {
     // }
 
         if (Object.keys(params).length > 0) {
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=1`, { params },config);
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=1`, { params,
+            headers: {
+              Authorization: `Bearer ${token}`,
+            }
+           });
           const arr = response.data.results
           setUsers(arr);
           setOriginalUsers(response.data);

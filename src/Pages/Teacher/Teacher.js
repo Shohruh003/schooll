@@ -326,7 +326,8 @@ document.head.appendChild(style);
           }
           const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
           const promises = pupilIds?.map(async (id) => {
-            const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, { params }, {
+            const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, {
+              params,
               headers: {
                 Authorization: `Bearer ${token}`,
               }
@@ -371,7 +372,8 @@ document.head.appendChild(style);
           }
           const pupilIds = teach?.pupils[pupilsClass ? pupilsClass : test]?.map((pupil) => pupil.id);
           const promises = pupilIds?.map(async (id) => {
-            const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, { params },  {
+            const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/${id}/`,  {
+              params,
               headers: {
                 Authorization: `Bearer ${token}`,
               }
