@@ -10,7 +10,6 @@ import { LoginHooks } from '../../Hooks/LoginHooks';
 function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
   const { theme, classes,lateComersPupils, setLateComersPupils} = useContext(AuthContext);
   const {token} = LoginHooks()
-  console.log(classes);
 
   const config =  {
     headers: {
@@ -61,16 +60,16 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
                 <td><img className='lateComersImg' src={item?.main_image ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
                 <td>{item?.full_name}</td>
                 <td>{item?.pupil_class}</td>
-                {/* <td>
-      {item?.emotions[item?.emotions.length - 1]?.create_date ? (
-        new Date(item?.emotions[item?.emotions.length - 1]?.create_date).toLocaleTimeString('uz-UZ', {
+                <td>
+      {item?.created_date ? (
+        new Date(item?.created_date).toLocaleTimeString('uz-UZ', {
           hour: 'numeric',
           minute: 'numeric'
         })
       ) : (
-        'N/A'
+        '--:--'
       )}
-    </td> */}
+    </td>
               </tr>
             ))}
   </tbody>
