@@ -4,18 +4,26 @@ import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/PupilContext';
+import { LoginHooks } from '../../Hooks/LoginHooks';
 
 function Dash() {
 
   const {user,position} = useContext(AuthContext)
   const [dashpupil, setDashPupil] = useState()
   const [dashteacher, setDashteacher] = useState()
+  const {token} = LoginHooks()
+
+  const config =  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
 
   useEffect(() => {
 
     const fetchPupils = async () => {
       try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/for_pupils/');
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/for_pupils/',config);
         setDashPupil(response.data.Pupils)
         setDashteacher(response.data.Teacher)
         setUser(response.data.Users)

@@ -8,6 +8,7 @@ import LateComersPupil from '../../Modal/AttendanceModal/LateComersPupil';
 import MissingPupil from '../../Modal/AttendanceModal/MissingPupil';
 import MissingTeacher from '../../Modal/AttendanceModal/MissingTeacher';
 import { AuthContext } from '../../context/PupilContext';
+import { LoginHooks } from '../../Hooks/LoginHooks';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function Dashboard () {
 
@@ -18,11 +19,18 @@ function Dashboard () {
 		const [missingTeacher, setMissingTeacher] = useState(false)
 		const [missingPupil, setMissingPupil] = useState(false)
 		const [lateComersPupil, setLateComersPupil] = useState(false)
+		const {token} = LoginHooks()
+
+		const config =  {
+		  headers: {
+			Authorization: `Bearer ${token}`,
+		  }
+		}
 
 		useEffect(() => {
 			const fetchPupils = async () => {
 			  try {
-				const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/');
+				const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/',config);
 				setClasses(response.data)
 		
 			  } catch (error) {
@@ -149,7 +157,7 @@ function Dashboard () {
 	useEffect(() => {
 		const fetchPupils = async () => {
 			try {
-				const response = await axios.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/pie_chart/');
+				const response = await axios.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/pie_chart/',config);
 				setTeacherEmotion(response.data.all_teachers)
 				setPupilEmotion(response.data.all_pupils)
 			} catch (error) {
@@ -288,7 +296,7 @@ function findLargestSection(options) {
 		useEffect(() => {
 			const fetchWeather = async () => {
 				try {
-					const response = await axios.get('https://api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=50e314a5fea145f564977fe2a4844e46');
+					const response = await axios.get('https://api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=50e314a5fea145f564977fe2a4844e46',config);
 					setWeather(response.data.main.feels_like)
 				} catch (error) {
 					console.error(error);

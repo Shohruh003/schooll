@@ -10,18 +10,24 @@ import { useContext, useEffect, useState } from "react"
 import axios from "axios"
 import Parents from './Pages/Parents/Parents';
 import { AuthContext } from "./context/PupilContext"
+import { LoginHooks } from "./Hooks/LoginHooks"
 
 
 
 export const Private = () => {
   const {decode} = DecodeHooks()
+  const {token} = LoginHooks()
   const {position, setPosition} = useContext(AuthContext)
   useEffect(() => {
 
 		const fetchClasses = async () => {
 			try {
 
-				const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
+				const response = await axios.get(`https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/users/${decode}/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        });
 				setPosition(response.data.status)
 			} catch (error) {
 				console.error(error);

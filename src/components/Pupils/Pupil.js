@@ -6,12 +6,20 @@ import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
 import { AuthContext } from "../../context/PupilContext";
 import usersLogo from '../../Image/photo_people.jpg'
 import { useState } from "react";
+import { LoginHooks } from "../../Hooks/LoginHooks";
 
 
 function Pupil() {
   const { user,position, setUsers,pupilEmotion, ageRange, genders, setOriginalUsers, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
 
   const [userEmotion, setUserEmotion] = useState([])
+  const {token} = LoginHooks()
+
+  const config =  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
   // const [page, setPage] = useState(1);
   let page = 1;
   console.log(page);
@@ -71,12 +79,12 @@ function Pupil() {
     // }
 
         if (Object.keys(params).length > 0) {
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=1`, { params });
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=1`, { params },config);
           const arr = response.data.results
           setUsers(arr);
           setOriginalUsers(response.data);
         } else if (page <= 20) {
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`);
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`,config);
           const arr = response.data.results
           setUsers([...user, ...arr]);
         }
@@ -91,7 +99,7 @@ function Pupil() {
     const fetchData = async () => {
       try {
         const promises = user?.map(async (id) => {
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${id.id}/for_week/`);
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${id.id}/for_week/`,config);
           return response.data;
         });
 

@@ -7,6 +7,7 @@ import CanvasJSReact from '@canvasjs/react-charts';
 import { AuthContext } from '../../context/PupilContext';
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import Notification from '../../Modal/Notification/Notification';
+import { LoginHooks } from '../../Hooks/LoginHooks';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
@@ -15,11 +16,18 @@ function Parents () {
         const {decode} = DecodeHooks()
         const [parent, setParent] = useState()
         const [parentId, setParentId] = useState()
+        const {token} = LoginHooks()
+
+        const config =  {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
         useEffect(() => {
             const fetchNotification = async () => {
               try {
       
-                  const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+                  const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
                   setNotification(response.data.messages)
                   setNotificationCount(response.data.messages.length)
               } catch (error) {
@@ -33,7 +41,7 @@ function Parents () {
         useEffect(() => {
             const fetchParents = async () => {
                 try {
-                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/sons/`);
+                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/sons/`,config);
                     setParentId(response?.data[0]?.id)
                     setParent(response.data)
                 } catch (error) {
@@ -141,7 +149,7 @@ function Parents () {
 		useEffect(() => {
 			const fetchWeather = async () => {
 				try {
-					const response = await axios.get('https://api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=50e314a5fea145f564977fe2a4844e46');
+					const response = await axios.get('https://api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=50e314a5fea145f564977fe2a4844e46',config);
 					setWeather(response?.data?.main?.feels_like)
 				} catch (error) {
 					console.error(error);
@@ -163,7 +171,7 @@ function Parents () {
                 try {
                   setModal(true)
       
-                    const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+                    const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
                     setNotification(response.data.messages)
                 } catch (error) {
                     console.error(error);
@@ -225,14 +233,14 @@ function Parents () {
           useEffect(() => { 
                 const fetchPrentPupils = async () => {
                   try {
-                      const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${parentId}/`);
+                      const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${parentId}/`,config);
                       setProfil(response.data)
                   } catch (error) {
                       console.error(error);
                   }
 
                   try {
-                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${parentId}/weekly_diagram/`);
+                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${parentId}/weekly_diagram/`,config);
                     const filteredData2 = response.data.filter(item => item.create_date === date2);
                     const filteredData3 = response.data.filter(item => item.create_date === date3);
                     const filteredData4 = response.data.filter(item => item.create_date === date4);
@@ -252,15 +260,14 @@ function Parents () {
 
 
                 try {
-                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${parentId}/pie_chart_id/`);
+                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${parentId}/pie_chart_id/`,config);
                     setPia(response.data)
                 } catch (error) {
                     console.error(error);
                 }
 
                 try {
-                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${parentId}/for_week/
-                    `);
+                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${parentId}/for_week/`,config);
                     setWeek(response.data)
                     const data2 = response.data[date2]
                     const data3 = response.data[date3]
@@ -287,14 +294,14 @@ function Parents () {
 
                       const OnParentChange = async (evt) => {
                           try {
-                              const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${evt.target.value}/`);
+                              const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${evt.target.value}/`,config);
                               setProfil(response.data)
                           } catch (error) {
                               console.error(error);
                           }
                           
                           try {
-                              const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${evt.target.value}/weekly_diagram/`);
+                              const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${evt.target.value}/weekly_diagram/`,config);
                               const filteredData2 = response.data.filter(item => item.create_date === date2);
                               const filteredData3 = response.data.filter(item => item.create_date === date3);
                               const filteredData4 = response.data.filter(item => item.create_date === date4);
@@ -315,7 +322,7 @@ function Parents () {
 
 
                           try {
-                            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${evt.target.value}/pie_chart_id/`);
+                            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${evt.target.value}/pie_chart_id/`,config);
                             setPia(response.data)
                         } catch (error) {
                             console.error(error);
@@ -323,8 +330,7 @@ function Parents () {
 
 
                         try {
-                            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${evt.target.value}/for_week/
-                            `);
+                            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${evt.target.value}/for_week/`,config);
                             setWeek(response.data)
                             const data2 = response.data[date2]
                             const data3 = response.data[date3]

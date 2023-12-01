@@ -5,18 +5,26 @@ import { Modal } from 'react-bootstrap';
 import './depressiyaPupil.css'
 import { AuthContext } from '../../context/PupilContext';
 import usersLogo from '../../Image/photo_people.jpg'
+import { LoginHooks } from '../../Hooks/LoginHooks';
 
 function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
   const {theme, classes} = useContext(AuthContext)
-
+  const {token} = LoginHooks()
   const [depressiya, setDepressiya] = useState([]);
+
+  const config =  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const promises = classes?.extra?.sad?.map(async (item) => {
           const response = await axios.get(
-            `https://www.api.yomon-emas.uz/api/users/pupils/${item?.id}`
+            `https://www.api.yomon-emas.uz/api/users/pupils/${item?.id}`,config
           );
           return response.data;
         });

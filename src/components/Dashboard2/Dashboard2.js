@@ -5,21 +5,28 @@ import axios from 'axios';
 import logo from '../../Image/logotad.svg'
 import gif from '../../Gif/happy-gif-unscreen.gif'
 import teacherImg from '../../Gif/teacher-normal-gif.gif'
-import all from '../../Image/all.svg'
 import boyTwo from '../../Gif/aggressive-unscreen.gif'
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import { AuthContext } from '../../context/PupilContext';
+import { LoginHooks } from '../../Hooks/LoginHooks';
 
 function Dashboard2() {
     const {position, setPosition} = useContext(AuthContext)
     const [dashpupil, setDashPupil] = useState()
     const [dashteacher, setDashteacher] = useState()
+    const {token} = LoginHooks()
+
+    const config =  {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    }
   
     useEffect(() => {
 
         const fetchPupils = async () => {
           try {
-            const response = await axios.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/for_pupils/');
+            const response = await axios.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/for_pupils/',config);
             setDashPupil(response.data)
             setDashteacher(response.data.Teacher)
           } catch (error) {
@@ -44,7 +51,7 @@ function Dashboard2() {
 		const fetchClasses = async () => {
 			try {
 
-				const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`);
+				const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`,config);
 				setPosition(response.data.status)
 			} catch (error) {
 				console.error(error);

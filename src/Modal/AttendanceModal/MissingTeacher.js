@@ -5,15 +5,23 @@ import close_Button from '../../Image/close-btn.svg';
 import './attendanceModal.css'
 import { AuthContext } from '../../context/PupilContext';
 import usersLogo from '../../Image/photo_people.jpg'
+import { LoginHooks } from '../../Hooks/LoginHooks';
 
 function MissingTeacher ({missingTeacher, setMissingTeacher}) {
   const {theme,missingTeachers, setMissingTeachers} = useContext(AuthContext)
+  const {token} = LoginHooks()
+
+  const config =  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
 
 
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher&is_absent=true');
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher&is_absent=true',config);
         const result = response?.data?.results?.map((e) => {
           if (e.is_absent === true) {
             setMissingTeachers(response.data);

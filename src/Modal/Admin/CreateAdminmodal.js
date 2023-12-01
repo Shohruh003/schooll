@@ -8,6 +8,7 @@ import { AuthContext } from '../../context/PupilContext';
 import axios from 'axios';
 import { useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { LoginHooks } from '../../Hooks/LoginHooks';
 
 function CreateAdminModal({ adminModal, setAdminModal }) {
   const { theme } = useContext(AuthContext)
@@ -15,6 +16,13 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
   const [isChecked, setIsChecked] = useState()
   const [parent, setParent] = useState()
   const [orginalParent, setOrginalParent] = useState()
+  const {token} = LoginHooks()
+
+  const config =  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
 
   var imgref = useRef()
   const changeOption = (evt) => {
@@ -98,7 +106,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     formData.append('shift', user?.shift)
     if (user?.status !== 'pupil') {
       const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/`;
-      axios.post(apiUrl, formData)
+      axios.post(apiUrl, formData,config)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot qo'shildi !");
@@ -112,7 +120,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
         });
     } else {
       const apiUrl = `https://www.api.yomon-emas.uz/api/users/pupils/`;
-      axios.post(apiUrl, formData)
+      axios.post(apiUrl, formData,config)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot qo'shildi !");
@@ -134,7 +142,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     var parentList = document.getElementById('parentList')
     parentList.style.display = 'block'
 
-    await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=parents')
+    await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=parents',config)
       .then((response) => {
         setParent(response?.data?.results);
         setOrginalParent(response?.data?.results);

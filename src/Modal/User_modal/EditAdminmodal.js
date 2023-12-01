@@ -8,6 +8,7 @@ import './editAdminModal.css'
 import { AuthContext } from '../../context/PupilContext';
 import { useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { LoginHooks } from '../../Hooks/LoginHooks';
 
 
 function EditAdminModal({ editAdminModal, setEditAdminModal }) {
@@ -15,6 +16,13 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
   const [user, setUser] = useState()
   const [parent, setParent] = useState()
   const [orginalParent, setOrginalParent] = useState()
+  const {token} = LoginHooks()
+
+  const config =  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
   var imgref = useRef()
 
   const changeOption = (evt) => {
@@ -88,7 +96,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
       formData.delete('email')
       formData.delete('status')
 
-      axios.patch(apiUrl, formData)
+      axios.patch(apiUrl, formData, config)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot yangilandi!");
@@ -106,7 +114,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
         formData.delete('parent')
         formData.delete('is_morning')
         formData.delete('main_image')
-        axios.patch(apiUrl, formData)
+        axios.patch(apiUrl, formData,config)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot yangilandi !");
@@ -124,7 +132,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
         formData.delete('is_morning')
         formData.delete('main_image')
         formData.delete('pupil_class')
-        axios.patch(apiUrl, formData)
+        axios.patch(apiUrl, formData,config)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot yangilandi !");
@@ -142,7 +150,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
         formData.delete('is_morning')
         formData.delete('main_image')
         formData.delete('pupil_class')
-        axios.patch(apiUrl, formData)
+        axios.patch(apiUrl, formData,config)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot yangilandi !");
@@ -161,7 +169,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     var parentList = document.getElementById('parentList')
     parentList.style.display = 'block'
 
-    await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=parents')
+    await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=parents',config)
       .then((response) => {
         setParent(response?.data?.results);
         setOrginalParent(response?.data?.results);

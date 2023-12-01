@@ -9,13 +9,11 @@ import { AuthContext } from "../../context/PupilContext";
 import axios from "axios";
 import { DecodeHooks } from "../../Hooks/DecodeHook";
 import Notification from "../../Modal/Notification/Notification";
+import { LoginHooks } from "../../Hooks/LoginHooks";
 
 function Admin(props) {
   const { isActive } = props;
   const {
-    user,
-    setUsers,
-    originalUsers,
     genders,
     setGenders,
     pupilCount,
@@ -26,7 +24,6 @@ function Admin(props) {
     theme,
     setTheme,
     setAgeRange,
-    setTeacher,
     setPupilCount,
     setTeacherCount,
     setNotification,
@@ -39,11 +36,18 @@ function Admin(props) {
   const [adminModal, setAdminModal] = useState();
   const { decode } = DecodeHooks();
   const [teach, setTeach] = useState();
+  const {token} = LoginHooks()
+
+  const config =  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
   useEffect(() => {
     const fetchParents = async () => {
       try {
         const response = await axios.get(
-          `https://www.api.yomon-emas.uz/api/users/users/${decode}/`
+          `https://www.api.yomon-emas.uz/api/users/users/${decode}/`,config
         );
         setTeach(response?.data);
       } catch (error) {
@@ -59,7 +63,7 @@ function Admin(props) {
       setModal(true);
 
       const response = axios.get(
-        `https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`
+        `https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,config
       );
       setNotification(response.data.messages);
     } catch (error) {
@@ -71,7 +75,7 @@ function Admin(props) {
     const fetchNotification = async () => {
       try {
         const response = await axios.get(
-          `https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`
+          `https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,config
         );
         setNotification(response.data.messages);
         setNotificationCount(response.data.messages.length);
@@ -104,7 +108,7 @@ function Admin(props) {
     const fetchPupils = async () => {
       try {
         const response = await axios.get(
-          "https://www.api.yomon-emas.uz/api/users/pupils/"
+          "https://www.api.yomon-emas.uz/api/users/pupils/",config
         );
         setPupilCount(response.data.count);
       } catch (error) {
@@ -119,7 +123,7 @@ function Admin(props) {
     const fetchPupils = async () => {
       try {
         const response = await axios.get(
-          "https://www.api.yomon-emas.uz/api/users/users/?status=teacher"
+          "https://www.api.yomon-emas.uz/api/users/users/?status=teacher",config
         );
         setTeacherCount(response.data.count);
       } catch (error) {
@@ -134,7 +138,7 @@ function Admin(props) {
     const fetchPupils = async () => {
       try {
         const response = await axios.get(
-          "https://www.api.yomon-emas.uz/api/users/pupils/classes/"
+          "https://www.api.yomon-emas.uz/api/users/pupils/classes/",config
         );
         setClasses(response.data);
       } catch (error) {

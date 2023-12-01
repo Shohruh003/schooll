@@ -10,6 +10,7 @@ import { AuthContext } from '../../context/PupilContext';
 import axios from 'axios';
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import Notification from '../../Modal/Notification/Notification';
+import { LoginHooks } from '../../Hooks/LoginHooks';
 
 
 function Psycholog(props) {
@@ -18,6 +19,13 @@ function Psycholog(props) {
   const [agressiyaModal, setAgressiyaModal] = useState()
   const [depressiyaModal, setDepressiyaModal] = useState()
   const {decode} = DecodeHooks()
+  const {token} = LoginHooks()
+
+  const config =  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -39,7 +47,7 @@ function Psycholog(props) {
   useEffect(() => {
     const fetchPupils = async () => {
       try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/');
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/',config);
         setPupilCount(response.data.count)
       } catch (error) {
         console.error(error);
@@ -52,7 +60,7 @@ function Psycholog(props) {
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/');
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/',config);
         setClasses(response.data)
       } catch (error) {
         console.error(error);
@@ -65,7 +73,7 @@ function Psycholog(props) {
   useEffect(() => {
     const fetchPupils = async () => {
       try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher');
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher',config);
         setTeacherCount(response.data.count)
       } catch (error) {
         console.error(error);
@@ -186,7 +194,7 @@ function Psycholog(props) {
   const fetchPupils = async () => {
     try {
      const response = await axios.get(
-        `https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/`
+        `https://mycorse.onrender.com/https://www.api.yomon-emas.uz/api/users/pupils/`,config
       );
       userslar = await response.data.results;
     } catch (error) {
@@ -209,7 +217,7 @@ function Psycholog(props) {
     const fetchNotification = async () => {
       try {
 
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+          const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
           setNotification(response.data.messages)
           setNotificationCount(response.data.messages.length)
       } catch (error) {
@@ -224,7 +232,7 @@ function Psycholog(props) {
     try {
       setModal(true)
 
-        const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`);
+        const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
         setNotification(response.data.messages)
     } catch (error) {
         console.error(error);

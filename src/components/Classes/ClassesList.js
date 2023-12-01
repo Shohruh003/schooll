@@ -3,11 +3,18 @@ import { useContext, useEffect } from "react";
 import './classes.css'
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/PupilContext";
+import { LoginHooks } from "../../Hooks/LoginHooks";
 
 
 function ClassesList() {
   const {classList, setClassList,genders, setOriginalUsers,pupilClass,theme, pupilEmotion} = useContext(AuthContext)
+  const {token} = LoginHooks()
 
+  const config =  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
   const style = document.createElement('style');
   style.innerHTML = `
     .class_list::-webkit-scrollbar-thumb {
@@ -30,7 +37,7 @@ function ClassesList() {
           params.emotions = pupilEmotion
         }
 
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/', { params });
+        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/', { params }, config);
       setClassList(response.data.classes);
       setOriginalUsers(response.data.results);
       } catch (error) {
