@@ -15,6 +15,7 @@ function Pupil() {
   const [userEmotion, setUserEmotion] = useState([])
   const {token} = LoginHooks()
 
+
   const config =  {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -34,7 +35,7 @@ function Pupil() {
     const element = e.target;
 
     // console.log(Math.floor(element.scrollHeight - element.scrollTop) - 1);
-    // console.log(element.clientHeight);
+    // console.log(element.clientHeight); 
     if (Math.floor(element.scrollHeight - element.scrollTop) - 1 < element.clientHeight) {
       // if (page < 20) {
         page = page++
@@ -61,36 +62,41 @@ function Pupil() {
           params.filter_by_emotion = pupilEmotion
         }
 
-    //     let page = 1;
-    // let allData = [];
+        let page = 1;
+    let allData = [];
 
-    // while (true) {
-    //   const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils?page=${page}`);
-    //   const data = response.data.results;
+    while (true) {
+      const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils?page=${page}`,{ params,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+         });
+      const data = response.data.results;
 
-    //   if (data.length === 0) {
-    //     break;
-    //   }
+      if (data.length === 0) {
+        break;
+      }
       
-    //   allData = allData.concat(data);
-    //   page++;
-    //   setUsers(allData)
-    // }
+      allData = allData.concat(data);
+      page++;
+      setUsers(allData)
+    }
 
-        if (Object.keys(params).length > 0) {
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=1`, { params,
-            headers: {
-              Authorization: `Bearer ${token}`,
-            }
-           });
-          const arr = response.data.results
-          setUsers(arr);
-          setOriginalUsers(response.data);
-        } else if (page <= 20) {
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`,config);
-          const arr = response.data.results
-          setUsers([...user, ...arr]);
-        }
+        // if (Object.keys(params).length > 0) {
+        //   const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=1`, { params,
+        //     headers: {
+        //       Authorization: `Bearer ${token}`,
+        //     }
+        //    });
+        //   const arr = response.data.results
+        //   setUsers(arr);
+        //   console.log(response.data);
+        //   setOriginalUsers(response.data.results);
+        // } else if (page <= 100) {
+        //   const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`,config);
+        //   const arr = response.data.results
+        //   setUsers([...user, ...arr]);
+        // }
       } catch (error) {
         console.error(error);
       }
@@ -155,7 +161,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
               <p className="timePeople" style={{ borderColor: theme }}>
                 <div>
                 <span className='people_heading'>Пришел: {newFirstTime}</span>
-                <span className='people_heading'>Ушел: {newLastTime}</span>
+                <span className='people_heading'>Ушел: {newLastTime === newFirstTime ? "0:00" : newLastTime}</span>
                 </div>
               </p>
               <p style={{ borderColor: theme }}>
