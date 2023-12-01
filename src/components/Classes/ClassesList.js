@@ -35,6 +35,7 @@ function ClassesList() {
           Authorization: `Bearer ${token}`,
         } });
       setClassList(response.data.classes);
+      console.log(response.data);
       setOriginalUsers(response.data.results);
       } catch (error) {
         console.error(error);

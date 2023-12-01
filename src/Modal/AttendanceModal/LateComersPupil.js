@@ -10,6 +10,7 @@ import { LoginHooks } from '../../Hooks/LoginHooks';
 function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
   const { theme, classes,lateComersPupils, setLateComersPupils} = useContext(AuthContext);
   const {token} = LoginHooks()
+  console.log(classes);
 
   const config =  {
     headers: {
@@ -19,13 +20,8 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const promises = Object.values(classes?.classes).flatMap((classData) => classData.present_pupils.id).map(async (id) => {
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`,config);
-          return response.data;
-        });
-  
-        const absentPupilsData = await Promise.all(promises);
-        setLateComersPupils(absentPupilsData);
+        const promises = Object.values(classes?.classes).flatMap((classData) => classData.present_pupils.pupils)
+        setLateComersPupils(promises)
       } catch (error) {
         console.log(error);
       }
@@ -60,12 +56,12 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
     </tr>
   </thead>
   <tbody>
-  {lateComersPupils.map((item, index) => (
+  {lateComersPupils?.map((item, index) => (
               <tr key={index}>
                 <td><img className='lateComersImg' src={item?.main_image ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
                 <td>{item?.full_name}</td>
                 <td>{item?.pupil_class}</td>
-                <td>
+                {/* <td>
       {item?.emotions[item?.emotions.length - 1]?.create_date ? (
         new Date(item?.emotions[item?.emotions.length - 1]?.create_date).toLocaleTimeString('uz-UZ', {
           hour: 'numeric',
@@ -74,7 +70,7 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
       ) : (
         'N/A'
       )}
-    </td>
+    </td> */}
               </tr>
             ))}
   </tbody>

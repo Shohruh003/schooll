@@ -78,8 +78,6 @@ function Pupil() {
       }
       
       allData = allData.concat(data);
-      console.log(params);
-      console.log(allData);
       page++;
       setUsers(allData)
     }
@@ -162,8 +160,8 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
               </p>
               <p className="timePeople" style={{ borderColor: theme }}>
                 <div>
-                <span className='people_heading'>Пришел: {newFirstTime}</span>
-                <span className='people_heading'>Ушел: {newLastTime === newFirstTime ? "0:00" : newLastTime}</span>
+                <span className='people_heading'>Пришел: {newFirstTime === '0:00' ? "--:--" : newFirstTime}</span>
+                <span className='people_heading'>Ушел: {newLastTime === newFirstTime ? "--:--" : newLastTime}</span>
                 </div>
               </p>
               <p style={{ borderColor: theme }}>
