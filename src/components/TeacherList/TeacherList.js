@@ -117,8 +117,8 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
         </p>
         <p className="timeTeacher" style={{borderColor: theme}}>
           <div>
-          <span className='teacher_heading'>Пришел: {wentClock === "00:00" ? "--:--" : wentClock}</span>
-          <span className='teacher_heading'>Ушел: {comeClock === "00:00" ? "--:--" : comeClock}</span>
+          <span className='teacher_heading'>Пришел: {comeClock === "00:00" ? "--:--" : comeClock}</span>
+          <span className='teacher_heading'>Ушел: {wentClock === "00:00" ? "--:--" : wentClock}</span>
           </div>
         </p>
         <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence.emotions === "surprise" ? "Удивление" : "Отсутствует" : "Отсутствует"}`}>
