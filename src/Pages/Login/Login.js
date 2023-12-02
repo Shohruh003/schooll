@@ -27,6 +27,7 @@ function Login() {
     .then((data) => {
       if (data.data.access) {
         setToken(data.data.access);
+        console.log(data);
         setDecode(jwt_decode(data.data.access).user_id)
         navigate('/');
       }

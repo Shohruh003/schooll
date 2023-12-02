@@ -6,19 +6,24 @@ import { AuthContext } from '../../context/PupilContext';
 import axios from 'axios';
 import { useState } from 'react';
 import usersLogo from '../../Image/photo_people.jpg'
+import { LoginHooks } from '../../Hooks/LoginHooks';
 
 
 function AgressiyaPupil({ agressiyaModal, setAgressiyaModal }) {
   const { theme, classes} = useContext(AuthContext);
   const [agressiya, setAgressiya] = useState([]);
+  const {token} = LoginHooks()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const promises = classes?.extra?.angry?.map(async (item) => {
           const response = await axios.get(
-            `https://www.api.yomon-emas.uz/api/users/pupils/${item?.id}`
-          );
+            `https://www.api.yomon-emas.uz/api/users/pupils/${item?.id}`,{
+              headers: {
+                Authorization: `Bearer ${token}`,
+              }
+            });
           return response.data;
         });
 

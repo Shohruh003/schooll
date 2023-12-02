@@ -160,7 +160,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
               </p>
               <p className="timePeople" style={{ borderColor: theme }}>
                 <div>
-                <span className='people_heading'>Пришел: {newFirstTime === '00:00' ? "--:--" : newFirstTime}</span>
+                <span className='people_heading'>Пришел: {newFirstTime === '0:00' ? "--:--" : newFirstTime}</span>
                 <span className='people_heading'>Ушел: {newLastTime === newFirstTime ? "--:--" : newLastTime}</span>
                 </div>
               </p>
