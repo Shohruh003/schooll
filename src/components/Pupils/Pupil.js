@@ -155,7 +155,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
               <p className="name_item" style={{ borderColor: theme }}>
                 <div className="peaoleName">
                 <span className='people_heading'>Фамилия и имя</span>
-                <span className='people_name'>{item.full_name ? item.full_name : "Пустой"}</span>
+                <span className='people_name'>{item.full_name ? item.full_name : "Отсутствует"}</span>
                 </div>
               </p>
               <p className="timePeople" style={{ borderColor: theme }}>
@@ -167,7 +167,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
               <p style={{ borderColor: theme }}>
                 <div>
                 <span className='people_heading'>Класс</span>
-                <span className='people_name'>{item.pupil_class ? item.pupil_class : "Пустой"}</span>
+                <span className='people_name'>{item.pupil_class ? item.pupil_class : "Отсутствует"}</span>
                 </div>
               </p>
               <p style={{ borderColor: theme }}>
@@ -177,10 +177,10 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
                 </div>
               </p>
               <p style={{ borderColor: theme }}
-                className={`emotions ${userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Пустой" : 'Пустой'}`}
+                className={`emotions ${userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Отсутствует" : 'Отсутствует'}`}
               >
                 <div>
-                <span className='people_heading'> {userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Пустой" : 'Пустой'} </span>
+                <span className='people_heading'> {userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Отсутствует" : 'Отсутствует'} </span>
 
 
 <span className='people_name'>{userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last.confidence ? userEmotion[index]?.[formattedDate]?.last.confidence : "0"} %</span>

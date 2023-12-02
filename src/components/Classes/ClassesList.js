@@ -50,7 +50,7 @@ function ClassesList() {
     <ul className="class_list">
                         {arr?.map((item) => {
                           const emotionClassConfidance = Math.floor(100 - item?.value?.sad_avg)
-                          const emotionClass = emotionClassConfidance && emotionClassConfidance ? emotionClassConfidance > 80 ?  "Веселье" : emotionClassConfidance > 64 ? "Нейтраль" : emotionClassConfidance > 48 ? "Удивление" : emotionClassConfidance > 32 ? "Злость" : emotionClassConfidance > 16 ? "Страх" : emotionClassConfidance < 16 ? "Грусть" : "Пустой" : 'Пустой'
+                          const emotionClass = emotionClassConfidance && emotionClassConfidance ? emotionClassConfidance > 80 ?  "Веселье" : emotionClassConfidance > 64 ? "Нейтраль" : emotionClassConfidance > 48 ? "Удивление" : emotionClassConfidance > 32 ? "Злость" : emotionClassConfidance > 16 ? "Страх" : emotionClassConfidance < 16 ? "Грусть" : "Отсутствует" : 'Отсутствует'
 
     return (
       <li key={item.key} style={{borderColor: theme}}>
@@ -58,13 +58,13 @@ function ClassesList() {
         <div className="class_heading1">
           <div>
           <span className='class_heading class_heading0'>Класс</span>
-          <span className='class_name'>{item.key ? item.key : "Пустой"}</span>
+          <span className='class_name'>{item.key ? item.key : "Отсутствует"}</span>
           </div>
         </div>
         <p style={{borderColor: theme}}>
           <div>
           <span className='class_heading'>Всего учеников</span>
-          <span className='class_name'>{item.value.all_pupils_count ? item.value.all_pupils_count : "Пустой"}</span>
+          <span className='class_name'>{item.value.all_pupils_count ? item.value.all_pupils_count : "Отсутствует"}</span>
           </div>
         </p>
 

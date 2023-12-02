@@ -84,7 +84,7 @@ const wentClock = `${wentHours}:${wentMinutes}`;
         <img className='teacher_image' src={item?.main_image ? item?.main_image : usersLogo} alt="teacher of the img" width='100' height='100' />
         <p className="full_nameTeach" style={{borderColor: theme}}>
           <span className='teacher_heading'>Фамилия и имя</span>
-          <span className='teacher_name'>{item?.full_name ? item?.full_name : "Пустой"}</span>
+          <span className='teacher_name'>{item?.full_name ? item?.full_name : "Отсутствует"}</span>
         </p>
         <p className="teachPupil_time" style={{borderColor: theme}}>
           <span className='teacher_heading'>Пришел: {comeClock === "00:00" ? "--:--" : comeClock}</span>
@@ -92,14 +92,14 @@ const wentClock = `${wentHours}:${wentMinutes}`;
         </p>
         <p style={{borderColor: theme}}>
           <span className='teacher_heading'>Класс</span>
-          <span className='teacher_name'>{item?.pupil_class ? item?.pupil_class : "Пустой"}</span>
+          <span className='teacher_name'>{item?.pupil_class ? item?.pupil_class : "Отсутствует"}</span>
         </p>
         <p style={{borderColor: theme}}>
           <span className='teacher_heading'>Возраст</span>
           <span className='teacher_name'>{age ? age : "0"}</span>
         </p>
-        <p style={{borderColor: theme}} className={`emotions ${emotions[emotions.length -1] && emotions[emotions.length -1]?.emotions ? emotions[emotions.length -1]?.emotions === "neutral" ? "Нейтраль" : emotions[emotions.length -1]?.emotions === "happy" ? "Веселье" : emotions[emotions.length -1]?.emotions === "angry" ? "Злость" : emotions[emotions.length -1]?.emotions === "sad" ? "Грусть" : emotions[emotions.length -1]?.emotions === "fear" ? "Страх" : emotions[emotions.length -1]?.emotions === "surprise" ? "Удивление" : "Пустой" : "Пустой"}`}> 
-        <span className='teacher_heading'> {emotions[emotions.length -1] && emotions[emotions.length -1]?.emotions ? emotions[emotions.length -1]?.emotions === "neutral" ? "Нейтраль" : emotions[emotions.length -1]?.emotions === "happy" ? "Веселье" : emotions[emotions.length -1]?.emotions === "angry" ? "Злость" : emotions[emotions.length -1]?.emotions === "sad" ? "Грусть" : emotions[emotions.length -1]?.emotions === "fear" ? "Страх" : emotions[emotions.length -1]?.emotions === "surprise" ? "Удивление" : "Пустой" : "Пустой"} </span>
+        <p style={{borderColor: theme}} className={`emotions ${emotions[emotions.length -1] && emotions[emotions.length -1]?.emotions ? emotions[emotions.length -1]?.emotions === "neutral" ? "Нейтраль" : emotions[emotions.length -1]?.emotions === "happy" ? "Веселье" : emotions[emotions.length -1]?.emotions === "angry" ? "Злость" : emotions[emotions.length -1]?.emotions === "sad" ? "Грусть" : emotions[emotions.length -1]?.emotions === "fear" ? "Страх" : emotions[emotions.length -1]?.emotions === "surprise" ? "Удивление" : "Отсутствует" : "Отсутствует"}`}> 
+        <span className='teacher_heading'> {emotions[emotions.length -1] && emotions[emotions.length -1]?.emotions ? emotions[emotions.length -1]?.emotions === "neutral" ? "Нейтраль" : emotions[emotions.length -1]?.emotions === "happy" ? "Веселье" : emotions[emotions.length -1]?.emotions === "angry" ? "Злость" : emotions[emotions.length -1]?.emotions === "sad" ? "Грусть" : emotions[emotions.length -1]?.emotions === "fear" ? "Страх" : emotions[emotions.length -1]?.emotions === "surprise" ? "Удивление" : "Отсутствует" : "Отсутствует"} </span>
           <span className='teacher_name'>{emotions[emotions.length -1] && emotions[emotions.length -1]?.emotions ? emotions[emotions.length -1]?.confidence : "0"} %</span>
         </p>
       </Link>

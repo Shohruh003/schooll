@@ -61,18 +61,18 @@ document.head.appendChild(style);
   const emotions = item?.todays_emotions ? item?.todays_emotions : {
     emotions: [
       {
-        "emotions": "Пустой",
+        "emotions": "Отсутствует",
         "confidence": 0,
         "create_date": "0"
       }]
   }
   const emotionsCome = emotions && emotions[0] ? emotions[0] : {
-    "emotions": "Пустой",
+    "emotions": "Отсутствует",
     "confidence": 0,
     "create_date": "0"
   }
   const emotionsWent =emotions && emotions.length > 1 ? emotions[emotions.length -1] : {
-    "emotions": "Пустой",
+    "emotions": "Отсутствует",
     "confidence": 0,
     "create_date": "0"
   };
@@ -112,7 +112,7 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
         <p className="name_item" style={{borderColor: theme}}>
           <div>
           <span className='teacher_heading'>Фамилия и имя</span>
-          <span className='teacher_name'>{item.full_name ? item.full_name : "Пустой"}</span>
+          <span className='teacher_name'>{item.full_name ? item.full_name : "Отсутствует"}</span>
           </div>
         </p>
         <p className="timeTeacher" style={{borderColor: theme}}>
@@ -121,9 +121,9 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
           <span className='teacher_heading'>Ушел: {comeClock === "00:00" ? "--:--" : comeClock}</span>
           </div>
         </p>
-        <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence.emotions === "surprise" ? "Удивление" : "Пустой" : "Пустой"}`}>
+        <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence.emotions === "surprise" ? "Удивление" : "Отсутствует" : "Отсутствует"}`}>
         <div>
-        <span className='people_heading'> {firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence.emotions === "surprise" ? "Удивление" : "Пустой" : "Пустой"} </span>
+        <span className='people_heading'> {firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence.emotions === "surprise" ? "Удивление" : "Отсутствует" : "Отсутствует"} </span>
           <span className='people_name'>{firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.confidence : "0"} %</span>
         </div>
         </p>
