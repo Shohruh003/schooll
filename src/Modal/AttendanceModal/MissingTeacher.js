@@ -64,7 +64,7 @@ function MissingTeacher ({missingTeacher, setMissingTeacher}) {
               <tr key={index}>
                 <td><img className='lateComersImg' src={item?.main_image ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
                 <td>{item?.full_name}</td>
-                <td>{item?.pupil_class}</td>
+                <td>{item?.pupil_class?.join(', ')}</td>
               </tr>
             ))}
   </tbody>
