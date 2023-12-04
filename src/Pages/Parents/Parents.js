@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import './parents.css'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Avatar from '../../Image/peopleImg1.jpg'
+import Avatar from '../../Image/photo_people.jpg'
 import CanvasJSReact from '@canvasjs/react-charts';
 import { AuthContext } from '../../context/PupilContext';
 import { DecodeHooks } from '../../Hooks/DecodeHook';
@@ -604,11 +604,11 @@ const piHappy = Math.round(pia?.happy)
                             </p>
 
                             <p className='avatar_name'>Пришел:
-                                <span className='avatar_time'>{formattedTime7}</span>
+                                <span className='avatar_time'>{formattedTime7 === 'Invalid Date' ? "--:--" : formattedTime7}</span>
                             </p>
 
                             <p className='avatar_name'>Ушел:
-                                <span className='avatar_time'>{formattedTime7week}</span>
+                                <span className='avatar_time'>{formattedTime7week === formattedTime7 ? "--:--" : formattedTime7week}</span>
                             </p>
                         </div>
 
@@ -625,59 +625,59 @@ const piHappy = Math.round(pia?.happy)
                                 <li className='week_item'>
                                     <p>{weekday2}</p>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week2?.first?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime2 === 'Invalid Date' ? '0' : formattedTime2}</span>
+                                    <span className='weekItem_time'>{formattedTime2 === 'Invalid Date' ? '--:--' : formattedTime2}</span>
                                     <span className='days'>{date2}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week2?.last?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime2week === 'Invalid Date' ? '0' : formattedTime2week}</span>
+                                    <span className='weekItem_time'>{formattedTime2week === formattedTime2 ? '--:--' : formattedTime2week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday3}</p>
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week3?.first?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime3 === 'Invalid Date' ? '0' : formattedTime3}</span>
+                                    <span className='weekItem_time'>{formattedTime3 === 'Invalid Date' ? '--:--' : formattedTime3}</span>
                                     <span className='days'>{date3}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week3?.last?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime3week === 'Invalid Date' ? '0' : formattedTime3week}</span>
+                                    <span className='weekItem_time'>{formattedTime3week === formattedTime3 ? '--:--' : formattedTime3week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday4}</p>
 
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week4?.first?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime4 === 'Invalid Date' ? '0' : formattedTime4}</span>
+                                    <span className='weekItem_time'>{formattedTime4 === 'Invalid Date' ? '--:--' : formattedTime4}</span>
                                     <span className='days'>{date4}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week4?.last?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime4week === 'Invalid Date' ? '0' : formattedTime4week}</span>
+                                    <span className='weekItem_time'>{formattedTime4week === formattedTime4 ? '--:--' : formattedTime4week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday5}</p>
 
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week5?.first?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime5 === 'Invalid Date' ? '0' : formattedTime5}</span>
+                                    <span className='weekItem_time'>{formattedTime5 === 'Invalid Date' ? '--:--' : formattedTime5}</span>
                                     <span className='days'>{date5}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week5?.last?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime5week === 'Invalid Date' ? '0' : formattedTime5week}</span>
+                                    <span className='weekItem_time'>{formattedTime5week === formattedTime5 ? '--:--' : formattedTime5week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday6}</p>
 
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week6?.first?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime6 === 'Invalid Date' ? '0' : formattedTime6}</span>
+                                    <span className='weekItem_time'>{formattedTime6 === 'Invalid Date' ? '--:--' : formattedTime6}</span>
                                     <span className='days'>{date6}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week6?.last?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime6week === 'Invalid Date' ? '0' : formattedTime6week}</span>
+                                    <span className='weekItem_time'>{formattedTime6week === formattedTime6 ? '--:--' : formattedTime6week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday7}</p>
 
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week7?.first?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime7 === 'Invalid Date' ? '0' : formattedTime7}</span>
+                                    <span className='weekItem_time'>{formattedTime7 === 'Invalid Date' ? '--:--' : formattedTime7}</span>
                                     <span className='days'>{date7}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week7?.last?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime7week === 'Invalid Date' ? '0' : formattedTime7week}</span>
+                                    <span className='weekItem_time'>{formattedTime7week === formattedTime7 ? '--:--' : formattedTime7week}</span>
                                 </li>
                             </ul>
                         </div>

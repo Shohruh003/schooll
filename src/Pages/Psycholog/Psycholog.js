@@ -461,7 +461,12 @@ const hendlStatus = (x) => {
 
               <li className='panel_item panel_itemm'>
                 <select className='item_button search_select' onChange={handleEmotionChange}>
-                  <option className='search_option' value="" disabled selected hidden>По ЭС</option>
+                <option
+                        className="search_option"
+                        value=""
+                      >
+                        По ЭС
+                      </option>
                   <option className='search_option' value="happy">Веселье</option>
                   <option className='search_option' value="neutral">Нейтраль</option>
                   <option className='search_option' value="sad">Грусть</option>
