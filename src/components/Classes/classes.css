@@ -82,6 +82,17 @@
 
 /* ===============================Responsive==================================== */
 
+@media screen and (max-width: 1400px) {
+  .class_heading {
+    font-size: 14px !important;
+  }
+
+  .class_name {
+    font-size: 14px !important;
+  }
+
+}
+
 @media screen and (max-width: 1200px) {
   .class_link p {
     display: flex !important;

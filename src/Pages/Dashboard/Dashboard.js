@@ -12,7 +12,7 @@ import { LoginHooks } from '../../Hooks/LoginHooks';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function Dashboard () {
 
-	const {position, pupilEmotion, setPupilEmotion,theme, setTheme, setClasses,comersPupils, missingTeachers,lateComersTeachers,lateComersPupils} = useContext(AuthContext)
+	const {position, pupilEmotion, setPupilEmotion,theme, setTheme, setClasses,comersPupils, missingTeachers,lateComersPupils} = useContext(AuthContext)
 	const [teacherEmotion, setTeacherEmotion] = useState()
 
 		const [lateComersTeacher, setLateComersTeacher] = useState(false)
@@ -296,7 +296,7 @@ function findLargestSection(options) {
 		useEffect(() => {
 			const fetchWeather = async () => {
 				try {
-					const response = await axios.get('https://api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=50e314a5fea145f564977fe2a4844e46',config);
+					const response = await axios.get('https://mycorse.onrender.com/https://api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=50e314a5fea145f564977fe2a4844e46',config);
 					setWeather(response.data.main.feels_like)
 				} catch (error) {
 					console.error(error);
@@ -438,7 +438,7 @@ function findLargestSection(options) {
 						</div>
 						
 		{/* <button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={LateComersTeachers}>Опоздавшие : {lateComersTeachers?.results?.length ? lateComersTeachers?.results?.length : '0'}</button> */}
-		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={MissingTeachers}>Всего : {missingTeachers?.results?.length ? missingTeachers?.results?.length : '0'}</button>
+		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={MissingTeachers}>Отсутствующие преподаватели : {missingTeachers?.results?.length ? missingTeachers?.results?.length : '0'}</button>
 
 					</li>
 
