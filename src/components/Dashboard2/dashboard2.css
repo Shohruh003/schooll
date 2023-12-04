@@ -291,6 +291,10 @@ margin-right: 200px;
             top: -55%;
         }
     
+        .card-last button {
+            width: 250px !important;
+            height: 250px;
+        }
   }
 
   @media screen and (max-width: 1290px) {
