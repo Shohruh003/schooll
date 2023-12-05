@@ -27,7 +27,7 @@ function Parents () {
             const fetchNotification = async () => {
               try {
       
-                  const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
+                  const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
                   setNotification(response.data.messages)
                   setNotificationCount(response.data.messages.length)
               } catch (error) {
@@ -41,7 +41,7 @@ function Parents () {
         useEffect(() => {
             const fetchParents = async () => {
                 try {
-                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/sons/`,config);
+                    const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/sons/`,config);
                     setParentId(response?.data[0]?.id)
                     setParent(response.data)
                 } catch (error) {
@@ -171,7 +171,7 @@ function Parents () {
                 try {
                   setModal(true)
       
-                    const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
+                    const response = axios.get(`https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
                     setNotification(response.data.messages)
                 } catch (error) {
                     console.error(error);
@@ -233,14 +233,14 @@ function Parents () {
           useEffect(() => { 
                 const fetchPrentPupils = async () => {
                   try {
-                      const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${parentId}/`,config);
+                      const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${parentId}/`,config);
                       setProfil(response.data)
                   } catch (error) {
                       console.error(error);
                   }
 
                   try {
-                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${parentId}/weekly_diagram/`,config);
+                    const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${parentId}/weekly_diagram/`,config);
                     const filteredData2 = response.data.filter(item => item.create_date === date2);
                     const filteredData3 = response.data.filter(item => item.create_date === date3);
                     const filteredData4 = response.data.filter(item => item.create_date === date4);
@@ -260,14 +260,14 @@ function Parents () {
 
 
                 try {
-                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${parentId}/pie_chart_id/`,config);
+                    const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${parentId}/pie_chart_id/`,config);
                     setPia(response.data)
                 } catch (error) {
                     console.error(error);
                 }
 
                 try {
-                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${parentId}/for_week/`,config);
+                    const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${parentId}/for_week/`,config);
                     setWeek(response.data)
                     const data2 = response.data[date2]
                     const data3 = response.data[date3]
@@ -294,14 +294,14 @@ function Parents () {
 
                       const OnParentChange = async (evt) => {
                           try {
-                              const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${evt.target.value}/`,config);
+                              const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${evt.target.value}/`,config);
                               setProfil(response.data)
                           } catch (error) {
                               console.error(error);
                           }
                           
                           try {
-                              const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${evt.target.value}/weekly_diagram/`,config);
+                              const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${evt.target.value}/weekly_diagram/`,config);
                               const filteredData2 = response.data.filter(item => item.create_date === date2);
                               const filteredData3 = response.data.filter(item => item.create_date === date3);
                               const filteredData4 = response.data.filter(item => item.create_date === date4);
@@ -322,7 +322,7 @@ function Parents () {
 
 
                           try {
-                            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${evt.target.value}/pie_chart_id/`,config);
+                            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${evt.target.value}/pie_chart_id/`,config);
                             setPia(response.data)
                         } catch (error) {
                             console.error(error);
@@ -330,7 +330,7 @@ function Parents () {
 
 
                         try {
-                            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${evt.target.value}/for_week/`,config);
+                            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${evt.target.value}/for_week/`,config);
                             setWeek(response.data)
                             const data2 = response.data[date2]
                             const data3 = response.data[date3]

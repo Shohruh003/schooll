@@ -296,7 +296,7 @@ function findLargestSection(options) {
 		useEffect(() => {
 			const fetchWeather = async () => {
 				try {
-					const response = await axios.get('https://mycorse.onrender.com/https://api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=50e314a5fea145f564977fe2a4844e46',config);
+					const response = await axios.get('https://smartsafeschoolback.tadi.uz/api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=50e314a5fea145f564977fe2a4844e46',config);
 					setWeather(response.data.main.feels_like)
 				} catch (error) {
 					console.error(error);

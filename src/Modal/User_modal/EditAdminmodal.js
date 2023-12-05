@@ -90,7 +90,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     formData.append('gender', user?.gender ? user?.gender : editUser?.gender)
     formData.append('is_morning', user?.shift ? user?.shift : editUser?.is_morning)
     if (user?.status === 'pupil') {
-      const apiUrl = `https://www.api.yomon-emas.uz/api/users/pupils/${editUser?.id}/`;
+      const apiUrl = `https://smartsafeschoolback.tadi.uz/api/users/pupils/${editUser?.id}/`;
       formData.delete('password')
       formData.delete('main_image')
       formData.delete('email')
@@ -110,7 +110,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
       } else if (user?.status === 'teacher') {
       console.log(user,'----------------')
 
-        const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/${editUser?.id}/update_user/`;
+        const apiUrl = `https://smartsafeschoolback.tadi.uz/api/users/users/${editUser?.id}/update_user/`;
         formData.delete('parent')
         formData.delete('is_morning')
         formData.delete('main_image')
@@ -127,7 +127,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     }else if (user?.status === 'psychologist') {
       console.log(user,'----------------')
 
-        const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/${editUser?.id}/update_user/`;
+        const apiUrl = `https://smartsafeschoolback.tadi.uz/api/users/users/${editUser?.id}/update_user/`;
         formData.delete('parent')
         formData.delete('is_morning')
         formData.delete('main_image')
@@ -145,7 +145,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     } else if (user?.status === 'parents') {
       console.log(user,'----------------')
 
-        const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/${editUser?.id}/update_user/`;
+        const apiUrl = `https://smartsafeschoolback.tadi.uz/api/users/users/${editUser?.id}/update_user/`;
         formData.delete('parent')
         formData.delete('is_morning')
         formData.delete('main_image')
@@ -169,7 +169,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     var parentList = document.getElementById('parentList')
     parentList.style.display = 'block'
 
-    await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=parents',config)
+    await axios.get('https://smartsafeschoolback.tadi.uz/api/users/users/?status=parents',config)
       .then((response) => {
         setParent(response?.data?.results);
         setOrginalParent(response?.data?.results);

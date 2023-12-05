@@ -66,7 +66,7 @@ function Pupil() {
     let allData = [];
 
     while (true) {
-      const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils?page=${page}`,{ params,
+      const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils?page=${page}`,{ params,
           headers: {
             Authorization: `Bearer ${token}`,
           }
@@ -83,7 +83,7 @@ function Pupil() {
     }
 
         // if (Object.keys(params).length > 0) {
-        //   const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=1`, { params,
+        //   const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/?page=1`, { params,
         //     headers: {
         //       Authorization: `Bearer ${token}`,
         //     }
@@ -93,7 +93,7 @@ function Pupil() {
         //   console.log(response.data);
         //   setOriginalUsers(response.data.results);
         // } else if (page <= 100) {
-        //   const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/?page=${page}`,config);
+        //   const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/?page=${page}`,config);
         //   const arr = response.data.results
         //   setUsers([...user, ...arr]);
         // }
@@ -108,7 +108,7 @@ function Pupil() {
     const fetchData = async () => {
       try {
         const promises = user?.map(async (id) => {
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/emotions/${id.id}/for_week/`,config);
+          const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${id.id}/for_week/`,config);
           return response.data;
         });
 

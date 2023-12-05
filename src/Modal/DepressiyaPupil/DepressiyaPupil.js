@@ -24,7 +24,7 @@ function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
       try {
         const promises = classes?.extra?.sad?.map(async (item) => {
           const response = await axios.get(
-            `https://www.api.yomon-emas.uz/api/users/pupils/${item?.id}`,config
+            `https://smartsafeschoolback.tadi.uz/api/users/pupils/${item?.id}`,config
           );
           return response.data;
         });

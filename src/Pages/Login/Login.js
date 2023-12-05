@@ -23,12 +23,25 @@ function Login() {
     formData.append('email', email.value);
     formData.append('password', password.value);
 
-    axios.post('https://www.api.yomon-emas.uz/api/users/token/', formData)
-    .then((data) => {
-      if (data.data.access) {
-        setToken(data.data.access);
-        console.log(data);
-        setDecode(jwt_decode(data.data.access).user_id)
+    axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/', formData)
+    .then((response) => {
+      if (response.data.access) {
+
+        if(response.status === 403) {
+          axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', 
+          {
+            'refresh': response.data.refresh
+          })
+          .then((response) => {
+            setToken(response.data.access)
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+        } else {
+          setToken(response.data.access);
+        }
+        setDecode(jwt_decode(response.data.access).user_id)
         navigate('/');
       }
     })
@@ -44,7 +57,7 @@ function Login() {
     <div className="login">
       <div>
         <div className="login_inner">
-          <img className='login_img' src={LoginPageImg} alt="loginImg" width='700' height='600'/>
+          <img className='login_img' src={LoginPageImg} alt="loginimg" width='700' height='600'/>
           <div className="login_content">
             <h3 className='login_heading'>СИСТЕМА АНАЛИЗА ПСИХОЭМОЦИОНАЛЬНОГО СОСТОЯНИЯ УЧАЩИХСЯ</h3>
             <p className='login_logoText'>Face IDS School</p>
@@ -58,7 +71,7 @@ function Login() {
               <div className='password-box'>
                 <input className="login_input password" type="password" name="password" placeholder="Пароль" />
                 <ToastContainer />
-                <img className="btnEye" onClick={() => { const password = document.querySelector('.password'); return (password.type == "password") ? password.type = "text" : password.type = "password" }} src={eye} />
+                <img className="btnEye" onClick={() => { const password = document.querySelector('.password'); return (password.type === "password") ? password.type = "text" : password.type = "password" }} src={eye} alt='passwordImg' />
               </div>
             <button className="login_button" type="submit">Войти</button>
             </form>

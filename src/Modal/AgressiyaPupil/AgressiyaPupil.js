@@ -19,7 +19,7 @@ function AgressiyaPupil({ agressiyaModal, setAgressiyaModal }) {
       try {
         const promises = classes?.extra?.angry?.map(async (item) => {
           const response = await axios.get(
-            `https://www.api.yomon-emas.uz/api/users/pupils/${item?.id}`,{
+            `https://smartsafeschoolback.tadi.uz/api/users/pupils/${item?.id}`,{
               headers: {
                 Authorization: `Bearer ${token}`,
               }

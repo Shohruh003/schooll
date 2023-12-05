@@ -26,7 +26,7 @@ function Dashboard2() {
 
         const fetchPupils = async () => {
           try {
-            const response = await axios.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/for_pupils/',config);
+            const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/all_pupils_emotion/for_pupils/',config);
             setDashPupil(response.data)
             setDashteacher(response.data.Teacher)
           } catch (error) {
@@ -51,7 +51,7 @@ function Dashboard2() {
 		const fetchClasses = async () => {
 			try {
 
-				const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`,config);
+				const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/`,config);
 				setPosition(response.data.status)
 			} catch (error) {
 				console.error(error);

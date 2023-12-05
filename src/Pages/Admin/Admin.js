@@ -48,7 +48,7 @@ function Admin(props) {
     const fetchParents = async () => {
       try {
         const response = await axios.get(
-          `https://www.api.yomon-emas.uz/api/users/users/${decode}/`,config
+          `https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/`,config
         );
         setTeach(response?.data);
       } catch (error) {
@@ -64,7 +64,7 @@ function Admin(props) {
       setModal(true);
 
       const response = axios.get(
-        `https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,config
+        `https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,config
       );
       setNotification(response.data.messages);
     } catch (error) {
@@ -76,7 +76,7 @@ function Admin(props) {
     const fetchNotification = async () => {
       try {
         const response = await axios.get(
-          `https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,config
+          `https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,config
         );
         setNotification(response.data.messages);
         setNotificationCount(response.data.messages.length);
@@ -109,7 +109,7 @@ function Admin(props) {
     const fetchPupils = async () => {
       try {
         const response = await axios.get(
-          "https://www.api.yomon-emas.uz/api/users/pupils/",config
+          "https://smartsafeschoolback.tadi.uz/api/users/pupils/",config
         );
         setPupilCount(response.data.count);
       } catch (error) {
@@ -124,7 +124,7 @@ function Admin(props) {
     const fetchPupils = async () => {
       try {
         const response = await axios.get(
-          "https://www.api.yomon-emas.uz/api/users/users/?status=teacher",config
+          "https://smartsafeschoolback.tadi.uz/api/users/users/?status=teacher",config
         );
         setTeacherCount(response.data.count);
       } catch (error) {
@@ -139,7 +139,7 @@ function Admin(props) {
     const fetchPupils = async () => {
       try {
         const response = await axios.get(
-          "https://www.api.yomon-emas.uz/api/users/pupils/classes/",config
+          "https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/",config
         );
         setClasses(response.data);
       } catch (error) {

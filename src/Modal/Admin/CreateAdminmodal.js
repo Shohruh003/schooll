@@ -105,7 +105,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     formData.append('gender', user?.gender)
     formData.append('shift', user?.shift)
     if (user?.status !== 'pupil') {
-      const apiUrl = `https://www.api.yomon-emas.uz/api/users/users/`;
+      const apiUrl = `https://smartsafeschoolback.tadi.uz/api/users/users/`;
       axios.post(apiUrl, formData,config)
         .then((response) => {
           console.log(response.data);
@@ -119,7 +119,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
           toast.error("Ma'lumot qo'shildimadi !");
         });
     } else {
-      const apiUrl = `https://www.api.yomon-emas.uz/api/users/pupils/`;
+      const apiUrl = `https://smartsafeschoolback.tadi.uz/api/users/pupils/`;
       axios.post(apiUrl, formData,config)
         .then((response) => {
           console.log(response.data);
@@ -142,7 +142,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     var parentList = document.getElementById('parentList')
     parentList.style.display = 'block'
 
-    await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=parents',config)
+    await axios.get('https://smartsafeschoolback.tadi.uz/api/users/users/?status=parents',config)
       .then((response) => {
         setParent(response?.data?.results);
         setOrginalParent(response?.data?.results);

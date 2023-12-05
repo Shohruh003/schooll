@@ -31,7 +31,7 @@ function ClassesList() {
           params.emotions = pupilEmotion
         }
 
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/', { params,headers: {
+        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/', { params,headers: {
           Authorization: `Bearer ${token}`,
         } });
       setClassList(response.data.classes);

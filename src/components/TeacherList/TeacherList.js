@@ -36,7 +36,7 @@ document.head.appendChild(style);
           params.search = pupilClass;
         }
 
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher', { params,headers: {
+        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/users/?status=teacher', { params,headers: {
           Authorization: `Bearer ${token}`,
         } });
       setTeacher(response.data.results);

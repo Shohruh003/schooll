@@ -14,7 +14,7 @@ function Teacher(props) {
   const { isActive } = props;
   const {token} = LoginHooks()
 
-  const { setTeacherPupils, genders,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach,depres,teacherPupils, setDepres, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
+  const { setTeacherPupils,setUsers, userslar, genders,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach,depres,teacherPupils, setDepres, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
         const {decode} = DecodeHooks()
         const [pupilMissing, setPupilMissing] = useState()
         const [teachClass, setTeachClass] = useState()
@@ -30,7 +30,7 @@ document.head.appendChild(style);
         useEffect(() => {
           const fetchParents = async () => {
               try {
-                  const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/classes/`, {
+                  const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/`, {
                     headers: {
                       Authorization: `Bearer ${token}`,
                     }
@@ -46,7 +46,7 @@ document.head.appendChild(style);
         useEffect(() => {
             const fetchParents = async () => {
                 try {
-                    const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/`,  {
+                    const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/`,  {
                       headers: {
                         Authorization: `Bearer ${token}`,
                       }
@@ -65,7 +65,7 @@ document.head.appendChild(style);
             try {
               const presentPupilIds = classes?.classes[test]?.absent_pupils?.id;
               const promises = presentPupilIds?.map(async (id) => {
-                const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`, {
+                const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}`, {
                   headers: {
                     Authorization: `Bearer ${token}`,
                   }
@@ -87,7 +87,7 @@ document.head.appendChild(style);
             useEffect(() => {
       const fetchNotification = async () => {
         try {
-            const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,{
+            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,{
               headers: {
                 Authorization: `Bearer ${token}`,
               }
@@ -210,7 +210,7 @@ document.head.appendChild(style);
 
       const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
       const promises = pupilIds?.map(async (id) => {
-        const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, {
+        const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
@@ -236,7 +236,7 @@ document.head.appendChild(style);
     const selectedEmotion = event.target.value;
     const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
     const promises = pupilIds?.map(async (id) => {
-      const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, {
+      const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         }
@@ -271,21 +271,15 @@ document.head.appendChild(style);
         setTeacherPupils(x)
         break;
 
-        // case "all":
-        //   setUsers(userslar);
-
-        // case 'all':
-        // x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'all')
-        // console.log(x, 'all')
-        // setTeacherPupils(x)
-        // console.log(teacherPupils, 'teacherPupil');
-        // break;
+        case "all":
+        setTeacherPupils(x)
+        break;
     }
   };
       const handleModal = () => {
           try {
             setModal(true)
-              const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`, {
+              const response = axios.get(`https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`, {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 }
@@ -297,7 +291,7 @@ document.head.appendChild(style);
       };
 
       useEffect(() => {
-        axios.get(`https://www.api.yomon-emas.uz/api/users/users/${decode}/teacher_pupils`, {
+        axios.get(`https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/teacher_pupils`, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
@@ -326,7 +320,7 @@ document.head.appendChild(style);
           }
           const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
           const promises = pupilIds?.map(async (id) => {
-            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}/`, {
+            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`, {
               params,
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -350,7 +344,7 @@ document.head.appendChild(style);
       const fetchData = async () => {
 
         try {
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/classes/`,  {
+          const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/`,  {
             headers: {
               Authorization: `Bearer ${token}`,
             }
@@ -372,7 +366,7 @@ document.head.appendChild(style);
           }
           const pupilIds = teach?.pupils[pupilsClass ? pupilsClass : test]?.map((pupil) => pupil.id);
           const promises = pupilIds?.map(async (id) => {
-            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}/`,  {
+            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`,  {
               params,
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -391,7 +385,7 @@ document.head.appendChild(style);
         try {
           const presentPupilIds = classes?.classes[pupilsClass ? pupilsClass : test]?.absent_pupils?.id;
           const promises = presentPupilIds?.map(async (id) => {
-            const response = await axios.get(`https://www.api.yomon-emas.uz/api/users/pupils/${id}`, {
+            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               }
@@ -604,7 +598,7 @@ document.head.appendChild(style);
 
               <li className='panel_item'>
                 <select className='item_button search_select' onChange={handleEmotionChange}>
-                  <option className='search_option' value="" disabled selected hidden>По ЭС</option>
+                  <option className='search_option' value="all">По ЭС</option>
                   <option className='search_option' value="happy">Веселье</option>
                   <option className='search_option' value="neutral">Нейтраль</option>
                   <option className='search_option' value="sad">Грусть</option>
