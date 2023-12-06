@@ -47,7 +47,7 @@ function Psycholog(props) {
   useEffect(() => {
     const fetchPupils = async () => {
       try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/',config);
+        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/pupils/',config);
         setPupilCount(response.data.count)
       } catch (error) {
         console.error(error);
@@ -60,7 +60,7 @@ function Psycholog(props) {
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/',config);
+        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/',config);
         setClasses(response.data)
       } catch (error) {
         console.error(error);
@@ -73,7 +73,7 @@ function Psycholog(props) {
   useEffect(() => {
     const fetchPupils = async () => {
       try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/users/?status=teacher',config);
+        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/users/?status=teacher',config);
         setTeacherCount(response.data.count)
       } catch (error) {
         console.error(error);
@@ -194,7 +194,7 @@ function Psycholog(props) {
   const fetchPupils = async () => {
     try {
      const response = await axios.get(
-        `https://www.api.yomon-emas.uz/api/users/pupils/`,config
+        `https://smartsafeschoolback.tadi.uz/api/users/pupils/`,config
       );
       userslar = await response.data.results;
     } catch (error) {
@@ -217,7 +217,7 @@ function Psycholog(props) {
     const fetchNotification = async () => {
       try {
 
-          const response = await axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
+          const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
           setNotification(response.data.messages)
           setNotificationCount(response.data.messages.length)
       } catch (error) {
@@ -232,7 +232,7 @@ function Psycholog(props) {
     try {
       setModal(true)
 
-        const response = axios.get(`https://www.api.yomon-emas.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
+        const response = axios.get(`https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
         setNotification(response.data.messages)
     } catch (error) {
         console.error(error);

@@ -30,7 +30,7 @@ function Dashboard () {
 		useEffect(() => {
 			const fetchPupils = async () => {
 			  try {
-				const response = await axios.get('https://www.api.yomon-emas.uz/api/users/pupils/classes/',config);
+				const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/',config);
 				setClasses(response.data)
 		
 			  } catch (error) {
@@ -157,7 +157,7 @@ function Dashboard () {
 	useEffect(() => {
 		const fetchPupils = async () => {
 			try {
-				const response = await axios.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/pie_chart/',config);
+				const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/all_pupils_emotion/pie_chart/',config);
 				setTeacherEmotion(response.data.all_teachers)
 				setPupilEmotion(response.data.all_pupils)
 			} catch (error) {
