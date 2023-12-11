@@ -646,7 +646,7 @@ function Admin(props) {
                       </svg>
 
                       <h4 className="navLinkName">всего классов</h4>
-                      <span className="quantity">{classes}</span>
+                      <span className="quantity">{classes?.count}</span>
                     </NavLink>
                   </li>
                 </ul>
