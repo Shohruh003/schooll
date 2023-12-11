@@ -60,7 +60,7 @@ function Psycholog(props) {
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/',config);
+        const response = await axios.get('https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/',config);
         setClasses(response.data)
       } catch (error) {
         console.error(error);

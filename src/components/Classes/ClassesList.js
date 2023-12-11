@@ -32,7 +32,7 @@ function ClassesList() {
           params.emotions = pupilEmotion
         }
 
-        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/', { 
+        const response = await axios.get('https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/', { 
           params,
           headers: {
           Authorization: `Bearer ${token}`,

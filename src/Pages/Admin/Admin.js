@@ -43,6 +43,21 @@ function Admin(props) {
       Authorization: `Bearer ${token}`,
     }
   }
+  useEffect(() => {
+    axios.get('https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        setClasses(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [])
+
   
   useEffect(() => {
     const fetchParents = async () => {
@@ -132,23 +147,6 @@ function Admin(props) {
       }
     };
 
-    fetchPupils();
-  }, []);
-
-  useEffect(() => {
-    const fetchPupils = async () => {
-      try {
-        const response = await fetch("https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setClasses(response);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-  
     fetchPupils();
   }, []);
 
