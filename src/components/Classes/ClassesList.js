@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import './classes.css'
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/PupilContext";
@@ -16,6 +16,7 @@ function ClassesList() {
     }
   `;
   document.head.appendChild(style);
+  const [emo, setEmo] = useState()
 
 
   useEffect(() => {
