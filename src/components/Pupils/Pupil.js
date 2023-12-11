@@ -10,7 +10,7 @@ import { LoginHooks } from "../../Hooks/LoginHooks";
 
 
 function Pupil() {
-  const { user,position, setUsers,pupilEmotion, ageRange, genders, setOriginalUsers, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
+  const { user,position, setUsers,pupilEmotion, ageRange, genders, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser } = useContext(AuthContext)
 
   const [userEmotion, setUserEmotion] = useState([])
   const {token} = LoginHooks()
@@ -21,7 +21,7 @@ function Pupil() {
       Authorization: `Bearer ${token}`,
     }
   }
-  // const [page, setPage] = useState(1);
+
   let page = 1;
   const style = document.createElement('style');
   style.innerHTML = `
@@ -34,12 +34,8 @@ function Pupil() {
   const handleScroll = async (e) => {
     const element = e.target;
 
-    // console.log(Math.floor(element.scrollHeight - element.scrollTop) - 1);
-    // console.log(element.clientHeight); 
     if (Math.floor(element.scrollHeight - element.scrollTop) - 1 < element.clientHeight) {
-      // if (page < 20) {
         page = page++
-      // }
     }
   }
 
@@ -57,7 +53,6 @@ function Pupil() {
         if (genders.length > 0) {
           params.gender = genders.join(',');
         }
-
         if (pupilEmotion) {
           params.filter_by_emotion = pupilEmotion
         }
@@ -71,32 +66,12 @@ function Pupil() {
             Authorization: `Bearer ${token}`,
           }
          });
-      const data = response.data.results;
-
-      if (data.length === 0) {
-        break;
-      }
+      const data = response?.data?.results;
       
       allData = allData.concat(data);
       page++;
       setUsers(allData)
     }
-
-        // if (Object.keys(params).length > 0) {
-        //   const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/?page=1`, { params,
-        //     headers: {
-        //       Authorization: `Bearer ${token}`,
-        //     }
-        //    });
-        //   const arr = response.data.results
-        //   setUsers(arr);
-        //   console.log(response.data);
-        //   setOriginalUsers(response.data.results);
-        // } else if (page <= 100) {
-        //   const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/?page=${page}`,config);
-        //   const arr = response.data.results
-        //   setUsers([...user, ...arr]);
-        // }
       } catch (error) {
         console.error(error);
       }
@@ -151,7 +126,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
 
           <li key={item.id} style={{ borderColor: theme }} onClick={() => clickItem(item)}>
             <Link className='people_link'>
-              <img className='people_image' src={item?.main_image.replace('http:', '') ?  item?.main_image.replace('http:', '') : usersLogo} alt="People-img" width='100' height='100' />
+              <img className='people_image' src={item?.main_image ?  item?.main_image : usersLogo} alt="People-img" width='100' height='100' />
               <p className="name_item" style={{ borderColor: theme }}>
                 <div className="peaoleName">
                 <span className='people_heading'>Фамилия и имя</span>

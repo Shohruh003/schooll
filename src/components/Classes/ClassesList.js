@@ -32,11 +32,12 @@ function ClassesList() {
           params.emotions = pupilEmotion
         }
 
-        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/', { params,headers: {
+        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/', { 
+          params,
+          headers: {
           Authorization: `Bearer ${token}`,
         } });
       setClassList(response.data.classes);
-      console.log(response.data);
       setOriginalUsers(response.data.results);
       } catch (error) {
         console.error(error);
@@ -50,8 +51,6 @@ function ClassesList() {
   return (
     <ul className="class_list">
                         {arr?.map((item) => {
-                          const emotionClassConfidance = Math.floor(100 - item?.value?.sad_avg)
-                          const emotionClass = emotionClassConfidance && emotionClassConfidance ? emotionClassConfidance > 80 ?  "Веселье" : emotionClassConfidance > 64 ? "Нейтраль" : emotionClassConfidance > 48 ? "Удивление" : emotionClassConfidance > 32 ? "Злость" : emotionClassConfidance > 16 ? "Страх" : emotionClassConfidance < 16 ? "Грусть" : "Отсутствует" : 'Отсутствует'
 
     return (
       <li key={item.key} style={{borderColor: theme}}>
@@ -76,10 +75,10 @@ function ClassesList() {
         </div>
         </p>
 
-        <p className={`emotions emotionClass ${emotionClass}`} style={{borderColor: theme}}>
+        <p className={`emotions emotionClass ${item.value.common_emotion ? item.value.common_emotion === "neutral" ? "Нейтраль" : item.value.common_emotion === "happy" ? "Веселье" : item.value.common_emotion === "angry" ? "Злость" : item.value.common_emotion === "sad" ? "Грусть" : item.value.common_emotion === "fear" ? "Страх" : item.value.common_emotion === "surprise" ? "Удивление" : "Отсутствует" : 'Отсутствует'}`} style={{borderColor: theme}}>
         <div>
-        <span className='class_heading'>{emotionClass}</span>
-          <span className='class_name'>{emotionClassConfidance} %</span>
+        <span className='class_heading'>{item.value.common_emotion ? item.value.common_emotion === "neutral" ? "Нейтраль" : item.value.common_emotion === "happy" ? "Веселье" : item.value.common_emotion === "angry" ? "Злость" : item.value.common_emotion === "sad" ? "Грусть" : item.value.common_emotion === "fear" ? "Страх" : item.value.common_emotion === "surprise" ? "Удивление" : "Отсутствует" : 'Отсутствует'}</span>
+          <span className='class_name'>{Math.floor(item.value.avg_confidence) ? Math.floor(item.value.avg_confidence) : "Отсутствует"} %</span>
         </div>
         </p>
       </Link>

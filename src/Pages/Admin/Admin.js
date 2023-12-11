@@ -138,15 +138,17 @@ function Admin(props) {
   useEffect(() => {
     const fetchPupils = async () => {
       try {
-        const response = await axios.get(
-          "https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/",config
-        );
-        setClasses(response.data);
+        const response = await fetch("https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setClasses(response);
       } catch (error) {
         console.error(error);
       }
     };
-
+  
     fetchPupils();
   }, []);
 
@@ -644,7 +646,7 @@ function Admin(props) {
                       </svg>
 
                       <h4 className="navLinkName">всего классов</h4>
-                      <span className="quantity">{classes?.count}</span>
+                      <span className="quantity">{classes}</span>
                     </NavLink>
                   </li>
                 </ul>
