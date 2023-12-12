@@ -173,20 +173,14 @@ function Psycholog(props) {
   };
 
   const handleGenderChange = (event) => {
-    const maleCheckboxChecked = event.target.id === 'maleCheckbox' && event.target.checked;
-    const femaleCheckboxChecked = event.target.id === 'femaleCheckbox' && event.target.checked;
+    const target = event.target;
+    const checkboxValue = target.value;
+    const isChecked = target.checked;
   
-    if (maleCheckboxChecked && !femaleCheckboxChecked) {
-      if (!genders.includes('True')) {
-        setGenders([...genders, 'True']);
-      }
-    } else if (femaleCheckboxChecked && !maleCheckboxChecked) {
-      if (!genders.includes('False')) {
-        setGenders([...genders, 'False']);
-      }
+    if (isChecked) {
+      setGenders([checkboxValue]);
     } else {
-      const updatedGender = genders.filter((g) => g !== event.target.value);
-      setGenders(updatedGender);
+      setGenders((prevGenders) => prevGenders.filter((gender) => gender !== checkboxValue));
     }
   };
 
@@ -448,12 +442,12 @@ const hendlStatus = (x) => {
                   
                 <label htmlFor="maleCheckbox" className='radio_label'>
                   Мальчик
-                  <input className='radio_button' id="maleCheckbox" type="checkbox" value='True'/>
+                  <input className='radio_button' id="maleCheckbox" type="checkbox" checked={genders.includes("True")} onChange={handleGenderChange} value='True'/>
                 </label>
                   
                 <label htmlFor="femaleCheckbox" className='radio_label'>
                   Девочка
-                  <input className='radio_button' id="femaleCheckbox" type="checkbox" value='False' />
+                  <input className='radio_button' checked={genders.includes("False")} onChange={handleGenderChange} id="femaleCheckbox" type="checkbox" value='False' />
                 </label>
                 </div>
                 </div>

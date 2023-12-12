@@ -126,7 +126,7 @@ function Dashboard2() {
                     <li className='card-last'>
                     <img className='boyTwo' src={parcet > 15 ? boyTwo : gif} alt='GIF' />
                         <div>
-                            <h2>Уровень депрессии</h2>
+                            <h2>Уровень отрицательных эмоции сегодня</h2>
                             <button className={parcet > 15 ? "redBack" : ""}><span>{parcet}%</span> {parcet > 15 ? "Депрессия" : "Всё хорошо!"}</button>
                         </div>
                     </li>

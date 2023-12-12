@@ -60,9 +60,12 @@
 }
 
 .dashboard2 li h2 {
-    font-size: 40px;
+    font-size: 24px;
 }
 
+.card-last h2 {
+    margin-bottom: 40px;
+}
 .dashboard2 li button {
     background: rgba(122, 252, 103, 1);
     padding: 17px 25px;
@@ -278,9 +281,17 @@ margin-right: 200px;
     }
 
     .card-there button {
-        width: 170px !important;
-        height: 170px;
+        width: 250px !important;
+        height: 250px;
         margin-top: 30px;
+    }
+
+    .dashboard2 li h2 {
+        font-size: 24px;
+    }
+    
+    .card-last h2 {
+        margin-bottom: 40px;
     }
 
 
@@ -291,8 +302,8 @@ margin-right: 200px;
         .allGiff {
             width: 330px !important;
             height: auto;
-            left: 35%;
-            top: -55%;
+            left: 40%;
+            top: -45%;
         }
     
         .card-last button {
@@ -331,7 +342,7 @@ margin-right: 200px;
             width: 300px !important;
             height: auto;
             left: 35%;
-            top: -70%;
+            top: -60%;
         }
     .dashboard2 li {
         width: 400px;
@@ -366,7 +377,7 @@ margin-right: 200px;
     }
     
     .dashboard2 li h2 {
-        font-size: 30px;
+        font-size: 24px;
         margin-bottom: 40px;
     }
 
@@ -377,9 +388,9 @@ margin-right: 200px;
     }
 
     .card-there button {
-        width: 150px !important;
-        height: 150px;
-        margin-top: 30px;
+        width: 200px !important;
+        height: 200px;
+        margin-top: 10px;
     }
 
     .card-last button {
@@ -389,8 +400,9 @@ margin-right: 200px;
         padding: 17px 40px !important;
     }
     .card-last button span{
-       font-size: 50px;
-       display: block;
+        display: block;
+       font-size: 36px;
+       text-align: center;
     }
     
   }
