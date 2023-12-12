@@ -117,7 +117,7 @@ function Admin(props) {
   }, [theme]);
 
   const applyDefaultTheme = () => {
-    setTheme("#FC6C85");
+    setTheme("#81B37A");
   };
 
   useEffect(() => {
@@ -267,14 +267,6 @@ function Admin(props) {
     const selectedEmotion = event.target.value;
     setPupilEmotion(selectedEmotion);
   };
-  // const handleSearch = (event) => {
-  //   const searchTerm = event.target.value;
-  //   const filteredUsers = originalUsers.filter((item) =>
-  //     item.full_name.toLowerCase().includes(searchTerm.toLowerCase())
-  //   );
-  //   setUsers(searchTerm === "" ? originalUsers : filteredUsers);
-  //   setTeacher(searchTerm === "" ? originalUsers : filteredUsers);
-  // };
 
   const handleClasChange = (event) => {
     const searchTerm = event.target.value;

@@ -41,7 +41,7 @@ function Psycholog(props) {
   }, [theme]);
 
   const applyDefaultTheme = () => {
-    setTheme('#FC6C85');
+    setTheme('#81B37A');
   };
 
   useEffect(() => {

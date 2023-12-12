@@ -60,7 +60,7 @@ function Dashboard () {
 	}, [theme]);
 
 	const applyDefaultTheme = () => {
-		setTheme('#FC6C85');
+		setTheme('#81B37A');
 	};
 
 	const applyTheme = () => {
@@ -292,8 +292,8 @@ function findLargestSection(options) {
 		useEffect(() => {
 			const fetchWeather = async () => {
 				try {
-					const response = await axios.get('https://smartsafeschoolback.tadi.uz/api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=50e314a5fea145f564977fe2a4844e46',config);
-					setWeather(response.data.main.feels_like)
+					const response = await axios.get('https://mycorse.onrender.com/http://api.weatherapi.com/v1/current.json?key=1f52a0a6619d4479a83122537220705&q=tashkent',config);
+					setWeather(response.data.current.temp_c + 273)
 				} catch (error) {
 					console.error(error);
 				}

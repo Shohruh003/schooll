@@ -117,7 +117,7 @@ document.head.appendChild(style);
   }, [theme]);
 
   const applyDefaultTheme = () => {
-    setTheme('#FC6C85');
+    setTheme('#81B37A');
   };
 
   const applyTheme = () => {
@@ -190,7 +190,7 @@ document.head.appendChild(style);
 
 
   const changeTheme = () => {
-    const newTheme = theme === '#FC6C85' ? '#81B37A' : '#FC6C85';
+    const newTheme = theme === '#81B37A' ? '#FC6C85' : '#81B37A';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
   };

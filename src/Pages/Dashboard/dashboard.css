@@ -95,6 +95,13 @@ border-bottom: 3px solid #FC6C85;
   border-radius: 50px;
 }
 
+.logout:hover {
+opacity: 0.7;
+}
+
+.logout:active {
+  opacity: 0.5;
+  }
 .dashboard_modal {
   display: block;
   width: 100%;

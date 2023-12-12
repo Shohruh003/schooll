@@ -352,6 +352,14 @@
   border: none;
 }
 
+.header_icon:hover {
+  opacity: 0.8;
+}
+
+.header_icon:active {
+  opacity: 1;
+}
+
 .admin_boardHead {
   font-size: 55px;
   font-weight: 700;
