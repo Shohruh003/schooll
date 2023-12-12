@@ -541,7 +541,7 @@ document.head.appendChild(style);
 
 
                       <h4 className='navLinkName navLinkName1'>Уровень депрессии</h4>
-                      <span className='quantity'>{depres}%</span>
+                      <span className='quantity'>{depres ?  depres : 0}%</span>
                     </NavLink>
                   </li>
 
