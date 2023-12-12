@@ -278,25 +278,25 @@
 }
 
 .emotions.Нейтраль {
-  background-color: yellow;
+  background-color: #008000;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
 
 .emotions.Веселье{
-  background-color: green;
+  background-color: #ffa500;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
 
 .emotions.Грусть{
-  background-color: blue;
+  background-color: #808080;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
 
 .emotions.Злость{
-  background-color: red;
+  background-color: #FC6C85;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }

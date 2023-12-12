@@ -14,7 +14,7 @@ function Teacher(props) {
   const { isActive } = props;
   const {token} = LoginHooks()
 
-  const { setTeacherPupils,setUsers, userslar, genders,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach,depres,teacherPupils, setDepres, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
+  const { setTeacherPupils,setUsers,originalUsers, genders,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach,depres,teacherPupils, setDepres, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
         const {decode} = DecodeHooks()
         const [pupilMissing, setPupilMissing] = useState()
         const [teachClass, setTeachClass] = useState()
@@ -36,6 +36,7 @@ document.head.appendChild(style);
                     }
                   });
                   setClasses(response.data)
+                  console.log(response.data);
                   setDepres(Math.round(response.data.classes[test]?.sad_avg))
               } catch (error) {
                   console.error(error);
@@ -194,9 +195,17 @@ document.head.appendChild(style);
     localStorage.setItem('theme', newTheme);
   };
 
-  const handleSearch = (event) => {
+  // const handleSearch = (event) => {
+  //   const searchTerm = event.target.value;
+  //   setTeacherPupils(searchTerm);
+  // };
+    const handleSearch = (event) => {
     const searchTerm = event.target.value;
-    setTeacherPupils(searchTerm);
+    const filteredUsers = originalUsers.filter((item) =>
+      item.full_name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setUsers(searchTerm === "" ? originalUsers : filteredUsers);
+    setTeacherPupils(searchTerm === "" ? originalUsers : filteredUsers);
   };
   const handleGenderChange = async (event) => {
 

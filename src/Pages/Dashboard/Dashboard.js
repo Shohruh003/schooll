@@ -30,7 +30,7 @@ function Dashboard () {
 		useEffect(() => {
 			const fetchPupils = async () => {
 			  try {
-				const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/',config);
+				const response = await axios.get('https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/',config);
 				setClasses(response.data)
 		
 			  } catch (error) {
@@ -275,10 +275,6 @@ function findLargestSection(options) {
   
   const largestSectionName = findLargestSection(options);
 
-	const LateComersTeachers = () => {
-			setLateComersTeacher(true)
-		}
-
 		const MissingTeachers = () => {
 			setMissingTeacher(true)
 		}
@@ -437,7 +433,6 @@ function findLargestSection(options) {
 							/>
 						</div>
 						
-		{/* <button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={LateComersTeachers}>Опоздавшие : {lateComersTeachers?.results?.length ? lateComersTeachers?.results?.length : '0'}</button> */}
 		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={MissingTeachers}>Отсутствующие преподаватели : {missingTeachers?.results?.length ? missingTeachers?.results?.length : '0'}</button>
 
 					</li>

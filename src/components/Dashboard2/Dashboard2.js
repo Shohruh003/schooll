@@ -14,6 +14,8 @@ function Dashboard2() {
     const {position, setPosition} = useContext(AuthContext)
     const [dashpupil, setDashPupil] = useState()
     const [dashteacher, setDashteacher] = useState()
+    const [school, setSchool] = useState()
+    const [schoolNum, setSchoolNum] = useState()
     const {token} = LoginHooks()
 
     const config =  {
@@ -23,7 +25,6 @@ function Dashboard2() {
     }
   
     useEffect(() => {
-
         const fetchPupils = async () => {
           try {
             const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/all_pupils_emotion/for_pupils/',config);
@@ -50,28 +51,41 @@ function Dashboard2() {
 
 		const fetchClasses = async () => {
 			try {
-
 				const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/`,config);
 				setPosition(response.data.status)
+                setSchool(response.data.school);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		fetchClasses();
+	}, [decode]);
+
+    useEffect(() => {
+
+		const fetchClasses = async () => {
+			try {
+				const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/TheSchool/schoolconfigs/${school}/`,config);
+				setSchoolNum(response.data.number)
 			} catch (error) {
 				console.error(error);
 			}
 		};
 
 		fetchClasses();
-	}, [decode]);
+	}, [school]);
 
     return (
         <div className='dashboard2'>
             <div className='dashboard2_heading'>
                 <h1>СИСТЕМА АНАЛИЗА ПСИХОЭМОЦИОНАЛЬНОГО <br />СОСТОЯНИЯ  УЧАЩИХСЯ </h1>
-                <h2>СРЕДНЯЯ ШКОЛА №121 <br />г. Ташкента</h2>
+                <h2>СРЕДНЯЯ ШКОЛА №{schoolNum} <br />г. Ташкента</h2>
                 <button className='logout_dashboard' style={{borderRadius: "50px"}} onClick={logOut}>Выйти</button>
                 <Link className='dashboard2_headerButton' to={position === 'teacher' ? `${position}/pupil` : 'parents'}>Доска {position === 'teacher' ? 'преподавателей' : 'родителя'}</Link>
             </div>
             <div className='dashboard-body'>
                 <div className='dashboard-left'>
-                    <h2>СРЕДНЯЯ <br />ШКОЛА №121 <br />г. Ташкента</h2>
+                    <h2>СРЕДНЯЯ <br />ШКОЛА №{schoolNum} <br />г. Ташкента</h2>
                     <img src={logo} alt='logo' />
                 </div>
                 <ul>
@@ -110,10 +124,10 @@ function Dashboard2() {
                         </div>
                     </li>
                     <li className='card-last'>
-                    <img className='boyTwo' src={boyTwo} alt='GIF' />
+                    <img className='boyTwo' src={parcet > 15 ? boyTwo : gif} alt='GIF' />
                         <div>
                             <h2>Уровень депрессии</h2>
-                            <button><span>{parcet}%</span> Всё хорошо!</button>
+                            <button className={parcet > 15 ? "redBack" : ""}><span>{parcet}%</span> {parcet > 15 ? "Депрессия" : "Всё хорошо!"}</button>
                         </div>
                     </li>
                 </ul>

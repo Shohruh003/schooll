@@ -173,7 +173,7 @@ margin-right: 200px;
     font-weight: 600;
     padding: 8px 20px;
     border: none;
-    border-radius: 50px;
+    border-radius: 10px !important;
     color: #ffffff;
     background-color: #FA8072;
     z-index: 5;
@@ -184,9 +184,9 @@ margin-right: 200px;
     display: block;
     font-size: 24px;
     font-weight: 600;
-    padding: 8px 20px;
+    padding: 9px 20px;
     border: none;
-    border-radius: 50px;
+    border-radius: 10px !important;
     color: #ffffff;
     background-color: #FA8072;
     z-index: 5;
@@ -243,6 +243,10 @@ margin-right: 200px;
     display: none;
 }
 
+
+.redBack {
+    background-color: red !important;
+}
 
 
 /* ==========================Responsive=============================== */

@@ -62,22 +62,6 @@ const wentHours = wentDateTime.getHours().toString().padStart(2, "0");
 const wentMinutes = wentDateTime.getMinutes().toString().padStart(2, "0");
 const wentClock = `${wentHours}:${wentMinutes}`;
 
-// let maxConfidence = -Infinity;
-// let maxConfidenceIndex = -1;
-
-// for (let i = 0; i < emotions.length; i++) {
-//   if (emotions[i].confidence > maxConfidence) {
-//     maxConfidence = emotions[i].confidence;
-//     maxConfidenceIndex = i;
-//   }
-// }
-// const firstMaxConfidenceIndex = emotions?.emotions?.findIndex(
-//   (emotion) => emotion?.confidence === maxConfidence
-// );
-// const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
-
-
-
     return (
       <li key={item?.id} style={{borderColor: theme}} onClick={clickItem}>
       <Link className='teacher_link'>

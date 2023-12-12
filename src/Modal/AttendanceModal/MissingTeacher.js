@@ -21,10 +21,11 @@ function MissingTeacher ({missingTeacher, setMissingTeacher}) {
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/users/?status=teacher&is_absent=true',config);
+        const response = await axios.get('https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/users/?status=teacher&is_absent=true',config);
         const result = response?.data?.results?.map((e) => {
           if (e.is_absent === true) {
             setMissingTeachers(response.data);
+            console.log(response.data);
           }
         })
       } catch (error) {
