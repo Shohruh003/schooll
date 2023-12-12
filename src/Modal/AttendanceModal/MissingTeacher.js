@@ -21,13 +21,10 @@ function MissingTeacher ({missingTeacher, setMissingTeacher}) {
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const response = await axios.get('https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/users/?status=teacher&is_absent=true',config);
-        const result = response?.data?.results?.map((e) => {
-          if (e.is_absent === true) {
-            setMissingTeachers(response.data);
-            console.log(response.data);
-          }
-        })
+        const response = await axios.get('https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/users/?status=teacher',config);
+        const teachers = response.data.results.filter((teacher) => teacher.is_absent === true);
+            setMissingTeachers(teachers);
+
       } catch (error) {
         console.error(error);
       }
@@ -61,7 +58,7 @@ function MissingTeacher ({missingTeacher, setMissingTeacher}) {
     </tr>
   </thead>
   <tbody>
-  {missingTeachers?.results?.map((item, index) => (
+  {missingTeachers?.map((item, index) => (
               <tr key={index}>
                 <td><img className='lateComersImg' src={item?.main_image ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
                 <td>{item?.full_name}</td>

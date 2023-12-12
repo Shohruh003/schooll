@@ -433,7 +433,7 @@ function findLargestSection(options) {
 							/>
 						</div>
 						
-		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={MissingTeachers}>Отсутствующие преподаватели : {missingTeachers?.results?.length ? missingTeachers?.results?.length : '0'}</button>
+		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={MissingTeachers}>Отсутствующие преподаватели : {missingTeachers?.length ? missingTeachers?.length : '0'}</button>
 
 					</li>
 
