@@ -30,20 +30,36 @@ document.head.appendChild(style);
         useEffect(() => {
           const fetchParents = async () => {
               try {
-                  const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/`, {
+                  const response = await axios.get(`https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/`, {
                     headers: {
                       Authorization: `Bearer ${token}`,
                     }
                   });
                   setClasses(response.data)
-                  console.log(response.data);
                   setDepres(Math.round(response.data.classes[test]?.sad_avg))
+
+                  try {
+                    const presentPupilIds = response.data?.classes[test]?.absent_pupils?.pupils;
+                    const promises = presentPupilIds?.map(async (id) => {
+                      const response1 = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id.id}`, {
+                        headers: {
+                          Authorization: `Bearer ${token}`,
+                        }
+                      });
+                      return response1.data;
+                    });
+                    const presentPupilsData = await Promise.all(promises);
+                    setPupilMissing(presentPupilsData);
+                  } catch (error) {
+                    console.log(error);
+                  }
               } catch (error) {
                   console.error(error);
               }
           };
           fetchParents();
       }, [decode,test]);
+
         useEffect(() => {
             const fetchParents = async () => {
                 try {
@@ -61,27 +77,6 @@ document.head.appendChild(style);
             fetchParents();
         }, [decode]);
 
-        useEffect(() => {
-          const fetchData2 = async () => {
-            try {
-              const presentPupilIds = classes?.classes[test]?.absent_pupils?.id;
-              const promises = presentPupilIds?.map(async (id) => {
-                const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}`, {
-                  headers: {
-                    Authorization: `Bearer ${token}`,
-                  }
-                });
-                return response.data;
-              });
-              const presentPupilsData = await Promise.all(promises);
-              setPupilMissing(presentPupilsData);
-            } catch (error) {
-              console.log(error);
-            }
-          };
-        
-          fetchData2();
-        }, [test]);
 
 
 
@@ -353,7 +348,7 @@ document.head.appendChild(style);
       const fetchData = async () => {
 
         try {
-          const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/`,  {
+          const response = await axios.get(`https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/`,  {
             headers: {
               Authorization: `Bearer ${token}`,
             }

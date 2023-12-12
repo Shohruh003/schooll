@@ -271,7 +271,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
 
                 hendlParent(event.target.value);
 
-              }} type="text" class="form-control parentInput" list="datalistOptions" id="8" placeholder="Муминова Гульчехра" />
+              }} type="text" class="form-control parentInput" list="datalistOptions" id="8" placeholder="Введите ФИО родителя" />
               <table class="table table-hover" id='parentList'>
                 <tbody>
                   {parent?.map((item) => (

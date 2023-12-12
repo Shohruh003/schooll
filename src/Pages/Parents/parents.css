@@ -416,7 +416,7 @@
     }
 
     .weather .weather_number {
-        font-size: 40px !important;
+        font-size: 30px !important;
     }
 
     .avatar_about span {
@@ -499,7 +499,7 @@
     }
 
     .weather .weather_number {
-        font-size: 32px !important;
+        font-size: 24px !important;
     }
 
     .weather_date{
@@ -633,6 +633,10 @@
     justify-content: space-between;
     width: 150px;
     flex-wrap: wrap;
+ }
+
+ .chart {
+    
  }
 
  .chart_about p {
