@@ -50,7 +50,6 @@ function Admin(props) {
       },
     })
       .then((response) => {
-        console.log(response);
         setClasses(response.data);
       })
       .catch((error) => {
@@ -244,22 +243,14 @@ function Admin(props) {
   };
 
   const handleGenderChange = (event) => {
-    const maleCheckboxChecked =
-      event.target.id === "maleCheckbox" && event.target.checked;
-    const femaleCheckboxChecked =
-      event.target.id === "femaleCheckbox" && event.target.checked;
-
-    if (maleCheckboxChecked && !femaleCheckboxChecked) {
-      if (!genders.includes("True")) {
-        setGenders([...genders, "True"]);
-      }
-    } else if (femaleCheckboxChecked && !maleCheckboxChecked) {
-      if (!genders.includes("False")) {
-        setGenders([...genders, "False"]);
-      }
+    const target = event.target;
+    const checkboxValue = target.value;
+    const isChecked = target.checked;
+  
+    if (isChecked) {
+      setGenders([checkboxValue]);
     } else {
-      const updatedGender = genders.filter((g) => g !== event.target.value);
-      setGenders(updatedGender);
+      setGenders((prevGenders) => prevGenders.filter((gender) => gender !== checkboxValue));
     }
   };
 
@@ -682,7 +673,7 @@ function Admin(props) {
                   <li className="panel_item">
                     <div className="item_button search_danger">
                       <span>По полу</span>
-                      <div onChange={handleGenderChange}>
+                      <div>
                         
                         <label htmlFor="maleCheckbox" className="radio_label">
                           Мальчик
@@ -690,6 +681,8 @@ function Admin(props) {
                           className="radio_button"
                           id="maleCheckbox"
                           type="checkbox"
+                          checked={genders.includes("True")}
+                          onChange={handleGenderChange}
                           value="True"
                         />
                         </label>
@@ -700,6 +693,8 @@ function Admin(props) {
                           className="radio_button"
                           id="femaleCheckbox"
                           type="checkbox"
+                          checked={genders.includes("False")}
+                          onChange={handleGenderChange}
                           value="False"
                         />
                         </label>
