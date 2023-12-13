@@ -108,7 +108,7 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
     return (
       <li key={item.id} style={{borderColor: theme}} onClick={() => clickItem(item)}>
       <Link className='teacher_link'>
-        <img className='teacher_image' src={item?.main_image ? item?.main_image : usersLogo} alt="teacher of the img" width='100' height='100' />
+        <img className='teacher_image' style={{objectFit: "cover"}} src={item?.main_image ? item?.main_image : usersLogo} alt="teacher of the img" width='100' height='100' />
         <p className="name_item" style={{borderColor: theme}}>
           <div>
           <span className='teacher_heading'>Фамилия и имя</span>

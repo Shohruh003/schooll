@@ -62,7 +62,7 @@ function AgressiyaPupil({ agressiyaModal, setAgressiyaModal }) {
           <tbody>
             {agressiya.map((item, index) => (
               <tr key={index}>
-                <td><img className='lateComersImg' src={item?.main_image ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
+                <td><img className='lateComersImg' style={{objectFit: "cover"}} src={item?.main_image ? item?.main_image : usersLogo} width='30' height='30' alt='agressiyaImg' /></td>
                 <td>{item?.full_name}</td>
                 <td>{item?.pupil_class}</td>
               </tr>

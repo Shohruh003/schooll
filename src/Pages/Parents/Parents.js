@@ -549,7 +549,7 @@ const piHappy = Math.round(pia?.happy)
 
 						<div>
                         <button className='avatar_dashboard' style={{borderColor: theme}}>
-                            <img className='avatarImg' src={profil?.main_image} alt='Avatar' width='55' height='55'/>
+                            <img className='avatarImg' style={{objectFit: "cover"}} src={profil?.main_image} alt='Avatar' width='55' height='55'/>
 						</button>
 
                         <select onChange={OnParentChange} className='select'>
@@ -723,7 +723,7 @@ const piHappy = Math.round(pia?.happy)
                                             <span className='chat_position'>учитель труда</span>
                                         </p>
 
-                                        <img className='chat_avatarImg' src={Avatar} alt='Avatar' width="40" height="40"/>
+                                        <img className='chat_avatarImg' style={{objectFit: "cover"}} src={Avatar} alt='Avatar' width="40" height="40"/>
                                         <span className='chat_count' style={{backgroundColor: theme}}>2</span></Link>
                                     </li>
                                     
@@ -734,7 +734,7 @@ const piHappy = Math.round(pia?.happy)
                                             <span className='chat_position'>учитель труда</span>
                                         </p>
 
-                                        <img className='chat_avatarImg' src={Avatar} alt='Avatar' width="40" height="40"/>
+                                        <img className='chat_avatarImg' style={{objectFit: "cover"}} src={Avatar} alt='Avatar' width="40" height="40"/>
                                         <span className='chat_count' style={{backgroundColor: theme}}>2</span></Link>
                                     </li>
 
@@ -745,7 +745,7 @@ const piHappy = Math.round(pia?.happy)
                                             <span className='chat_position'>учитель труда</span>
                                         </p>
 
-                                        <img className='chat_avatarImg' src={Avatar} alt='Avatar' width="40" height="40"/>
+                                        <img className='chat_avatarImg' style={{objectFit: "cover"}} src={Avatar} alt='Avatar' width="40" height="40"/>
                                         <span className='chat_count' style={{backgroundColor: theme}}>2</span></Link>
                                     </li>
                                     
