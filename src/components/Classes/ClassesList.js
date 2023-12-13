@@ -77,7 +77,7 @@ function ClassesList() {
         <p className={`emotions emotionClass ${item.value.common_emotion ? item.value.common_emotion === "neutral" ? "Нейтраль" : item.value.common_emotion === "happy" ? "Веселье" : item.value.common_emotion === "angry" ? "Злость" : item.value.common_emotion === "sad" ? "Грусть" : item.value.common_emotion === "fear" ? "Страх" : item.value.common_emotion === "surprise" ? "Удивление" : "Отсутствует" : 'Отсутствует'}`} style={{borderColor: theme}}>
         <div>
         <span className='class_heading'>{item.value.common_emotion ? item.value.common_emotion === "neutral" ? "Нейтраль" : item.value.common_emotion === "happy" ? "Веселье" : item.value.common_emotion === "angry" ? "Злость" : item.value.common_emotion === "sad" ? "Грусть" : item.value.common_emotion === "fear" ? "Страх" : item.value.common_emotion === "surprise" ? "Удивление" : "Отсутствует" : 'Отсутствует'}</span>
-          <span className='class_name'>{Math.floor(item.value.avg_confidence) ? Math.floor(item.value.avg_confidence) : "Отсутствует"} %</span>
+          <span className='class_name'>{Math.floor(item.value.avg_confidence) ? Math.floor(item.value.avg_confidence) : 0} %</span>
         </div>
         </p>
       </Link>
