@@ -47,7 +47,7 @@ document.head.appendChild(style);
     };  
 
     fetchPupils();
-  }, [pupilClass, genders, pupilEmotion]);
+  }, [pupilClass, genders, pupilEmotion,setTeacher,setOriginalUsers,token]);
 
   const clickItem = (evt) => {
     setEditUser(evt)

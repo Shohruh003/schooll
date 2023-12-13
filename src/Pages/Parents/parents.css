@@ -1,4 +1,8 @@
 .avatarImg {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    min-height: 55px;
     border-radius: 50px;
 }
 
@@ -376,6 +380,8 @@
     .avatarImg {
         width: 40px;
         height: 40px;
+        min-width: 40px;
+        min-height: 40px;
     }
     .logo-parent{
         width: 350px !important;
