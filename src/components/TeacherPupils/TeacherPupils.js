@@ -65,7 +65,7 @@ const wentClock = `${wentHours}:${wentMinutes}`;
     return (
       <li key={item?.id} style={{borderColor: theme}} onClick={clickItem}>
       <Link className='teacher_link'>
-        <img className='teacher_image' style={{objectFit: "cover"}} src={item?.main_image ? item?.main_image : usersLogo} alt="teacher of the img" width='100' height='100' />
+        <img className='teacher_image' style={{objectFit: "cover"}} src={item?.main_image ? item?.main_image : usersLogo} alt="teacher of the img" />
         <p className="full_nameTeach" style={{borderColor: theme}}>
           <span className='teacher_heading'>Фамилия и имя</span>
           <span className='teacher_name'>{item?.full_name ? item?.full_name : "Отсутствует"}</span>

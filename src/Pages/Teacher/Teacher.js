@@ -570,7 +570,7 @@ document.head.appendChild(style);
   <li key={index} className="attendance_itemRes" style={{borderColor: theme}}>
   <Link className='attendance_linkRes'>
     <p className='attendance_nameRes'>{item?.full_name}</p>
-    <img className='attendance_avatarRes' src={item?.main_image ? item?.main_image : usersLogo} alt='Avatar' width='50' height='50'/>
+    <img className='attendance_avatarRes' style={{objectFit: "cover"}} src={item?.main_image ? item?.main_image : usersLogo} alt='Avatar' width='50' height='50'/>
   </Link>
 </li>
 ))}
@@ -629,7 +629,7 @@ document.head.appendChild(style);
   <li key={index} className="attendance_item" style={{borderColor: theme}}>
   <Link className='attendance_link'>
     <p className='attendance_name'>{item?.full_name}</p>
-    <img className='attendance_avatar' src={item?.main_image ? item?.main_image : usersLogo} alt='Avatar' width='50' height='50'/>
+    <img className='attendance_avatar' style={{objectFit: "cover"}} src={item?.main_image ? item?.main_image : usersLogo} alt='Avatar' width='50' height='50'/>
   </Link>
 </li>
 ))}

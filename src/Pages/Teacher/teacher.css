@@ -465,6 +465,10 @@
 }
 
 .attendance_avatar {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
   border-radius: 50px;
 }
 
@@ -542,7 +546,7 @@
 
 .attendance_itemRes{
   margin-bottom: 10px !important;
-  border: 2px solid #FC6C85 !important;
+  border: 2px solid #FC6C85;
   border-radius: 20px !important;
 }
 
@@ -555,6 +559,15 @@
 
 .attendance_avatarRes {
   border-radius: 50px;
+}
+@media screen and (max-width: 991px) {
+
+.attendance_avatar {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+}
 }
 
 @media screen and (max-width: 767px) {
