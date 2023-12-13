@@ -224,7 +224,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
                   ...user,
                   email: event.target.value
                 })
-              }} type="email" class="form-control" list="datalistOptions" id="1" placeholder="shohruhazimov0705@gmail.com " />
+              }} type="email" class="form-control" list="datalistOptions" id="1" placeholder="example@gmail.com" />
             </div>
             <div className='input_box'>
               <label for="2" class="form-label">Имя</label>
