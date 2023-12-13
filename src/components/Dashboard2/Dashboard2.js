@@ -18,11 +18,15 @@ function Dashboard2() {
     const [schoolNum, setSchoolNum] = useState()
     const {token} = LoginHooks()
 
-    const config =  {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const [config, setConfig] = useState()
+    useEffect(() => {
+      const configs =  {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
       }
-    }
+      setConfig(configs)
+    }, [token]);
   
     useEffect(() => {
         const fetchPupils = async () => {
@@ -36,7 +40,7 @@ function Dashboard2() {
         };
     
         fetchPupils();
-      }, []);
+      }, [config]);
       const parcents = dashpupil?.Emotion_percent?.percent
       const parcet = Number(parcents).toFixed(0)
 
@@ -59,7 +63,7 @@ function Dashboard2() {
 			}
 		};
 		fetchClasses();
-	}, [decode]);
+	}, [decode, config, setPosition]);
 
     useEffect(() => {
 
@@ -73,7 +77,7 @@ function Dashboard2() {
 		};
 
 		fetchClasses();
-	}, [school]);
+	}, [school, config]);
 
     return (
         <div className='dashboard2'>

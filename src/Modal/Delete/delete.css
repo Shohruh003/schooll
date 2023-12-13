@@ -1,0 +1,23 @@
+.delete{
+    text-align: center;
+}
+
+.delete_heading {
+    margin: 20px 0 30px 0;
+}
+.delete_button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 200px;
+    margin: 0 auto;
+}
+
+.delete_button button {
+    font-size: 24px;
+    padding: 5px 20px;
+    border: 2px solid #81B37A;
+    border-radius: 20px;
+    color: #81B37A;
+    background-color: transparent;
+}

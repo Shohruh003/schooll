@@ -44,7 +44,7 @@ function ClassesList() {
     };
 
     fetchClasses();
-  }, [pupilClass, genders, pupilEmotion]);
+  }, [pupilClass, genders, pupilEmotion,setClassList,setOriginalUsers,token]);
 
   const arr = Object.keys(classList).map(key => ({ key, value: classList[key] }));
   return (

@@ -15,10 +15,6 @@
   margin-top: 5px;
 }
 
-.admin_header {
-  width: 930px;
-}
-
 .search_label {
   display: block;
   width: 300px;
@@ -160,12 +156,8 @@
   border-radius: 4px;
 }
 
-.people_list::-webkit-scrollbar-thumb:hover {
-  background-color: #FC6C85;
-}
 
 .people_list li {
-  border: 2px solid #FC6C85;
   border-radius: 20px;
   margin: 0;
   margin-bottom: 10px;
@@ -290,13 +282,14 @@
 }
 
 .emotions.Страх {
-  background-color: purple;
+  background-color: black;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  color: white;
 }
 
 .emotions.Удивление {
-  background-color: orange;
+  background-color: purple;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }

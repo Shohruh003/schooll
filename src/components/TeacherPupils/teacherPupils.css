@@ -56,7 +56,6 @@
   .teacher_image {
     width: 70px;
     height: 70px;
-    min-width: 70px;
     margin-left: 10px;
     border-radius: 50px;
   }
@@ -135,7 +134,6 @@
   .teacher_image {
     width: 50px !important;
     height: 50px !important;
-    min-width: 50px;
   }
 }
 

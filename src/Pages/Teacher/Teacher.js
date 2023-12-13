@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState,useCallback } from 'react';
 import './teacher.css'
 import { Link, NavLink, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
@@ -58,7 +58,7 @@ document.head.appendChild(style);
               }
           };
           fetchParents();
-      }, [decode,test]);
+      }, [decode,test,setClasses,token, setDepres]);
 
         useEffect(() => {
             const fetchParents = async () => {
@@ -75,7 +75,7 @@ document.head.appendChild(style);
                 }
             };
             fetchParents();
-        }, [decode]);
+        }, [decode,setTeach, token]);
 
 
 
@@ -96,92 +96,89 @@ document.head.appendChild(style);
     };
 
     fetchNotification();
-}, [decode]);
+}, [decode, setNotification, setNotificationCount,token]);
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      applyDefaultTheme();
-    }
-  }, []);
+const applyDefaultTheme = useCallback(() => {
+  setTheme('#81B37A');
+}, [setTheme]);
 
-  useEffect(() => {
-    applyTheme();
-  }, [theme]);
-
-  const applyDefaultTheme = () => {
-    setTheme('#81B37A');
-  };
-
+useEffect(() => {
   const applyTheme = () => {
     const body = document.body;
     const panelHeading = document.querySelector('.panel_heading');
-    const dockaAdmin = document.querySelector('.adminBoard_header')
-    const headerIcons = document.querySelectorAll('.header_icon circle')
-    const headerLinks = document.querySelectorAll('.header-link')
-    const adminPanel = document.querySelector('.admin_panel')
-    const itemButtons = document.querySelectorAll('.item_button')
-    const ageSearch = document.querySelectorAll('.ageSearch')
-    const smsCount = document.querySelector('.sms_count')
-
+    const dockaAdmin = document.querySelector('.adminBoard_header');
+    const headerIcons = document.querySelectorAll('.header_icon circle');
+    const headerLinks = document.querySelectorAll('.header-link');
+    const adminPanel = document.querySelector('.admin_panel');
+    const itemButtons = document.querySelectorAll('.item_button');
+    const ageSearch = document.querySelectorAll('.ageSearch');
+    const smsCount = document.querySelector('.sms_count');
 
     if (theme === '#FC6C85') {
       body.style.backgroundColor = '#fafafa';
       panelHeading.style.backgroundColor = '#FC6C85';
-      dockaAdmin.style.color = '#FC6C85'
+      dockaAdmin.style.color = '#FC6C85';
       headerLinks.forEach((e) => {
-        e.style.borderColor = '#FC6C85'
+        e.style.borderColor = '#FC6C85';
 
         e.addEventListener('mouseover', () => {
           e.style.backgroundColor = 'rgba(252, 108, 133, 0.25)';
         });
-        
+
         e.addEventListener('mouseout', () => {
           e.style.backgroundColor = '';
         });
-      })
-      adminPanel.style.borderColor = '#FC6C85'
+      });
+      adminPanel.style.borderColor = '#FC6C85';
       itemButtons.forEach((e) => {
-        e.style.borderColor = '#FC6C85'
-      })
-      smsCount.style.backgroundColor = '#F9A298'
+        e.style.borderColor = '#FC6C85';
+      });
+      smsCount.style.backgroundColor = '#F9A298';
       headerIcons.forEach((e) => {
-        e.setAttribute('fill', '#F9A298')
-      })
+        e.setAttribute('fill', '#F9A298');
+      });
       ageSearch.forEach((e) => {
-        e.style.borderColor = '#FC6C85'
-      })
+        e.style.borderColor = '#FC6C85';
+      });
     } else if (theme === '#81B37A') {
       body.style.backgroundColor = '#E4F0E2';
       panelHeading.style.backgroundColor = '#ACCAA8';
-      dockaAdmin.style.color = '#81B37A'
+      dockaAdmin.style.color = '#81B37A';
       headerIcons.forEach((e) => {
-        e.setAttribute('fill', '#ACCAA8')
-      })
+        e.setAttribute('fill', '#ACCAA8');
+      });
       headerLinks.forEach((e) => {
-        e.style.borderColor = '#81B37A'
+        e.style.borderColor = '#81B37A';
 
         e.addEventListener('mouseover', () => {
           e.style.backgroundColor = '#9BC196';
         });
-        
+
         e.addEventListener('mouseout', () => {
           e.style.backgroundColor = '';
         });
-      })
-      adminPanel.style.borderColor = '#81B37A'
+      });
+      adminPanel.style.borderColor = '#81B37A';
       itemButtons.forEach((e) => {
-        e.style.borderColor = '#81B37A'
-        e.style.backgroundColor = 'transparent'
-      })
-      smsCount.style.backgroundColor = '#81B37A'
+        e.style.borderColor = '#81B37A';
+        e.style.backgroundColor = 'transparent';
+      });
+      smsCount.style.backgroundColor = '#81B37A';
       ageSearch.forEach((e) => {
-        e.style.borderColor = '#81B37A'
-      })
+        e.style.borderColor = '#81B37A';
+      });
     }
   };
+
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    setTheme(savedTheme);
+  } else {
+    applyDefaultTheme();
+  }
+
+  applyTheme();
+}, [theme, applyDefaultTheme, setTheme]);
 
 
   const changeTheme = () => {
@@ -206,8 +203,8 @@ document.head.appendChild(style);
 
     var MaleCheckboxChecked = document.getElementById('maleCheckbox')
     var FemaleCheckboxChecked = document.getElementById('femaleCheckbox')
-    var maleCheckboxChecked = MaleCheckboxChecked.checked == true ? true : false;
-    var femaleCheckboxChecked = FemaleCheckboxChecked.checked == true ? true : false;
+    var maleCheckboxChecked = MaleCheckboxChecked.checked === true ? true : false;
+    var femaleCheckboxChecked = FemaleCheckboxChecked.checked === true ? true : false;
 
     var x = teacherPupils;
     if ((maleCheckboxChecked && femaleCheckboxChecked) || (!maleCheckboxChecked && !femaleCheckboxChecked)) {
@@ -226,10 +223,10 @@ document.head.appendChild(style);
       x = absentPupilsData;
 
     } else if (maleCheckboxChecked) {
-      x = teacherPupils.filter((pupil) => pupil.gender == true)
+      x = teacherPupils.filter((pupil) => pupil.gender === true)
 
     } else if (femaleCheckboxChecked) {
-      x = teacherPupils.filter((pupil) => pupil.gender == false)
+      x = teacherPupils.filter((pupil) => pupil.gender === false)
 
     }
     setTeacherPupils(x)
@@ -243,7 +240,7 @@ document.head.appendChild(style);
       const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
-        }
+        },
       });
       return response.data;
     });
@@ -251,32 +248,31 @@ document.head.appendChild(style);
     var x = absentPupilsData;
     switch (selectedEmotion) {
       case 'happy':
-        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'happy')
-        setTeacherPupils(x)
+        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions === 'happy');
+        setTeacherPupils(x);
         break;
       case 'neutral':
-        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'neutral')
-        setTeacherPupils(x)
+        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions === 'neutral');
+        setTeacherPupils(x);
         break;
       case 'sad':
-        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'sad')
-        setTeacherPupils(x)
+        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions === 'sad');
+        setTeacherPupils(x);
         break;
       case 'angry':
-        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'angry')
-        setTeacherPupils(x)
+        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions === 'angry');
+        setTeacherPupils(x);
         break;
       case 'fear':
-        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'fear')
-        setTeacherPupils(x)
+        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions === 'fear');
+        setTeacherPupils(x);
         break;
       case 'surprise':
-        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions == 'surprise')
-        setTeacherPupils(x)
+        x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions === 'surprise');
+        setTeacherPupils(x);
         break;
-
-        case "all":
-        setTeacherPupils(x)
+      default:
+        setTeacherPupils(x);
         break;
     }
   };
@@ -306,9 +302,9 @@ document.head.appendChild(style);
         .catch((error) => {
           console.log(error);
         });
-      }, []);
+      }, [decode, token]);
 
-      const fetchData1 = async () => {
+      const fetchData1 = useCallback(async () => {
         try {
           const params = {};
           if (genders.length > 0) {
@@ -318,10 +314,11 @@ document.head.appendChild(style);
           if (pupilEmotion) {
             params.filter_by_emotion = pupilEmotion;
           }
-
+      
           if (teacherPupils) {
             params.search = teacherPupils;
           }
+
           const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
           const promises = pupilIds?.map(async (id) => {
             const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`, {
@@ -339,73 +336,65 @@ document.head.appendChild(style);
         } catch (error) {
           console.log(error);
         }
-      };
+      }, [genders, pupilEmotion, teacherPupils,setOriginalUsers,setTeacherPupils,teach?.pupil_class,teach?.pupils,token]);
       
       useEffect(() => {
         fetchData1();
-      }, [teach?.pupil_class[0]]);
+      }, [fetchData1]);
 
-      const fetchData = async () => {
-
-        try {
-          const response = await axios.get(`https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/`,  {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            }
-          });
-          setDepres(Math.round(response.data.classes[pupilsClass ? pupilsClass : test]?.sad_avg))
-      } catch (error) {
-          console.error(error);
-      }
-
-        try {
-          const params = {};
-      
-          if (genders.length > 0) {
-            params.gender = genders.join(',');
-          }
-      
-          if (pupilEmotion) {
-            params.filter_by_emotion = pupilEmotion;
-          }
-          const pupilIds = teach?.pupils[pupilsClass ? pupilsClass : test]?.map((pupil) => pupil.id);
-          const promises = pupilIds?.map(async (id) => {
-            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`,  {
-              params,
-              headers: {
-                Authorization: `Bearer ${token}`,
-              }
-            });
-            return response.data;
-          });
-      
-          const absentPupilsData = await Promise.all(promises);
-          setTeacherPupils(absentPupilsData);
-          setOriginalUsers(absentPupilsData);
-        } catch (error) {
-          console.log(error);
-        }
-
-        try {
-          const presentPupilIds = classes?.classes[pupilsClass ? pupilsClass : test]?.absent_pupils?.id;
-          const promises = presentPupilIds?.map(async (id) => {
-            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}`, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              }
-            });
-            return response.data;
-          });
-          const presentPupilsData = await Promise.all(promises);
-          setPupilMissing(presentPupilsData);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      
       useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response1 = await axios.get(`https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/`, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+            setDepres(Math.round(response1.data.classes[pupilsClass ? pupilsClass : test]?.sad_avg));
+      
+            const params = {};
+      
+            if (genders.length > 0) {
+              params.gender = genders.join(',');
+            }
+      
+            if (pupilEmotion) {
+              params.filter_by_emotion = pupilEmotion;
+            }
+      
+            const pupilIds = teach?.pupils[pupilsClass ? pupilsClass : test]?.map((pupil) => pupil.id);
+            const promises1 = pupilIds?.map(async (id) => {
+              const response2 = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`, {
+                params,
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              });
+              return response2.data;
+            });
+      
+            const absentPupilsData = await Promise.all(promises1);
+            setTeacherPupils(absentPupilsData);
+            setOriginalUsers(absentPupilsData);
+      
+            const presentPupilIds = classes?.classes[pupilsClass ? pupilsClass : test]?.absent_pupils?.id;
+            const promises2 = presentPupilIds?.map(async (id) => {
+              const response3 = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              });
+              return response3.data;
+            });
+            const presentPupilsData = await Promise.all(promises2);
+            setPupilMissing(presentPupilsData);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+      
         fetchData();
-      }, [pupilsClass]);
+      }, [pupilsClass, token, genders, pupilEmotion, teach, classes,setDepres,setOriginalUsers,setTeacherPupils,test]);
       
       const onPupilClass = (evt) => {
         const pupilClassValue = evt?.target?.value;

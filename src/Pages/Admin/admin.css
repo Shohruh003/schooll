@@ -15,7 +15,7 @@
 }
 
 .admin_header {
-  width: 930px;
+  width: 75% !important;
 }
 
 .search_label {
@@ -163,12 +163,7 @@
   border-radius: 4px;
 }
 
-.people_list::-webkit-scrollbar-thumb:hover {
-  background-color: #FC6C85;
-}
-
 .people_list li {
-  border: 2px solid #FC6C85;
   border-radius: 20px;
   margin: 0;
   margin-bottom: 10px;
@@ -302,13 +297,14 @@
 }
 
 .emotions.Страх {
-  background-color: purple;
+  background-color: black;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  color: white;
 }
 
 .emotions.Удивление {
-  background-color: orange;
+  background-color: purple;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
@@ -464,9 +460,6 @@
   .admin_panel{
     margin-left: auto !important;
   }
-  .admin_header {
-    width: 750px !important;
-  }
   
   .search_label {
     width: 250px !important;
@@ -479,6 +472,10 @@
   
   .site-logo {
     width: 300px !important;
+  }
+
+  .admin_header {
+    width: 70% !important;
   }
 }
 
@@ -513,9 +510,6 @@
 
   .admin_panel{
     margin-left: auto !important;
-  }
-  .admin_header {
-    width: 650px !important;
   }
   
   .search_label {
@@ -595,10 +589,6 @@
     height: 40px !important;
     max-width: 40px !important;
     min-width: 40px !important;
-  }
-
-  .admin_header {
-    width: 480px !important;
   }
   
   .search_label {

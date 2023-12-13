@@ -25,11 +25,18 @@
 }
 
 .people_list li {
-  border: 2px solid #FC6C85;
-  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  border: none;
   margin: 0;
   margin-bottom: 10px;
   padding: 0;
+}
+
+.people_item {
+  width: 95%;
+  border: 2px solid #FC6C85;
+  border-radius: 20px;
 }
 
 .people_link {
@@ -39,6 +46,27 @@
   text-decoration: none;
 }
 
+.people_create {
+  display: block;
+  width: 25px;
+  margin-left: auto;
+}
+
+.people_delete {
+  margin-bottom: 2px;
+}
+
+.people_delete:hover , .perople_update:hover{
+  opacity: 0.7;
+  cursor: pointer;
+}
+.people_delete:active , .perople_update:active{
+  opacity: 1;
+}
+
+.emotions {
+  min-width: 120px;
+}
 
 .people_link p {
   display: block;
@@ -170,6 +198,10 @@
   .timePeople {
     max-width: 100px;
     min-width: 100px !important;
+  }
+
+  .emotions {
+    min-width: 60px !important;
   }
 }
 
