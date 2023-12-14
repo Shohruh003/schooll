@@ -7,10 +7,11 @@ import { AuthContext } from "../../context/PupilContext";
 import usersLogo from '../../Image/photo_people.jpg'
 import { LoginHooks } from "../../Hooks/LoginHooks";
 import Delete from "../../Modal/Delete/Delete";
+import WeekEmotion from "../../Modal/WeekEmotion/WeekEmotion";
 
 
 function TeacherList() {
-  const {genders,position, setOriginalUsers,pupilClass,pupilEmotion,teacher, setTeacher,theme,editAdminModal, setEditAdminModal,setDeleteId, setEditUser} = useContext(AuthContext)
+  const {setWeekFullName,weekEmotion, setWeekEmotion,genders,position, setOriginalUsers,pupilClass,pupilEmotion,teacher, setTeacher,theme,editAdminModal, setEditAdminModal,setDeleteId, setEditUser} = useContext(AuthContext)
   const [deleteUser, setDeleteUser] = useState(false)
   const {token} = LoginHooks()
   const style = document.createElement('style');
@@ -112,6 +113,17 @@ const firstMaxConfidenceIndex = emotions?.findIndex(
 
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
 
+const anotherFunction = (item) => {
+  if (position === 'admin') {
+  setDeleteId(item?.id)
+    setWeekFullName(item?.full_name)
+} 
+}
+
+const weekItem = () => {
+setWeekEmotion(true)
+};
+
     return (
       <li key={item.id} className="techers_item">
                     <div className="people_create">
@@ -127,7 +139,7 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
 
             </div>
 <div className="people_item" style={{ borderColor: theme }}>
-<Link className='teacher_link'>
+<Link className='teacher_link' onClick={() => { weekItem(); anotherFunction(item); }}>
         <img className='teacher_image' style={{objectFit: "cover"}} src={item?.main_image ? item?.main_image : usersLogo} alt="teacher of the img" width='100' height='100' />
         <p className="name_item" style={{borderColor: theme}}>
           <div>
@@ -154,7 +166,7 @@ const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
 })}
         <EditAdminModal editAdminModal={editAdminModal} setEditAdminModal={setEditAdminModal}/>
       <Delete deleteUser={deleteUser} setDeleteUser={setDeleteUser}/>
-
+      <WeekEmotion weekEmotion={weekEmotion} setWeekEmotion={setWeekEmotion}/>
     </ul>
   )
 }
