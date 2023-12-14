@@ -30,6 +30,12 @@
   padding: 0;
 }
 
+.techers_item {
+  display: flex;
+  align-items: center;
+  border: none !important;
+}
+
 .teacher_link {
   display: flex;
   align-items: center;

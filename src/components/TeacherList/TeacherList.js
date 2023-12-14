@@ -113,7 +113,7 @@ const firstMaxConfidenceIndex = emotions?.findIndex(
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
 
     return (
-      <li key={item.id}>
+      <li key={item.id} className="techers_item">
                     <div className="people_create">
             <svg className="people_delete" onClick={() => deleteItem(item.id)} width="25" height="25" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="35" height="35" rx="1" fill={theme}/>

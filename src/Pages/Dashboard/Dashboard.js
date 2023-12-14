@@ -221,10 +221,10 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 			indexLabel: "{name} - #percent%",
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
-				{ y: sadPupils, color: "#808080", name: "Грусть" },
-				{ y: angryPupils, color: "#FC6C85", name: "Злость" },
-				{ y: neutralPupils, color: "#008000", name: "Нейтраль" },
-				{ y: happyPupils, color: "#ffa500", name: "Веселье"}
+				{ y: sadPupils, color: "#c8d5b9", name: "Грусть" },
+				{ y: angryPupils, color: "#fe938c", name: "Злость" },
+				{ y: neutralPupils, color: "#00cc66", name: "Нейтраль" },
+				{ y: happyPupils, color: "#FCFF6C", name: "Веселье"}
 			]
 		}],
 		backgroundColor: "transparent",
