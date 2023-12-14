@@ -8,10 +8,11 @@ import usersLogo from '../../Image/photo_people.jpg'
 import { useState } from "react";
 import { LoginHooks } from "../../Hooks/LoginHooks";
 import Delete from "../../Modal/Delete/Delete";
+import WeekEmotion from "../../Modal/WeekEmotion/WeekEmotion";
 
 
 function Pupil() {
-  const { user,position, setUsers,pupilEmotion, ageRange, genders, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser, setDeleteId } = useContext(AuthContext)
+  const {setWeekFullName,weekEmotion, setWeekEmotion, user,position, setUsers,pupilEmotion, ageRange, genders, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser, setDeleteId } = useContext(AuthContext)
 
   const [userEmotion, setUserEmotion] = useState([])
   const [deleteUser, setDeleteUser] = useState(false)
@@ -110,8 +111,21 @@ const [config, setConfig] = useState()
   }
 
   const deleteItem = (id) => {
-    setDeleteId(id)
-    setDeleteUser(true)
+    if (position === 'admin') {
+      setDeleteId(id)
+      setDeleteUser(true)
+    }
+  };
+
+  const anotherFunction = (item) => {
+      if (position === 'admin') {
+      setDeleteId(item?.id)
+        setWeekFullName(item?.full_name)
+    } 
+  }
+
+  const weekItem = () => {
+    setWeekEmotion(true)
   };
 
   return (
@@ -148,7 +162,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
 
             </div>
             <div className="people_item" style={{ borderColor: theme }}>
-            <Link className='people_link'>
+            <Link className='people_link' onClick={() => { weekItem(); anotherFunction(item); }}>
               <img className='people_image' style={{objectFit: "cover"}} src={item?.main_image ?  item?.main_image : usersLogo} alt="People-img" width='100' height='100' />
               <p className="name_item" style={{ borderColor: theme }}>
                 <div className="peaoleName">
@@ -192,6 +206,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
       })}
       <EditAdminModal editAdminModal={editAdminModal} setEditAdminModal={setEditAdminModal} />
       <Delete deleteUser={deleteUser} setDeleteUser={setDeleteUser}/>
+      <WeekEmotion weekEmotion={weekEmotion} setWeekEmotion={setWeekEmotion}/>
     </ul>
   )
 }
