@@ -118,10 +118,9 @@ const [config, setConfig] = useState()
   };
 
   const anotherFunction = (item) => {
-      if (position === 'admin') {
       setDeleteId(item?.id)
         setWeekFullName(item?.full_name)
-    } 
+
   }
 
   const weekItem = () => {

@@ -113,11 +113,16 @@ const firstMaxConfidenceIndex = emotions?.findIndex(
 
 const firstEmotionWithMaxConfidence = emotions[firstMaxConfidenceIndex];
 
-const anotherFunction = (item) => {
+const deleteItem = (id) => {
   if (position === 'admin') {
+    setDeleteId(id)
+    setDeleteUser(true)
+  }
+};
+
+const anotherFunction = (item) => {
   setDeleteId(item?.id)
     setWeekFullName(item?.full_name)
-} 
 }
 
 const weekItem = () => {
