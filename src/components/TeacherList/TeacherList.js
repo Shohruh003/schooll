@@ -141,7 +141,6 @@ setWeekEmotion(true)
 <rect width="35" height="35" rx="1" fill={theme}/>
 <path d="M17 5C10.373 5 5 10.373 5 17C5 23.627 10.373 29 17 29C23.627 29 29 23.627 29 17C29 10.373 23.627 5 17 5ZM12 22L13.006 17.964L16.112 21.069L12 22ZM17.16 20.121L13.958 16.919L19.799 11L23 14.2L17.16 20.121Z" fill="#F5F5F5"/>
 </svg>
-
             </div>
 <div className="people_item" style={{ borderColor: theme }}>
 <Link className='teacher_link' onClick={() => { weekItem(); anotherFunction(item); }}>

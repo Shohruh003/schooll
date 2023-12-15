@@ -40,7 +40,7 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
         aria-labelledby="example-custom-modal-styling-title"
       >
           <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
-          Опоздавшие ученик
+          Опоздавшие ученики
           <img className='close_button' onClick={() => setLateComersPupil(false)} src={close_Button} alt='closeButton' />
 
           </Modal.Title>

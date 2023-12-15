@@ -41,7 +41,7 @@ function MissingPupil ({missingPupil, setMissingPupil}) {
         aria-labelledby="example-custom-modal-styling-title"
       >
           <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
-          Отсутствующие ученик
+          Отсутствующие ученики
           <img className='close_button' onClick={() => setMissingPupil(false)} src={close_Button} />
 
           </Modal.Title>

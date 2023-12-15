@@ -245,7 +245,7 @@ useEffect(() => {
       return response.data;
     });
     const absentPupilsData = await Promise.all(promises);
-    var x = absentPupilsData;
+    var x = absentPupilsData;   
     switch (selectedEmotion) {
       case 'happy':
         x = x.filter((pupil) => pupil.emotions?.[pupil?.emotions?.length - 1]?.emotions === 'happy');
@@ -304,25 +304,11 @@ useEffect(() => {
         });
       }, [decode, token]);
 
-      const fetchData1 = useCallback(async () => {
+      const fetchData1 = async () => {
         try {
-          const params = {};
-          if (genders.length > 0) {
-            params.gender = genders.join(',');
-          }
-      
-          if (pupilEmotion) {
-            params.filter_by_emotion = pupilEmotion;
-          }
-      
-          if (teacherPupils) {
-            params.search = teacherPupils;
-          }
-
           const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
           const promises = pupilIds?.map(async (id) => {
             const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`, {
-              params,
               headers: {
                 Authorization: `Bearer ${token}`,
               }
@@ -336,11 +322,11 @@ useEffect(() => {
         } catch (error) {
           console.log(error);
         }
-      }, [genders, pupilEmotion, teacherPupils,setOriginalUsers,setTeacherPupils,teach?.pupil_class,teach?.pupils,token]);
+      };
       
       useEffect(() => {
         fetchData1();
-      }, [fetchData1]);
+      }, []);
 
       useEffect(() => {
         const fetchData = async () => {
