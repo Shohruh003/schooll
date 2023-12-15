@@ -201,7 +201,11 @@
   }
 
   .emotions {
-    min-width: 60px !important;
+    min-width: 50px !important;
+  }
+
+  .people_emotions{
+    font-size: 6px !important;
   }
 }
 

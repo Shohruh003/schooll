@@ -392,7 +392,7 @@ const piHappy = Math.round(pia?.happy)
                         { y: piAngry ? piAngry : 0 , color: "#FC6C85", name: "Злость" },
                         { y: piSad ? piSad : 0 , color: "#808080", name: "Грусть" },
                         { y: piNeutral ? piNeutral : 0, color: "#008000", name: "Нейтраль" },
-                        { y: piHappy ? piHappy : 0, color: "#ffa500", name: "Веселье"}
+                        { y: piHappy ? piHappy : 0, color: "#febe98", name: "Веселье"}
                     ]
                 }],
                 backgroundColor: "transparent",
@@ -668,7 +668,7 @@ const piHappy = Math.round(pia?.happy)
         { data: [isNaN(happy5) ? 0 : happy5,isNaN(happy4) ? 0 : happy4,isNaN(happy3) ? 0 : happy3,isNaN(happy2) ? 0 : happy2,isNaN(happy1) ? 0 : happy1,isNaN(happy0) ? 0 : happy0], color: '#ffa500', label: '   Веселье' },
         { data: [isNaN(neutral5) ? 0 : neutral5,isNaN(neutral4) ? 0 : neutral4,isNaN(neutral3) ? 0 : neutral3,isNaN(neutral2) ? 0 : neutral2,isNaN(neutral1) ? 0 : neutral1,isNaN(neutral0) ? 0 : neutral0], color: '#008000', label: "Нейтраль"  },
         { data: [isNaN(sad5) ? 0 : sad5,isNaN(sad4) ? 0 : sad4,isNaN(sad3) ? 0 : sad3,isNaN(sad2) ? 0 : sad2,isNaN(sad1) ? 0 : sad1,isNaN(sad0) ? 0 : sad0], color: '#808080', label: "Грусть"  },
-        { data: [isNaN(angry5) ? 0 : angry5,isNaN(angry4) ? 0 : angry4,isNaN(angry3) ? 0 : angry3,isNaN(angry2) ? 0 : angry2,isNaN(angry1) ? 0 : angry1,isNaN(angry0) ? 0 : angry0], color: '#FC6C85', label: "Злость"  }
+        { data: [isNaN(angry5) ? 0 : angry5,isNaN(angry4) ? 0 : angry4,isNaN(angry3) ? 0 : angry3,isNaN(angry2) ? 0 : angry2,isNaN(angry1) ? 0 : angry1,isNaN(angry0) ? 0 : angry0], color: '#FDB193', label: "Злость"  }
 
     ]}
     width={800}

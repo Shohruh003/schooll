@@ -10,3 +10,86 @@
     font-size: 28px;
     text-align: center;
 }
+
+@media screen and (max-width: 992px) {
+
+    .week_heading {
+        font-weight: bold !important;
+        font-size: 28px !important;
+        margin-top: 10px;
+        margin-bottom: 10px !important;
+        text-align: center;
+    }
+    
+    .week_name{
+        font-size: 24px;
+        text-align: center;
+    }
+    .week {
+        height: 350px;
+    }
+    .week_content {
+        width: 500px !important;
+        height: 300px !important;
+      }
+    .week_content div {
+        width: 500px !important;
+        height: 300px !important;
+    }
+}
+
+
+@media screen and (max-width: 510px) {
+
+    .week_heading {
+        font-weight: bold !important;
+        font-size: 24px !important;
+        margin-top: 10px;
+        margin-bottom: 10px ;
+        text-align: center;
+    }
+    
+    .week_name{
+        font-size: 18px;
+        text-align: center;
+        margin: 0;
+    }
+    .week {
+        height: 280px;
+    }
+    .week_content {
+        width: 400px !important;
+        height: 250px !important;
+      }
+    .week_content div {
+        width: 400px !important;
+        height: 250px !important;
+    }
+}
+
+@media screen and (max-width: 420px) {
+
+    .week_heading {
+        font-weight: bold !important;
+        font-size: 18px !important;
+        margin: 0;
+        text-align: center;
+    }
+    
+    .week_name{
+        font-size: 14px;
+        text-align: center;
+        margin: 0;
+    }
+    .week {
+        height: 220px;
+    }
+    .week_content {
+        width: 350px !important;
+        height: 200px !important;
+      }
+    .week_content div {
+        width: 350px !important;
+        height: 200px !important;
+    }
+}

@@ -271,7 +271,7 @@
 }
 
 .chart_percentage4 {
-    background-color: #FC6C85;
+    background-color: #febe98;
 }
 
 .column {
@@ -328,7 +328,7 @@
   }
 
   .column div {
-    width: 800px !important;
+    width: 800px;
     height: 300px;
   }
 
@@ -383,6 +383,17 @@
 
     .week_list img {
         width: 70px;
+    }
+
+    .column {
+        height: 320px;
+    }
+
+    .column_inner {
+        width: 700px !important;
+      }
+    .column_inner div {
+        width: 700px !important;
     }
 }
 
@@ -441,6 +452,16 @@
 
     .week_list img {
         width: 60px;
+    }
+
+    .column {
+        height: 300px;
+    }
+    .column_inner {
+        width: 600px !important;
+      }
+    .column_inner div {
+        width: 600px !important;
     }
 }
 
@@ -566,6 +587,18 @@
         height: 20px;
         font-size: 8px;
     }
+
+    .column {
+        height: 230px;
+    }
+    .column_inner {
+        width: 450px !important;
+        height: 200px !important;
+      }
+    .column_inner div {
+        width: 450px !important;
+        height: 200px !important;
+    }
 }
 
 @media screen and (max-width: 770px) {
@@ -632,9 +665,6 @@
     width: 100%;
     margin-top: 15px;
   }
- .column {
-    height: 200px;
- } 
 
  .avatar_chartInner{
     display: flex;
@@ -662,10 +692,64 @@
  .avatar_chartInner .canvasjs-chart-canvas {
     left:300% !important;
  }
+
+ .column {
+    height: 230px;
+}
+.column_inner {
+    width: 450px !important;
+    height: 300px !important;
+  }
+.column_inner div {
+    width: 500px !important;
+    height: 200px !important;
+}
+}
+
+@media screen and (max-width: 536px) {
+    .column {
+        height: 230px;
+    }
+    .column_inner {
+        width: 450px !important;
+        height: 300px !important;
+      }
+    .column_inner div {
+        width: 450px !important;
+        height: 200px !important;
+    }
+}
+
+@media screen and (max-width: 536px) {
+    .column {
+        height: 230px;
+    }
+    .column_inner {
+        width: 450px !important;
+        height: 300px !important;
+      }
+    .column_inner div {
+        width: 400px !important;
+        height: 200px !important;
+    }
 }
 
 @media screen and (max-width: 450px) {
     .avatar_about p, .avatar_about span {
         font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .column {
+        height: 200px;
+    }
+    .column_inner {
+        width: 400px !important;
+        height: 250px !important;
+      }
+    .column_inner div {
+        width: 350px !important;
+        height: 170px !important;
     }
 }
