@@ -322,6 +322,16 @@
     display: none;
   }
 
+  .column_inner {
+    display: block !important;
+    width: 800px !important;
+  }
+
+  .column div {
+    width: 800px !important;
+    height: 300px;
+  }
+
   /* ///////////////////////////////////// Responsive ======================== */
 
   @media screen and (max-width: 1400px) {

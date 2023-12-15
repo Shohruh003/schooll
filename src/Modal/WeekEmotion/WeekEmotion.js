@@ -48,6 +48,7 @@ function WeekEmotion () {
         try {
         const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${deleteId}/weekly_diagram_v2/`,config);
             setBar(response.data)
+            console.log(response.data);
         } catch (error) {
             console.error(error);
         }
@@ -72,26 +73,33 @@ const filteredData4 = bar?.filter((item) => targetDates[4].includes(Object.keys(
 
 const filteredData5 = bar?.filter((item) => targetDates[5].includes(Object.keys(item)[0]))
   .map((item) => item[Object.keys(item)[0]])[0]
-let happy0 = Math.floor(filteredData0?.happy)
-let happy1 = Math.floor(filteredData1?.happy)
-let happy2 = Math.floor(filteredData2?.happy)
-let happy3 = Math.floor(filteredData3?.happy)
-let happy4 = Math.floor(filteredData4?.happy)
-let happy5 = Math.floor(filteredData5?.happy)
+let happy0 = filteredData0?.happy
+let happy1 = filteredData1?.happy
+let happy2 = filteredData2?.happy
+let happy3 = filteredData3?.happy
+let happy4 = filteredData4?.happy
+let happy5 = filteredData5?.happy
 
-let neutral0 = Math.floor(filteredData0?.neutral)
-let neutral1 = Math.floor(filteredData1?.neutral)
-let neutral2 = Math.floor(filteredData2?.neutral)
-let neutral3 = Math.floor(filteredData3?.neutral)
-let neutral4 = Math.floor(filteredData4?.neutral)
-let neutral5 = Math.floor(filteredData5?.neutral)
+let neutral0 = filteredData0?.neutral
+let neutral1 = filteredData1?.neutral
+let neutral2 = filteredData2?.neutral
+let neutral3 = filteredData3?.neutral
+let neutral4 = filteredData4?.neutral
+let neutral5 = filteredData5?.neutral
 
-let sad0 = Math.floor(filteredData0?.sad)
-let sad1 = Math.floor(filteredData1?.sad)
-let sad2 = Math.floor(filteredData2?.sad)
-let sad3 = Math.floor(filteredData3?.sad)
-let sad4 = Math.floor(filteredData4?.sad)
-let sad5 = Math.floor(filteredData5?.sad)
+let sad0 = filteredData0?.sad
+let sad1 = filteredData1?.sad
+let sad2 = filteredData2?.sad
+let sad3 = filteredData3?.sad
+let sad4 = filteredData4?.sad
+let sad5 = filteredData5?.sad
+
+let angry0 = filteredData0?.angry
+let angry1 = filteredData1?.angry
+let angry2 = filteredData2?.angry
+let angry3 = filteredData3?.angry
+let angry4 = filteredData4?.angry
+let angry5 = filteredData5?.angry
 
     return (
         <div>
@@ -121,7 +129,8 @@ let sad5 = Math.floor(filteredData5?.sad)
     series={[
         { data: [isNaN(happy5) ? 0 : happy5,isNaN(happy4) ? 0 : happy4,isNaN(happy3) ? 0 : happy3,isNaN(happy2) ? 0 : happy2,isNaN(happy1) ? 0 : happy1,isNaN(happy0) ? 0 : happy0], color: '#ffa500', label: '   Веселье' },
         { data: [isNaN(neutral5) ? 0 : neutral5,isNaN(neutral4) ? 0 : neutral4,isNaN(neutral3) ? 0 : neutral3,isNaN(neutral2) ? 0 : neutral2,isNaN(neutral1) ? 0 : neutral1,isNaN(neutral0) ? 0 : neutral0], color: '#008000', label: "Нейтраль"  },
-        { data: [isNaN(sad5) ? 0 : sad5,isNaN(sad4) ? 0 : sad4,isNaN(sad3) ? 0 : sad3,isNaN(sad2) ? 0 : sad2,isNaN(sad1) ? 0 : sad1,isNaN(sad0) ? 0 : sad0], color: '#808080', label: "Грусть"  }
+        { data: [isNaN(sad5) ? 0 : sad5,isNaN(sad4) ? 0 : sad4,isNaN(sad3) ? 0 : sad3,isNaN(sad2) ? 0 : sad2,isNaN(sad1) ? 0 : sad1,isNaN(sad0) ? 0 : sad0], color: '#808080', label: "Грусть"  },
+        { data: [isNaN(angry5) ? 0 : angry5,isNaN(angry4) ? 0 : angry4,isNaN(angry3) ? 0 : angry3,isNaN(angry2) ? 0 : angry2,isNaN(angry1) ? 0 : angry1,isNaN(angry0) ? 0 : angry0], color: '#FC6C85', label: "Злость"  }
 
     ]}
     width={800}

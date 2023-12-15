@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './parents.css'
 import axios from 'axios';
+import { BarChart } from '@mui/x-charts';
+import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import Avatar from '../../Image/photo_people.jpg'
 import CanvasJSReact from '@canvasjs/react-charts';
@@ -11,12 +13,15 @@ import { LoginHooks } from '../../Hooks/LoginHooks';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
+
 function Parents () {
 	    const {theme, setTheme, modal, setModal,setNotification,notificationCount, setNotificationCount} = useContext(AuthContext)
         const {decode} = DecodeHooks()
         const [parent, setParent] = useState()
         const [parentId, setParentId] = useState()
         const {token} = LoginHooks()
+        const [bar, setBar] = useState()
+        const [weekEmotion, setWeekEmotion] = useState()
 
         const config =  {
           headers: {
@@ -286,6 +291,14 @@ function Parents () {
                 } catch (error) {
                     console.error(error);
                 }
+
+                try {
+                    const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${parentId}/weekly_diagram_v2/`,config);
+                        setBar(response.data)
+                        console.log(response.data);
+                    } catch (error) {
+                        console.error(error);
+                    }
               };
            
               fetchPrentPupils();
@@ -293,6 +306,7 @@ function Parents () {
 
 
                       const OnParentChange = async (evt) => {
+                        setWeekEmotion(evt.target.value)
                           try {
                               const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${evt.target.value}/`,config);
                               setProfil(response.data)
@@ -349,6 +363,13 @@ function Parents () {
                         } catch (error) {
                             console.error(error);
                         }
+
+                        try {
+                            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${evt.target.value}/weekly_diagram_v2/`,config);
+                                setBar(response.data)
+                            } catch (error) {
+                                console.error(error);
+                            }
                       };
 const piAngry = Math.round(pia?.angry)
 const piSad = Math.round(pia?.sad)
@@ -376,54 +397,6 @@ const piHappy = Math.round(pia?.happy)
                 }],
                 backgroundColor: "transparent",
             }
-
-        const colors2 = diagram2?.emotion === 'neutral' ? '#008000' : diagram2?.emotion === 'sad' ? '#808080' : diagram2?.emotion === 'angry' ? '#FC6C85' : diagram2?.emotion === 'happy' ? "#ffa500" : ' ';
-        const colors3 = diagram3?.emotion === 'neutral' ? '#008000' : diagram3?.emotion === 'sad' ? '#808080' : diagram3?.emotion === 'angry' ? '#FC6C85' : diagram3?.emotion === 'happy' ? "#ffa500" : ' ';
-        const colors4 = diagram4?.emotion === 'neutral' ? '#008000' : diagram4?.emotion === 'sad' ? '#808080' : diagram4?.emotion === 'angry' ? '#FC6C85' : diagram4?.emotion === 'happy' ? "#ffa500" : ' ';
-        const colors5 = diagram5?.emotion === 'neutral' ? '#008000' : diagram5?.emotion === 'sad' ? '#808080' : diagram5?.emotion === 'angry' ? '#FC6C85' : diagram5?.emotion === 'happy' ? "#ffa500" : ' ';
-        const colors6 = diagram6?.emotion === 'neutral' ? '#008000' : diagram6?.emotion === 'sad' ? '#808080' : diagram6?.emotion === 'angry' ? '#FC6C85' : diagram6?.emotion === 'happy' ? "#ffa500" : ' ';
-        const colors7 = diagram7?.emotion === 'neutral' ? '#008000' : diagram7?.emotion === 'sad' ? '#808080' : diagram7?.emotion === 'angry' ? '#FC6C85' : diagram7?.emotion === 'happy' ? "#ffa500" : ' ';
-
-        function findLargestSection(pupils) {
-                    let largestSectionIndex = 0;
-                    let largestSectionValue = pupils.data[0].dataPoints[0].y;
-                  
-                    for (let i = 1; i < pupils.data[0].dataPoints.length; i++) {
-                      const sectionValue = pupils.data[0].dataPoints[i].y;
-                      if (sectionValue > largestSectionValue) {
-                        largestSectionIndex = i;
-                        largestSectionValue = sectionValue;
-                      }
-                    }
-                  
-                    const largestSection = pupils.data[0].dataPoints[largestSectionIndex];
-                    const largestSectionPercentage = ((largestSection.y / pupils.data[0].dataPoints.reduce((sum, dp) => sum + dp.y, 0)) * 100).toFixed(1);
-                    
-                    pupils.subtitles[0].text = `${largestSection.name} ${largestSectionPercentage}%`;
-                  
-                    return largestSection.name;
-                  }
-                  
-                  const pupilsSectionName = findLargestSection(pupils);
-
-                  const column = {
-                    data: [
-                    {
-                        type: "column",
-                        dataPoints: [
-                            { label: date2 + ' - ' + weekday2,color: colors2, y: diagram2?.confidence   },
-                            { label: date3 + ' - ' + weekday3,color: colors3, y: diagram3?.confidence   },
-                            { label: date4 + ' - ' + weekday4,color: colors4,  y: diagram4?.confidence   },
-                            { label: date5 + ' - ' + weekday5, color: colors5, y: diagram5?.confidence   },
-                            { label: date6 + ' - ' + weekday6,color: colors6,  y: diagram6?.confidence   },
-                            { label: date7 + ' - ' + weekday7, color: colors7, y: diagram7?.confidence  }
-                        ],
-                    }
-                    ],
-                    width: 700,
-                    height: 200,
-                    backgroundColor: "transparent",
-                }
 
 
                         const formattedTime2 = new Date(week2?.first?.time).toLocaleTimeString('uz-UZ', {
@@ -486,6 +459,72 @@ const piHappy = Math.round(pia?.happy)
                             hour: 'numeric',
                             minute: 'numeric'
                           })
+                          const formattedDates = [];
+                          const remainingDays = 6;
+                          const weekDays = ["Вс","Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+                          const targetDates = [];
+                          
+                          for (let i = 0; i < remainingDays; i++) {
+                            const date = new Date(currentDate);
+                            date.setDate(date.getDate() - i);
+                            const formattedDate = date.toLocaleDateString("en-GB");
+                          
+                            const year = date.getFullYear();
+                            const month = String(date.getMonth() + 1).padStart(2, '0');
+                            const day = String(date.getDate()).padStart(2, '0');
+                          
+                            const filteredDate = `${year}-${month}-${day}`;
+                            targetDates.push(filteredDate);
+                            const weekDay = weekDays[date.getDay()];
+                            formattedDates.push(`${formattedDate}-${weekDay}`);
+                          }
+                        
+                          const reversedDates = formattedDates.reverse();;
+                        
+                        const filteredData0 = bar?.filter((item) => targetDates[0].includes(Object.keys(item)[0]))
+                          .map((item) => item[Object.keys(item)[0]])[0]
+                        
+                        const filteredData1 = bar?.filter((item) => targetDates[1].includes(Object.keys(item)[0]))
+                          .map((item) => item[Object.keys(item)[0]])[0]
+                        
+                        const filteredData2 = bar?.filter((item) => targetDates[2].includes(Object.keys(item)[0]))
+                          .map((item) => item[Object.keys(item)[0]])[0]
+                        
+                        const filteredData3 = bar?.filter((item) => targetDates[3].includes(Object.keys(item)[0]))
+                          .map((item) => item[Object.keys(item)[0]])[0]
+                        
+                        const filteredData4 = bar?.filter((item) => targetDates[4].includes(Object.keys(item)[0]))
+                          .map((item) => item[Object.keys(item)[0]])[0]
+                        
+                        const filteredData5 = bar?.filter((item) => targetDates[5].includes(Object.keys(item)[0]))
+                          .map((item) => item[Object.keys(item)[0]])[0]
+                        let happy0 = filteredData0?.happy
+                        let happy1 = filteredData1?.happy
+                        let happy2 = filteredData2?.happy
+                        let happy3 = filteredData3?.happy
+                        let happy4 = filteredData4?.happy
+                        let happy5 = filteredData5?.happy
+                        
+                        let neutral0 = filteredData0?.neutral
+                        let neutral1 = filteredData1?.neutral
+                        let neutral2 = filteredData2?.neutral
+                        let neutral3 = filteredData3?.neutral
+                        let neutral4 = filteredData4?.neutral
+                        let neutral5 = filteredData5?.neutral
+                        
+                        let sad0 = filteredData0?.sad
+                        let sad1 = filteredData1?.sad
+                        let sad2 = filteredData2?.sad
+                        let sad3 = filteredData3?.sad
+                        let sad4 = filteredData4?.sad
+                        let sad5 = filteredData5?.sad
+                        
+                        let angry0 = filteredData0?.angry
+                        let angry1 = filteredData1?.angry
+                        let angry2 = filteredData2?.angry
+                        let angry3 = filteredData3?.angry
+                        let angry4 = filteredData4?.angry
+                        let angry5 = filteredData5?.angry
 	return (
 		<div className="school">
 			<div className='container'>
@@ -614,8 +653,28 @@ const piHappy = Math.round(pia?.happy)
 
                         <div className='column'>
                             <h4>Эмоции за неделю</h4>
-			<CanvasJSChart options = {column}
-			/>
+			                <div className='column_inner'>
+
+                    <BarChart
+    xAxis={[
+        {
+        scaleType: 'band',
+        data: reversedDates.flatMap((date) => [
+            date
+          ]),
+        },              
+    ]}
+    series={[
+        { data: [isNaN(happy5) ? 0 : happy5,isNaN(happy4) ? 0 : happy4,isNaN(happy3) ? 0 : happy3,isNaN(happy2) ? 0 : happy2,isNaN(happy1) ? 0 : happy1,isNaN(happy0) ? 0 : happy0], color: '#ffa500', label: '   Веселье' },
+        { data: [isNaN(neutral5) ? 0 : neutral5,isNaN(neutral4) ? 0 : neutral4,isNaN(neutral3) ? 0 : neutral3,isNaN(neutral2) ? 0 : neutral2,isNaN(neutral1) ? 0 : neutral1,isNaN(neutral0) ? 0 : neutral0], color: '#008000', label: "Нейтраль"  },
+        { data: [isNaN(sad5) ? 0 : sad5,isNaN(sad4) ? 0 : sad4,isNaN(sad3) ? 0 : sad3,isNaN(sad2) ? 0 : sad2,isNaN(sad1) ? 0 : sad1,isNaN(sad0) ? 0 : sad0], color: '#808080', label: "Грусть"  },
+        { data: [isNaN(angry5) ? 0 : angry5,isNaN(angry4) ? 0 : angry4,isNaN(angry3) ? 0 : angry3,isNaN(angry2) ? 0 : angry2,isNaN(angry1) ? 0 : angry1,isNaN(angry0) ? 0 : angry0], color: '#FC6C85', label: "Злость"  }
+
+    ]}
+    width={800}
+    height={300}
+    />
+                </div>
 		</div>
 
                         <div className='emotion_week'>
