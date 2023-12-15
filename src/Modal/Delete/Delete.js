@@ -20,6 +20,8 @@ function Delete ({deleteUser, setDeleteUser}) {
         await axios.delete(
           `https://smartsafeschoolback.tadi.uz/api/users/users/${deleteId}/`,config
         );
+
+        setDeleteUser(false)
       } catch (error) {
         console.error(error);
       }
