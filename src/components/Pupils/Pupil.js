@@ -9,10 +9,11 @@ import { useState } from "react";
 import { LoginHooks } from "../../Hooks/LoginHooks";
 import Delete from "../../Modal/Delete/Delete";
 import WeekEmotion from "../../Modal/WeekEmotion/WeekEmotion";
+import WeekTime from "../../Modal/WeekTime/WeekTime";
 
 
 function Pupil() {
-  const {setWeekFullName,weekEmotion, setWeekEmotion, user,position, setUsers,pupilEmotion, ageRange, genders, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser, setDeleteId } = useContext(AuthContext)
+  const {weekTime, setWeekTime,setWeekFullName,weekEmotion, setWeekEmotion, user,position, setUsers,pupilEmotion, ageRange, genders, pupilClass, theme, editAdminModal, setEditAdminModal, setEditUser, setDeleteId } = useContext(AuthContext)
 
   const [userEmotion, setUserEmotion] = useState([])
   const [deleteUser, setDeleteUser] = useState(false)
@@ -127,6 +128,15 @@ const [config, setConfig] = useState()
     setWeekEmotion(true)
   };
 
+  const handleWeekTime = () => {
+    setWeekTime(true)
+  }
+
+  const anotherWeekTime = (item) => {
+    setDeleteId(item?.id)
+      setWeekFullName(item?.full_name)
+}
+
   return (
     <ul onScroll={(e) => handleScroll(e)} className="people_list" style={{ '--scrollbar-thumb': theme }}>
       {user?.map((item, index) => {
@@ -161,7 +171,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
 
             </div>
             <div className="people_item" style={{ borderColor: theme }}>
-            <Link className='people_link' onClick={() => { weekItem(); anotherFunction(item); }}>
+            <Link className='people_link'>
               <img className='people_image' style={{objectFit: "cover"}} src={item?.main_image ?  item?.main_image : usersLogo} alt="People-img" width='100' height='100' />
               <p className="name_item" style={{ borderColor: theme }}>
                 <div className="peaoleName">
@@ -169,7 +179,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
                 <span className='people_name'>{item.full_name ? item.full_name : "Отсутствует"}</span>
                 </div>
               </p>
-              <p className="timePeople" style={{ borderColor: theme }}>
+              <p className="timePeople" style={{ borderColor: theme }} onClick={() => { handleWeekTime(); anotherWeekTime(item); }}>
                 <div>
                 <span className='people_heading'>Пришел: {newFirstTime === '00:00' ? "--:--" : newFirstTime}</span>
                 <span className='people_heading'>Ушел: {newLastTime === newFirstTime ? "--:--" : newLastTime}</span>
@@ -187,11 +197,11 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
                 <span className='people_name'>{age ? age : "0"}</span>
                 </div>
               </p>
-              <p style={{ borderColor: theme }}
+              <p onClick={() => { weekItem(); anotherFunction(item); }} style={{ borderColor: theme }}
                 className={`emotions ${userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Отсутствует" : 'Отсутствует'}`}
               >
                 <div>
-                <span className='people_heading'> {userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Отсутствует" : 'Отсутствует'} </span>
+                <span className='people_heading people_emotions'> {userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last?.emotion ? userEmotion[index]?.[formattedDate]?.last?.emotion === "neutral" ? "Нейтраль" : userEmotion[index]?.[formattedDate]?.last?.emotion === "happy" ? "Веселье" : userEmotion[index]?.[formattedDate]?.last?.emotion === "angry" ? "Злость" : userEmotion[index]?.[formattedDate]?.last?.emotion === "sad" ? "Грусть" : userEmotion[index]?.[formattedDate]?.last?.emotion === "fear" ? "Страх" : userEmotion[index]?.[formattedDate]?.last?.emotion === "surprise" ? "Удивление" : "Отсутствует" : 'Отсутствует'} </span>
 
 
 <span className='people_name'>{userEmotion[index]?.[formattedDate]?.last && userEmotion[index]?.[formattedDate]?.last.confidence ? userEmotion[index]?.[formattedDate]?.last.confidence : "0"} %</span>
@@ -206,6 +216,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
       <EditAdminModal editAdminModal={editAdminModal} setEditAdminModal={setEditAdminModal} />
       <Delete deleteUser={deleteUser} setDeleteUser={setDeleteUser}/>
       <WeekEmotion weekEmotion={weekEmotion} setWeekEmotion={setWeekEmotion}/>
+      <WeekTime weekTime={weekTime} setWeekTime={setWeekTime}/>
     </ul>
   )
 }

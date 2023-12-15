@@ -19,6 +19,15 @@ function WeekEmotion () {
     }
   }
 
+  const elList = document.querySelector('.weekThemes');
+  if (elList) {
+    if (theme === '#FC6C85') {
+      elList.style.backgroundColor = 'rgba(252, 108, 133,0.2)';
+    } else if (theme === '#81B37A') {
+      elList.style.backgroundColor = 'rgba(129, 179, 122,0.2)';
+    }
+  }
+
 
   const currentDate = new Date();
   const formattedDates = [];
@@ -114,7 +123,7 @@ let angry5 = filteredData5?.angry
             <div className='week'>
                 <h2 style={{color: theme}} className='week_heading'>История эмоций за неделю</h2>
                 <p style={{color: theme}} className='week_name'>{weekFullName}</p>
-                <div className='week_content'>
+                <div className='week_content weekThemes'>
 
                     <BarChart
     xAxis={[

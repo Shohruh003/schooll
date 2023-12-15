@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import './parents.css'
 import axios from 'axios';
 import { BarChart } from '@mui/x-charts';
-import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import Avatar from '../../Image/photo_people.jpg'
 import CanvasJSReact from '@canvasjs/react-charts';
@@ -21,7 +20,6 @@ function Parents () {
         const [parentId, setParentId] = useState()
         const {token} = LoginHooks()
         const [bar, setBar] = useState()
-        const [weekEmotion, setWeekEmotion] = useState()
 
         const config =  {
           headers: {
@@ -142,7 +140,7 @@ function Parents () {
             chat.style.backgroundColor = '#9BC196'
 		}
 	};
-
+    
 
 	const changeTheme = () => {
 		const newTheme = theme === '#FC6C85' ? '#81B37A' : '#FC6C85';
@@ -204,12 +202,7 @@ function Parents () {
               const date5 = result[4];
               const date6 = result[5];
               const date7 = result[6];
-              const [diagram2, setDiagram2] = useState()
-              const [diagram3, setDiagram3] = useState()
-              const [diagram4, setDiagram4] = useState()
-              const [diagram5, setDiagram5] = useState()
-              const [diagram6, setDiagram6] = useState()
-              const [diagram7, setDiagram7] = useState()
+
               const [profil, setProfil] = useState()
               const [pia, setPia] = useState()
               const [week, setWeek] = useState()
@@ -244,25 +237,6 @@ function Parents () {
                       console.error(error);
                   }
 
-                  try {
-                    const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${parentId}/weekly_diagram/`,config);
-                    const filteredData2 = response.data.filter(item => item.create_date === date2);
-                    const filteredData3 = response.data.filter(item => item.create_date === date3);
-                    const filteredData4 = response.data.filter(item => item.create_date === date4);
-                    const filteredData5 = response.data.filter(item => item.create_date === date5);
-                    const filteredData6 = response.data.filter(item => item.create_date === date6);
-                    const filteredData7 = response.data.filter(item => item.create_date === date7);
-                    setDiagram2(filteredData2[0])
-                    setDiagram3(filteredData3[0])
-                    setDiagram4(filteredData4[0])
-                    setDiagram5(filteredData5[0])
-                    setDiagram6(filteredData6[0])
-                    setDiagram7(filteredData7[0])
-
-                } catch (error) {
-                    console.error(error);
-                }
-
 
                 try {
                     const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${parentId}/pie_chart_id/`,config);
@@ -295,7 +269,6 @@ function Parents () {
                 try {
                     const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${parentId}/weekly_diagram_v2/`,config);
                         setBar(response.data)
-                        console.log(response.data);
                     } catch (error) {
                         console.error(error);
                     }
@@ -306,30 +279,9 @@ function Parents () {
 
 
                       const OnParentChange = async (evt) => {
-                        setWeekEmotion(evt.target.value)
                           try {
                               const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${evt.target.value}/`,config);
                               setProfil(response.data)
-                          } catch (error) {
-                              console.error(error);
-                          }
-                          
-                          try {
-                              const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${evt.target.value}/weekly_diagram/`,config);
-                              const filteredData2 = response.data.filter(item => item.create_date === date2);
-                              const filteredData3 = response.data.filter(item => item.create_date === date3);
-                              const filteredData4 = response.data.filter(item => item.create_date === date4);
-                              const filteredData5 = response.data.filter(item => item.create_date === date5);
-                              const filteredData6 = response.data.filter(item => item.create_date === date6);
-                              const filteredData7 = response.data.filter(item => item.create_date === date7);
-
-                              setDiagram2(filteredData2[0])
-                              setDiagram3(filteredData3[0])
-                              setDiagram4(filteredData4[0])
-                              setDiagram5(filteredData5[0])
-                              setDiagram6(filteredData6[0])
-                              setDiagram7(filteredData7[0])
-
                           } catch (error) {
                               console.error(error);
                           }
@@ -678,7 +630,7 @@ const piHappy = Math.round(pia?.happy)
 		</div>
 
                         <div className='emotion_week'>
-                            <h3 className='week_heading'>Эмоции за неделю</h3>
+                            <h3 className='week_heading'>Посещаемость за неделю</h3>
 
                             <ul className='week_list'>
                                 <li className='week_item'>
