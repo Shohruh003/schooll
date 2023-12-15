@@ -17,10 +17,10 @@ function Delete ({deleteUser, setDeleteUser}) {
 
     const deletePupils = async () => {
       try {
-        await axios.delete(
-          `https://smartsafeschoolback.tadi.uz/api/users/users/${deleteId}/`,config
+        const response = await axios.delete(
+          `https://smartsafeschoolback.tadi.uz/api/users/pupils/${deleteId}/`,config
         );
-
+          console.log(response.data);
         setDeleteUser(false)
       } catch (error) {
         console.error(error);
