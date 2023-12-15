@@ -268,37 +268,39 @@
 
 .emotions.Нейтраль {
   background-color: #008000;
+  border-top-right-radius: 22px;
+  border-bottom-right-radius: 22px;
 }
 
 .emotions.Веселье{
   background-color: #ffa500;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-top-right-radius: 22px;
+  border-bottom-right-radius: 22px;
 }
 
 .emotions.Грусть{
   background-color: #808080;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-top-right-radius: 22px;
+  border-bottom-right-radius: 22px;
 }
 
 .emotions.Злость{
   background-color: #FC6C85;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-top-right-radius: 22px;
+  border-bottom-right-radius: 22px;
 }
 
 .emotions.Страх {
   background-color: black;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-top-right-radius: 22px;
+  border-bottom-right-radius: 22px;
   color: white;
 }
 
 .emotions.Удивление {
   background-color: purple;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-top-right-radius: 22px;
+  border-bottom-right-radius: 22px;
 }
 
 .search_pupil {
