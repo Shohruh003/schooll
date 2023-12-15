@@ -227,13 +227,13 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
               }} type="email" class="form-control" list="datalistOptions" id="1" placeholder="example@gmail.com" />
             </div>
             <div className='input_box'>
-              <label for="2" class="form-label">Имя</label>
+              <label for="2" class="form-label">ФИО</label>
               <input defaultValue={editUser?.full_name} onChange={(event) => {
                 setUser({
                   ...user,
                   full_name: event.target.value
                 })
-              }} class="form-control" list="datalistOptions" id="2" placeholder="Shohruh Azimov" />
+              }} class="form-control" list="datalistOptions" id="2" placeholder="Введите ФИО" />
             </div>
             <div className='input_box pass3'>
               <label for="pass3" class="form-label">Пароль</label>
@@ -285,10 +285,12 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
                   pupil_class_str: event.target.value
                 })
               }} defaultValue={editUser?.pupil_class ? editUser?.pupil_class[0]?.slice(2, 3)?.toUpperCase(): ''} className="class2">
-                <option value='A'>"А"<img src={selectIcon} /></option>
-                <option value='B'>"B"</option>
-                <option value='C'>"C"</option><option value='D'>"D"</option>
-                <option value='E'>"E"</option>
+                <option defaultValue='А'>"А"<img src={selectIcon} /></option>
+                <option value='Б'>"Б"</option>
+                <option value='В'>"В"</option>
+                <option value='Г'>"Г"</option>
+                <option value='Д'>"Д"</option>
+                <option value='Е'>"Е"</option>
               </select>
             </div>
             <div className='input_box'>

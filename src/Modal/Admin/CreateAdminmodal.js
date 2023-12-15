@@ -200,13 +200,13 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
               }} type="email" disabled class="form-control" list="datalistOptions" id="1" placeholder="example@gmail.com" />
             </div>
             <div className='input_box'>
-              <label for="2" class="form-label">Имя</label>
+              <label for="2" class="form-label">ФИО</label>
               <input onChange={(event) => {
                 setUser({
                   ...user,
                   full_name: event.target.value
                 })
-              }} class="form-control" list="datalistOptions" id="2" placeholder="Shohruh Azimov" />
+              }} class="form-control" list="datalistOptions" id="2" placeholder="Введите ФИО" />
             </div>
             <div className='input_box pass3'>
               <label for="pass3" class="form-label">Пароль</label>
@@ -225,7 +225,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                   ...user,
                   birth_date: event.target.value
                 })
-              }} type="date" class="form-control" list="datalistOptions" id="d" />
+              }} type="date" class="form-control" list="datalistOptions" id="d" placeholder=''/>
             </div>
             <div className='input_box pass5'>
               <label for="pass5" class="form-label">Повторите пароль</label>
@@ -258,11 +258,12 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                   pupil_class_str: event.target.value
                 })
               }} className="class2">
-                <option defaultValue='A'>"А"<img src={selectIcon} /></option>
-                <option value='B'>"B"</option>
-                <option value='C'>"C"</option>
-                <option value='D'>"D"</option>
-                <option value='E'>"E"</option>
+                <option defaultValue='А'>"А"<img src={selectIcon} /></option>
+                <option value='Б'>"Б"</option>
+                <option value='В'>"В"</option>
+                <option value='Г'>"Г"</option>
+                <option value='Д'>"Д"</option>
+                <option value='Е'>"Е"</option>
               </select>
             </div>
             <div className='input_box'>
