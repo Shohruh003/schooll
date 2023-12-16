@@ -190,6 +190,7 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 			showInLegend: true,
 			toolTipContent: "<b>{name}</b>: (#percent%)",
 			indexLabel: "{name} - #percent%",
+			indexLabelFontSize: 16,
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
 				{ y: happyTeacher, color: "#ffa500", name: "Веселье"},
@@ -226,6 +227,7 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 			showInLegend: true,
 			toolTipContent: "<b>{name}</b>: (#percent%)",
 			indexLabel: "{name} - #percent%",
+			indexLabelFontSize: 16,
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
 				{ y: happyPupils, color: "#ffa500", name: "Веселье"},
@@ -442,7 +444,7 @@ function findLargestSection(options) {
 							/>
 						</div>
 						
-		<button className='dashboard_modal' style={{borderColor: theme, color: theme}} onClick={MissingTeachers}>Отсутствующие преподаватели : {missingTeachers?.length ? missingTeachers?.length : '0'}</button>
+		<button className='dashboard_modal dashboard_modalTeacher' style={{borderColor: theme, color: theme}} onClick={MissingTeachers}>Отсутствующие преподаватели : {missingTeachers?.length ? missingTeachers?.length : '0'}</button>
 
 					</li>
 

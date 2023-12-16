@@ -404,6 +404,11 @@ opacity: 0.7;
   width: 230px !important;
 }
 
+.dashboard_modalTeacher {
+  padding: 12   px 0 !important;
+  font-size: 16px !important;
+}
+
 }
 
 
