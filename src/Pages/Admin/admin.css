@@ -70,14 +70,14 @@
   height: 200px;
   padding: 10px;
   text-align: center;
-  border: 2px solid #FC6C85;
+  border: 2px solid #ffbe98;
   border-radius: 20px;
   text-decoration: none;
 }
 
 .header-link:hover {
   border: none;
-  background-color: rgba(252, 108, 133, 0.25);
+  background-color: rgba(255, 190, 152,0.25);
 }
 
 .header-active svg {
@@ -138,7 +138,7 @@
   margin: 0 5px;
   outline: none;
   border: none;
-  border: 1px solid #FC6C85;
+  border: 1px solid #ffbe98;
 }
 
 .age-search {
@@ -146,7 +146,7 @@
   padding: 20px 18px;
   margin-left: auto;
   margin-right: auto;
-  border: 2px solid #FC6C85;
+  border: 2px solid #ffbe98;
   border-radius: 20px;
 }   
 
@@ -181,7 +181,7 @@
 .people_link p {
   margin: 0;
   padding: 8px 30px;
-  border-left: 2px solid #FC6C85;
+  border-left: 2px solid #ffbe98;
   text-align: center;
   color: #161B23;
 } 
@@ -203,7 +203,7 @@
   display: block;
   text-align: center;
   padding: 20px 20px 20px 20px;
-  border: 2px solid #FC6C85;
+  border: 2px solid #ffbe98;
   border-radius: 20px;
 }
 
@@ -213,7 +213,7 @@
   padding: 10px 5px;
   margin-top: 20px;
   color: #ffffff;
-  background-color: #FC6C85;
+  background-color: #ffbe98;
 }
 
 .panel_list{
@@ -233,7 +233,7 @@
   color: #161B23;
   font-size: 22px;
   font-weight: 600;
-  border: 2px solid #FC6C85;
+  border: 2px solid #ffbe98;
   border-radius: 20px;
 }
 
@@ -264,7 +264,7 @@
 }
 
 .panel_button:active {
-  background-color: #FC6C85;
+  background-color: #ffbe98;
 }
 
 .emotions {
@@ -291,7 +291,7 @@
 }
 
 .emotions.Злость{
-  background-color: #febe98;
+  background-color: #ffbe98;
   border-top-right-radius: 22px;
   border-bottom-right-radius: 22px;
 }
@@ -415,7 +415,7 @@
   border-left-width: -310px;
   border-radius: 50px;
   color: #ffffff;
-  background-color: #FC6C85;
+  background-color: #ffbe98;
 }
 
 .domIcon{

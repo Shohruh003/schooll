@@ -89,14 +89,14 @@ function Parents () {
 
 
 
-		if (theme === '#FC6C85') {
+		if (theme === '#ffbe98') {
 			body.style.backgroundColor = '#F5EFEF';
-			header.style.borderColor = '#FC6C85'
+			header.style.borderColor = '#ffbe98'
 			dashboardIcons.forEach((e) => {
 				e.setAttribute('fill', '#F9A298')
 
 				e.addEventListener('mouseover', () => {
-					e.setAttribute('fill', '#FC6C85')
+					e.setAttribute('fill', '#ffbe98')
 				});
 				e.addEventListener('mouseout', () => {
 					e.setAttribute('fill', '#F9A298')
@@ -140,10 +140,10 @@ function Parents () {
             chat.style.backgroundColor = '#9BC196'
 		}
 	};
-    
+
 
 	const changeTheme = () => {
-		const newTheme = theme === '#FC6C85' ? '#81B37A' : '#FC6C85';
+		const newTheme = theme === '#ffbe98' ? '#81B37A' : '#ffbe98';
 		setTheme(newTheme);
 		localStorage.setItem('theme', newTheme);
 	};
@@ -341,10 +341,10 @@ const piHappy = Math.round(pia?.happy)
                     type: "doughnut",
                     yValueFormatString: "#,###'%'",
                     dataPoints: [
-                        { y: piAngry ? piAngry : 0 , color: "#FC6C85", name: "Злость" },
+                        { y: piAngry ? piAngry : 0 , color: "#ffbe98", name: "Злость" },
                         { y: piSad ? piSad : 0 , color: "#808080", name: "Грусть" },
                         { y: piNeutral ? piNeutral : 0, color: "#008000", name: "Нейтраль" },
-                        { y: piHappy ? piHappy : 0, color: "#febe98", name: "Веселье"}
+                        { y: piHappy ? piHappy : 0, color: "#ffbe98", name: "Веселье"}
                     ]
                 }],
                 backgroundColor: "transparent",
@@ -638,7 +638,7 @@ const piHappy = Math.round(pia?.happy)
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week2?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime2 === 'Invalid Date' ? '--:--' : formattedTime2}</span>
                                     <span className='days'>{date2}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week2?.last?.thumbnail}/>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week2?.last?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime2week === formattedTime2 ? '--:--' : formattedTime2week}</span>
                                 </li>
 
@@ -647,7 +647,7 @@ const piHappy = Math.round(pia?.happy)
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week3?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime3 === 'Invalid Date' ? '--:--' : formattedTime3}</span>
                                     <span className='days'>{date3}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week3?.last?.thumbnail}/>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week3?.last?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime3week === formattedTime3 ? '--:--' : formattedTime3week}</span>
                                 </li>
 
@@ -657,7 +657,7 @@ const piHappy = Math.round(pia?.happy)
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week4?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime4 === 'Invalid Date' ? '--:--' : formattedTime4}</span>
                                     <span className='days'>{date4}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week4?.last?.thumbnail}/>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week4?.last?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime4week === formattedTime4 ? '--:--' : formattedTime4week}</span>
                                 </li>
 
@@ -667,7 +667,7 @@ const piHappy = Math.round(pia?.happy)
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week5?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime5 === 'Invalid Date' ? '--:--' : formattedTime5}</span>
                                     <span className='days'>{date5}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week5?.last?.thumbnail}/>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week5?.last?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime5week === formattedTime5 ? '--:--' : formattedTime5week}</span>
                                 </li>
 
@@ -677,7 +677,7 @@ const piHappy = Math.round(pia?.happy)
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week6?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime6 === 'Invalid Date' ? '--:--' : formattedTime6}</span>
                                     <span className='days'>{date6}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week6?.last?.thumbnail}/>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week6?.last?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime6week === formattedTime6 ? '--:--' : formattedTime6week}</span>
                                 </li>
 
@@ -687,7 +687,7 @@ const piHappy = Math.round(pia?.happy)
                                     <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week7?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime7 === 'Invalid Date' ? '--:--' : formattedTime7}</span>
                                     <span className='days'>{date7}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#FC6C85'}} src={week7?.last?.thumbnail}/>
+                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week7?.last?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime7week === formattedTime7 ? '--:--' : formattedTime7week}</span>
                                 </li>
                             </ul>

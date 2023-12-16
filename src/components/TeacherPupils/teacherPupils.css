@@ -24,7 +24,7 @@
   }
   
   .teacher_list li {
-    border: 2px solid #FC6C85;
+    border: 2px solid #ffbe98;
     border-radius: 20px;
     margin: 0;
     margin-bottom: 10px;
@@ -42,7 +42,7 @@
   .teacher_link p {
     margin: 0;
     padding: 8px 15px;
-    border-left: 2px solid #FC6C85;
+    border-left: 2px solid #ffbe98;
     text-align: start;
     color: #161B23;
   } 

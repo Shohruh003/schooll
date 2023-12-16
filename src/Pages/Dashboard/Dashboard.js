@@ -74,17 +74,17 @@ function Dashboard () {
 		const weather = document.querySelector('.weather')
 		const adminLinkRes = document.querySelector('.adminRes_link')
 
-		if (theme === '#FC6C85') {
+		if (theme === '#ffbe98') {
 			body.style.backgroundColor = '#F5EFEF';
 			texts.forEach((e) => {
-				e.style.color = '#FC6C85';
+				e.style.color = '#ffbe98';
 			})
-			header.style.borderColor = '#FC6C85'
+			header.style.borderColor = '#ffbe98'
 			dashboardIcons.forEach((e) => {
 				e.setAttribute('fill', '#F9A298')
 
 				e.addEventListener('mouseover', () => {
-					e.setAttribute('fill', '#FC6C85')
+					e.setAttribute('fill', '#ffbe98')
 				});
 				e.addEventListener('mouseout', () => {
 					e.setAttribute('fill', '#F9A298')
@@ -105,7 +105,7 @@ function Dashboard () {
 				adminLinkRes.style.backgroundColor = '#FA8072';
 			});
 			canvas.forEach((e) => {
-				e.style.borderColor = '#FC6C85';
+				e.style.borderColor = '#ffbe98';
 			})
 			weather.style.backgroundColor = 'rgba(250, 128, 114, 0.7)';
 			weatherRes.style.backgroundColor = 'rgba(250, 128, 114, 0.7)';
@@ -149,7 +149,7 @@ function Dashboard () {
 
 
 	const changeTheme = () => {
-		const newTheme = theme === '#FC6C85' ? '#81B37A' : '#FC6C85';
+		const newTheme = theme === '#ffbe98' ? '#81B37A' : '#ffbe98';
 		setTheme(newTheme);
 		localStorage.setItem('theme', newTheme);
 	};
@@ -191,7 +191,7 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
 				{ y: sadTeacher, color: "#808080", name: "Грусть" },
-				{ y: angryTeacher, color: "#febe98", name: "Злость" },
+				{ y: angryTeacher, color: "#ffbe98", name: "Злость" },
 				{ y: neutralTeacher, color: "#008000", name: "Нейтраль" },
 				{ y: happyTeacher, color: "#ffa500", name: "Веселье"}
 			]
@@ -222,7 +222,7 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
 				{ y: sadPupils, color: "#808080", name: "Грусть" },
-				{ y: angryPupils, color: "#febe98", name: "Злость" },
+				{ y: angryPupils, color: "#ffbe98", name: "Злость" },
 				{ y: neutralPupils, color: "#008000", name: "Нейтраль" },
 				{ y: happyPupils, color: "#ffa500", name: "Веселье"}
 			]

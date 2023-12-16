@@ -17,7 +17,7 @@ export const AuthProvider = ({children}) => {
   const [pupilEmotion, setPupilEmotion] = useState();
   const [teacher, setTeacher] = useState();
   const [teacherCount, setTeacherCount] = useState();
-  const [theme, setTheme] = useState('#FC6C85');
+  const [theme, setTheme] = useState('#ffbe98');
   const [editAdminModal, setEditAdminModal] = useState()
   const [notificationCount, setNotificationCount] = useState()
   const [notification, setNotification] = useState()

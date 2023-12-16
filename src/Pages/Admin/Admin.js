@@ -163,24 +163,24 @@ function Admin(props) {
     const smsCount = document.querySelector(".sms_count");
     const panelItem = document.querySelector(".age-search");
 
-    if (theme === "#FC6C85") {
+    if (theme === "#ffbe98") {
       body.style.backgroundColor = "#fafafa";
-      panelHeading.style.backgroundColor = "#FC6C85";
-      dockaAdmin.style.color = "#FC6C85";
+      panelHeading.style.backgroundColor = "#ffbe98";
+      dockaAdmin.style.color = "#ffbe98";
       headerLinks.forEach((e) => {
-        e.style.borderColor = "#FC6C85";
+        e.style.borderColor = "#ffbe98";
 
         e.addEventListener("mouseover", () => {
-          e.style.backgroundColor = "rgba(252, 108, 133, 0.25)";
+          e.style.backgroundColor = "rgba(255, 190, 152,0.25)";
         });
 
         e.addEventListener("mouseout", () => {
           e.style.backgroundColor = "";
         });
       });
-      adminPanel.style.borderColor = "#FC6C85";
+      adminPanel.style.borderColor = "#ffbe98";
       itemButtons.forEach((e) => {
-        e.style.borderColor = "#FC6C85";
+        e.style.borderColor = "#ffbe98";
       });
       panelButton.style.backgroundColor = "#F9A298";
       panelButtonRes.style.backgroundColor = "#F9A298";
@@ -189,9 +189,9 @@ function Admin(props) {
         e.setAttribute("fill", "#F9A298");
       });
       ageSearch.forEach((e) => {
-        e.style.borderColor = "#FC6C85";
+        e.style.borderColor = "#ffbe98";
       });
-      panelItem.style.borderColor = "#FC6C85";
+      panelItem.style.borderColor = "#ffbe98";
     } else if (theme === "#81B37A") {
       body.style.backgroundColor = "#E4F0E2";
       panelHeading.style.backgroundColor = "#ACCAA8";
@@ -226,7 +226,7 @@ function Admin(props) {
   };
 
   const changeTheme = () => {
-    const newTheme = theme === "#FC6C85" ? "#81B37A" : "#FC6C85";
+    const newTheme = theme === "#ffbe98" ? "#81B37A" : "#ffbe98";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
   };
