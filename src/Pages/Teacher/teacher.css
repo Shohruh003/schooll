@@ -152,7 +152,7 @@
 }
 
 .people_list::-webkit-scrollbar-thumb {
-  background-color:#FA8072;
+  background-color:#ffbe98;
   border-radius: 4px;
 }
 
@@ -241,7 +241,7 @@
   border: none;
   border-radius: 50px;
   color: #ffffff;  
-  background-color: #FA8072;
+  background-color: #ffbe98;
 }
 
 .panel_button:hover {
@@ -352,7 +352,7 @@
   width: 300px;
   margin: 0;
   padding-left: 20px;
-  color: #FA8072;
+  color: #ffbe98;
 }
 
 .admin_board {
@@ -497,7 +497,7 @@
   padding-left: 10px;
   min-width: 100% !important;
   border: 2px solid #ffbe98;
-  border-color: #FA8072;
+  border-color: #ffbe98;
 }
 
 .domIcon {

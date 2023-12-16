@@ -167,7 +167,7 @@ margin-right: 200px;
     margin-right: 60px;
     text-decoration: none;
     color: #ffffff;
-    background-color: #FA8072;
+    background-color: rgba(250, 128, 114, 1);
     z-index: 5;
 }
 .logout_dashboard {
@@ -178,7 +178,7 @@ margin-right: 200px;
     border: none;
     border-radius: 10px !important;
     color: #ffffff;
-    background-color: #FA8072;
+    background-color: rgba(250, 128, 114, 1);
     z-index: 5;
     cursor: pointer;
   }
@@ -191,7 +191,7 @@ margin-right: 200px;
     border: none;
     border-radius: 10px !important;
     color: #ffffff;
-    background-color: #FA8072;
+    background-color: #ffbe98;
     z-index: 5;
     cursor: pointer;
   }
@@ -548,10 +548,10 @@ margin-right: 200px;
         font-weight: bold;
         font-size: 20px;
         width: auto;
-        color: #FA8072;
+        color: #ffbe98;
         padding: 3px 20px;
         margin: 0;
-        border: 1px solid #FA8072;
+        border: 1px solid #ffbe98;
     }
     
     .dashboard2_heading {
@@ -580,7 +580,7 @@ margin-right: 200px;
     border-radius: 10px;
     text-decoration: none;
     color: #ffffff;
-    background-color: #FA8072;
+    background-color: #ffbe98;
     z-index: 5;
 }
 .logout_dashboard {

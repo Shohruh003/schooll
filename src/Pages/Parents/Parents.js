@@ -93,21 +93,21 @@ function Parents () {
 			body.style.backgroundColor = '#F5EFEF';
 			header.style.borderColor = '#ffbe98'
 			dashboardIcons.forEach((e) => {
-				e.setAttribute('fill', '#F9A298')
+				e.setAttribute('fill', '#ffbe98')
 
 				e.addEventListener('mouseover', () => {
 					e.setAttribute('fill', '#ffbe98')
 				});
 				e.addEventListener('mouseout', () => {
-					e.setAttribute('fill', '#F9A298')
+					e.setAttribute('fill', '#ffbe98')
 				});
 			})
-			weather.style.backgroundColor = 'rgba(250, 128, 114, 0.7)';
-			weatherParent.style.backgroundColor = 'rgba(250, 128, 114, 0.7)';
+			weather.style.backgroundColor = 'rgba(255, 190, 152)';
+			weatherParent.style.backgroundColor = 'rgba(255, 190, 152)';
             headerIcons.forEach((e) => {
-                e.setAttribute('fill', '#F9A298')
+                e.setAttribute('fill', '#ffbe98')
               })
-            smsCount.style.backgroundColor = '#F9A298'
+            smsCount.style.backgroundColor = '#ffbe98'
             avatarAbout.style.backgroundColor = 'rgba(252, 108, 133, 0.15)'
             columnDiv.style.backgroundColor = 'rgba(252, 108, 133, 0.15)'
             emotionWeek.style.backgroundColor = 'rgba(252, 108, 133, 0.15)'
@@ -555,14 +555,14 @@ const piHappy = Math.round(pia?.happy)
                         <div>
                         <button className='theme_dashboard dashboard_button' onClick={changeTheme}>
 							<svg className='theme-dash dashboard_icon theme_parent' width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<circle cx="27.5" cy="27.5" r="27.5" fill="#FA8072"/>
+								<circle cx="27.5" cy="27.5" r="27.5" fill="#ffbe98"/>
 								<path d="M18.5838 39.0163C23.8397 39.4518 21.9571 33.8681 26.82 33.8165L28.9261 35.5743C29.4509 41.9199 21.6901 43.335 18.5838 39.0163ZM34.6999 30.8637C36.335 28.2982 41.3996 19.693 41.3996 19.693C41.8029 18.9792 40.9069 18.2344 40.2813 18.7614C40.2813 18.7614 32.7509 25.3087 30.5291 27.3838C28.7737 29.0247 28.7657 29.774 28.1973 32.4794L30.1223 34.0835C32.6741 33.0351 33.4086 32.893 34.6999 30.8637ZM20.9511 35.305C21.7142 34.0056 22.954 31.8938 26.0466 31.5673C26.5439 29.1759 26.7421 27.786 28.965 25.7098C30.5383 24.2408 34.6232 20.6578 37.0099 18.5724C35.8641 16.0424 32.265 13.9627 27.6393 14.0005C20.0493 14.0635 13.9397 20.2625 14.0004 27.8559C14.0268 31.1914 15.2391 34.2394 17.2317 36.6044C19.0857 37.0959 19.9542 37.0031 20.9511 35.305ZM28.9169 17.1607C30.1796 17.1538 31.2143 18.1702 31.2269 19.4329C31.2315 20.6968 30.2163 21.7349 28.9513 21.7429C27.6851 21.7532 26.6504 20.7346 26.6436 19.4696C26.6287 18.2023 27.6473 17.171 28.9169 17.1607ZM22.0453 19.4535C23.3081 19.4421 24.3462 20.4584 24.3508 21.7257C24.3645 22.993 23.3424 24.0231 22.082 24.0357C20.8147 24.0437 19.78 23.0262 19.772 21.7578C19.7617 20.4939 20.7769 19.4615 22.0453 19.4535ZM19.7502 26.3262C21.0175 26.3182 22.0534 27.3369 22.0602 28.6007C22.0717 29.8657 21.0519 30.9016 19.7846 30.9096C18.5185 30.9187 17.4872 29.9012 17.4803 28.6351C17.4677 27.3689 18.4875 26.3388 19.7502 26.3262ZM31.2441 36.1025C31.2682 38.668 30.2335 40.3627 29.3168 41.3584L29.2641 41.4088C35.2854 40.7317 39.6476 36.4772 36.4439 32.3694C34.8707 34.7149 33.5403 35.1675 31.2441 36.1025Z" fill="white"/>
 							</svg>
 						</button>
 
                         <button className='header_icon' onClick={handleModal}>
                     <svg className='notification_parent header_icon' width="57" height="57" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="30" cy="30" r="30" fill="#FA8072"/>
+  <circle cx="30" cy="30" r="30" fill="#ffbe98"/>
   <g clip-path="url(#clip0_147_1132)">
   <path d="M35.2069 19.5027C34.4019 19.0352 33.9044 18.1652 33.9069 17.2277V17.2239C33.9069 15.7589 32.7331 14.5714 31.2856 14.5714C29.8381 14.5714 28.6644 15.7589 28.6644 17.2239V17.2277C28.6669 18.1664 28.1694 19.0352 27.3644 19.5027C21.5294 22.8927 24.8819 34.1464 18.7856 36.1352V38.3214H43.7856V36.1352C37.6894 34.1464 41.0419 22.8927 35.2069 19.5027ZM31.2856 15.8214C31.9756 15.8214 32.5356 16.3827 32.5356 17.0714C32.5356 17.7614 31.9756 18.3214 31.2856 18.3214C30.5956 18.3214 30.0356 17.7614 30.0356 17.0714C30.0356 16.3827 30.5956 15.8214 31.2856 15.8214ZM35.0356 40.8214C35.0356 42.8189 33.2956 44.5714 31.3219 44.5714C29.3481 44.5714 27.5356 42.8189 27.5356 40.8214H35.0356ZM41.3044 25.1702C40.9969 23.2902 40.1381 20.5677 37.7831 18.2764L39.5281 16.4839C41.7781 18.6739 43.2456 21.5389 43.7719 24.7664L41.3044 25.1702ZM18.7856 24.7677C19.3119 21.5389 20.7794 18.6752 23.0294 16.4839L24.7744 18.2764C22.4194 20.5677 21.5594 23.2902 21.2531 25.1702L18.7856 24.7677Z" fill="white"/>
   </g>
@@ -577,7 +577,7 @@ const piHappy = Math.round(pia?.happy)
 
                   <Link className='header_icon parent_dom' to='/'>
                   <svg className='domIcons' width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="25" cy="25" r="25" fill="#F9A298"/>
+<circle cx="25" cy="25" r="25" fill="#ffbe98"/>
 <path d="M33 20.093L30 17.093V15H33V20.093ZM37 26H34V36H16V26H13L25 14L37 26ZM27 28H23V34H27V28Z" fill="white"/>
 </svg>
                   </Link>
@@ -635,7 +635,7 @@ const piHappy = Math.round(pia?.happy)
                             <ul className='week_list'>
                                 <li className='week_item'>
                                     <p>{weekday2}</p>
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week2?.first?.thumbnail}/>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week2?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime2 === 'Invalid Date' ? '--:--' : formattedTime2}</span>
                                     <span className='days'>{date2}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week2?.last?.thumbnail}/>
@@ -644,7 +644,7 @@ const piHappy = Math.round(pia?.happy)
 
                                 <li className='week_item'>
                                 <p>{weekday3}</p>
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week3?.first?.thumbnail}/>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week3?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime3 === 'Invalid Date' ? '--:--' : formattedTime3}</span>
                                     <span className='days'>{date3}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week3?.last?.thumbnail}/>
@@ -654,7 +654,7 @@ const piHappy = Math.round(pia?.happy)
                                 <li className='week_item'>
                                 <p>{weekday4}</p>
 
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week4?.first?.thumbnail}/>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week4?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime4 === 'Invalid Date' ? '--:--' : formattedTime4}</span>
                                     <span className='days'>{date4}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week4?.last?.thumbnail}/>
@@ -664,7 +664,7 @@ const piHappy = Math.round(pia?.happy)
                                 <li className='week_item'>
                                 <p>{weekday5}</p>
 
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week5?.first?.thumbnail}/>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week5?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime5 === 'Invalid Date' ? '--:--' : formattedTime5}</span>
                                     <span className='days'>{date5}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week5?.last?.thumbnail}/>
@@ -674,7 +674,7 @@ const piHappy = Math.round(pia?.happy)
                                 <li className='week_item'>
                                 <p>{weekday6}</p>
 
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week6?.first?.thumbnail}/>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week6?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime6 === 'Invalid Date' ? '--:--' : formattedTime6}</span>
                                     <span className='days'>{date6}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week6?.last?.thumbnail}/>
@@ -684,7 +684,7 @@ const piHappy = Math.round(pia?.happy)
                                 <li className='week_item'>
                                 <p>{weekday7}</p>
 
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#FA8072'}} src={week7?.first?.thumbnail}/>
+                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week7?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime7 === 'Invalid Date' ? '--:--' : formattedTime7}</span>
                                     <span className='days'>{date7}</span>
                                     <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week7?.last?.thumbnail}/>
