@@ -273,7 +273,7 @@
 }
 
 .emotions.Нейтраль {
-  background-color: #008000;
+  background-color: #81B37A;
   border-top-right-radius: 22px;
   border-bottom-right-radius: 22px;
 }
@@ -285,7 +285,7 @@
 }
 
 .emotions.Грусть{
-  background-color: #808080;
+  background-color: #c0c0c0;
   border-top-right-radius: 22px;
   border-bottom-right-radius: 22px;
 }

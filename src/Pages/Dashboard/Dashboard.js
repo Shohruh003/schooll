@@ -193,10 +193,10 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
 				{ y: happyTeacher, color: "#ffa500", name: "Веселье"},
-				{ y: neutralTeacher, color: "#008000", name: "Нейтраль" },
+				{ y: neutralTeacher, color: "#81B37A", name: "Нейтраль" },
 				{ y: surpriseTeacher, color: "purple", name: "Удивление"},
 				{ y: fearTeacher, color: "black", name: "Страх"},
-				{ y: sadTeacher, color: "#808080", name: "Грусть" },
+				{ y: sadTeacher, color: "#c0c0c0", name: "Грусть" },
 				{ y: angryTeacher, color: "#ffbe98", name: "Злость" },
 
 			]
@@ -229,10 +229,10 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
 				{ y: happyPupils, color: "#ffa500", name: "Веселье"},
-				{ y: neutralPupils, color: "#008000", name: "Нейтраль" },
+				{ y: neutralPupils, color: "#81B37A", name: "Нейтраль" },
 				{ y: surprisePupils, color: "purple", name: "Удивление"},
 				{ y: fearPupils, color: "black", name: "Страх"},
-				{ y: sadPupils, color: "#808080", name: "Грусть" },
+				{ y: sadPupils, color: "#c0c0c0", name: "Грусть" },
 				{ y: angryPupils, color: "#ffbe98", name: "Злость" },
 			]
 		}],
