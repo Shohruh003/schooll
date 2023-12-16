@@ -295,6 +295,7 @@ function Admin(props) {
       <div className="container">
         <div className="admin">
           <div div className="header">
+            <Link to="/">
             <svg
               className="site-logo"
               width="467"
@@ -356,7 +357,7 @@ function Admin(props) {
                 d="M374.374 14.0791H377.751V40H374.374V14.0791Z"
                 fill="white"
               />
-            </svg>
+            </svg></Link>
 
             <div className="domIcon">
               <label className="search_label" style={{ borderColor: theme }}>
