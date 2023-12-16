@@ -341,7 +341,7 @@ const piHappy = Math.round(pia?.happy)
                     type: "doughnut",
                     yValueFormatString: "#,###'%'",
                     dataPoints: [
-                        { y: piAngry ? piAngry : 0 , color: "#ffbe98", name: "Злость" },
+                        { y: piAngry ? piAngry : 0 , color: "#ffa500", name: "Злость" },
                         { y: piSad ? piSad : 0 , color: "#c0c0c0", name: "Грусть" },
                         { y: piNeutral ? piNeutral : 0, color: "#81B37A", name: "Нейтраль" },
                         { y: piHappy ? piHappy : 0, color: "#ffbe98", name: "Веселье"}
