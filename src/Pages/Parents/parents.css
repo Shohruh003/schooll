@@ -147,7 +147,7 @@
     height: 69%;
     padding: 15px;
     border-radius: 20px;
-    background-color: #F4C4C5;
+    background-color: #ffbe98;
 }
 
 .chat_icon {
@@ -206,7 +206,7 @@
     }
 .chat_item {
     width: 90%;
-    border: 2px solid #F4C4C5;
+    border: 2px solid #ffbe98;
     border-radius: 10px;
     margin: 5px auto 5px auto;
 }

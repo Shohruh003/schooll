@@ -108,11 +108,11 @@ function Parents () {
                 e.setAttribute('fill', '#ffbe98')
               })
             smsCount.style.backgroundColor = '#ffbe98'
-            avatarAbout.style.backgroundColor = 'rgba(252, 108, 133, 0.15)'
-            columnDiv.style.backgroundColor = 'rgba(252, 108, 133, 0.15)'
-            emotionWeek.style.backgroundColor = 'rgba(252, 108, 133, 0.15)'
-            chartAbout.style.backgroundColor = 'rgba(252, 108, 133, 0.15)'
-            chat.style.backgroundColor = '#F4C4C5'
+            avatarAbout.style.backgroundColor = 'rgba(255, 190, 152, 0.2)'
+            columnDiv.style.backgroundColor = 'rgba(255, 190, 152, 0.2)'
+            emotionWeek.style.backgroundColor = 'rgba(255, 190, 152, 0.2)'
+            chartAbout.style.backgroundColor = 'rgba(255, 190, 152, 0.2)'
+            chat.style.backgroundColor = '#ffbe98'
             
 		} else if (theme === '#81B37A') {
 			body.style.backgroundColor = '#E4F0E2';
