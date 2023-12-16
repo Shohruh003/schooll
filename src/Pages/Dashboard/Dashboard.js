@@ -171,6 +171,8 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 		const happyTeacher = teacherEmotion?.happy?.count
 		const sadTeacher = teacherEmotion?.sad?.count
 		const angryTeacher = teacherEmotion?.angry?.count
+		const surpriseTeacher = teacherEmotion?.surprise?.count
+		const fearTeacher = teacherEmotion?.fear?.count
 
 
 	const options = {
@@ -190,10 +192,13 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 			indexLabel: "{name} - #percent%",
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
+				{ y: happyTeacher, color: "#ffa500", name: "Веселье"},
+				{ y: neutralTeacher, color: "#008000", name: "Нейтраль" },
+				{ y: surpriseTeacher, color: "purple", name: "Удивление"},
+				{ y: fearTeacher, color: "black", name: "Страх"},
 				{ y: sadTeacher, color: "#808080", name: "Грусть" },
 				{ y: angryTeacher, color: "#ffbe98", name: "Злость" },
-				{ y: neutralTeacher, color: "#008000", name: "Нейтраль" },
-				{ y: happyTeacher, color: "#ffa500", name: "Веселье"}
+
 			]
 		}],
 		backgroundColor: "transparent"
@@ -203,6 +208,8 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 		const happyPupils = pupilEmotion?.happy?.count
 		const sadPupils = pupilEmotion?.sad?.count
 		const angryPupils = pupilEmotion?.angry?.count
+		const surprisePupils = pupilEmotion?.surprise?.count
+		const fearPupils = pupilEmotion?.fear?.count
 
 	const pupils = {
 		animationEnabled: true,
@@ -221,10 +228,12 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 			indexLabel: "{name} - #percent%",
 			yValueFormatString: "#,###'%'",
 			dataPoints: [
+				{ y: happyPupils, color: "#ffa500", name: "Веселье"},
+				{ y: neutralPupils, color: "#008000", name: "Нейтраль" },
+				{ y: surprisePupils, color: "purple", name: "Удивление"},
+				{ y: fearPupils, color: "black", name: "Страх"},
 				{ y: sadPupils, color: "#808080", name: "Грусть" },
 				{ y: angryPupils, color: "#ffbe98", name: "Злость" },
-				{ y: neutralPupils, color: "#008000", name: "Нейтраль" },
-				{ y: happyPupils, color: "#ffa500", name: "Веселье"}
 			]
 		}],
 		backgroundColor: "transparent",
