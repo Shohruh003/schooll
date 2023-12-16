@@ -136,6 +136,7 @@
   outline: none;
   border: none;
   border: 1px solid #ffbe98;
+  border-radius: 5px;
 }
 
 .age-search {

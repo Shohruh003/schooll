@@ -100,6 +100,10 @@
   margin-left: 10px;
   border-radius: 50px;
 }
+
+.people_image:hover {
+  cursor: pointer;
+}
 .name_item{
   min-width: 250px !important;
 }

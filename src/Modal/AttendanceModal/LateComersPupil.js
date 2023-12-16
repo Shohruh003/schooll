@@ -48,9 +48,9 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
         <table class="table table-striped">
   <thead>
     <tr>
-      <th className='agressiyaModal_heading' scope="col">ученик</th>
+      <th className='agressiyaModal_heading' scope="col">Ученик</th>
       <th className='agressiyaModal_heading' scope="col">Фамилия и имя</th>
-      <th className='agressiyaModal_heading' scope="col">класс</th>
+      <th className='agressiyaModal_heading' scope="col">Класс</th>
       <th>Пришел</th>
     </tr>
   </thead>

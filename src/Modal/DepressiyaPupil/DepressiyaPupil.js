@@ -56,9 +56,9 @@ function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
         <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">ученик</th>
+      <th scope="col">Ученик</th>
       <th scope="col">Фамилия и имя</th>
-      <th scope="col">класс</th>
+      <th scope="col">Kласс</th>
     </tr>
   </thead>
   <tbody>

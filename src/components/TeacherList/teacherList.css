@@ -41,6 +41,7 @@
   align-items: center;
   justify-content: space-between;
   text-decoration: none;
+  cursor: default;
 }
 
 
@@ -63,6 +64,14 @@
   height: 70px;
   margin-left: 10px;
   border-radius: 50px;
+}
+
+.teacher_image:hover {
+  cursor: pointer;
+}
+
+.timeTeacher:hover {
+  cursor: pointer;
 }
 
 /* ===================================Responsive====================================== */

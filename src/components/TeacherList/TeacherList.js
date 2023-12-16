@@ -8,10 +8,11 @@ import usersLogo from '../../Image/photo_people.jpg'
 import { LoginHooks } from "../../Hooks/LoginHooks";
 import Delete from "../../Modal/Delete/Delete";
 import WeekEmotion from "../../Modal/WeekEmotion/WeekEmotion";
+import WeekTime from "../../Modal/WeekTime/WeekTime";
 
 
 function TeacherList() {
-  const {setWeekFullName,weekEmotion, setWeekEmotion,genders,position, setOriginalUsers,pupilClass,pupilEmotion,teacher, setTeacher,theme,editAdminModal, setEditAdminModal,setDeleteId, setEditUser} = useContext(AuthContext)
+  const {weekTime, setWeekTime,setWeekFullName,weekEmotion, setWeekEmotion,genders,position, setOriginalUsers,pupilClass,pupilEmotion,teacher, setTeacher,theme,editAdminModal, setEditAdminModal,setDeleteId, setEditUser} = useContext(AuthContext)
   const [deleteUser, setDeleteUser] = useState(false)
   const {token} = LoginHooks()
   const style = document.createElement('style');
@@ -129,6 +130,14 @@ const weekItem = () => {
 setWeekEmotion(true)
 };
 
+const handleWeekTime = () => {
+  setWeekTime(true)
+}
+
+const anotherWeekTime = (item) => {
+  setDeleteId(item?.id)
+    setWeekFullName(item?.full_name)
+}
     return (
       <li key={item.id} className="techers_item">
                     <div className="people_create">
@@ -143,21 +152,21 @@ setWeekEmotion(true)
 </svg>
             </div>
 <div className="people_item" style={{ borderColor: theme }}>
-<Link className='teacher_link' onClick={() => { weekItem(); anotherFunction(item); }}>
-        <img className='teacher_image' style={{objectFit: "cover"}} src={item?.main_image ? item?.main_image : usersLogo} alt="teacher of the img" width='100' height='100' />
+<Link className='teacher_link'>
+        <img onClick={() => clickItem(item)} className='teacher_image' style={{objectFit: "cover"}} src={item?.main_image ? item?.main_image : usersLogo} alt="teacher of the img" width='100' height='100' />
         <p className="name_item" style={{borderColor: theme}}>
           <div>
           <span className='teacher_heading'>Фамилия и имя</span>
           <span className='teacher_name'>{item.full_name ? item.full_name : "Отсутствует"}</span>
           </div>
         </p>
-        <p className="timeTeacher" style={{borderColor: theme}}>
+        <p className="timeTeacher" style={{borderColor: theme}} onClick={() => { handleWeekTime(); anotherWeekTime(item); }}>
           <div>
           <span className='teacher_heading'>Пришел: {comeClock === "00:00" ? "--:--" : comeClock}</span>
           <span className='teacher_heading'>Ушел: {wentClock === "00:00" ? "--:--" : wentClock}</span>
           </div>
         </p>
-        <p style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence.emotions === "surprise" ? "Удивление" : "Отсутствует" : "Отсутствует"}`}>
+        <p onClick={() => { weekItem(); anotherFunction(item); }} style={{borderColor: theme}} className={`emotions ${firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence.emotions === "surprise" ? "Удивление" : "Отсутствует" : "Отсутствует"}`}>
         <div>
         <span className='people_heading'> {firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.emotions === "neutral" ? "Нейтраль" : firstEmotionWithMaxConfidence.emotions === "happy" ? "Веселье" : firstEmotionWithMaxConfidence.emotions === "angry" ? "Злость" : firstEmotionWithMaxConfidence.emotions === "sad" ? "Грусть" : firstEmotionWithMaxConfidence.emotions === "fear" ? "Страх" : firstEmotionWithMaxConfidence.emotions === "surprise" ? "Удивление" : "Отсутствует" : "Отсутствует"} </span>
           <span className='people_name'>{firstEmotionWithMaxConfidence && firstEmotionWithMaxConfidence.emotions ? firstEmotionWithMaxConfidence.confidence : "0"} %</span>
@@ -171,6 +180,7 @@ setWeekEmotion(true)
         <EditAdminModal editAdminModal={editAdminModal} setEditAdminModal={setEditAdminModal}/>
       <Delete deleteUser={deleteUser} setDeleteUser={setDeleteUser}/>
       <WeekEmotion weekEmotion={weekEmotion} setWeekEmotion={setWeekEmotion}/>
+      <WeekTime weekTime={weekTime} setWeekTime={setWeekTime}/>
     </ul>
   )
 }

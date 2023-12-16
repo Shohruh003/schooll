@@ -172,7 +172,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
             </div>
             <div className="people_item" style={{ borderColor: theme }}>
             <Link className='people_link'>
-              <img className='people_image' style={{objectFit: "cover"}} src={item?.main_image ?  item?.main_image : usersLogo} alt="People-img" width='100' height='100' />
+              <img onClick={() => clickItem(item)} className='people_image' style={{objectFit: "cover"}} src={item?.main_image ?  item?.main_image : usersLogo} alt="People-img" width='100' height='100' />
               <p className="name_item" style={{ borderColor: theme }}>
                 <div className="peaoleName">
                 <span className='people_heading'>Фамилия и имя</span>
