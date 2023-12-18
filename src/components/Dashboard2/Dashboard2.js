@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import logo from '../../Image/logotad.svg'
 import gif from '../../Gif/happy-gif-unscreen.gif'
+import gifSad from '../../Gif/sad-gif.gif'
+import gifNormal from '../../Gif/normal-gif.gif'
 import teacherImg from '../../Gif/teacher-normal-gif.gif'
 import boyTwo from '../../Gif/aggressive-unscreen.gif'
 import { DecodeHooks } from '../../Hooks/DecodeHook';
@@ -17,6 +19,7 @@ function Dashboard2() {
     const [school, setSchool] = useState()
     const [schoolNum, setSchoolNum] = useState()
     const {token} = LoginHooks()
+    const [dashPupilEmo, setDashPupilEmo] = useState()
 
     const [config, setConfig] = useState()
     useEffect(() => {
@@ -79,6 +82,22 @@ function Dashboard2() {
 		fetchClasses();
 	}, [school, config]);
 
+    
+	useEffect(() => {
+		const fetchPupils = async () => {
+			try {
+				const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/all_pupils_emotion/pie_chart/',config);
+				setDashPupilEmo(response.data.all_pupils)
+                console.log(response.data);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
+		fetchPupils();
+	}, []);
+
+console.log(dashPupilEmo);
     return (
         <div className='dashboard2'>
             <div className='dashboard2_heading'>
@@ -94,7 +113,7 @@ function Dashboard2() {
                 </div>
                 <ul>
                     <li className='card-one'>
-                        <img className='gifImg' src={gif} alt='GIF' />
+                    <img className='gifImg' src={gif} alt='GIF' />
                         <div className='card_text'>
                             <div className='card-item'>
                                 <p>Всего учеников</p>
@@ -120,7 +139,39 @@ function Dashboard2() {
                             </div>
                         
                     </li>
-                    <li className='card-there'>
+
+                    <li className='card-test'>
+                        <div>
+                            <img className='testImg' src={gif} alt='GIF' />
+                            <button className='Веселье'>Веселье {Math.floor(dashPupilEmo?.happy.percentage)}%</button>
+                        </div>
+
+                        <div>
+                            <img className='testImg' src={gifNormal} alt='GIF' />
+                            <button className='Нейтраль'>Нейтраль {Math.floor(dashPupilEmo?.neutral.percentage)}%</button>
+                        </div>
+
+                        <div>
+                            <img className='testImg' src={gifNormal} alt='GIF' />
+                            <button className='Удивление'>Удивление {Math.floor(dashPupilEmo?.surprise.percentage)}%</button>
+                        </div>
+
+                        <div>
+                            <img className='testImg' src={gifSad} alt='GIF' />
+                            <button className='Грусть'>Грусть {Math.floor(dashPupilEmo?.sad.percentage)}%</button>
+                        </div>
+
+                        <div>
+                            <img className='testImg' src={gifSad} alt='GIF' />
+                            <button className='Злость'>Злость {Math.floor(dashPupilEmo?.angry.percentage)}%</button>
+                        </div>
+
+                        <div>
+                            <img className='testImg' src={boyTwo} alt='GIF' />
+                            <button className='Страх'>Страх {Math.floor(dashPupilEmo?.fear.percentage)}%</button>
+                        </div>
+                    </li>
+{/*                     <li className='card-there'>
                         <p>Общий эмоциональный <br />фон школы</p>
                         <div className='card-there-body'>
                             <button>Всё хорошо</button>
@@ -133,7 +184,7 @@ function Dashboard2() {
                             <h2>Уровень отрицательных эмоции сегодня</h2>
                             <button className={parcet > 15 ? "redBack" : ""}><span>{parcet}%</span> {parcet > 15 ? "Депрессия" : "Всё хорошо!"}</button>
                         </div>
-                    </li>
+                    </li> */}
                 </ul>
                 
             </div>

@@ -10,12 +10,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import jwt_decode from 'jwt-decode'
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import eye from '../../Image/eye-svgrepo-com.svg'
+import { useContext } from 'react';
+import { AuthContext } from '../../context/PupilContext';
 
 function Login() {
+  const {allToken, setAllToken} = useContext(AuthContext)
   const {setToken} = LoginHooks()
   const {setDecode} = DecodeHooks()
   const navigate = useNavigate();
-
   const handleUserLogin = (evt) => {
     evt.preventDefault();
     const [email, password] = evt.target.elements;
@@ -28,8 +30,9 @@ function Login() {
       const intervalId = setInterval(async () => {
         try {
           const response1 = await axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
-            'refresh': response.data.refresh
+            'refresh': allToken?.refresh
           });
+
             setToken(response1.data.access);
         } catch (error) {
           console.error(error);
@@ -42,8 +45,9 @@ function Login() {
         localStorage.clear()
         window.location.reload()
       }, 23 * 60 * 60 * 1000);
-      setToken(response.data.access);
-      setDecode(jwt_decode(response.data.access).user_id)
+      setAllToken(response.data)
+      setToken(allToken?.access);
+      setDecode(jwt_decode(allToken?.access).user_id)
       navigate('/');
     })
     .catch((error) => {

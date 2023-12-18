@@ -6,7 +6,7 @@ export const LoginProvider = ({children}) => {
   const localData = JSON.parse(localStorage.getItem('token'));
   const [token, setToken] = useState(localData);
 
-  useEffect(() => {
+  useEffect (() => {
     if(token) {
       localStorage.setItem('token', JSON.stringify(token));
     } else {

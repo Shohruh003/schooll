@@ -22,7 +22,7 @@
     display: flex;
     flex-wrap: wrap;
     list-style: none;
-    justify-content: center;
+    justify-content: space-between;
     gap: 40px;
 }
 
@@ -251,6 +251,62 @@ margin-right: 200px;
     background-color: red !important;
 }
 
+.card-test{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    height: 397px;
+    background: rgba(0, 184, 215, 1);
+    border-radius: 15px;
+    padding: 10px 25px;
+    font-size: 24px;
+}
+
+.card-test div {
+    display: flex !important;
+    align-items: center !important;
+    flex-direction: column !important;
+}
+
+.card-test img {
+    margin-right: 20px !important;
+    width: 200px !important;
+    height: auto !important;
+}
+
+.card-test button {
+    width: 180px !important;
+    max-width: 180px !important;
+font-size: 24px !important;
+font-weight: 700 !important;
+padding: 10px 10px !important;
+}
+.card-test .Нейтраль {
+    background-color: #81B37A;
+  }
+  
+.card-test .Веселье{
+    background-color: #ffa500;
+  }
+  
+.card-test .Грусть{
+    background-color: #c0c0c0;
+  }
+  
+.card-test .Злость{
+    background-color: #ffbe98;
+  }
+  
+.card-test .Страх {
+    background-color: black;
+    color: white;
+  }
+  
+.card-test .Удивление {
+    background-color: purple;
+  }
+
 
 /* ==========================Responsive=============================== */
 
@@ -330,10 +386,26 @@ margin-right: 200px;
       .dashboard-left {
         font-size: 24px !important;
       }
+
+      .card-test button {
+        width: 150px !important;
+        max-width: 150px !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    padding: 10px 10px !important;
+    }
     
   }
 
   @media screen and (max-width: 1190px) {
+
+    .card-test button {
+        width: 120px !important;
+        max-width: 120px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    padding: 10px 10px !important;
+    }
     .card-there p{
         margin-right: 150px;
         }
