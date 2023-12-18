@@ -32,13 +32,13 @@ function Login() {
           const response1 = await axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
             'refresh': allToken?.refresh
           });
+          console.log(response1.data);
 
             setToken(response1.data.access);
         } catch (error) {
           console.error(error);
-          clearInterval(intervalId);
         }
-      }, 10 * 60 * 1000);
+      }, 60 * 1000);
       
       setTimeout(() => {
         clearInterval(intervalId);
@@ -46,8 +46,8 @@ function Login() {
         window.location.reload()
       }, 23 * 60 * 60 * 1000);
       setAllToken(response.data)
-      setToken(allToken?.access);
-      setDecode(jwt_decode(allToken?.access).user_id)
+      setToken(response.data?.access);
+      setDecode(jwt_decode(response.data?.access).user_id)
       navigate('/');
     })
     .catch((error) => {

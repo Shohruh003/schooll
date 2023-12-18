@@ -88,7 +88,6 @@ function Dashboard2() {
 			try {
 				const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/all_pupils_emotion/pie_chart/',config);
 				setDashPupilEmo(response.data.all_pupils)
-                console.log(response.data);
 			} catch (error) {
 				console.error(error);
 			}
@@ -97,7 +96,6 @@ function Dashboard2() {
 		fetchPupils();
 	}, []);
 
-console.log(dashPupilEmo);
     return (
         <div className='dashboard2'>
             <div className='dashboard2_heading'>
@@ -143,32 +141,32 @@ console.log(dashPupilEmo);
                     <li className='card-test'>
                         <div>
                             <img className='testImg' src={gif} alt='GIF' />
-                            <button className='Веселье'>Веселье {Math.floor(dashPupilEmo?.happy.percentage)}%</button>
+                            <button className='Веселье'>Веселье {isNaN(Math.floor(dashPupilEmo?.happy.percentage)) ? 0 : Math.floor(dashPupilEmo?.happy.percentage)}%</button>
                         </div>
 
                         <div>
                             <img className='testImg' src={gifNormal} alt='GIF' />
-                            <button className='Нейтраль'>Нейтраль {Math.floor(dashPupilEmo?.neutral.percentage)}%</button>
+                            <button className='Нейтраль'>Нейтраль {isNaN(Math.floor(dashPupilEmo?.neutral.percentage)) ? 0 : Math.floor(dashPupilEmo?.neutral.percentage)}%</button>
                         </div>
 
                         <div>
                             <img className='testImg' src={gifNormal} alt='GIF' />
-                            <button className='Удивление'>Удивление {Math.floor(dashPupilEmo?.surprise.percentage)}%</button>
+                            <button className='Удивление'>Удивление {isNaN(Math.floor(dashPupilEmo?.surprise.percentage)) ? 0 : Math.floor(dashPupilEmo?.surprise.percentage)}%</button>
                         </div>
 
                         <div>
                             <img className='testImg' src={gifSad} alt='GIF' />
-                            <button className='Грусть'>Грусть {Math.floor(dashPupilEmo?.sad.percentage)}%</button>
+                            <button className='Грусть'>Грусть {isNaN(Math.floor(dashPupilEmo?.sad.percentage)) ? 0 : Math.floor(dashPupilEmo?.sad.percentage)}%</button>
                         </div>
 
                         <div>
                             <img className='testImg' src={gifSad} alt='GIF' />
-                            <button className='Злость'>Злость {Math.floor(dashPupilEmo?.angry.percentage)}%</button>
+                            <button className='Злость'>Злость {isNaN(Math.floor(dashPupilEmo?.angry.percentage)) ? 0 : Math.floor(dashPupilEmo?.angry.percentage)}%</button>
                         </div>
 
                         <div>
                             <img className='testImg' src={boyTwo} alt='GIF' />
-                            <button className='Страх'>Страх {Math.floor(dashPupilEmo?.fear.percentage)}%</button>
+                            <button className='Страх'>Страх {isNaN(Math.floor(dashPupilEmo?.fear.percentage)) ? 0 : Math.floor(dashPupilEmo?.fear.percentage)}%</button>
                         </div>
                     </li>
 {/*                     <li className='card-there'>
