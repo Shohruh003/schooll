@@ -35,7 +35,7 @@ function Login() {
           console.error(error);
           clearInterval(intervalId);
         }
-      }, 14 * 60 * 1000);
+      }, 10 * 60 * 1000);
       
       setTimeout(() => {
         clearInterval(intervalId);
