@@ -191,11 +191,18 @@ label {
 .modalHeader{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
     width: 725px;
 }
 
 
 .close_btn {
     cursor: pointer;
+}
+
+.editUserImg {
+    width: 100px;
+    height: auto;
+    max-width: 100px !important;
+    max-height: 100px !important;
 }

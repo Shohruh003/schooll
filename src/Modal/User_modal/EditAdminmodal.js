@@ -209,7 +209,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
         <form onSubmit={(e) => hendlSend(e)} className="table table-striped modal_update">
           <thead><Modal.Title style={{ color: theme }} className='modal_header' id="example-custom-modal-styling-title">
               <div className='modalHeader'>
-              <ToastContainer />
+              <img className='editUserImg' style={{objectFit: "cover"}} src={editUser?.main_image} width="100" height="50" alt='editUser'/>
               Изменить профиль
                 <img className='close_btn' onClick={() => setEditAdminModal(false)} src={close_Button} />
               </div>
@@ -388,8 +388,10 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
             
           </tbody>
         </form>
+<ToastContainer />
       </Modal.Body>
     </Modal>
+
   )
 }
 
