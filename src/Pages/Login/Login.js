@@ -24,26 +24,27 @@ function Login() {
     formData.append('password', password.value);
 
     axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/', formData)
-    .then((response) => {
-      if (response.data.access) {
-
-        if(response.status === 403) {
-          axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', 
-          {
+    .then((response) => { 
+      const intervalId = setInterval(async () => {
+        try {
+          const response1 = await axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
             'refresh': response.data.refresh
-          })
-          .then((response) => {
-            setToken(response.data.access)
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-        } else {
-          setToken(response.data.access);
+          });
+            setToken(response1.data.access);
+        } catch (error) {
+          console.error(error);
+          clearInterval(intervalId);
         }
-        setDecode(jwt_decode(response.data.access).user_id)
-        navigate('/');
-      }
+      }, 14 * 60 * 1000);
+      
+      setTimeout(() => {
+        clearInterval(intervalId);
+        localStorage.clear()
+        window.location.reload()
+      }, 23 * 60 * 60 * 1000);
+      setToken(response.data.access);
+      setDecode(jwt_decode(response.data.access).user_id)
+      navigate('/');
     })
     .catch((error) => {
       console.log(error);

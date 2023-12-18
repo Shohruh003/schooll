@@ -19,24 +19,21 @@ export const Private = () => {
   const {token} = LoginHooks()
   const {position, setPosition} = useContext(AuthContext)
   useEffect(() => {
-
-		const fetchClasses = async () => {
-			try {
-
-				const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/`, {
+    const fetchClasses = async () => {
+      try {
+        const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/`, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
         });
-				setPosition(response.data.status)
-			} catch (error) {
-				console.error(error);
-			}
-		};
-
-		fetchClasses();
-	}, [decode]);
-
+        setPosition(response.data.status);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchClasses();
+  }, [decode]);
     if (position === 'admin' || position === 'psychologist') {
       return (
           <Routes>
