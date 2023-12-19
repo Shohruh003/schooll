@@ -164,7 +164,6 @@ margin-right: 200px;
     padding: 8px 20px;
     border: none;
     border-radius: 10px;
-    margin-right: 60px;
     text-decoration: none;
     color: #ffffff;
     background-color: rgba(250, 128, 114, 1);
@@ -372,7 +371,6 @@ padding: 10px 10px !important;
     .dashboard2_headerButton {
         font-size: 20px;
         padding: 8px 20px;
-        margin-right: 60px;;
     }
     .logout_dashboard {
         font-size: 20px;
@@ -592,7 +590,6 @@ padding: 10px 10px !important;
     .dashboard2_headerButton {
         font-size: 16px;
         padding: 8px 20px;
-        margin-right: 60px;;
     }
     .logout_dashboard {
         font-size: 16px;
