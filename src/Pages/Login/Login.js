@@ -1,4 +1,3 @@
-
 import { useNavigate } from 'react-router-dom';
 import LoginPageImg from '../../Image/loginImage.png'
 import TadIndustries from '../../Image/tad-head-big.png'
@@ -26,7 +25,7 @@ function Login() {
     formData.append('password', password.value);
 
     axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/', formData)
-    .then((response) => { 
+    .then((response) => {
       setAllToken(response.data)
       setToken(response.data?.access);
       setDecode(jwt_decode(response.data?.access).user_id)

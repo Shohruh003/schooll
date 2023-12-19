@@ -281,6 +281,11 @@ font-size: 24px !important;
 font-weight: 700 !important;
 padding: 10px 10px !important;
 }
+
+.card-test span {
+    display: block;
+    font-size: 16px;
+}
 .card-test .Нейтраль {
     background-color: #81B37A;
   }
