@@ -94,7 +94,7 @@ function Dashboard2() {
 		};
 
 		fetchPupils();
-	}, []);
+	}, [config]);
 
     return (
         <div className='dashboard2'>

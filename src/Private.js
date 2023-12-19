@@ -25,25 +25,7 @@ export const Private = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           }
-        });
-
-        const intervalId = setInterval(async () => {
-          try {
-            const response1 = await axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
-              'refresh': allToken?.refresh
-            });
-              setToken(response1.data.access);
-          } catch (error) {
-            console.error(error);
-          }
-        }, 60 * 1000);
-        
-        setTimeout(() => {
-          clearInterval(intervalId);
-          localStorage.clear()
-          window.location.reload()
-        }, 23 * 60 * 60 * 1000);
-        
+        });       
         setPosition(response.data.status);
       } catch (error) {
         console.error(error);
