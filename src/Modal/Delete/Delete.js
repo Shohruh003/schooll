@@ -4,6 +4,7 @@ import { Modal } from 'react-bootstrap';
 import { AuthContext } from '../../context/PupilContext';
 import { LoginHooks } from '../../Hooks/LoginHooks';
 import "./delete.css"
+import api from '../../components/Api/api';
 
 function Delete ({deleteUser, setDeleteUser}) {
   const {theme, deleteId} = useContext(AuthContext)

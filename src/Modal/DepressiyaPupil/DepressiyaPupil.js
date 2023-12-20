@@ -6,6 +6,7 @@ import './depressiyaPupil.css'
 import { AuthContext } from '../../context/PupilContext';
 import usersLogo from '../../Image/photo_people.jpg'
 import { LoginHooks } from '../../Hooks/LoginHooks';
+import api from '../../components/Api/api';
 
 function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
   const {theme, classes} = useContext(AuthContext)

@@ -6,6 +6,7 @@ import './attendanceModal.css'
 import { AuthContext } from '../../context/PupilContext';
 import usersLogo from '../../Image/photo_people.jpg'
 import { LoginHooks } from '../../Hooks/LoginHooks';
+import api from '../../components/Api/api';
 
 function LateComersTeacher ({lateComersTeacher, setLateComersTeacher}) {
   const {theme,lateComersTeachers, setLateComersTeachers} = useContext(AuthContext);
@@ -16,7 +17,7 @@ function LateComersTeacher ({lateComersTeacher, setLateComersTeacher}) {
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const response = await api.get('/users/users/?status=teacher&is_absent=true', config);
+        const response = await api.get('/users/users/?status=teacher&is_absent=true');
         const result = response?.data?.results?.map((e) => {
           if (e?.is_lated === "true") {
             setLateComersTeachers(response.data);
