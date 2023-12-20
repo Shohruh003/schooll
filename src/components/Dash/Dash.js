@@ -13,17 +13,13 @@ function Dash() {
   const [dashteacher, setDashteacher] = useState()
   const {token} = LoginHooks()
 
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
+
 
   useEffect(() => {
 
     const fetchPupils = async () => {
       try {
-        const response = await axios.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/for_pupils/',config);
+        const response = await api.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/for_pupils/');
         setDashPupil(response.data.Pupils)
         setDashteacher(response.data.Teacher)
         setUser(response.data.Users)

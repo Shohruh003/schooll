@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { LoginHooks } from '../../Hooks/LoginHooks';
+import api from '../../components/Api/api';
 
 function CreateAdminModal({ adminModal, setAdminModal }) {
   const { theme } = useContext(AuthContext)
@@ -18,11 +19,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
   const [orginalParent, setOrginalParent] = useState()
   const {token} = LoginHooks()
 
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
+
 
   var imgref = useRef()
   const changeOption = (evt) => {
@@ -105,8 +102,8 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     formData.append('gender', user?.gender)
     formData.append('shift', user?.shift)
     if (user?.status !== 'pupil') {
-      const apiUrl = `https://smartsafeschoolback.tadi.uz/api/users/users/`;
-      axios.post(apiUrl, formData,config)
+      const apiUrl = `/users/users/`;
+      api.post(apiUrl, formData)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot qo'shildi !");
@@ -119,8 +116,8 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
           toast.error("Ma'lumot qo'shildimadi !");
         });
     } else {
-      const apiUrl = `https://smartsafeschoolback.tadi.uz/api/users/pupils/`;
-      axios.post(apiUrl, formData,config)
+      const apiUrl = `/users/pupils/`;
+      api.post(apiUrl, formData)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot qo'shildi !");
@@ -142,7 +139,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
     var parentList = document.getElementById('parentList')
     parentList.style.display = 'block'
 
-    await axios.get('https://smartsafeschoolback.tadi.uz/api/users/users/?status=parents',config)
+    await api.get('/users/users/?status=parents')
       .then((response) => {
         setParent(response?.data?.results);
         setOrginalParent(response?.data?.results);

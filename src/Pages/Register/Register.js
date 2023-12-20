@@ -19,7 +19,7 @@ function Register() {
     formData.append('password', password.value);
     formData.append('confirm_password', confirm_password.value);
 
-    axios.post('https://www.api.yomon-emas.uz/api/users/token/', formData)
+    api.post('https://www.api.yomon-emas.uz/api/users/token/', formData)
     .then((data) => {
       if (data) {
         setToken(data);

@@ -1,4 +1,3 @@
-
 import { Route, Routes } from "react-router-dom"
 import Admin from "./Pages/Admin/Admin"
 import Dashboard from "./Pages/Dashboard/Dashboard"
@@ -6,27 +5,19 @@ import Psycholog from "./Pages/Psycholog/Psycholog"
 import Teacher from "./Pages/Teacher/Teacher"
 import Dashboard2 from "./components/Dashboard2/Dashboard2"
 import { DecodeHooks } from "./Hooks/DecodeHook"
-import { useContext, useEffect, useState } from "react"
-import axios from "axios"
+import { useContext, useEffect } from "react"
 import Parents from './Pages/Parents/Parents';
 import { AuthContext } from "./context/PupilContext"
-import { LoginHooks } from "./Hooks/LoginHooks"
-
-
+import api from "./components/Api/api"
 
 export const Private = () => {
   const {decode} = DecodeHooks()
-  const {token, setToken} = LoginHooks()
-  const {position, setPosition,allToken} = useContext(AuthContext)
+  const {position, setPosition} = useContext(AuthContext)
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        });       
-        setPosition(response.data.status);
+        const response = await api.get(`/users/users/${decode}/`);       
+        setPosition(response?.data?.status);
       } catch (error) {
         console.error(error);
       }

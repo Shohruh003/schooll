@@ -1,10 +1,9 @@
 import { Private } from './Private';
 import { Public } from './Public';
-import { LoginHooks } from './Hooks/LoginHooks';
 
 
 function App() {
-  const {token} = LoginHooks();
+  const token = JSON.parse(localStorage.getItem('token'));
   if (token) {
     return <Private/>
   }

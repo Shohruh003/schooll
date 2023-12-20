@@ -1,23 +1,17 @@
-import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import "./weekEmotion.css"
 import { Modal } from 'react-bootstrap';
 import { AuthContext } from '../../context/PupilContext';
-import { LoginHooks } from '../../Hooks/LoginHooks';
 import { BarChart } from '@mui/x-charts';
 import styled from '@emotion/styled';
+import api from '../../components/Api/api';
 
 
 function WeekEmotion () {
   const {theme, deleteId,weekEmotion, setWeekEmotion, weekFullName} = useContext(AuthContext)
-  const {token} = LoginHooks()
   const [bar, setBar] = useState()
 
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
+
 
   const elList = document.querySelector('.weekThemes');
   if (elList) {
@@ -55,7 +49,7 @@ function WeekEmotion () {
   useEffect(() => {
     const fetchPupils = async () => {
         try {
-        const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${deleteId}/weekly_diagram_v2/`,config);
+        const response = await api.get(`/users/emotions/${deleteId}/weekly_diagram_v2/`);
             setBar(response.data)
         } catch (error) {
             console.error(error);

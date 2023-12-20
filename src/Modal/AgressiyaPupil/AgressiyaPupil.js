@@ -3,27 +3,21 @@ import close_Button from '../../Image/close-btn.svg';
 import { Modal } from 'react-bootstrap';
 import './agressiyaPupil.css'
 import { AuthContext } from '../../context/PupilContext';
-import axios from 'axios';
 import { useState } from 'react';
 import usersLogo from '../../Image/photo_people.jpg'
-import { LoginHooks } from '../../Hooks/LoginHooks';
+import api from '../../components/Api/api';
 
 
 function AgressiyaPupil({ agressiyaModal, setAgressiyaModal }) {
   const { theme, classes} = useContext(AuthContext);
   const [agressiya, setAgressiya] = useState([]);
-  const {token} = LoginHooks()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const promises = classes?.extra?.angry?.map(async (item) => {
-          const response = await axios.get(
-            `https://smartsafeschoolback.tadi.uz/api/users/pupils/${item?.id}`,{
-              headers: {
-                Authorization: `Bearer ${token}`,
-              }
-            });
+          const response = await api.get(
+            `/users/pupils/${item?.id}`);
           return response.data;
         });
 

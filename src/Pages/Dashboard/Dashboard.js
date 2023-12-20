@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
 import './dashboard.css'
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LateComersTeacher from '../../Modal/AttendanceModal/LateComersTeacher';
 import LateComersPupil from '../../Modal/AttendanceModal/LateComersPupil';
 import MissingPupil from '../../Modal/AttendanceModal/MissingPupil';
 import MissingTeacher from '../../Modal/AttendanceModal/MissingTeacher';
 import { AuthContext } from '../../context/PupilContext';
-import { LoginHooks } from '../../Hooks/LoginHooks';
+import api from '../../components/Api/api';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 function Dashboard () {
 
@@ -19,18 +18,11 @@ function Dashboard () {
 		const [missingTeacher, setMissingTeacher] = useState(false)
 		const [missingPupil, setMissingPupil] = useState(false)
 		const [lateComersPupil, setLateComersPupil] = useState(false)
-		const {token} = LoginHooks()
-
-		const config =  {
-		  headers: {
-			Authorization: `Bearer ${token}`,
-		  }
-		}
 
 		useEffect(() => {
 			const fetchPupils = async () => {
 			  try {
-				const response = await axios.get('https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/',config);
+				const response = await api.get('/users/pupils/classes/');
 				setClasses(response.data)
 		
 			  } catch (error) {
@@ -157,7 +149,7 @@ function Dashboard () {
 	useEffect(() => {
 		const fetchPupils = async () => {
 			try {
-				const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/all_pupils_emotion/pie_chart/',config);
+				const response = await api.get('/users/all_pupils_emotion/pie_chart/');
 				setTeacherEmotion(response.data.all_teachers)
 				setPupilEmotion(response.data.all_pupils)
 			} catch (error) {
@@ -303,7 +295,7 @@ function findLargestSection(options) {
 		useEffect(() => {
 			const fetchWeather = async () => {
 				try {
-					const response = await axios.get('https://mycorse.onrender.com/http://api.weatherapi.com/v1/current.json?key=1f52a0a6619d4479a83122537220705&q=tashkent',config);
+					const response = await api.get('http://api.weatherapi.com/v1/current.json?key=1f52a0a6619d4479a83122537220705&q=tashkent');
 					setWeather(response.data.current.temp_c + 273)
 				} catch (error) {
 					console.error(error);

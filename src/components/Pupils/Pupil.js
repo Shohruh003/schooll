@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useContext, useEffect } from "react";
 import './pupil.css'
 import { Link } from "react-router-dom";
@@ -6,10 +5,10 @@ import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
 import { AuthContext } from "../../context/PupilContext";
 import usersLogo from '../../Image/photo_people.jpg'
 import { useState } from "react";
-import { LoginHooks } from "../../Hooks/LoginHooks";
 import Delete from "../../Modal/Delete/Delete";
 import WeekEmotion from "../../Modal/WeekEmotion/WeekEmotion";
 import WeekTime from "../../Modal/WeekTime/WeekTime";
+import api from "../Api/api";
 
 
 function Pupil() {
@@ -17,17 +16,6 @@ function Pupil() {
 
   const [userEmotion, setUserEmotion] = useState([])
   const [deleteUser, setDeleteUser] = useState(false)
-
-  const {token} = LoginHooks()
-const [config, setConfig] = useState()
-  useEffect(() => {
-    const configs =  {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    }
-    setConfig(configs)
-  }, [token]);
 
   let page = 1;
   const style = document.createElement('style');
@@ -68,10 +56,7 @@ const [config, setConfig] = useState()
     let allData = [];
 
     while (true) {
-      const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils?page=${page}`,{ params,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
+      const response = await api.get(`/users/pupils?page=${page}`,{ params
          });
       const data = response?.data?.results;
       
@@ -84,13 +69,13 @@ const [config, setConfig] = useState()
       }
     };
     fetchPupils();
-  }, [ ageRange, pupilClass, genders, pupilEmotion,setUsers,token]);
+  }, [ ageRange, pupilClass, genders, pupilEmotion,setUsers]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const promises = user?.map(async (id) => {
-          const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${id.id}/for_week/`,config);
+          const response = await api.get(`/users/emotions/${id.id}/for_week/`);
           return response.data;
         });
 
@@ -102,7 +87,7 @@ const [config, setConfig] = useState()
     };
 
     fetchData();
-  }, [user,config]);
+  }, [user]);
 
   const clickItem = (evt) => {
     setEditUser(evt)

@@ -11,17 +11,13 @@ function MissingTeacher ({missingTeacher, setMissingTeacher}) {
   const {theme,missingTeachers, setMissingTeachers} = useContext(AuthContext)
   const {token} = LoginHooks()
 
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
+
 
 
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const response = await axios.get('https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/users/?status=teacher',config);
+        const response = await api.get('/users/users/?status=teacher');
         const teachers = response.data.results.filter((teacher) => teacher.is_absent === true);
             setMissingTeachers(teachers);
 

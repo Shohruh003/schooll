@@ -12,19 +12,15 @@ function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
   const {token} = LoginHooks()
   const [depressiya, setDepressiya] = useState([]);
 
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
+
 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const promises = classes?.extra?.sad?.map(async (item) => {
-          const response = await axios.get(
-            `https://smartsafeschoolback.tadi.uz/api/users/pupils/${item?.id}`,config
+          const response = await api.get(
+            `/users/pupils/${item?.id}`
           );
           return response.data;
         });

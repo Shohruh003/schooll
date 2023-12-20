@@ -11,11 +11,7 @@ function MissingPupil ({missingPupil, setMissingPupil}) {
   const {theme,classes,comersPupils, setComersPupil} = useContext(AuthContext)
   const {token} = LoginHooks()
 
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {

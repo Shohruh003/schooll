@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './parents.css'
-import axios from 'axios';
 import { BarChart } from '@mui/x-charts';
 import { Link } from 'react-router-dom';
 import Avatar from '../../Image/photo_people.jpg'
@@ -8,7 +7,7 @@ import CanvasJSReact from '@canvasjs/react-charts';
 import { AuthContext } from '../../context/PupilContext';
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import Notification from '../../Modal/Notification/Notification';
-import { LoginHooks } from '../../Hooks/LoginHooks';
+import api from '../../components/Api/api';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
@@ -18,19 +17,13 @@ function Parents () {
         const {decode} = DecodeHooks()
         const [parent, setParent] = useState()
         const [parentId, setParentId] = useState()
-        const {token} = LoginHooks()
         const [bar, setBar] = useState()
 
-        const config =  {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        }
         useEffect(() => {
             const fetchNotification = async () => {
               try {
       
-                  const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
+                  const response = await api.get(`/notification/notification/${decode}/get_messages_by_user/`);
                   setNotification(response.data.messages)
                   setNotificationCount(response.data.messages.length)
               } catch (error) {
@@ -44,7 +37,7 @@ function Parents () {
         useEffect(() => {
             const fetchParents = async () => {
                 try {
-                    const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/sons/`,config);
+                    const response = await api.get(`/users/users/${decode}/sons/`);
                     setParentId(response?.data[0]?.id)
                     setParent(response.data)
                 } catch (error) {
@@ -152,7 +145,7 @@ function Parents () {
 		useEffect(() => {
 			const fetchWeather = async () => {
 				try {
-					const response = await axios.get('https://mycorse.onrender.com/http://api.weatherapi.com/v1/current.json?key=1f52a0a6619d4479a83122537220705&q=tashkent',config);
+					const response = await api.get('http://api.weatherapi.com/v1/current.json?key=1f52a0a6619d4479a83122537220705&q=tashkent');
 					setWeather(response.data.current.temp_c + 273)
 				} catch (error) {
 					console.error(error);
@@ -174,7 +167,7 @@ function Parents () {
                 try {
                   setModal(true)
       
-                    const response = axios.get(`https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
+                    const response = api.get(`/notification/notification/${decode}/get_messages_by_user/`);
                     setNotification(response.data.messages)
                 } catch (error) {
                     console.error(error);
@@ -231,7 +224,7 @@ function Parents () {
           useEffect(() => { 
                 const fetchPrentPupils = async () => {
                   try {
-                      const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${parentId}/`,config);
+                      const response = await api.get(`/users/pupils/${parentId}/`);
                       setProfil(response.data)
                   } catch (error) {
                       console.error(error);
@@ -239,14 +232,14 @@ function Parents () {
 
 
                 try {
-                    const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${parentId}/pie_chart_id/`,config);
+                    const response = await api.get(`/users/emotions/${parentId}/pie_chart_id/`);
                     setPia(response.data)
                 } catch (error) {
                     console.error(error);
                 }
 
                 try {
-                    const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${parentId}/for_week/`,config);
+                    const response = await api.get(`/users/emotions/${parentId}/for_week/`);
                     setWeek(response.data)
                     const data2 = response.data[date2]
                     const data3 = response.data[date3]
@@ -267,7 +260,7 @@ function Parents () {
                 }
 
                 try {
-                    const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${parentId}/weekly_diagram_v2/`,config);
+                    const response = await api.get(`/users/emotions/${parentId}/weekly_diagram_v2/`);
                         setBar(response.data)
                     } catch (error) {
                         console.error(error);
@@ -280,7 +273,7 @@ function Parents () {
 
                       const OnParentChange = async (evt) => {
                           try {
-                              const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${evt.target.value}/`,config);
+                              const response = await api.get(`/users/pupils/${evt.target.value}/`);
                               setProfil(response.data)
                           } catch (error) {
                               console.error(error);
@@ -288,7 +281,7 @@ function Parents () {
 
 
                           try {
-                            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${evt.target.value}/pie_chart_id/`,config);
+                            const response = await api.get(`/users/emotions/${evt.target.value}/pie_chart_id/`);
                             setPia(response.data)
                         } catch (error) {
                             console.error(error);
@@ -296,7 +289,7 @@ function Parents () {
 
 
                         try {
-                            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${evt.target.value}/for_week/`,config);
+                            const response = await api.get(`/users/emotions/${evt.target.value}/for_week/`);
                             setWeek(response.data)
                             const data2 = response.data[date2]
                             const data3 = response.data[date3]
@@ -317,7 +310,7 @@ function Parents () {
                         }
 
                         try {
-                            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${evt.target.value}/weekly_diagram_v2/`,config);
+                            const response = await api.get(`/users/emotions/${evt.target.value}/weekly_diagram_v2/`);
                                 setBar(response.data)
                             } catch (error) {
                                 console.error(error);

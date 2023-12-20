@@ -1,18 +1,16 @@
 import React, { useContext, useEffect, useState,useCallback } from 'react';
 import './teacher.css'
 import { Link, NavLink, Route, Routes } from 'react-router-dom';
-import axios from 'axios';
 import { AuthContext } from '../../context/PupilContext';
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import Notification from '../../Modal/Notification/Notification';
 import TeacherPupils from '../../components/TeacherPupils/TeacherPupils';
 import usersLogo from '../../Image/photo_people.jpg'
-import { LoginHooks } from '../../Hooks/LoginHooks';
+import api from '../../components/Api/api';
 
 
 function Teacher(props) {
   const { isActive } = props;
-  const {token} = LoginHooks()
 
   const { setTeacherPupils,setUsers,originalUsers, genders,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach,depres,teacherPupils, setDepres, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
         const {decode} = DecodeHooks()
@@ -30,22 +28,14 @@ document.head.appendChild(style);
         useEffect(() => {
           const fetchParents = async () => {
               try {
-                  const response = await axios.get(`https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/`, {
-                    headers: {
-                      Authorization: `Bearer ${token}`,
-                    }
-                  });
+                  const response = await api.get(`/users/pupils/classes/`);
                   setClasses(response.data)
                   setDepres(Math.round(response.data.classes[test]?.sad_avg))
 
                   try {
                     const presentPupilIds = response.data?.classes[test]?.absent_pupils?.pupils;
                     const promises = presentPupilIds?.map(async (id) => {
-                      const response1 = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id.id}`, {
-                        headers: {
-                          Authorization: `Bearer ${token}`,
-                        }
-                      });
+                      const response1 = await api.get(`/users/pupils/${id.id}`);
                       return response1.data;
                     });
                     const presentPupilsData = await Promise.all(promises);
@@ -58,16 +48,12 @@ document.head.appendChild(style);
               }
           };
           fetchParents();
-      }, [decode,test,setClasses,token, setDepres]);
+      }, [decode,test,setClasses, setDepres]);
 
         useEffect(() => {
             const fetchParents = async () => {
                 try {
-                    const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/`,  {
-                      headers: {
-                        Authorization: `Bearer ${token}`,
-                      }
-                    });
+                    const response = await api.get(`/users/users/${decode}/`);
                     setTest(response.data?.pupil_class[0])
                     setTeach(response.data)
                 } catch (error) {
@@ -75,7 +61,7 @@ document.head.appendChild(style);
                 }
             };
             fetchParents();
-        }, [decode,setTeach, token]);
+        }, [decode,setTeach]);
 
 
 
@@ -83,11 +69,7 @@ document.head.appendChild(style);
             useEffect(() => {
       const fetchNotification = async () => {
         try {
-            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,{
-              headers: {
-                Authorization: `Bearer ${token}`,
-              }
-            });
+            const response = await api.get(`/notification/notification/${decode}/get_messages_by_user/`);
             setNotification(response.data.messages)
             setNotificationCount(response.data.messages.length)
         } catch (error) {
@@ -96,7 +78,7 @@ document.head.appendChild(style);
     };
 
     fetchNotification();
-}, [decode, setNotification, setNotificationCount,token]);
+}, [decode, setNotification, setNotificationCount]);
 
 const applyDefaultTheme = useCallback(() => {
   setTheme('#81B37A');
@@ -211,11 +193,7 @@ useEffect(() => {
 
       const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
       const promises = pupilIds?.map(async (id) => {
-        const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        });
+        const response = await api.get(`/users/pupils/${id}/`);
         return response.data;
       });
 
@@ -237,11 +215,7 @@ useEffect(() => {
     const selectedEmotion = event.target.value;
     const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
     const promises = pupilIds?.map(async (id) => {
-      const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.get(`/users/pupils/${id}/`);
       return response.data;
     });
     const absentPupilsData = await Promise.all(promises);
@@ -279,11 +253,7 @@ useEffect(() => {
       const handleModal = () => {
           try {
             setModal(true)
-              const response = axios.get(`https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`, {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                }
-              });
+              const response = api.get(`/notification/notification/${decode}/get_messages_by_user/`);
               setNotification(response.data.messages)
           } catch (error) {
               console.error(error);
@@ -291,28 +261,20 @@ useEffect(() => {
       };
 
       useEffect(() => {
-        axios.get(`https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/teacher_pupils`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        })
+        api.get(`/users/users/${decode}/teacher_pupils`)
         .then((response) => {
           setTeachClass(response?.data)
         })
         .catch((error) => {
           console.log(error);
         });
-      }, [decode, token]);
+      }, [decode,]);
 
       const fetchData1 = async () => {
         try {
           const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
           const promises = pupilIds?.map(async (id) => {
-            const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              }
-            });
+            const response = await api.get(`/users/pupils/${id}/`);
             return response.data;
           });
       
@@ -331,11 +293,7 @@ useEffect(() => {
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const response1 = await axios.get(`https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/`, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            });
+            const response1 = await api.get(`/users/pupils/classes/`);
             setDepres(Math.round(response1.data.classes[pupilsClass ? pupilsClass : test]?.sad_avg));
       
             const params = {};
@@ -350,12 +308,7 @@ useEffect(() => {
       
             const pupilIds = teach?.pupils[pupilsClass ? pupilsClass : test]?.map((pupil) => pupil.id);
             const promises1 = pupilIds?.map(async (id) => {
-              const response2 = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}/`, {
-                params,
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              });
+              const response2 = await api.get(`/users/pupils/${id}/`);
               return response2.data;
             });
       
@@ -365,11 +318,7 @@ useEffect(() => {
       
             const presentPupilIds = classes?.classes[pupilsClass ? pupilsClass : test]?.absent_pupils?.id;
             const promises2 = presentPupilIds?.map(async (id) => {
-              const response3 = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${id}`, {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              });
+              const response3 = await api.get(`/users/pupils/${id}`);
               return response3.data;
             });
             const presentPupilsData = await Promise.all(promises2);
@@ -380,7 +329,7 @@ useEffect(() => {
         };
       
         fetchData();
-      }, [pupilsClass, token, genders, pupilEmotion, teach, classes,setDepres,setOriginalUsers,setTeacherPupils,test]);
+      }, [pupilsClass,, genders, pupilEmotion, teach, classes,setDepres,setOriginalUsers,setTeacherPupils,test]);
       
       const onPupilClass = (evt) => {
         const pupilClassValue = evt?.target?.value;

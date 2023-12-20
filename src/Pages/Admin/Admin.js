@@ -6,10 +6,9 @@ import TeacherList from "../../components/TeacherList/TeacherList";
 import ClassesList from "../../components/Classes/ClassesList";
 import CreateAdminModal from "../../Modal/Admin/CreateAdminmodal";
 import { AuthContext } from "../../context/PupilContext";
-import axios from "axios";
 import { DecodeHooks } from "../../Hooks/DecodeHook";
 import Notification from "../../Modal/Notification/Notification";
-import { LoginHooks } from "../../Hooks/LoginHooks";
+import api from "../../components/Api/api";
 
 function Admin(props) {
   const { isActive } = props;
@@ -36,19 +35,10 @@ function Admin(props) {
   const [adminModal, setAdminModal] = useState();
   const { decode } = DecodeHooks();
   const [teach, setTeach] = useState();
-  const {token} = LoginHooks()
 
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
+
   useEffect(() => {
-    axios.get('https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    api.get('/users/pupils/classes/')
       .then((response) => {
         setClasses(response.data);
       })
@@ -61,8 +51,8 @@ function Admin(props) {
   useEffect(() => {
     const fetchParents = async () => {
       try {
-        const response = await axios.get(
-          `https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/`,config
+        const response = await api.get(
+          `/users/users/${decode}/`
         );
         setTeach(response?.data);
       } catch (error) {
@@ -77,8 +67,8 @@ function Admin(props) {
     try {
       setModal(true);
 
-      const response = axios.get(
-        `https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,config
+      const response = api.get(
+        `/notification/notification/${decode}/get_messages_by_user/`
       );
       setNotification(response.data.messages);
     } catch (error) {
@@ -89,8 +79,8 @@ function Admin(props) {
   useEffect(() => {
     const fetchNotification = async () => {
       try {
-        const response = await axios.get(
-          `https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,config
+        const response = await api.get(
+          `/notification/notification/${decode}/get_messages_by_user/`
         );
         setNotification(response.data.messages);
         setNotificationCount(response.data.messages.length);
@@ -122,8 +112,8 @@ function Admin(props) {
   useEffect(() => {
     const fetchPupils = async () => {
       try {
-        const response = await axios.get(
-          "https://smartsafeschoolback.tadi.uz/api/users/pupils/",config
+        const response = await api.get(
+          "/users/pupils/"
         );
         setPupilCount(response.data.count);
       } catch (error) {
@@ -137,8 +127,8 @@ function Admin(props) {
   useEffect(() => {
     const fetchPupils = async () => {
       try {
-        const response = await axios.get(
-          "https://smartsafeschoolback.tadi.uz/api/users/users/?status=teacher",config
+        const response = await api.get(
+          "/users/users/?status=teacher"
         );
         setTeacherCount(response.data.count);
       } catch (error) {

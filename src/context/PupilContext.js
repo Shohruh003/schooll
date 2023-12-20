@@ -37,20 +37,8 @@ export const AuthProvider = ({children}) => {
   const [weekFullName, setWeekFullName] = useState()
 const [weekTime, setWeekTime] = useState()
 
-const localData = JSON.parse(localStorage.getItem('allToken'));
-const [allToken, setAllToken] = useState(localData)
-useEffect(() => {
-  if(allToken) {
-    localStorage.setItem('allToken', JSON.stringify(allToken));
-  } else {
-    localStorage.removeItem('allToken');
-  }
-}, [allToken]);
-
-
-
   return (
-    <AuthContext.Provider value={{allToken, setAllToken,weekTime, setWeekTime,weekFullName, setWeekFullName,weekEmotion, setWeekEmotion,deleteId, setDeleteId,scholl, setSchool,depres, setDepres,teacherPupils, setTeacherPupils,pupilsClass, setPupilsClass,user, setUsers,ageRange, setAgeRange,classes, setClasses,classList, setClassList,genders, setGenders,originalTeacher, setOriginalTeacher,originalUsers, setOriginalUsers,position, setPosition,pupilClass, setPupilClass,pupilCount, setPupilCount,pupilEmotion, setPupilEmotion,teacher, setTeacher,teacherCount, setTeacherCount,theme, setTheme,editAdminModal, setEditAdminModal, notificationCount, setNotificationCount, notification, setNotification, modal, setModal,comersPupils, setComersPupil,missingTeachers, setMissingTeachers,lateComersTeachers, setLateComersTeachers,lateComersPupils, setLateComersPupils, teach, setTeach,editUser, setEditUser}}>
+    <AuthContext.Provider value={{weekTime, setWeekTime,weekFullName, setWeekFullName,weekEmotion, setWeekEmotion,deleteId, setDeleteId,scholl, setSchool,depres, setDepres,teacherPupils, setTeacherPupils,pupilsClass, setPupilsClass,user, setUsers,ageRange, setAgeRange,classes, setClasses,classList, setClassList,genders, setGenders,originalTeacher, setOriginalTeacher,originalUsers, setOriginalUsers,position, setPosition,pupilClass, setPupilClass,pupilCount, setPupilCount,pupilEmotion, setPupilEmotion,teacher, setTeacher,teacherCount, setTeacherCount,theme, setTheme,editAdminModal, setEditAdminModal, notificationCount, setNotificationCount, notification, setNotification, modal, setModal,comersPupils, setComersPupil,missingTeachers, setMissingTeachers,lateComersTeachers, setLateComersTeachers,lateComersPupils, setLateComersPupils, teach, setTeach,editUser, setEditUser}}>
       {children}
     </AuthContext.Provider>
   );

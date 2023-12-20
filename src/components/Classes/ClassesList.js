@@ -1,9 +1,9 @@
-import axios from "axios";
 import { useContext, useEffect } from "react";
 import './classes.css'
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/PupilContext";
 import { LoginHooks } from "../../Hooks/LoginHooks";
+import api from "../Api/api";
 
 
 function ClassesList() {
@@ -31,11 +31,7 @@ function ClassesList() {
           params.emotions = pupilEmotion
         }
 
-        const response = await axios.get('https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/', { 
-          params,
-          headers: {
-          Authorization: `Bearer ${token}`,
-        } });
+        const response = await api.get('/users/pupils/classes/', { params });
       setClassList(response.data.classes);
       setOriginalUsers(response.data.results);
       } catch (error) {

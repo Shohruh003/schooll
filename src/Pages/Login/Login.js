@@ -3,18 +3,13 @@ import LoginPageImg from '../../Image/loginImage.png'
 import TadIndustries from '../../Image/tad-head-big.png'
 import axios from 'axios';
 import './login.css'
-import { LoginHooks } from '../../Hooks/LoginHooks';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import jwt_decode from 'jwt-decode'
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import eye from '../../Image/eye-svgrepo-com.svg'
-import { useContext } from 'react';
-import { AuthContext } from '../../context/PupilContext';
 
 function Login() {
-  const {allToken, setAllToken} = useContext(AuthContext)
-  const {setToken} = LoginHooks()
   const {setDecode} = DecodeHooks()
   const navigate = useNavigate();
   const handleUserLogin = (evt) => {
@@ -26,13 +21,14 @@ function Login() {
 
     axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/', formData)
     .then((response) => {
-      setAllToken(response.data)
-      setToken(response.data?.access);
+      console.log(response.data);
+      localStorage.setItem('refreshToken', JSON.stringify(response.data?.refresh));
+      localStorage.setItem('token', JSON.stringify(response.data?.access));
       setDecode(jwt_decode(response.data?.access).user_id)
       navigate('/');
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error); 
       toast.error('Неверный логин/пароль !', {
         className: 'custom-toast-warning',
       });

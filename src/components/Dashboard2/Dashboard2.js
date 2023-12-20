@@ -1,7 +1,6 @@
 import './dashboard2.css'
 import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import logo from '../../Image/logotad.svg'
 import gif from '../../Gif/happy-gif-unscreen.gif'
 import gifSad from '../../Gif/sad-gif.gif'
@@ -10,7 +9,7 @@ import teacherImg from '../../Gif/teacher-normal-gif.gif'
 import boyTwo from '../../Gif/aggressive-unscreen.gif'
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import { AuthContext } from '../../context/PupilContext';
-import { LoginHooks } from '../../Hooks/LoginHooks';
+import api from '../Api/api';
 
 function Dashboard2() {
     const {position, setPosition} = useContext(AuthContext)
@@ -18,23 +17,11 @@ function Dashboard2() {
     const [dashteacher, setDashteacher] = useState()
     const [school, setSchool] = useState()
     const [schoolNum, setSchoolNum] = useState()
-    const {token} = LoginHooks()
     const [dashPupilEmo, setDashPupilEmo] = useState()
-
-    const [config, setConfig] = useState()
-    useEffect(() => {
-      const configs =  {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
-      }
-      setConfig(configs)
-    }, [token]);
-  
     useEffect(() => {
         const fetchPupils = async () => {
           try {
-            const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/all_pupils_emotion/for_pupils/',config);
+            const response = await api.get('/users/all_pupils_emotion/for_pupils/');
             setDashPupil(response.data)
             setDashteacher(response.data.Teacher)
           } catch (error) {
@@ -43,7 +30,7 @@ function Dashboard2() {
         };
     
         fetchPupils();
-      }, [config]);
+      }, []);
       const parcents = dashpupil?.Emotion_percent?.percent
       const parcet = Number(parcents).toFixed(0)
 
@@ -58,35 +45,26 @@ function Dashboard2() {
 
 		const fetchClasses = async () => {
 			try {
-				const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/users/${decode}/`,config);
+				const response = await api.get(`/users/users/${decode}/`);
 				setPosition(response.data.status)
-                setSchool(response.data.school);
+                try {
+                    const response1 = await api.get(`/TheSchool/schoolconfigs/${response?.data?.school}/`);
+                    setSchoolNum(response1.data.number)
+                } catch (error) {
+                    console.error(error);
+                }
 			} catch (error) {
 				console.error(error);
 			}
 		};
 		fetchClasses();
-	}, [decode, config, setPosition]);
-
-    useEffect(() => {
-
-		const fetchClasses = async () => {
-			try {
-				const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/TheSchool/schoolconfigs/${school}/`,config);
-				setSchoolNum(response.data.number)
-			} catch (error) {
-				console.error(error);
-			}
-		};
-
-		fetchClasses();
-	}, [school, config]);
+	}, [decode, setPosition]);
 
     
 	useEffect(() => {
 		const fetchPupils = async () => {
 			try {
-				const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/all_pupils_emotion/pie_chart/',config);
+				const response = await api.get('/users/all_pupils_emotion/pie_chart/');
 				setDashPupilEmo(response.data.all_pupils)
                 console.log(response.data.all_pupils);
 			} catch (error) {
@@ -95,7 +73,7 @@ function Dashboard2() {
 		};
 
 		fetchPupils();
-	}, [config]);
+	}, []);
 
     return (
         <div className='dashboard2'>
@@ -139,35 +117,38 @@ function Dashboard2() {
                         
                     </li>
 
-                    <li className='card-test'>
-                        <div>
-                            <img className='testImg' src={gif} alt='GIF' />
-                            <button className='Веселье'>Веселье {isNaN(Math.floor(dashPupilEmo?.happy.percentage)) ? 0 : Math.floor(dashPupilEmo?.happy.percentage)}% <span>{dashPupilEmo?.happy?.count ? dashPupilEmo?.happy?.count : 0} человек</span></button>
-                        </div>
+                    <li className='card-test1'>
+                        <p>Эмоциональная карта</p>
+                        <div className='card-test'>
+                            <div>
+                                <img className='testImg' src={gif} alt='GIF' />
+                                <button className='Веселье'>Веселье {isNaN(Math.floor(dashPupilEmo?.happy.percentage)) ? 0 : Math.floor(dashPupilEmo?.happy.percentage)}% <span>События: {dashPupilEmo?.happy?.count ? dashPupilEmo?.happy?.count : 0}</span></button>
+                            </div>
 
-                        <div>
-                            <img className='testImg' src={gifNormal} alt='GIF' />
-                            <button className='Нейтраль'>Нейтраль {isNaN(Math.floor(dashPupilEmo?.neutral.percentage)) ? 0 : Math.floor(dashPupilEmo?.neutral.percentage)}% <span>{dashPupilEmo?.neutral?.count ? dashPupilEmo?.neutral?.count : 0} человек</span></button>
-                        </div>
+                            <div>
+                                <img className='testImg' src={gifNormal} alt='GIF' />
+                                <button className='Нейтраль'>Нейтраль {isNaN(Math.floor(dashPupilEmo?.neutral.percentage)) ? 0 : Math.floor(dashPupilEmo?.neutral.percentage)}% <span>События: {dashPupilEmo?.neutral?.count ? dashPupilEmo?.neutral?.count : 0}</span></button>
+                            </div>
 
-                        <div>
-                            <img className='testImg' src={gifNormal} alt='GIF' />
-                            <button className='Удивление'>Удивление {isNaN(Math.floor(dashPupilEmo?.surprise.percentage)) ? 0 : Math.floor(dashPupilEmo?.surprise.percentage)}% <span>{dashPupilEmo?.surprise?.count ? dashPupilEmo?.surprise?.count : 0} человек</span></button>
-                        </div>
+                            <div>
+                                <img className='testImg' src={gifNormal} alt='GIF' />
+                                <button className='Удивление'>Удивление {isNaN(Math.floor(dashPupilEmo?.surprise.percentage)) ? 0 : Math.floor(dashPupilEmo?.surprise.percentage)}% <span>События: {dashPupilEmo?.surprise?.count ? dashPupilEmo?.surprise?.count : 0}</span></button>
+                            </div>
 
-                        <div>
-                            <img className='testImg' src={gifSad} alt='GIF' />
-                            <button className='Грусть'>Грусть {isNaN(Math.floor(dashPupilEmo?.sad.percentage)) ? 0 : Math.floor(dashPupilEmo?.sad.percentage)}% <span>{dashPupilEmo?.sad?.count ? dashPupilEmo?.sad?.count : 0} человек</span></button>
-                        </div>
+                            <div>
+                                <img className='testImg' src={gifSad} alt='GIF' />
+                                <button className='Грусть'>Грусть {isNaN(Math.floor(dashPupilEmo?.sad.percentage)) ? 0 : Math.floor(dashPupilEmo?.sad.percentage)}% <span>События: {dashPupilEmo?.sad?.count ? dashPupilEmo?.sad?.count : 0}</span></button>
+                            </div>
 
-                        <div>
-                            <img className='testImg' src={boyTwo} alt='GIF' />
-                            <button className='Злость'>Злость {isNaN(Math.floor(dashPupilEmo?.angry.percentage)) ? 0 : Math.floor(dashPupilEmo?.angry.percentage)}% <span>{dashPupilEmo?.angry?.count ? dashPupilEmo?.angry?.count : 0} человек</span></button>
-                        </div>
+                            <div>
+                                <img className='testImg' src={boyTwo} alt='GIF' />
+                                <button className='Злость'>Злость {isNaN(Math.floor(dashPupilEmo?.angry.percentage)) ? 0 : Math.floor(dashPupilEmo?.angry.percentage)}% <span>События: {dashPupilEmo?.angry?.count ? dashPupilEmo?.angry?.count : 0}</span></button>
+                            </div>
 
-                        <div>
-                            <img className='testImg' src={gifSad} alt='GIF' />
-                            <button className='Страх'>Страх {isNaN(Math.floor(dashPupilEmo?.fear.percentage)) ? 0 : Math.floor(dashPupilEmo?.fear.percentage)}% <span>{dashPupilEmo?.fear?.count ? dashPupilEmo?.fear?.count : 0} человек</span></button>
+                            <div>
+                                <img className='testImg' src={gifSad} alt='GIF' />
+                                <button className='Страх'>Страх {isNaN(Math.floor(dashPupilEmo?.fear.percentage)) ? 0 : Math.floor(dashPupilEmo?.fear.percentage)}% <span>События: {dashPupilEmo?.fear?.count ? dashPupilEmo?.fear?.count : 0}</span></button>
+                            </div>
                         </div>
                     </li>
 {/*                     <li className='card-there'>

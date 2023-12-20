@@ -11,11 +11,7 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
   const { theme, classes,lateComersPupils, setLateComersPupils} = useContext(AuthContext);
   const {token} = LoginHooks()
 
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
+
   useEffect(() => {
     const fetchData = async () => {
       try {

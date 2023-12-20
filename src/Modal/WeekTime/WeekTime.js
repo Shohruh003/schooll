@@ -1,20 +1,13 @@
-import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import "./weekTime.css"
 import { Modal } from 'react-bootstrap';
 import { AuthContext } from '../../context/PupilContext';
-import { LoginHooks } from '../../Hooks/LoginHooks';
+import api from '../../components/Api/api';
 
 
 function WeekTime () {
   const {theme, deleteId,weekTime, setWeekTime, weekFullName} = useContext(AuthContext)
-  const {token} = LoginHooks()
 
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
 
   const elList = document.querySelector('.weekThemes');
   if (elList) {
@@ -79,7 +72,7 @@ function WeekTime () {
   useEffect(() => { 
     const fetchPrentPupils = async () => {
       try {
-          const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/pupils/${deleteId}/`,config);
+          const response = await api.get(`/users/pupils/${deleteId}/`);
           setProfil(response.data)
       } catch (error) {
           console.error(error);
@@ -87,7 +80,7 @@ function WeekTime () {
 
 
     try {
-        const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/users/emotions/${deleteId}/for_week/`,config);
+        const response = await api.get(`/users/emotions/${deleteId}/for_week/`);
         setWeek(response.data)
         const data2 = response.data[date2]
         const data3 = response.data[date3]

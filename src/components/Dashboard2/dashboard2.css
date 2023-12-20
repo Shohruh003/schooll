@@ -250,15 +250,24 @@ margin-right: 200px;
     background-color: red !important;
 }
 
+.card-test1 {
+    width: 100% !important;
+    background: rgba(0, 184, 215, 1) !important;
+    height: 397px;
+} 
+
+.card-test1 p {
+    text-align: center;
+    font-size: 28px !important;
+    margin: 0;
+}
+
+
 .card-test{
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
     width: 100% !important;
-    height: 397px;
-    background: rgba(0, 184, 215, 1);
-    border-radius: 15px;
-    padding: 10px 25px;
     font-size: 24px;
 }
 
@@ -270,7 +279,7 @@ margin-right: 200px;
 
 .card-test img {
     margin-right: 20px !important;
-    width: 200px !important;
+    width: 170px !important;
     height: auto !important;
 }
 
@@ -285,6 +294,7 @@ padding: 10px 10px !important;
 .card-test span {
     display: block;
     font-size: 16px;
+    font-weight: 400;
 }
 .card-test .Нейтраль {
     background-color: #81B37A;

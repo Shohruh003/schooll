@@ -1,20 +1,18 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import './teacherList.css'
 import { Link } from "react-router-dom";
 import EditAdminModal from "../../Modal/User_modal/EditAdminmodal";
 import { AuthContext } from "../../context/PupilContext";
 import usersLogo from '../../Image/photo_people.jpg'
-import { LoginHooks } from "../../Hooks/LoginHooks";
 import Delete from "../../Modal/Delete/Delete";
 import WeekEmotion from "../../Modal/WeekEmotion/WeekEmotion";
 import WeekTime from "../../Modal/WeekTime/WeekTime";
+import api from "../Api/api";
 
 
 function TeacherList() {
   const {weekTime, setWeekTime,setWeekFullName,weekEmotion, setWeekEmotion,genders,position, setOriginalUsers,pupilClass,pupilEmotion,teacher, setTeacher,theme,editAdminModal, setEditAdminModal,setDeleteId, setEditUser} = useContext(AuthContext)
   const [deleteUser, setDeleteUser] = useState(false)
-  const {token} = LoginHooks()
   const style = document.createElement('style');
 style.innerHTML = `
   .teacher_list::-webkit-scrollbar-thumb {
@@ -40,9 +38,7 @@ document.head.appendChild(style);
           params.search = pupilClass;
         }
 
-        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/users/?status=teacher', { params,headers: {
-          Authorization: `Bearer ${token}`,
-        } });
+        const response = await api.get('/users/users/?status=teacher', { params });
       setTeacher(response.data.results);
       setOriginalUsers(response.data.results);
       } catch (error) {
@@ -51,7 +47,7 @@ document.head.appendChild(style);
     };  
 
     fetchPupils();
-  }, [pupilClass, genders, pupilEmotion,setTeacher,setOriginalUsers,token]);
+  }, [pupilClass, genders, pupilEmotion,setTeacher,setOriginalUsers]);
 
   const clickItem = (evt) => {
     setEditUser(evt)

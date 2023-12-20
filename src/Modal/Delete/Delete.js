@@ -9,16 +9,12 @@ function Delete ({deleteUser, setDeleteUser}) {
   const {theme, deleteId} = useContext(AuthContext)
   const {token} = LoginHooks()
 
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
+
 
     const deletePupils = async () => {
       try {
-        const response = await axios.delete(
-          `https://smartsafeschoolback.tadi.uz/api/users/pupils/${deleteId}/`,config
+        const response = await api.delete(
+          `/users/pupils/${deleteId}/`
         );
           console.log(response.data);
         setDeleteUser(false)

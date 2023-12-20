@@ -1,4 +1,3 @@
-import axios from 'axios';
 import close_Button from '../../Image/close-btn.svg';
 import selectIcon from '../../Image/select-icon.svg';
 import eye from '../../Image/eye-svgrepo-com.svg';
@@ -8,7 +7,7 @@ import './editAdminModal.css'
 import { AuthContext } from '../../context/PupilContext';
 import { useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { LoginHooks } from '../../Hooks/LoginHooks';
+import api from '../../components/Api/api';
 
 
 function EditAdminModal({ editAdminModal, setEditAdminModal }) {
@@ -16,13 +15,8 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
   const [user, setUser] = useState()
   const [parent, setParent] = useState()
   const [orginalParent, setOrginalParent] = useState()
-  const {token} = LoginHooks()
 
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
+
   var imgref = useRef()
 
   const changeOption = (evt) => {
@@ -90,13 +84,13 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     formData.append('gender', user?.gender ? user?.gender : editUser?.gender)
     formData.append('is_morning', user?.shift ? user?.shift : editUser?.is_morning)
     if (user?.status === 'pupil') {
-      const apiUrl = `https://smartsafeschoolback.tadi.uz/api/users/pupils/${editUser?.id}/`;
+      const apiUrl = `/users/pupils/${editUser?.id}/`;
       formData.delete('password')
       formData.delete('main_image')
       formData.delete('email')
       formData.delete('status')
 
-      axios.patch(apiUrl, formData, config)
+      api.patch(apiUrl, formData)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot yangilandi!");
@@ -110,11 +104,11 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
       } else if (user?.status === 'teacher') {
       console.log(user,'----------------')
 
-        const apiUrl = `https://smartsafeschoolback.tadi.uz/api/users/users/${editUser?.id}/update_user/`;
+        const apiUrl = `/users/users/${editUser?.id}/update_user/`;
         formData.delete('parent')
         formData.delete('is_morning')
         formData.delete('main_image')
-        axios.patch(apiUrl, formData,config)
+        api.patch(apiUrl, formData)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot yangilandi !");
@@ -127,12 +121,12 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     }else if (user?.status === 'psychologist') {
       console.log(user,'----------------')
 
-        const apiUrl = `https://smartsafeschoolback.tadi.uz/api/users/users/${editUser?.id}/update_user/`;
+        const apiUrl = `/users/users/${editUser?.id}/update_user/`;
         formData.delete('parent')
         formData.delete('is_morning')
         formData.delete('main_image')
         formData.delete('pupil_class')
-        axios.patch(apiUrl, formData,config)
+        api.patch(apiUrl, formData)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot yangilandi !");
@@ -145,12 +139,12 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     } else if (user?.status === 'parents') {
       console.log(user,'----------------')
 
-        const apiUrl = `https://smartsafeschoolback.tadi.uz/api/users/users/${editUser?.id}/update_user/`;
+        const apiUrl = `/users/users/${editUser?.id}/update_user/`;
         formData.delete('parent')
         formData.delete('is_morning')
         formData.delete('main_image')
         formData.delete('pupil_class')
-        axios.patch(apiUrl, formData,config)
+        api.patch(apiUrl, formData)
         .then((response) => {
           console.log(response.data);
           toast.success("Ma'lumot yangilandi !");
@@ -169,7 +163,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     var parentList = document.getElementById('parentList')
     parentList.style.display = 'block'
 
-    await axios.get('https://smartsafeschoolback.tadi.uz/api/users/users/?status=parents',config)
+    await api.get('/users/users/?status=parents')
       .then((response) => {
         setParent(response?.data?.results);
         setOrginalParent(response?.data?.results);

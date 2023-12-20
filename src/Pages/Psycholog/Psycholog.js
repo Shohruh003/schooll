@@ -7,10 +7,9 @@ import ClassesList from '../../components/Classes/ClassesList';
 import AgressiyaPupil from '../../Modal/AgressiyaPupil/AgressiyaPupil';
 import DepressiyaPupil from '../../Modal/DepressiyaPupil/DepressiyaPupil';
 import { AuthContext } from '../../context/PupilContext';
-import axios from 'axios';
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import Notification from '../../Modal/Notification/Notification';
-import { LoginHooks } from '../../Hooks/LoginHooks';
+import api from '../../components/Api/api';
 
 
 function Psycholog(props) {
@@ -19,13 +18,8 @@ function Psycholog(props) {
   const [agressiyaModal, setAgressiyaModal] = useState()
   const [depressiyaModal, setDepressiyaModal] = useState()
   const {decode} = DecodeHooks()
-  const {token} = LoginHooks()
 
-  const config =  {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
+
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -47,7 +41,7 @@ function Psycholog(props) {
   useEffect(() => {
     const fetchPupils = async () => {
       try {
-        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/pupils/',config);
+        const response = await api.get('/users/pupils/');
         setPupilCount(response.data.count)
       } catch (error) {
         console.error(error);
@@ -60,7 +54,7 @@ function Psycholog(props) {
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const response = await axios.get('https://mycorse.onrender.com/https://smartsafeschoolback.tadi.uz/api/users/pupils/classes/',config);
+        const response = await api.get('/users/pupils/classes/');
         setClasses(response.data)
       } catch (error) {
         console.error(error);
@@ -73,7 +67,7 @@ function Psycholog(props) {
   useEffect(() => {
     const fetchPupils = async () => {
       try {
-        const response = await axios.get('https://smartsafeschoolback.tadi.uz/api/users/users/?status=teacher',config);
+        const response = await api.get('/users/users/?status=teacher');
         setTeacherCount(response.data.count)
       } catch (error) {
         console.error(error);
@@ -187,8 +181,8 @@ function Psycholog(props) {
   var userslar = []
   const fetchPupils = async () => {
     try {
-     const response = await axios.get(
-        `https://smartsafeschoolback.tadi.uz/api/users/pupils/`,config
+     const response = await api.get(
+        `/users/pupils/`
       );
       userslar = await response.data.results;
     } catch (error) {
@@ -211,7 +205,7 @@ function Psycholog(props) {
     const fetchNotification = async () => {
       try {
 
-          const response = await axios.get(`https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
+          const response = await api.get(`/notification/notification/${decode}/get_messages_by_user/`);
           setNotification(response.data.messages)
           setNotificationCount(response.data.messages.length)
       } catch (error) {
@@ -226,7 +220,7 @@ function Psycholog(props) {
     try {
       setModal(true)
 
-        const response = axios.get(`https://smartsafeschoolback.tadi.uz/api/notification/notification/${decode}/get_messages_by_user/`,config);
+        const response = api.get(`/notification/notification/${decode}/get_messages_by_user/`);
         setNotification(response.data.messages)
     } catch (error) {
         console.error(error);
