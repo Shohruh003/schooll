@@ -15,7 +15,6 @@ function Dashboard2() {
     const {position, setPosition} = useContext(AuthContext)
     const [dashpupil, setDashPupil] = useState()
     const [dashteacher, setDashteacher] = useState()
-    const [school, setSchool] = useState()
     const [schoolNum, setSchoolNum] = useState()
     const [dashPupilEmo, setDashPupilEmo] = useState()
     useEffect(() => {

@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/PupilContext';
-import { LoginHooks } from '../../Hooks/LoginHooks';
+
 
 function Dash() {
 
   const {user,position} = useContext(AuthContext)
   const [dashpupil, setDashPupil] = useState()
   const [dashteacher, setDashteacher] = useState()
-  const {token} = LoginHooks()
+  
 
 
 

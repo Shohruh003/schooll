@@ -1,16 +1,14 @@
 import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Modal } from 'react-bootstrap'; 
 import close_Button from '../../Image/close-btn.svg';
 import './attendanceModal.css'
 import { AuthContext } from '../../context/PupilContext';
 import usersLogo from '../../Image/photo_people.jpg'
-import { LoginHooks } from '../../Hooks/LoginHooks';
 import api from '../../components/Api/api';
 
 function LateComersTeacher ({lateComersTeacher, setLateComersTeacher}) {
   const {theme,lateComersTeachers, setLateComersTeachers} = useContext(AuthContext);
-  const {token} = LoginHooks()
 
 
 

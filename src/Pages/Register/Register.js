@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import TadIndustries from '../../Image/tad-big.png'
 import axios from 'axios';
 import './register.css'
-import { LoginHooks } from '../../Hooks/LoginHooks';
+
 
 function Register() {
   const {token, setToken} = LoginHooks()

@@ -2,13 +2,13 @@ import axios from 'axios';
 import { useContext, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 import { AuthContext } from '../../context/PupilContext';
-import { LoginHooks } from '../../Hooks/LoginHooks';
+
 import "./delete.css"
 import api from '../../components/Api/api';
 
 function Delete ({deleteUser, setDeleteUser}) {
   const {theme, deleteId} = useContext(AuthContext)
-  const {token} = LoginHooks()
+  
 
 
 

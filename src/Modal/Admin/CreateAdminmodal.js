@@ -8,7 +8,7 @@ import { AuthContext } from '../../context/PupilContext';
 import axios from 'axios';
 import { useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { LoginHooks } from '../../Hooks/LoginHooks';
+
 import api from '../../components/Api/api';
 
 function CreateAdminModal({ adminModal, setAdminModal }) {
@@ -17,7 +17,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
   const [isChecked, setIsChecked] = useState()
   const [parent, setParent] = useState()
   const [orginalParent, setOrginalParent] = useState()
-  const {token} = LoginHooks()
+  
 
 
 

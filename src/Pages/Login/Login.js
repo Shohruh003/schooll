@@ -22,8 +22,8 @@ function Login() {
     axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/', formData)
     .then((response) => {
       console.log(response.data);
-      localStorage.setItem('refreshToken', JSON.stringify(response.data?.refresh));
-      localStorage.setItem('token', JSON.stringify(response.data?.access));
+      localStorage.setItem('refreshToken', response.data?.refresh);
+      localStorage.setItem('token', response.data?.access);
       setDecode(jwt_decode(response.data?.access).user_id)
       navigate('/');
       window.location.reload()

@@ -8,7 +8,7 @@ import api from "../Api/api";
 
 function ClassesList() {
   const {classList, setClassList,genders, setOriginalUsers,pupilClass,theme, pupilEmotion} = useContext(AuthContext)
-  const {token} = LoginHooks()
+  
   const style = document.createElement('style');
   style.innerHTML = `
     .class_list::-webkit-scrollbar-thumb {
@@ -40,7 +40,7 @@ function ClassesList() {
     };
 
     fetchClasses();
-  }, [pupilClass, genders, pupilEmotion,setClassList,setOriginalUsers,token]);
+  }, [pupilClass, genders, pupilEmotion,setClassList,setOriginalUsers]);
 
   const arr = Object.keys(classList).map(key => ({ key, value: classList[key] }));
   return (

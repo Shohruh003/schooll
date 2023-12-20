@@ -5,12 +5,12 @@ import close_Button from '../../Image/close-btn.svg';
 import './attendanceModal.css'
 import { AuthContext } from '../../context/PupilContext';
 import usersLogo from '../../Image/photo_people.jpg'
-import { LoginHooks } from '../../Hooks/LoginHooks';
+
 import api from '../../components/Api/api';
 
 function MissingTeacher ({missingTeacher, setMissingTeacher}) {
   const {theme,missingTeachers, setMissingTeachers} = useContext(AuthContext)
-  const {token} = LoginHooks()
+  
 
 
 
