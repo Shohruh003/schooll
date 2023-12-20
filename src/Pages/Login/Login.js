@@ -26,6 +26,7 @@ function Login() {
       localStorage.setItem('token', JSON.stringify(response.data?.access));
       setDecode(jwt_decode(response.data?.access).user_id)
       navigate('/');
+      window.location.reload()
     })
     .catch((error) => {
       console.log(error); 
