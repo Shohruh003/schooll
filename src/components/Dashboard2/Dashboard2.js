@@ -2,11 +2,13 @@ import './dashboard2.css'
 import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import logo from '../../Image/logotad.svg'
-import gif from '../../Gif/happy-gif-unscreen.gif'
-import gifSad from '../../Gif/sad-gif.gif'
-import gifNormal from '../../Gif/normal-gif.gif'
+import gif from '../../Gif/Happy.gif'
+import gifSad from '../../Gif/Sad.gif'
+import gifNormal from '../../Gif/Normal.gif'
 import teacherImg from '../../Gif/teacher-normal-gif.gif'
-import boyTwo from '../../Gif/aggressive-unscreen.gif'
+import boyTwo from '../../Gif/Agressive.gif'
+import fearGif from '../../Gif/Wonder.gif'
+import scaredGif from '../../Gif/Scared.gif'
 import { DecodeHooks } from '../../Hooks/DecodeHook';
 import { AuthContext } from '../../context/PupilContext';
 import api from '../Api/api';
@@ -89,7 +91,7 @@ function Dashboard2() {
                 </div>
                 <ul>
                     <li className='card-one'>
-                    <img className='gifImg' src={gif} alt='GIF' />
+                    <img className='gifImg' src={gif} alt='GIF' width="290" height="350"/>
                         <div className='card_text'>
                             <div className='card-item'>
                                 <p>Всего учеников</p>
@@ -120,32 +122,32 @@ function Dashboard2() {
                         <p>Эмоциональная карта</p>
                         <div className='card-test'>
                             <div>
-                                <img className='testImg' src={gif} alt='GIF' />
+                                <img className='testImg' src={gif} alt='GIF' width="170" height="200" />
                                 <button className='Веселье'>Веселье {isNaN(Math.floor(dashPupilEmo?.happy.percentage)) ? 0 : Math.floor(dashPupilEmo?.happy.percentage)}% <span>События: {dashPupilEmo?.happy?.count ? dashPupilEmo?.happy?.count : 0}</span></button>
                             </div>
 
                             <div>
-                                <img className='testImg' src={gifNormal} alt='GIF' />
+                                <img className='testImg' src={gifNormal} alt='GIF' width="170" height="200" />
                                 <button className='Нейтраль'>Нейтраль {isNaN(Math.floor(dashPupilEmo?.neutral.percentage)) ? 0 : Math.floor(dashPupilEmo?.neutral.percentage)}% <span>События: {dashPupilEmo?.neutral?.count ? dashPupilEmo?.neutral?.count : 0}</span></button>
                             </div>
 
                             <div>
-                                <img className='testImg' src={gifNormal} alt='GIF' />
+                                <img className='testImg' src={fearGif} alt='GIF' width="170" height="200" />
                                 <button className='Удивление'>Удивление {isNaN(Math.floor(dashPupilEmo?.surprise.percentage)) ? 0 : Math.floor(dashPupilEmo?.surprise.percentage)}% <span>События: {dashPupilEmo?.surprise?.count ? dashPupilEmo?.surprise?.count : 0}</span></button>
                             </div>
 
                             <div>
-                                <img className='testImg' src={gifSad} alt='GIF' />
+                                <img className='testImg' src={gifSad} alt='GIF' width="170" height="200" />
                                 <button className='Грусть'>Грусть {isNaN(Math.floor(dashPupilEmo?.sad.percentage)) ? 0 : Math.floor(dashPupilEmo?.sad.percentage)}% <span>События: {dashPupilEmo?.sad?.count ? dashPupilEmo?.sad?.count : 0}</span></button>
                             </div>
 
                             <div>
-                                <img className='testImg' src={boyTwo} alt='GIF' />
+                                <img className='testImg' src={boyTwo} alt='GIF' width="170" height="200" />
                                 <button className='Злость'>Злость {isNaN(Math.floor(dashPupilEmo?.angry.percentage)) ? 0 : Math.floor(dashPupilEmo?.angry.percentage)}% <span>События: {dashPupilEmo?.angry?.count ? dashPupilEmo?.angry?.count : 0}</span></button>
                             </div>
 
                             <div>
-                                <img className='testImg' src={gifSad} alt='GIF' />
+                                <img className='testImg' src={scaredGif} alt='GIF' width="170" height="200" />
                                 <button className='Страх'>Страх {isNaN(Math.floor(dashPupilEmo?.fear.percentage)) ? 0 : Math.floor(dashPupilEmo?.fear.percentage)}% <span>События: {dashPupilEmo?.fear?.count ? dashPupilEmo?.fear?.count : 0}</span></button>
                             </div>
                         </div>
