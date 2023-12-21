@@ -1,6 +1,6 @@
 .people_heading {
   display: block;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   text-align: center;
 }
@@ -27,6 +27,7 @@
 .people_list li {
   display: flex;
   align-items: center;
+  width: 99%;
   border: none;
   margin: 0;
   margin-bottom: 10px;
@@ -47,10 +48,11 @@
   cursor: default;
 }
 
-.people_create {
-  display: block;
-  width: 25px;
-  margin-left: auto;
+.people_create svg {
+  display: block; 
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
 }
 
 .people_delete {
@@ -177,6 +179,12 @@
 }
 
 @media screen and (max-width: 991px) {
+  .people_create svg {
+    display: block; 
+    width: 23px;
+    height: 23px;
+    margin-right: 5px;
+  }
   .people_heading {
     font-size: 12px !important;
   }

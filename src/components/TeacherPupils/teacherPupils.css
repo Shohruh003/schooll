@@ -24,6 +24,7 @@
   }
   
   .teacher_list li {
+    width: 99%;
     border: 2px solid #ffbe98;
     border-radius: 25px;
     margin: 0;
