@@ -489,6 +489,9 @@
 }
 
 @media screen and (max-width: 1200px) {
+  .attendance {
+    max-height: 140px !important;
+  }
   .sms_count{
     display: flex !important;
     align-items: center !important;
@@ -499,7 +502,7 @@
     right: -5px;
     border-left-width: -310px;
   }
-  .attendance {
+  .attendance_div {
     width: 250px;
     margin-top: 20px;
     padding: 10px 10px 0 10px;
@@ -584,8 +587,12 @@
     right: -5px;
     border-left-width: -310px;
   }
-  .attendance {
+  .attendance_div {
     width: 170px;
+  }
+
+  .attendance {
+    max-height: 130px !important;
   }
   
   .attendance_name{
@@ -713,7 +720,7 @@
 
 @media screen and (max-width: 767px) {
 
-  .attendance{
+  .attendance_div{
     display: none;
   }
 

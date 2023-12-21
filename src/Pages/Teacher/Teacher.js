@@ -514,13 +514,13 @@ useEffect(() => {
                 <div className='item_button search_danger'>
                   <span>По полу</span>
                 <div onChange={handleGenderChange}>
-                  <input className='radio_button' id="maleCheckbox" type="checkbox" value='true'/>
                 <label htmlFor="maleCheckbox" className='radio_label'>
                   Мальчик
+                  <input className='radio_button' id="maleCheckbox" type="checkbox" value='true'/>
                 </label>
-                  <input className='radio_button' id="femaleCheckbox" type="checkbox" value='false' />
                 <label htmlFor="femaleCheckbox" className='radio_label'>
                   Девочка
+                  <input className='radio_button' id="femaleCheckbox" type="checkbox" value='false' />
                 </label>
                 </div>
                 </div>
@@ -550,7 +550,9 @@ useEffect(() => {
             </ul>
           </div>
 
-          <ul className='attendance' style={{borderColor: theme,'--scrollbar-thumb': theme}}>
+<div className='attendance_div' style={{borderColor: theme,'--scrollbar-thumb': theme}}>
+  <h5 className='attendance_title'>Отсутствующие ученики</h5>
+<ul className='attendance' style={{'--scrollbar-thumb': theme}}>
 {pupilMissing?.map((item, index) => (
   <li key={index} className="attendance_item" style={{borderColor: theme}}>
   <Link className='attendance_link'>
@@ -560,6 +562,7 @@ useEffect(() => {
 </li>
 ))}
 </ul>
+</div>
 <Notification modal={modal} setModal={setModal}/>
 
           </div>
