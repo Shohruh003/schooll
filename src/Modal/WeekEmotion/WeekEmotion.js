@@ -119,10 +119,10 @@ let angry5 = filteredData5?.angry
                 <p style={{color: theme}} className='week_name'>{weekFullName}</p>
                 <div className='week_content weekThemes'>
 
-                    <BarChart
+                    <BarChart 
     xAxis={[
         {
-        scaleType: 'band',
+          scaleType: 'band',
         data: reversedDates.flatMap((date) => [
             date
           ]),
