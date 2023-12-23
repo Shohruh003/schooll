@@ -343,6 +343,28 @@ const piHappy = Math.round(pia?.happy)
                 backgroundColor: "transparent",
             }
 
+            function findLargestSection(pupils) {
+                let largestSectionIndex = 0;
+                let largestSectionValue = pupils.data[0].dataPoints[0].y;
+              
+                for (let i = 1; i < pupils.data[0].dataPoints.length; i++) {
+                  const sectionValue = pupils.data[0].dataPoints[i].y;
+                  if (sectionValue > largestSectionValue) {
+                    largestSectionIndex = i;
+                    largestSectionValue = sectionValue;
+                  }
+                }
+              
+                const largestSection = pupils.data[0].dataPoints[largestSectionIndex];
+                const largestSectionPercentage = ((largestSection.y / pupils.data[0].dataPoints.reduce((sum, dp) => sum + dp.y, 0)) * 100).toFixed(1);
+                
+                pupils.subtitles[0].text = `${largestSection.name} ${largestSectionPercentage}%`;
+              
+                return largestSection.name;
+              }
+              
+              const pupilsSectionName = findLargestSection(pupils);
+
 
                         const formattedTime2 = new Date(week2?.first?.time).toLocaleTimeString('uz-UZ', {
                             hour: 'numeric',

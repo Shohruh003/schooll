@@ -123,32 +123,32 @@ function Dashboard2() {
                         <div className='card-test'>
                             <div>
                                 <img className='testImg' src={gif} alt='GIF' width="170" height="200" />
-                                <button className='Веселье'>Веселье {isNaN(Math.floor(dashPupilEmo?.happy.percentage)) ? 0 : Math.floor(dashPupilEmo?.happy.percentage)}% <span>События: {dashPupilEmo?.happy?.count ? dashPupilEmo?.happy?.count : 0}</span></button>
+                                <button className='Веселье'>Веселье {isNaN(Math.floor(dashPupilEmo?.happy.percentage)) ? 0 : Math.floor(dashPupilEmo?.happy.percentage)}% <span>Событий: {dashPupilEmo?.happy?.count ? dashPupilEmo?.happy?.count : 0}</span></button>
                             </div>
 
                             <div>
                                 <img className='testImg' src={gifNormal} alt='GIF' width="170" height="200" />
-                                <button className='Нейтраль'>Нейтраль {isNaN(Math.floor(dashPupilEmo?.neutral.percentage)) ? 0 : Math.floor(dashPupilEmo?.neutral.percentage)}% <span>События: {dashPupilEmo?.neutral?.count ? dashPupilEmo?.neutral?.count : 0}</span></button>
+                                <button className='Нейтраль'>Нейтраль {isNaN(Math.floor(dashPupilEmo?.neutral.percentage)) ? 0 : Math.floor(dashPupilEmo?.neutral.percentage)}% <span>Событий: {dashPupilEmo?.neutral?.count ? dashPupilEmo?.neutral?.count : 0}</span></button>
                             </div>
 
                             <div>
                                 <img className='testImg' src={fearGif} alt='GIF' width="170" height="200" />
-                                <button className='Удивление'>Удивление {isNaN(Math.floor(dashPupilEmo?.surprise.percentage)) ? 0 : Math.floor(dashPupilEmo?.surprise.percentage)}% <span>События: {dashPupilEmo?.surprise?.count ? dashPupilEmo?.surprise?.count : 0}</span></button>
+                                <button className='Удивление'>Удивление {isNaN(Math.floor(dashPupilEmo?.surprise.percentage)) ? 0 : Math.floor(dashPupilEmo?.surprise.percentage)}% <span>Событий: {dashPupilEmo?.surprise?.count ? dashPupilEmo?.surprise?.count : 0}</span></button>
                             </div>
 
                             <div>
                                 <img className='testImg' src={gifSad} alt='GIF' width="170" height="200" />
-                                <button className='Грусть'>Грусть {isNaN(Math.floor(dashPupilEmo?.sad.percentage)) ? 0 : Math.floor(dashPupilEmo?.sad.percentage)}% <span>События: {dashPupilEmo?.sad?.count ? dashPupilEmo?.sad?.count : 0}</span></button>
+                                <button className='Грусть'>Грусть {isNaN(Math.floor(dashPupilEmo?.sad.percentage)) ? 0 : Math.floor(dashPupilEmo?.sad.percentage)}% <span>Событий: {dashPupilEmo?.sad?.count ? dashPupilEmo?.sad?.count : 0}</span></button>
                             </div>
 
                             <div>
                                 <img className='testImg' src={boyTwo} alt='GIF' width="170" height="200" />
-                                <button className='Злость'>Злость {isNaN(Math.floor(dashPupilEmo?.angry.percentage)) ? 0 : Math.floor(dashPupilEmo?.angry.percentage)}% <span>События: {dashPupilEmo?.angry?.count ? dashPupilEmo?.angry?.count : 0}</span></button>
+                                <button className='Злость'>Злость {isNaN(Math.floor(dashPupilEmo?.angry.percentage)) ? 0 : Math.floor(dashPupilEmo?.angry.percentage)}% <span>Событий: {dashPupilEmo?.angry?.count ? dashPupilEmo?.angry?.count : 0}</span></button>
                             </div>
 
                             <div>
                                 <img className='testImg' src={scaredGif} alt='GIF' width="170" height="200" />
-                                <button className='Страх'>Страх {isNaN(Math.floor(dashPupilEmo?.fear.percentage)) ? 0 : Math.floor(dashPupilEmo?.fear.percentage)}% <span>События: {dashPupilEmo?.fear?.count ? dashPupilEmo?.fear?.count : 0}</span></button>
+                                <button className='Страх'>Страх {isNaN(Math.floor(dashPupilEmo?.fear.percentage)) ? 0 : Math.floor(dashPupilEmo?.fear.percentage)}% <span>Событий: {dashPupilEmo?.fear?.count ? dashPupilEmo?.fear?.count : 0}</span></button>
                             </div>
                         </div>
                     </li>

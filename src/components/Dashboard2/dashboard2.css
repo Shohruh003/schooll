@@ -214,10 +214,10 @@ margin-right: 200px;
 
 .teacherGif {
     position: absolute;
-    width: 320px;
+    width: 170px;
     height: auto;
-    left: -40px;
-    top: -60px;
+    left: 20px;
+    top: 10px;
 }
 
 .card-item{
@@ -443,10 +443,9 @@ padding: 10px 10px !important;
     }
     
     .teacherGif {
-        width: 290px;
-        height: auto;
-        left: -50px;
-        top: -60px;
+        width: 170px;
+        left: 20px;
+        top: 10px;
     }
 
     .card-itemTwo p {
@@ -520,10 +519,9 @@ padding: 10px 10px !important;
     }
     
     .teacherGif {
-        width: 240px;
-        height: auto;
-        left: -50px;
-        top: -40px;
+        width: 130px;
+        left: 5px;
+        top: 20px;
     }
 
     .card-itemTwo p {
