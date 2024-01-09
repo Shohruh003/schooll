@@ -165,6 +165,25 @@ const formattedTime2week = new Date(week2?.last?.time).toLocaleTimeString('uz-UZ
     hour: 'numeric',
     minute: 'numeric'
   })
+
+  const SaveMonth = () => {
+    api.get(`/users/emotions/${deleteId}/lated_pk/`, {
+  responseType: 'arraybuffer'
+})
+  .then(response => {
+    const blob = new Blob([response.data], { type: 'application/vnd.ms-excel' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'file.xls');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+  }
     return (
         <div>
             <Modal
@@ -239,6 +258,7 @@ const formattedTime2week = new Date(week2?.last?.time).toLocaleTimeString('uz-UZ
                                     <span className='weekItem_time'>{formattedTime7week === formattedTime7 ? '--:--' : formattedTime7week}</span>
                                 </li>
                             </ul>
+                            <button className='month_time' style={{backgroundColor: theme}} onClick={SaveMonth}>Отчёт за месяц</button>
             </div>
         
         </Modal.Body>

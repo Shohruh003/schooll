@@ -30,14 +30,14 @@
         text-align: center;
     }
     .week {
-        height: 350px;
+        height: 380px;
     }
     .week_content {
-        width: 500px !important;
-        height: 300px !important;
+        width: 470px !important;
+        height: 260px !important;
       }
     .week_content div {
-        width: 500px !important;
+        width: 480px !important;
         height: 300px !important;
     }
 }
@@ -59,11 +59,11 @@
         margin: 0;
     }
     .week {
-        height: 280px;
+        height: 350px;
     }
     .week_content {
         width: 400px !important;
-        height: 250px !important;
+        height: 220px !important;
       }
     .week_content div {
         width: 400px !important;
@@ -86,11 +86,11 @@
         margin: 0;
     }
     .week {
-        height: 220px;
+        height: 330px;
     }
     .week_content {
         width: 350px !important;
-        height: 200px !important;
+        height: 180px !important;
       }
     .week_content div {
         width: 350px !important;

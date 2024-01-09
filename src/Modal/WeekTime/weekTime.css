@@ -2,3 +2,18 @@
     padding: 5px;
     border-radius: 10px;
 }
+
+.month_time {
+    padding: 7px 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+.month_time:hover {
+    opacity: 0.7;
+}
+
+.month_time:active {
+opacity: 0.5;
+}
