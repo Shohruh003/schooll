@@ -18,10 +18,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
+    const token = localStorage.getItem('token');
     const originalRequest = error.config;
-    if (error.response?.status === 403 && !originalRequest._retry) {
-      originalRequest._retry = true;
-
+    if (token === undefined) {
       try {
         const refreshToken = localStorage.getItem('refreshToken');
         const response = await axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
@@ -32,7 +31,7 @@ api.interceptors.response.use(
         localStorage.setItem('token', token);
 
         originalRequest.headers.Authorization = `Bearer ${token}`;
-        return api(originalRequest); // api ni o'zgartirdik
+        return api(originalRequest);
 
       } catch (error) {
         localStorage.clear()
