@@ -7,58 +7,87 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
-    if (token) {
+    if (token === undefined) {
+      const refreshToken = localStorage.getItem('refreshToken');
+      axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
+          'refresh': refreshToken
+        })
+      .then((result) => {
+        const { token } = result.data.access;
+
+        localStorage.setItem('token', token);
+
+        config.headers.Authorization = `Bearer ${token}`;
+      }).catch((error) => {
+        localStorage.clear()
+		window.location.reload()
+        console.log(error);
+      });
+    } else {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  async (error) => {
+    return Promise.reject(error);
+  }
 );
 
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const token = localStorage.getItem('token');
     const originalRequest = error.config;
-    if (token === undefined) {
-      try {
-        const refreshToken = localStorage.getItem('refreshToken');
-        const response = await axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
+    if (error.response?.status === 403 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      const refreshToken = localStorage.getItem('refreshToken');
+      axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
           'refresh': refreshToken
-        });
-        const { token } = response.data.access;
+        })
+      .then((result) => {
+        const { token } = result.data.access;
 
         localStorage.setItem('token', token);
-
         originalRequest.headers.Authorization = `Bearer ${token}`;
-        return api(originalRequest);
+        return api(originalRequest); // api ni o'zgartirdik
 
-      } catch (error) {
+      }).catch((error) => {
         localStorage.clear()
 		window.location.reload()
         console.log(error);
-      }
+      });
     }
 
     return Promise.reject(error);
   }
 );
 
-setInterval(async () => {
-  try {
-    const refreshToken = localStorage.getItem('refreshToken');
-    const response = await axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
-      'refresh': refreshToken
-    });
-    const token = response.data.access;
-    console.log(token);
-    localStorage.removeItem('token');
-    localStorage.setItem('token', token);
-  } catch (error) {
-    localStorage.clear()
-		window.location.reload()
-    console.log(error);
-  }
-},  15 * 59000); // Har bir 59 sekundda bir marta tokenlarni yangilash
+// api.interceptors.response.use(
+//   (response) => response,
+//   (error) => {
+//     const token = localStorage.getItem( 'token');
+//     const originalRequest = error.config;
+//     if (token === undefined) {
+//       try {
+//         const refreshToken = localStorage.getItem('refreshToken');
+//         const response = axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
+//           'refresh': refreshToken
+//         });
+//         const { token } = response.data.access;
+
+//         localStorage.setItem('token', token);
+
+//         originalRequest.headers.Authorization = `Bearer ${token}`;
+//         return api(originalRequest);
+
+//       } catch (error) {
+//         localStorage.clear()
+// 		window.location.reload()
+//         console.log(error);
+//       }
+//     }
+
+//     return Promise.reject(error);
+//   }
+// );
 
 export default api;
