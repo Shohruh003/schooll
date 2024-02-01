@@ -95,6 +95,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
           console.log(response.data);
           toast.success("Ma'lumot yangilandi!");
           setEditAdminModal(false)
+          window.location.reload()
         })
         .catch((error) => {
           console.log('Error sending data:', error?.response?.data);
@@ -113,6 +114,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
           console.log(response.data);
           toast.success("Ma'lumot yangilandi !");
           setEditAdminModal(false)
+          window.location.reload()
         })
         .catch((error) => {
           console.log('Error sending data:', error);
@@ -131,6 +133,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
           console.log(response.data);
           toast.success("Ma'lumot yangilandi !");
           setEditAdminModal(false)
+          window.location.reload()
         })
         .catch((error) => {
           console.log('Error sending data:', error);
@@ -149,6 +152,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
           console.log(response.data);
           toast.success("Ma'lumot yangilandi !");
           setEditAdminModal(false)
+          window.location.reload()
         })
         .catch((error) => {
           console.log('Error sending data:', error);

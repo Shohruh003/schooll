@@ -5,7 +5,6 @@ import { useContext, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import './createAdminModal.css'
 import { AuthContext } from '../../context/PupilContext';
-import axios from 'axios';
 import { useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -109,6 +108,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
           toast.success("Ma'lumot qo'shildi !");
           if (isChecked) {
             setAdminModal(false)
+            window.location.reload()
           }
         })
         .catch((error) => {
@@ -123,6 +123,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
           toast.success("Ma'lumot qo'shildi !");
           if (isChecked) {
             setAdminModal(false)
+            window.location.reload()
           }
         })
         .catch((error) => {
@@ -248,6 +249,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                 <option value='9'>9</option>
                 <option value='10'>10</option>
                 <option value='11'>11</option>
+                <option value='999'>999</option>
               </select>
               <select onChange={(event) => {
                 setUser({

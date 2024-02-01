@@ -19,6 +19,7 @@ function Delete ({deleteUser, setDeleteUser}) {
         );
           console.log(response.data);
         setDeleteUser(false)
+        window.location.reload()
       } catch (error) {
         console.error(error);
       }
