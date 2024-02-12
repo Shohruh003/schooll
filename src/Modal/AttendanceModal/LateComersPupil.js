@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useContext, useEffect } from 'react';
 import { Modal } from 'react-bootstrap'; 
 import close_Button from '../../Image/close-btn.svg';

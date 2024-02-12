@@ -65,7 +65,6 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
             elClass1.disabled = true
           }
   }
-
   const hendlSend = (evt) => {
 
     evt.preventDefault()
@@ -79,7 +78,13 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     formData.append('password', user?.password ? user?.password : editUser?.password)
     formData.append('confirm_password', user?.password ? user?.password : editUser?.password)
     formData.append('status', user?.status ? user?.status : 'pupil')
-    formData.append('pupil_class', (user?.pupil_class ? user?.pupil_class : editUser?.pupil_class[0]?.slice(0, 1)) +'-'+ (user?.pupil_class_str?user?.pupil_class_str: editUser?.pupil_class[0]?.slice(2, 3)?.toUpperCase()))    
+    formData.append(
+      'pupil_class',
+      (user?.pupil_class ? user?.pupil_class : editUser?.pupil_class === null ? ['1-A'] : editUser?.pupil_class[0]?.slice(0, 1)) +
+      '-' +
+      (user?.pupil_class_str ? user?.pupil_class_str : (editUser?.pupil_class && editUser?.pupil_class[0]?.slice(2, 3)?.toUpperCase()) || '')
+    );
+      
     formData.append('parents', user?.parent ? user?.parent : editUser?.parent)
     formData.append('gender', user?.gender ? user?.gender : editUser?.gender)
     formData.append('is_morning', user?.shift ? user?.shift : editUser?.is_morning)
