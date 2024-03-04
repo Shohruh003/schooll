@@ -11,7 +11,6 @@ import api from '../../components/Api/api';
 
 function Teacher(props) {
   const { isActive } = props;
-
   const { setTeacherPupils,setUsers,originalUsers, genders,theme, setTheme, setNotification,notificationCount, setNotificationCount,pupilsClass,pupilEmotion, setPupilsClass, modal, setModal,teach,depres,teacherPupils, setDepres, setTeach,classes, setClasses,setOriginalUsers} = useContext(AuthContext)
         const {decode} = DecodeHooks()
         const [pupilMissing, setPupilMissing] = useState()
@@ -55,6 +54,7 @@ document.head.appendChild(style);
                 try {
                     const response = await api.get(`/users/users/${decode}/`);
                     setTest(response.data?.pupil_class[0])
+                    console.log(response.data);
                     setTeach(response.data)
                 } catch (error) {
                     console.error(error);
@@ -305,8 +305,8 @@ useEffect(() => {
             if (pupilEmotion) {
               params.filter_by_emotion = pupilEmotion;
             }
-      
             const pupilIds = teach?.pupils[pupilsClass ? pupilsClass : test]?.map((pupil) => pupil.id);
+            console.log(teach?.pupils);
             const promises1 = pupilIds?.map(async (id) => {
               const response2 = await api.get(`/users/pupils/${id}/`);
               return response2.data;
@@ -329,7 +329,7 @@ useEffect(() => {
         };
       
         fetchData();
-      }, [pupilsClass,, genders, pupilEmotion, teach, classes,setDepres,setOriginalUsers,setTeacherPupils,test]);
+      }, [pupilsClass, genders, pupilEmotion, teach, classes,setDepres,setOriginalUsers,setTeacherPupils,test]);
       
       const onPupilClass = (evt) => {
         const pupilClassValue = evt?.target?.value;
@@ -481,7 +481,7 @@ useEffect(() => {
 
 
                       <h4 className='navLinkName'>Посещаемость учеников</h4>
-                      <span className='quantity'>{teachPupilsCount - (pupilMissing?.length ? pupilMissing?.length : 0)}</span>
+                      <span className='quantity'>{(teachPupilsCount - (pupilMissing?.length ? pupilMissing?.length : 0)) > 0 ? (teachPupilsCount - (pupilMissing?.length ? pupilMissing?.length : 0)) : 0 }</span>
                     </NavLink>
                   </li>
                 </ul>

@@ -183,7 +183,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
               <ToastContainer />
 
               Создать профиль
-              <img className='close_btn' onClick={() => setAdminModal(false)} src={close_Button} />
+              <img className='close_btn' onClick={() => setAdminModal(false)} src={close_Button} alt='' />
               </div>
             </Modal.Title>
           </thead>
@@ -214,7 +214,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                   password: event.target.value
                 })
               }} type="password" disabled class="form-control" list="datalistOptions" id="pass3" placeholder="*********" />
-              <img className="btnpass3" onClick={() => { const password1 = document.querySelector('#pass3'); return (password1.type == "password") ? password1.type = "text" : password1.type = "password" }} src={eye} />
+              <img className="btnpass3" onClick={() => { const password1 = document.querySelector('#pass3'); return (password1.type === "password") ? password1.type = "text" : password1.type = "password" }} src={eye} alt='' />
             </div>
             <div className='input_box'>
               <label for="d" class="form-label">Дата рождения</label>
@@ -228,7 +228,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
             <div className='input_box pass5'>
               <label for="pass5" class="form-label">Повторите пароль</label>
               <input type="password" name='password2' disabled class="form-control" list="datalistOptions" id="pass5" placeholder="*********" />
-              <img src={eye} className="btnpass5" onClick={() => { const password2 = document.querySelector('#pass5'); return (password2.type == "password") ? password2.type = "text" : password2.type = "password" }} />
+              <img src={eye} className="btnpass5" onClick={() => { const password2 = document.querySelector('#pass5'); return (password2.type === "password") ? password2.type = "text" : password2.type = "password" }} alt='' />
             </div>
             <div className='input_box input_boxClass'>
               <label for="7" class="form-label class-lable">Класс</label>
@@ -257,7 +257,7 @@ function CreateAdminModal({ adminModal, setAdminModal }) {
                   pupil_class_str: event.target.value
                 })
               }} className="class2">
-                <option defaultValue='А'>"А"<img src={selectIcon} /></option>
+                <option defaultValue='А'>"А"<img src={selectIcon} alt='' /></option>
                 <option value='Б'>"Б"</option>
                 <option value='В'>"В"</option>
                 <option value='Г'>"Г"</option>

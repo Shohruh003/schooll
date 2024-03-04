@@ -22,7 +22,7 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
     };
   
     fetchData();
-  }, [classes?.classes]);
+  }, [classes?.classes,setLateComersPupils]);
 
     return (
         <div>
