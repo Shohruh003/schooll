@@ -1,0 +1,50 @@
+.modal_header{
+    display: flex ;
+    justify-content: space-between ;
+    padding-top: 10px;
+}
+
+.close_button {
+    margin-right: 40px;
+}
+
+.accordion-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.accordion-header > p {
+    margin: 0;
+    margin-right: 20px;
+}
+
+.accordion-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.accordion-listItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fullName {
+    margin: 0;
+}
+
+.accordion-item {
+    margin-top: 20px;
+}
+
+.userImage {
+    border-radius: 50%;
+}
+
+.accordion-listItem {
+    padding: 5px 0;
+    border-bottom: 1px solid black;
+}

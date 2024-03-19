@@ -35,7 +35,7 @@
 }
 
 .people_item {
-  width: 95%;
+  width: 100%;
   border: 2px solid #ffbe98;
   border-radius: 25px;
 }
@@ -179,6 +179,11 @@
 }
 
 @media screen and (max-width: 991px) {
+  .people_item {
+    width: 95%;
+    border: 2px solid #ffbe98;
+    border-radius: 25px;
+  }
   .people_create svg {
     display: block; 
     width: 23px;

@@ -214,7 +214,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
               <div className='modalHeader'>
               <img className='editUserImg' style={{objectFit: "cover"}} src={editUser?.main_image} width="100" height="50" alt='editUser'/>
               Изменить профиль
-                <img className='close_btn' onClick={() => setEditAdminModal(false)} src={close_Button} />
+                <img className='close_btn' onClick={() => setEditAdminModal(false)} src={close_Button} alt='icon' />
               </div>
             </Modal.Title>
           </thead>
@@ -246,7 +246,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
                   password: event.target.value
                 })
               }} type="password" class="form-control" list="datalistOptions" id="pass3" placeholder="*********" />
-              <img className="btnpass3" onClick={() => { const password1 = document.querySelector('#pass3'); return (password1.type == "password") ? password1.type = "text" : password1.type = "password" }} src={eye} />
+              <img className="btnpass3" onClick={() => { const password1 = document.querySelector('#pass3'); return (password1.type === "password") ? password1.type = "text" : password1.type = "password" }} src={eye} alt='icon' />
             </div>
             <div className='input_box'>
               <label for="4" class="form-label">Дата рождения</label>
@@ -260,7 +260,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
             <div className='input_box pass5'>
               <label for="pass5" class="form-label">Повторите пароль</label>
               <input    defaultValue={editUser?.password} disabled type="password" class="form-control" list="datalistOptions" id="pass5" placeholder="*********" />
-              <img src={eye} className="btnpass5" onClick={() => { const password2 = document.querySelector('#pass5'); return (password2.type == "password") ? password2.type = "text" : password2.type = "password" }} />
+              <img src={eye} className="btnpass5" onClick={() => { const password2 = document.querySelector('#pass5'); return (password2.type === "password") ? password2.type = "text" : password2.type = "password" }} alt='close button' />
             </div>
             <div className='input_box'>
               <label for="7" class="form-label class-lable">Класс</label>
@@ -270,7 +270,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
                   pupil_class: event.target.value
                 })
               }} id='7' className="classNum">
-                <option value='1'>1<img src={selectIcon} /></option>
+                <option value='1'>1<img src={selectIcon} alt='icon' /></option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
                 <option value='4'>4</option>
@@ -288,7 +288,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
                   pupil_class_str: event.target.value
                 })
               }} defaultValue={editUser?.pupil_class ? editUser?.pupil_class[0]?.slice(2, 3)?.toUpperCase(): ''} className="class2">
-                <option defaultValue='А'>"А"<img src={selectIcon} /></option>
+                <option defaultValue='А'>"А"<img src={selectIcon} alt='icon' /></option>
                 <option value='Б'>"Б"</option>
                 <option value='В'>"В"</option>
                 <option value='Г'>"Г"</option>

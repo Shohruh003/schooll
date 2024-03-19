@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { Modal } from 'react-bootstrap'; 
 import close_Button from '../../Image/close-btn.svg';
 import './notification.css'
@@ -20,7 +19,7 @@ function Notification () {
       >
           <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
           Текст сообщения
-          <img className='close_button' onClick={() => setModal(false)} src={close_Button} />
+          <img className='close_button' onClick={() => setModal(false)} src={close_Button} alt='close button' />
 
           </Modal.Title>
         {

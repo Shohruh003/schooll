@@ -122,6 +122,10 @@ function Pupil() {
       setWeekFullName(item?.full_name)
 }
 
+const isPsycholog = () => {
+  const currentPath = window.location.pathname;
+  return currentPath.endsWith('/psychologist/pupil');
+};
   return (
     <ul onScroll={(e) => handleScroll(e)} className="people_list" style={{ '--scrollbar-thumb': theme }}>
       {user?.map((item, index) => {
@@ -143,7 +147,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
         return (
 
           <li key={item.id}>
-            <div className="people_create">
+            {isPsycholog() ? <div></div> : <div className="people_create">
             <svg className="people_delete" onClick={() => deleteItem(item.id)} width="25" height="25" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="35" height="35" rx="1" fill={theme}/>
 <path d="M14 18V24C14 24.552 13.552 25 13 25C12.448 25 12 24.552 12 24V18C12 17.448 12.448 17 13 17C13.552 17 14 17.448 14 18ZM21 17C20.448 17 20 17.448 20 18V24C20 24.552 20.448 25 21 25C21.552 25 22 24.552 22 24V18C22 17.448 21.552 17 21 17ZM17 17C16.448 17 16 17.448 16 18V24C16 24.552 16.448 25 17 25C17.552 25 18 24.552 18 24V18C18 17.448 17.552 17 17 17ZM21.333 8.377C20.451 8.193 19.96 6.968 20.144 6.086L14.941 5C14.757 5.883 13.818 6.81 12.937 6.625L7.409 5.526L7 7.484L26.591 11.583L27 9.625L21.333 8.377ZM26 13V29H8V13H26ZM24 27V15H10V27H24Z" fill="#F5F5F5"/>
@@ -153,8 +157,7 @@ const newLastTime = dateTime2.toLocaleTimeString('uz-UZ', { hour: 'numeric', min
 <rect width="35" height="35" rx="1" fill={theme}/>
 <path d="M17 5C10.373 5 5 10.373 5 17C5 23.627 10.373 29 17 29C23.627 29 29 23.627 29 17C29 10.373 23.627 5 17 5ZM12 22L13.006 17.964L16.112 21.069L12 22ZM17.16 20.121L13.958 16.919L19.799 11L23 14.2L17.16 20.121Z" fill="#F5F5F5"/>
 </svg>
-
-            </div>
+            </div>}
             <div className="people_item" style={{ borderColor: theme }}>
             <Link className='people_link'>
               <img onClick={() => clickItem(item)} className='people_image' style={{objectFit: "cover"}} src={item?.main_image ?  item?.main_image : usersLogo} alt="People-img" width='100' height='100' />
