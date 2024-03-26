@@ -14,10 +14,9 @@ import { AuthContext } from '../../context/PupilContext';
 import api from '../Api/api';
 
 function Dashboard2() {
-    const {position, setPosition} = useContext(AuthContext)
+    const {position, setPosition, schoolNum, setSchoolNum} = useContext(AuthContext)
     const [dashpupil, setDashPupil] = useState()
     const [dashteacher, setDashteacher] = useState()
-    const [schoolNum, setSchoolNum] = useState()
     const [dashPupilEmo, setDashPupilEmo] = useState()
     useEffect(() => {
         const fetchPupils = async () => {
@@ -32,8 +31,6 @@ function Dashboard2() {
     
         fetchPupils();
       }, []);
-      const parcents = dashpupil?.Emotion_percent?.percent
-      const parcet = Number(parcents).toFixed(0)
 
     const logOut = () => {
 		localStorage.clear()

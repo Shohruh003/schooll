@@ -340,6 +340,7 @@ useEffect(() => {
       const onPupilClass = (evt) => {
         const pupilClassValue = evt?.target?.value;
         setPupilsClass(pupilClassValue);
+        localStorage.setItem('pupilClass', pupilClassValue);
       };
       
       const teachPupilsCount = teach?.pupils[pupilsClass ? pupilsClass : test]?.length;

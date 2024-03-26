@@ -91,13 +91,13 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     if (user?.status === 'pupil') {
       const apiUrl = `/users/pupils/${editUser?.id}/`;
       formData.delete('password')
-      formData.delete('main_image')
+      // formData.delete('main_image')
       formData.delete('email')
       formData.delete('status')
 
       api.patch(apiUrl, formData)
         .then((response) => {
-          console.log(response.data);
+          console.log(response);
           toast.success("Ma'lumot yangilandi!");
           setEditAdminModal(false)
           window.location.reload()
@@ -113,7 +113,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
         const apiUrl = `/users/users/${editUser?.id}/update_user/`;
         formData.delete('parent')
         formData.delete('is_morning')
-        formData.delete('main_image')
+        // formData.delete('main_image')
         api.patch(apiUrl, formData)
         .then((response) => {
           console.log(response.data);
@@ -131,7 +131,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
         const apiUrl = `/users/users/${editUser?.id}/update_user/`;
         formData.delete('parent')
         formData.delete('is_morning')
-        formData.delete('main_image')
+        // formData.delete('main_image')
         formData.delete('pupil_class')
         api.patch(apiUrl, formData)
         .then((response) => {
@@ -150,7 +150,7 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
         const apiUrl = `/users/users/${editUser?.id}/update_user/`;
         formData.delete('parent')
         formData.delete('is_morning')
-        formData.delete('main_image')
+        // formData.delete('main_image')
         formData.delete('pupil_class')
         api.patch(apiUrl, formData)
         .then((response) => {

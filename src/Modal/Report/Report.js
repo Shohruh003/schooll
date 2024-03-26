@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   Box,
   IconButton,
@@ -8,11 +8,44 @@ import './report.css'
 import { Accordion } from 'react-bootstrap';
 import CloseIcon from '@mui/icons-material/Close';
 import Image from '../../Image/peopleImg1.jpg'
+import { AuthContext } from '../../context/PupilContext';
+import api from '../../components/Api/api';
+import { DecodeHooks } from '../../Hooks/DecodeHook';
 
 const Report = ({ report, setReport }) => {
+  const {position, setPosition, schoolNum, setSchoolNum} = useContext(AuthContext)
+  const pupilClass = localStorage.getItem('pupilClass');
+  const {decode} = DecodeHooks()
   const handleClose = () => {
     setReport(false);
   };
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, '0');
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const year = today.getFullYear();
+  
+  const formattedDate = `${day}.${month}.${year}`;
+  console.log(formattedDate);
+  useEffect(() => {
+
+		const fetchClasses = async () => {
+			try {
+				const response = await api.get(`/users/users/${decode}/`);
+				setPosition(response.data.status)
+                try {
+                    const response1 = await api.get(`/TheSchool/schoolconfigs/${response?.data?.school}/`);
+                    setSchoolNum(response1.data.number)
+                } catch (error) {
+                    console.error(error);
+                }
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		fetchClasses();
+	}, [decode, setPosition]);
+
+  
   
 
   return (
@@ -54,10 +87,10 @@ const Report = ({ report, setReport }) => {
           <Box sx={{ marginTop: '20px' }} direction="row" spacing={2}>
 
           <h4 style={{display: 'flex', justifyContent: 'space-between'}}>
-                 <span>Школа N 64</span>
-                 <span>12.03.2024</span>
+                 <span>Школа N{schoolNum}</span>
+                 <span>{formattedDate}</span>
                </h4>
-               <p>Класса 5-A</p>
+               <p>Класса {pupilClass}</p>
                <p style={{display: 'flex', justifyContent: 'space-between'}}>
                  <span>Всего учеников</span>
                  <span>- 30</span>
@@ -112,7 +145,7 @@ const Report = ({ report, setReport }) => {
                    </li>
                    <li className="accordion-listItem">
                    <img className='userImage' src={Image} alt='user' width="50" height="50"/>
-                     <p className="fullName">Shohruh Azimov</p>
+                     <p className="fullName">Bobur Muhammadjokirjonov</p>
                    </li>
                    <li className="accordion-listItem">
                    <img className='userImage' src={Image} alt='user' width="50" height="50"/>
