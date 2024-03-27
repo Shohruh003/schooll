@@ -71,7 +71,9 @@ function EditAdminModal({ editAdminModal, setEditAdminModal }) {
     const password1 = document.querySelector('#pass3'); const password2 = document.querySelector('#pass5');
     if (password1.value !== password2.value) { return alert("Tasdiqlash paroli xato !") };
     const formData = new FormData()
-    // formData.append('main_image', imgref.current.files[0] ? imgref.current.files[0] : editUser?.main_image)
+    if (imgref.current.files[0] !== undefined) {
+      formData.append('main_image', imgref.current.files[0])
+    }
     formData.append('email', user?.email ? user?.email : editUser?.email)
     formData.append('full_name', user?.full_name ? user?.full_name : editUser?.full_name)
     formData.append('birth_date', user?.birth_date ? user?.birth_date : editUser?.birth_date)
