@@ -24,6 +24,7 @@ function Login() {
       console.log(response.data);
       localStorage.setItem('refreshToken', response.data?.refresh);
       localStorage.setItem('token', response.data?.access);
+      localStorage.setItem('decode', jwt_decode(response.data?.access).user_id);
       setDecode(jwt_decode(response.data?.access).user_id)
       navigate('/');
       window.location.reload()
