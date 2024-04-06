@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useContext, useEffect } from 'react';
 import { Modal } from 'react-bootstrap'; 
 import close_Button from '../../Image/close-btn.svg';
@@ -15,15 +14,19 @@ function MissingPupil ({missingPupil, setMissingPupil}) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const promises = Object.values(classes?.classes).flatMap((classData) => classData.absent_pupils.pupils)
-        setComersPupil(promises)
+        if (classes && classes.classes) {
+          const promises = Object.values(classes.classes)
+            .flatMap((classData) => classData?.absent_pupils?.pupils || []);
+          setComersPupil(promises);
+        }
       } catch (error) {
         console.log(error);
       }
     };
   
     fetchData();
-  }, [classes?.classes]);
+  }, [classes, setComersPupil]);
+  
     
 
     return (
@@ -38,7 +41,7 @@ function MissingPupil ({missingPupil, setMissingPupil}) {
       >
           <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
           Отсутствующие ученики
-          <img className='close_button' onClick={() => setMissingPupil(false)} src={close_Button} />
+          <img className='close_button' onClick={() => setMissingPupil(false)} src={close_Button} alt='icon' />
 
           </Modal.Title>
         <Modal.Body>

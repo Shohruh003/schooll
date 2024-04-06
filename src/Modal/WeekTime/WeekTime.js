@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import "./weekTime.css"
 import { Modal } from 'react-bootstrap';
 import { AuthContext } from '../../context/PupilContext';
@@ -18,11 +18,6 @@ function WeekTime () {
     }
   }
 
-  const currentDate = new Date();
-  const day = String(currentDate.getDate()).padStart(2, '0');
-  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const year = currentDate.getFullYear();
-
   function getLastWeekDates() {
     const currentDate = new Date();
     const lastWeekDates = [];
@@ -37,7 +32,6 @@ function WeekTime () {
     return lastWeekDates;
   }
   const result = getLastWeekDates();
-  const date1 = result[0];
   const date2 = result[1];
   const date3 = result[2];
   const date4 = result[3];
@@ -46,8 +40,6 @@ function WeekTime () {
   const date7 = result[6];
 
   const [profil, setProfil] = useState()
-  const [pia, setPia] = useState()
-  const [week, setWeek] = useState()
   const [week2, setWeek2] = useState()
   const [week3, setWeek3] = useState()
   const [week4, setWeek4] = useState()
@@ -61,7 +53,6 @@ function WeekTime () {
   const week4day = new Date(date4);
   const week3day = new Date(date3);
   const week2day = new Date(date2);
-  const week1day = new Date(date1);
   const weekday7 = weekdays[week7day?.getDay()];
   const weekday6 = weekdays[week6day?.getDay()];
   const weekday5 = weekdays[week5day?.getDay()];
@@ -71,7 +62,8 @@ function WeekTime () {
 
   useEffect(() => { 
     const fetchPrentPupils = async () => {
-      try {
+      if(deleteId !== undefined) {
+        try {
           const response = await api.get(`/users/pupils/${deleteId}/`);
           setProfil(response.data)
       } catch (error) {
@@ -81,7 +73,6 @@ function WeekTime () {
 
     try {
         const response = await api.get(`/users/emotions/${deleteId}/for_week/`);
-        setWeek(response.data)
         const data2 = response.data[date2]
         const data3 = response.data[date3]
         const data4 = response.data[date4]
@@ -99,10 +90,14 @@ function WeekTime () {
     } catch (error) {
         console.error(error);
     }
+      }
+      
   };
 
   fetchPrentPupils();
-}, [deleteId]);
+}, [deleteId, date2, date3, date4, date5, date6, date7]);
+
+
 
 
   const formattedTime2 = new Date(week2?.first?.time).toLocaleTimeString('uz-UZ', {
@@ -202,59 +197,59 @@ const formattedTime2week = new Date(week2?.last?.time).toLocaleTimeString('uz-UZ
                 <ul className='week_list weekThemes'>
                                 <li className='week_item'>
                                     <p>{weekday2}</p>
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week2?.first?.thumbnail}/>
+                                    <img alt='firstImg' className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week2?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime2 === 'Invalid Date' ? '--:--' : formattedTime2}</span>
                                     <span className='days'>{date2}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week2?.last?.thumbnail}/>
+                                    <img alt='lastImg' className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week2?.last?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime2week === formattedTime2 ? '--:--' : formattedTime2week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday3}</p>
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week3?.first?.thumbnail}/>
+                                    <img alt='firstImg' className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week3?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime3 === 'Invalid Date' ? '--:--' : formattedTime3}</span>
                                     <span className='days'>{date3}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week3?.last?.thumbnail}/>
+                                    <img alt='lastImg' className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week3?.last?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime3week === formattedTime3 ? '--:--' : formattedTime3week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday4}</p>
 
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week4?.first?.thumbnail}/>
+                                    <img alt='firstImg' className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week4?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime4 === 'Invalid Date' ? '--:--' : formattedTime4}</span>
                                     <span className='days'>{date4}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week4?.last?.thumbnail}/>
+                                    <img alt='lastImg' className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week4?.last?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime4week === formattedTime4 ? '--:--' : formattedTime4week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday5}</p>
 
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week5?.first?.thumbnail}/>
+                                    <img alt='firstImg' className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week5?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime5 === 'Invalid Date' ? '--:--' : formattedTime5}</span>
                                     <span className='days'>{date5}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week5?.last?.thumbnail}/>
+                                    <img alt='lastImg' className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week5?.last?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime5week === formattedTime5 ? '--:--' : formattedTime5week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday6}</p>
 
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week6?.first?.thumbnail}/>
+                                    <img alt='firstImg' className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week6?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime6 === 'Invalid Date' ? '--:--' : formattedTime6}</span>
                                     <span className='days'>{date6}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week6?.last?.thumbnail}/>
+                                    <img alt='lastImg' className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week6?.last?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime6week === formattedTime6 ? '--:--' : formattedTime6week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday7}</p>
 
-                                    <img className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week7?.first?.thumbnail}/>
+                                    <img alt='firstImg' className='weekImg_come' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week7?.first?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime7 === 'Invalid Date' ? '--:--' : formattedTime7}</span>
                                     <span className='days'>{date7}</span>
-                                    <img className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week7?.last?.thumbnail}/>
+                                    <img alt='lastImg' className='weekImg_leave' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week7?.last?.thumbnail}/>
                                     <span className='weekItem_time'>{formattedTime7week === formattedTime7 ? '--:--' : formattedTime7week}</span>
                                 </li>
                             </ul>

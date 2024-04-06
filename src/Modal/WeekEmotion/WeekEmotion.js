@@ -48,12 +48,14 @@ function WeekEmotion () {
 
   useEffect(() => {
     const fetchPupils = async () => {
+      if(deleteId !== undefined) {
         try {
         const response = await api.get(`/users/emotions/${deleteId}/weekly_diagram_v2/`);
             setBar(response.data)
         } catch (error) {
             console.error(error);
         }
+      }
     };
     fetchPupils();
 }, [deleteId]);

@@ -259,7 +259,7 @@ function Admin(props) {
   const femaleCheckbox = document?.getElementById("femaleCheckbox");
 
   const hendlStatus = (x) => {
-    if (x == "teacher") {
+    if (x === "teacher") {
       c1.disabled = true;
       c2.disabled = true;
       search_pupil.disabled = true;

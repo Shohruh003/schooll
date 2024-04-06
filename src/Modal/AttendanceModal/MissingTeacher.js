@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useContext, useEffect } from 'react';
 import { Modal } from 'react-bootstrap'; 
 import close_Button from '../../Image/close-btn.svg';
@@ -28,7 +27,7 @@ function MissingTeacher ({missingTeacher, setMissingTeacher}) {
     };
   
     fetchTeachers();
-  }, []);
+  }, [setMissingTeachers]);
 
     return (
         <div>
@@ -42,7 +41,7 @@ function MissingTeacher ({missingTeacher, setMissingTeacher}) {
       >
           <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
           Отсутствующие преподаватели
-          <img className='close_button' onClick={() => setMissingTeacher(false)} src={close_Button} />
+          <img className='close_button' onClick={() => setMissingTeacher(false)} src={close_Button} alt='icon' />
 
           </Modal.Title>
         <Modal.Body>

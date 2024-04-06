@@ -15,21 +15,23 @@ function AgressiyaPupil({ agressiyaModal, setAgressiyaModal }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const promises = classes?.extra?.angry?.map(async (item) => {
-          const response = await api.get(
-            `/users/pupils/${item?.id}`);
-          return response.data;
-        });
-
-        const agressiyaData = await Promise.all(promises);
-        setAgressiya(agressiyaData);
+        if (classes && classes.extra && Array.isArray(classes.extra.angry)) {
+          const promises = classes.extra.angry.map(async (item) => {
+            const response = await api.get(`/users/pupils/${item?.id}`);
+            return response.data;
+          });
+  
+          const agressiyaData = await Promise.all(promises);
+          setAgressiya(agressiyaData);
+        }
       } catch (error) {
         console.log(error);
       }
     };
-
+  
     fetchData();
-  }, [classes?.extra?.sad]);
+  }, [classes]);
+  
 
   return (
     <Modal

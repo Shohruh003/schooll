@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useContext, useEffect } from 'react';
 import { Modal } from 'react-bootstrap'; 
 import close_Button from '../../Image/close-btn.svg';
@@ -15,19 +14,23 @@ function LateComersTeacher ({lateComersTeacher, setLateComersTeacher}) {
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const response = await api.get('/users/users/?status=teacher&is_absent=true');
-        const result = response?.data?.results?.map((e) => {
-          if (e?.is_lated === "true") {
-            setLateComersTeachers(response.data);
-          }
-        })
+        const response = await api.get('/users/users/?status=teacher');
+        const responseData = response?.data?.results;
+        if (responseData) {
+          responseData?.map((e) => {
+            if (e?.is_lated === "true") {
+              setLateComersTeachers(responseData);
+            }
+          });
+        }
       } catch (error) {
         console.error(error);
       }
     };
   
     fetchTeachers();
-  }, []);
+  }, [setLateComersTeachers]);
+  
     
 
     return (
@@ -42,7 +45,7 @@ function LateComersTeacher ({lateComersTeacher, setLateComersTeacher}) {
       >
           <Modal.Title style={{color: theme}} className='modal_header' id="example-custom-modal-styling-title">
           Опоздавшие преподавателей
-          <img className='close_button' onClick={() => setLateComersTeacher(false)} src={close_Button} />
+          <img className='close_button' onClick={() => setLateComersTeacher(false)} src={close_Button} alt='icon' />
 
           </Modal.Title>
         <Modal.Body>

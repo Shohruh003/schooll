@@ -30,37 +30,35 @@ document.head.appendChild(style);
     setReport(true)
   };
 
-        useEffect(() => {
-          const fetchParents = async () => {
-              try {
-                  const response = await api.get(`/users/pupils/classes/`);
-                  setClasses(response.data)
-                  setDepres(Math.round(response.data.classes[test]?.sad_avg))
-
-                  try {
-                    const presentPupilIds = response.data?.classes[test]?.absent_pupils?.pupils;
-                    const promises = presentPupilIds?.map(async (id) => {
-                      const response1 = await api.get(`/users/pupils/${id.id}`);
-                      return response1.data;
-                    });
-                    const presentPupilsData = await Promise.all(promises);
-                    setPupilMissing(presentPupilsData);
-                  } catch (error) {
-                    console.log(error);
-                  }
-              } catch (error) {
-                  console.error(error);
-              }
-          };
-          fetchParents();
-      }, [decode,test,setClasses, setDepres]);
+  useEffect(() => {
+    const fetchParents = async () => {
+      try {
+        const response = await api.get(`/users/pupils/classes/`);
+        setClasses(response.data);
+        setDepres(Math.round(response.data.classes[test]?.sad_avg));
+  
+        const presentPupilIds = response.data?.classes[test]?.absent_pupils?.pupils;
+        if (Array.isArray(presentPupilIds)) {
+          const promises = presentPupilIds.map(async (id) => {
+            const response1 = await api.get(`/users/pupils/${id.id}`);
+            return response1.data;
+          });
+          const presentPupilsData = await Promise.all(promises);
+          setPupilMissing(presentPupilsData);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchParents();
+  }, [decode, test, setClasses, setDepres]);
+  
 
         useEffect(() => {
             const fetchParents = async () => {
                 try {
                     const response = await api.get(`/users/users/${decode}/`);
                     setTest(response.data?.pupil_class[0])
-                    console.log(response.data);
                     setTeach(response.data)
                 } catch (error) {
                     console.error(error);
@@ -276,25 +274,29 @@ useEffect(() => {
         });
       }, [decode,]);
 
-      const fetchData1 = async () => {
-        try {
-          const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
-          const promises = pupilIds?.map(async (id) => {
-            const response = await api.get(`/users/pupils/${id}/`);
-            return response.data;
-          });
       
-          const absentPupilsData = await Promise.all(promises);
-          setTeacherPupils(absentPupilsData);
-          setOriginalUsers(absentPupilsData);
-        } catch (error) {
-          console.log(error);
-        }
-      };
       
       useEffect(() => {
+        const fetchData1 = async () => {
+          try {
+            const pupilIds = teach?.pupils[teach?.pupil_class[0]]?.map((pupil) => pupil.id);
+            if (Array.isArray(pupilIds)) {
+              const promises = pupilIds.map(async (id) => {
+                const response = await api.get(`/users/pupils/${id}/`);
+                return response.data;
+              });
+        
+              const absentPupilsData = await Promise.all(promises);
+              setTeacherPupils(absentPupilsData);
+              setOriginalUsers(absentPupilsData);
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        };
         fetchData1();
-      }, []);
+      }, [setOriginalUsers, setTeacherPupils, teach]);
+      
 
       useEffect(() => {
         const fetchData = async () => {
@@ -312,7 +314,7 @@ useEffect(() => {
               params.filter_by_emotion = pupilEmotion;
             }
             const pupilIds = teach?.pupils[pupilsClass ? pupilsClass : test]?.map((pupil) => pupil.id);
-            console.log(teach?.pupils);
+            
             const promises1 = pupilIds?.map(async (id) => {
               const response2 = await api.get(`/users/pupils/${id}/`);
               return response2.data;
@@ -323,19 +325,23 @@ useEffect(() => {
             setOriginalUsers(absentPupilsData);
       
             const presentPupilIds = classes?.classes[pupilsClass ? pupilsClass : test]?.absent_pupils?.id;
-            const promises2 = presentPupilIds?.map(async (id) => {
-              const response3 = await api.get(`/users/pupils/${id}`);
-              return response3.data;
-            });
-            const presentPupilsData = await Promise.all(promises2);
-            setPupilMissing(presentPupilsData);
+      
+            if (presentPupilIds && Array.isArray(presentPupilIds)) {
+              const promises2 = presentPupilIds.map(async (id) => {
+                const response3 = await api.get(`/users/pupils/${id}`);
+                return response3.data;
+              });
+              const presentPupilsData = await Promise.all(promises2);
+              setPupilMissing(presentPupilsData);
+            }
           } catch (error) {
             console.log(error);
           }
         };
       
         fetchData();
-      }, [pupilsClass, genders, pupilEmotion, teach, classes,setDepres,setOriginalUsers,setTeacherPupils,test]);
+      }, [pupilsClass, genders, pupilEmotion, teach, classes, setDepres, setOriginalUsers, setTeacherPupils, test]);
+      
       
       const onPupilClass = (evt) => {
         const pupilClassValue = evt?.target?.value;

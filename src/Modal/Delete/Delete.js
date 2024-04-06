@@ -1,16 +1,11 @@
-import axios from 'axios';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Modal } from 'react-bootstrap';
 import { AuthContext } from '../../context/PupilContext';
-
 import "./delete.css"
 import api from '../../components/Api/api';
 
 function Delete ({deleteUser, setDeleteUser}) {
   const {theme, deleteId} = useContext(AuthContext)
-  
-
-
 
     const deletePupils = async () => {
       try {

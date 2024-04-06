@@ -19,22 +19,23 @@ function DepressiyaPupil ({depressiyaModal, setDepressiyaModal}) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const promises = classes?.extra?.sad?.map(async (item) => {
-          const response = await api.get(
-            `/users/pupils/${item?.id}`
-          );
-          return response.data;
-        });
-
-        const depressiyaData = await Promise.all(promises);
-        setDepressiya(depressiyaData);
+        if (classes && classes.extra && Array.isArray(classes.extra.sad)) {
+          const promises = classes.extra.sad.map(async (item) => {
+            const response = await api.get(`/users/pupils/${item?.id}`);
+            return response.data;
+          });
+  
+          const depressiyaData = await Promise.all(promises);
+          setDepressiya(depressiyaData);
+        }
       } catch (error) {
         console.log(error);
       }
     };
-
+  
     fetchData();
-  }, [classes?.extra?.angry]);
+  }, [classes]);
+  
     return (
         <Modal
          className='modal custom-modal'

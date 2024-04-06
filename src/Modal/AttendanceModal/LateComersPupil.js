@@ -14,15 +14,19 @@ function LateComersPupil ({lateComersPupil, setLateComersPupil}) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const promises = Object.values(classes?.classes).flatMap((classData) => classData.present_pupils.pupils)
-        setLateComersPupils(promises)
+        if (classes && classes.classes) {
+          const promises = Object.values(classes.classes)
+            .flatMap((classData) => classData?.present_pupils?.pupils || []);
+          setLateComersPupils(promises);
+        }
       } catch (error) {
         console.log(error);
       }
     };
   
     fetchData();
-  }, [classes?.classes,setLateComersPupils]);
+  }, [classes, setLateComersPupils]);
+  
 
     return (
         <div>

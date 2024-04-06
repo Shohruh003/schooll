@@ -25,7 +25,6 @@ const Report = ({ report, setReport }) => {
   const year = today.getFullYear();
   
   const formattedDate = `${day}.${month}.${year}`;
-  console.log(formattedDate);
   useEffect(() => {
 
 		const fetchClasses = async () => {
@@ -43,7 +42,7 @@ const Report = ({ report, setReport }) => {
 			}
 		};
 		fetchClasses();
-	}, [decode, setPosition]);
+	}, [decode, setPosition, setSchoolNum]);
 
   
   
