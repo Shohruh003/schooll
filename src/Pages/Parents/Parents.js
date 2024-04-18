@@ -620,7 +620,7 @@ const piHappy = Math.round(pia?.happy)
                         </div>
 
                         <div className='column'>
-                            <h4>Эмоции за неделю</h4>
+                            <h4 className='week_heading'>Эмоции за неделю</h4>
 			                <div className='column_inner'>
 
                     <BarChart

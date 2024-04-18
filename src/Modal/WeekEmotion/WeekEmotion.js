@@ -3,7 +3,6 @@ import "./weekEmotion.css"
 import { Modal } from 'react-bootstrap';
 import { AuthContext } from '../../context/PupilContext';
 import { BarChart } from '@mui/x-charts';
-import styled from '@emotion/styled';
 import api from '../../components/Api/api';
 
 

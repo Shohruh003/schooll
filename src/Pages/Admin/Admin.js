@@ -99,7 +99,7 @@ function Admin(props) {
     } else {
       applyDefaultTheme();
     }
-  }, []);
+  }, [setTheme]);
 
   useEffect(() => {
     applyTheme();
@@ -122,7 +122,7 @@ function Admin(props) {
     };
 
     fetchPupils();
-  }, []);
+  }, [setPupilCount]);
 
   useEffect(() => {
     const fetchPupils = async () => {
@@ -137,7 +137,7 @@ function Admin(props) {
     };
 
     fetchPupils();
-  }, []);
+  }, [setTeacherCount]);
 
   const applyTheme = () => {
     const body = document.body;
