@@ -77,11 +77,11 @@
 
 .header-link:hover {
   border: none;
-  background-color: rgba(255, 190, 152,0.25);
+  background-color: rgba(255, 190, 152, 0.25);
 }
 
 .header-active svg {
-  border:  1px solid white;
+  border: 1px solid white;
 }
 .header-active:hover svg {
   border: none;
@@ -92,7 +92,7 @@
   height: 100px;
 }
 
-.navLinkIcon0{
+.navLinkIcon0 {
   width: 90px;
   height: 100px;
 }
@@ -100,7 +100,7 @@
 .navLinkName {
   font-size: 18px;
   font-weight: 400;
-  color:#161B23;
+  color: #161b23;
   margin: 0;
   margin-top: 10px;
   margin-bottom: 15px;
@@ -110,13 +110,13 @@
   margin: 0;
 }
 
-.quantity{
+.quantity {
   font-size: 18px;
   font-weight: 700;
-  color: #161B23;
+  color: #161b23;
 }
 
-.people_heading{
+.people_heading {
   display: block;
   font-size: 18px;
   font-weight: 600;
@@ -132,7 +132,8 @@
   list-style-type: none;
 }
 
-.c1 , .c2 {
+.c1,
+.c2 {
   width: 30px;
   padding: 0px 5px;
   margin: 0 5px;
@@ -149,7 +150,7 @@
   margin-right: auto;
   border: 2px solid #ffbe98;
   border-radius: 20px;
-}   
+}
 
 .age-search span {
   font-size: 12px;
@@ -160,7 +161,7 @@
 }
 
 .people_list::-webkit-scrollbar-thumb {
-  background-color:#ffbe98;
+  background-color: #ffbe98;
   border-radius: 4px;
 }
 
@@ -178,16 +179,15 @@
   text-decoration: none;
 }
 
-
 .people_link p {
   margin: 0;
   padding: 8px 30px;
   border-left: 2px solid #ffbe98;
   text-align: center;
-  color: #161B23;
-} 
+  color: #161b23;
+}
 
-.people_name{
+.people_name {
   font-size: 20px;
   font-weight: 400;
   text-align: center;
@@ -200,7 +200,7 @@
   border-radius: 50px;
 }
 
-.admin_panel{
+.admin_panel {
   display: block;
   text-align: center;
   padding: 20px 20px 20px 20px;
@@ -208,7 +208,7 @@
   border-radius: 20px;
 }
 
-.panel_heading{
+.panel_heading {
   font-size: 22px;
   font-weight: 700;
   padding: 10px 5px;
@@ -217,7 +217,7 @@
   background-color: #ffbe98;
 }
 
-.panel_list{
+.panel_list {
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -231,7 +231,7 @@
 .item_button {
   width: 200px;
   padding: 10px 0;
-  color: #161B23;
+  color: #161b23;
   font-size: 22px;
   font-weight: 600;
   border: 2px solid #ffbe98;
@@ -248,8 +248,7 @@
   font-weight: 600;
   border: none;
   border-radius: 50px;
-  color: #ffffff;  
-  background-color: #ffbe98;
+  color: #ffffff;
 }
 
 .panel_button:hover {
@@ -261,7 +260,7 @@
 }
 
 .panel_button:hover {
-  background-color: rgba(250, 128, 114,0.4);
+  background-color: rgba(250, 128, 114, 0.4);
 }
 
 .panel_button:active {
@@ -274,24 +273,24 @@
 }
 
 .emotions.Нейтраль {
-  background-color: #81B37A;
+  background-color: #81b37a;
   border-top-right-radius: 22px;
   border-bottom-right-radius: 22px;
 }
 
-.emotions.Веселье{
+.emotions.Веселье {
   background-color: #ffa500;
   border-top-right-radius: 22px;
   border-bottom-right-radius: 22px;
 }
 
-.emotions.Грусть{
+.emotions.Грусть {
   background-color: #c0c0c0;
   border-top-right-radius: 22px;
   border-bottom-right-radius: 22px;
 }
 
-.emotions.Злость{
+.emotions.Злость {
   background-color: #ffbe98;
   border-top-right-radius: 22px;
   border-bottom-right-radius: 22px;
@@ -315,10 +314,10 @@
   outline: none;
   padding: 14px 0;
   padding-left: 15px;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 
-.search_danger{
+.search_danger {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -327,18 +326,18 @@
   margin-right: auto;
 }
 
-.radio_label{
+.radio_label {
   display: flex;
   align-items: center;
   font-size: 16px;
 }
 
-.radio_button{
-  margin:5px 10px;
+.radio_button {
+  margin: 5px 10px;
   transform: scale(1.3);
 }
 
-.search_select{
+.search_select {
   padding: 14px 30px;
   outline: none;
 }
@@ -386,7 +385,7 @@
   margin: 0;
 }
 
-.fon_icon{
+.fon_icon {
   width: 50px;
   height: 50px;
 }
@@ -400,7 +399,6 @@
   width: 59px;
   height: 59px;
 }
-
 
 .admin_boardSpan {
   padding: 0;
@@ -419,7 +417,7 @@
   background-color: #ffbe98;
 }
 
-.domIcon{
+.domIcon {
   display: flex;
 }
 
@@ -428,9 +426,9 @@
   margin-right: 15px;
 }
 
-.modal_header{
-  display: flex ;
-  justify-content: space-between ;
+.modal_header {
+  display: flex;
+  justify-content: space-between;
   padding-top: 10px;
 }
 
@@ -449,13 +447,11 @@
   font-weight: 600;
   border: none;
   border-radius: 50px;
-  color: #ffffff;  
+  color: #ffffff;
   background-color: #ffbe98;
 }
 
 /* ==========================Responsive====================== */
-
-
 
 @media screen and (max-width: 1400px) {
   .domIcons {
@@ -466,19 +462,19 @@
     width: 50px;
     height: 50px;
   }
-  .admin_panel{
+  .admin_panel {
     margin-left: auto !important;
   }
-  
+
   .search_label {
     width: 250px !important;
     height: 50px !important;
   }
-  
+
   .search_input {
     width: 200px !important;
   }
-  
+
   .site-logo {
     width: 300px !important;
   }
@@ -492,7 +488,7 @@
   .attendance {
     max-height: 140px !important;
   }
-  .sms_count{
+  .sms_count {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -507,23 +503,22 @@
     margin-top: 20px;
     padding: 10px 10px 0 10px;
   }
-  
-  .attendance_name{
+
+  .attendance_name {
     margin: 0;
     font-size: 13px !important;
     font-weight: 400;
-    color: #161B23;
+    color: #161b23;
   }
-  
+
   .attendance_avatar {
     border-radius: 50px;
   }
 
-
-  .admin_panel{
+  .admin_panel {
     margin-left: auto !important;
   }
-  
+
   .search_label {
     display: flex !important;
     align-items: center !important;
@@ -531,19 +526,18 @@
     width: 200px !important;
     height: 40px !important;
   }
-  
+
   .search_input {
     display: flex !important;
     width: 160px !important;
     min-width: 160px !important;
   }
-  
+
   .site-logo {
     width: 250px !important;
   }
 
-
-  .admin_panel{
+  .admin_panel {
     width: 250px !important;
   }
 
@@ -554,16 +548,17 @@
   .admin_boardHead {
     font-size: 45px !important;
   }
-  
+
   .admin_boardSpan {
     font-size: 30px !important;
   }
-  
+
   .adminBoard_header {
     width: 250px !important;
   }
 
-  .header_icon , .domIcons{
+  .header_icon,
+  .domIcons {
     width: 40px !important;
     height: 40px !important;
   }
@@ -579,7 +574,7 @@
 }
 
 @media screen and (max-width: 991px) {
-  .sms_count{
+  .sms_count {
     font-size: 10px;
     width: 15px !important;
     height: 15px !important;
@@ -594,32 +589,32 @@
   .attendance {
     max-height: 130px !important;
   }
-  
-  .attendance_name{
+
+  .attendance_name {
     margin: 0;
     font-size: 12px !important;
   }
-  
+
   .attendance_avatar {
     width: 40px !important;
     height: 40px !important;
     max-width: 40px !important;
     min-width: 40px !important;
   }
-  
+
   .search_label {
     width: 150px !important;
     height: 30px !important;
   }
-  
+
   .search_input {
     width: 120px !important;
     min-width: 120px !important;
     font-size: 14px !important;
   }
 
-  
-  .header_icon , .domIcons{
+  .header_icon,
+  .domIcons {
     width: 30px !important;
     height: 30px !important;
   }
@@ -632,13 +627,12 @@
     width: 30px !important;
     height: 30px !important;
   }
-  
+
   .site-logo {
     width: 200px !important;
   }
 
-
-  .admin_panel{
+  .admin_panel {
     width: 170px !important;
     padding: 10px 10px 10px 10px !important;
     margin-left: auto !important;
@@ -651,11 +645,11 @@
   .admin_boardHead {
     font-size: 30px !important;
   }
-  
+
   .admin_boardSpan {
     font-size: 20px !important;
   }
-  
+
   .adminBoard_header {
     width: 180px !important;
   }
@@ -665,24 +659,24 @@
     height: 170px !important;
     padding: 10px;
   }
-  
+
   .navLinkIcon {
     width: 80px !important;
     height: 80px !important;
   }
-  
-  .navLinkIcon0{
+
+  .navLinkIcon0 {
     width: 70px !important;
     height: 80px !important;
   }
-  
+
   .navLinkName {
     font-size: 16px !important;
     margin-top: 10px;
     margin-bottom: 15px;
   }
-  
-  .quantity{
+
+  .quantity {
     font-size: 16px !important;
   }
 
@@ -693,22 +687,23 @@
   }
 
   .panel_button {
-      margin-top: 20px;
-      padding: 5px 18px !important;
-      font-size: 16px !important;
+    margin-top: 20px;
+    padding: 5px 18px !important;
+    font-size: 16px !important;
   }
-  
-  .c1 , .c2 {
+
+  .c1,
+  .c2 {
     width: 25px !important;
     padding: 0 !important;
     margin: 0 !important;
   }
-  
+
   .age-search {
     width: 150px !important;
     padding: 10px 15px !important;
-  }   
-  
+  }
+
   .age-search span {
     font-size: 10px !important;
   }
@@ -719,8 +714,7 @@
 }
 
 @media screen and (max-width: 767px) {
-
-  .attendance_div{
+  .attendance_div {
     display: none;
   }
 
@@ -729,8 +723,8 @@
     padding: 7px 30px;
     font-size: 22px;
   }
-  
-  .admin_page{
+
+  .admin_page {
     overflow-x: hidden !important;
   }
 
@@ -761,14 +755,14 @@
     padding: 10px 10px !important;
   }
 
-  .search_pupil{
+  .search_pupil {
     font-size: 18px !important;
     padding: 8px 0 !important;
     padding-left: 15px;
   }
 
   .radio_button {
-    margin:2px 5px;
+    margin: 2px 5px;
   }
 
   .item_button {
@@ -788,7 +782,7 @@
     margin: 0 0 10px 0 !important;
   }
 
-  .panel_button{
+  .panel_button {
     display: none !important;
   }
   .header {
@@ -801,13 +795,11 @@
 }
 
 @media screen and (max-width: 500px) {
-
   .panel_heading {
     margin: 0;
     padding: 5px 0 !important;
   }
 
-  
   .panel_list li {
     margin: 5px 0 0 0 !important;
   }
@@ -831,7 +823,7 @@
     font-size: 6px !important;
   }
 
-  .panel_item .search_pupil{
+  .panel_item .search_pupil {
     font-size: 12px !important;
     padding: 8px 0 !important;
     padding-left: 15px;
@@ -840,7 +832,7 @@
   .radio_button {
     width: 10px;
     height: 10px;
-    margin:2px 5px;
+    margin: 2px 5px;
   }
 
   .ageSearch {
@@ -872,7 +864,7 @@
     font-size: 20px;
   }
 
-  .site-logo{
+  .site-logo {
     width: 200px !important;
   }
   .header-link {
@@ -880,14 +872,12 @@
     height: 130px !important;
   }
 
-  .navLinkName{
+  .navLinkName {
     font-size: 12px !important;
   }
 }
 
-
 @media screen and (max-width: 444px) {
-
   .search_label {
     width: 300px !important;
   }
@@ -909,7 +899,6 @@
 }
 
 @media screen and (max-width: 390px) {
-
   .search_label {
     width: 250px !important;
   }
@@ -919,18 +908,17 @@
     height: 115px !important;
   }
 
-  .navLinkName{
+  .navLinkName {
     font-size: 10px !important;
     margin-top: 5px !important;
   }
 
-  .quantity{
+  .quantity {
     font-size: 12px !important;
   }
 }
 
 @media screen and (max-width: 360px) {
-
   .search_label {
     width: 220px !important;
   }

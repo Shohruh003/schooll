@@ -24,7 +24,7 @@ export const Private = () => {
     };
   
     fetchClasses();
-  }, [decode]);
+  }, [decode, setPosition]);
     if (position === 'admin' || position === 'psychologist') {
       return (
           <Routes>

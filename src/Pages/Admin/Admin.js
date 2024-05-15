@@ -34,7 +34,6 @@ function Admin(props) {
   } = useContext(AuthContext);
   const [adminModal, setAdminModal] = useState();
   const { decode } = DecodeHooks();
-  const [teach, setTeach] = useState();
 
 
   useEffect(() => {
@@ -45,23 +44,7 @@ function Admin(props) {
       .catch((error) => {
         console.log(error);
       });
-  }, [])
-
-  
-  useEffect(() => {
-    const fetchParents = async () => {
-      try {
-        const response = await api.get(
-          `/users/users/${decode}/`
-        );
-        setTeach(response?.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchParents();
-  }, [decode]);
+  }, [setClasses])
 
   const handleModal = () => {
     try {
@@ -90,7 +73,7 @@ function Admin(props) {
     };
 
     fetchNotification();
-  }, [decode]);
+  }, [decode, setNotification, setNotificationCount]);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");

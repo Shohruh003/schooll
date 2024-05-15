@@ -1,13 +1,12 @@
-import { Private } from './Private';
-import { Public } from './Public';
-
+import { Private } from "./Private";
+import { Public } from "./Public";
 
 function App() {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   if (token) {
-    return <Private/>
+    return <Private />;
   }
-  return <Public/>
+  return <Public />;
 }
 
 export default App;

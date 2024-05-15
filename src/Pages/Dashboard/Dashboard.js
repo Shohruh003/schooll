@@ -31,7 +31,7 @@ function Dashboard () {
 			};
 		
 			fetchPupils();
-		  }, []);
+		  }, [setClasses]);
 
 	const logOut = () => {
 		localStorage.clear()
@@ -45,7 +45,7 @@ function Dashboard () {
 		} else {
 			applyDefaultTheme();
 		}
-	}, []);
+	}, [setTheme]);
 
 	useEffect(() => {
 		applyTheme();
@@ -158,7 +158,7 @@ function Dashboard () {
 		};
 
 		fetchPupils();
-	}, []);
+	}, [setPupilEmotion]);
 const neutralTeacher = teacherEmotion?.neutral?.count
 		const happyTeacher = teacherEmotion?.happy?.count
 		const sadTeacher = teacherEmotion?.sad?.count

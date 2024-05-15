@@ -56,7 +56,7 @@ function Dashboard2() {
 			}
 		};
 		fetchClasses();
-	}, [decode, setPosition]);
+	}, [decode, setPosition, setSchoolNum]);
 
     
 	useEffect(() => {

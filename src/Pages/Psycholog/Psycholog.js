@@ -28,7 +28,7 @@ function Psycholog(props) {
     } else {
       applyDefaultTheme();
     }
-  }, []);
+  }, [setTheme]);
 
   useEffect(() => {
     applyTheme();
@@ -49,7 +49,7 @@ function Psycholog(props) {
     };
 
     fetchPupils();
-  }, []);
+  }, [setPupilCount]);
 
   useEffect(() => {
     const fetchClasses = async () => {
@@ -62,7 +62,7 @@ function Psycholog(props) {
     };
 
     fetchClasses();
-  }, []);
+  }, [setClasses]);
 
   useEffect(() => {
     const fetchPupils = async () => {
@@ -75,7 +75,7 @@ function Psycholog(props) {
     };
 
     fetchPupils();
-  }, []);
+  }, [setTeacherCount]);
 
   const applyTheme = () => {
     const body = document.body;
@@ -178,19 +178,6 @@ function Psycholog(props) {
     }
   };
 
-  var userslar = []
-  const fetchPupils = async () => {
-    try {
-     const response = await api.get(
-        `/users/pupils/`
-      );
-      userslar = await response.data.results;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  fetchPupils();
   const handleEmotionChange = (event) => {
     const selectedEmotion = event.target.value;
     setPupilEmotion(selectedEmotion);
@@ -214,7 +201,7 @@ function Psycholog(props) {
   };
 
   fetchNotification();
-}, [decode]);
+}, [decode, setNotification, setNotificationCount]);
 
   const handleModal = () => {
     try {
@@ -233,7 +220,7 @@ const femaleCheckbox = document?.getElementById('femaleCheckbox')
 
 const hendlStatus = (x) => {
   
-  if (x == 'teacher') {
+  if (x === 'teacher') {
     c1.disabled = true
     c2.disabled = true
     search_pupil.disabled = true
