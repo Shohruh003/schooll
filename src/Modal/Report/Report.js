@@ -3,11 +3,9 @@ import { Box, IconButton, Modal } from "@mui/material";
 import "./report.css";
 import { Accordion } from "react-bootstrap";
 import CloseIcon from "@mui/icons-material/Close";
-import Image from "../../Image/peopleImg1.jpg";
 import { AuthContext } from "../../context/PupilContext";
 import api from "../../components/Api/api";
 import { DecodeHooks } from "../../Hooks/DecodeHook";
-import { Link } from "react-router-dom";
 import usersLogo from "../../Image/photo_people.jpg";
 
 const Report = ({ report, setReport }) => {
@@ -23,11 +21,14 @@ const Report = ({ report, setReport }) => {
   const year = today.getFullYear();
   const { theme, pupilsClass, teach, setDepres, setTeach, setClasses } =
     useContext(AuthContext);
-  const [pupilMissing, setPupilMissing] = useState();
+  const [pupilMissing, setPupilMissing] = useState([]);
   const [test, setTest] = useState();
+  const [latePupils, setLatePupils] = useState([]);
   const teachPupilsCount =
     teach?.pupils[pupilsClass ? pupilsClass : test]?.length;
   const formattedDate = `${day}.${month}.${year}`;
+  const nameClass = localStorage.getItem("pupilClass");
+
   useEffect(() => {
     const fetchClasses = async () => {
       try {
@@ -66,24 +67,34 @@ const Report = ({ report, setReport }) => {
       try {
         const response = await api.get(`/users/pupils/classes/`);
         setClasses(response.data);
-        setDepres(Math.round(response.data.classes[test]?.sad_avg));
-
+        console.log(response.data);
         const presentPupilIds =
-          response.data?.classes[test]?.absent_pupils?.pupils;
-        if (Array.isArray(presentPupilIds)) {
-          const promises = presentPupilIds.map(async (id) => {
-            const response1 = await api.get(`/users/pupils/${id.id}`);
-            return response1.data;
-          });
-          const presentPupilsData = await Promise.all(promises);
-          setPupilMissing(presentPupilsData);
-        }
+          response.data?.classes[nameClass ? nameClass : test]?.absent_pupils
+            ?.pupils;
+
+        setPupilMissing(presentPupilIds);
       } catch (error) {
         console.error(error);
       }
     };
     fetchParents();
-  }, [decode, test, setClasses, setDepres]);
+  }, [decode, test, setClasses, setDepres, nameClass]);
+
+  useEffect(() => {
+    const fetchParents = async () => {
+      try {
+        const response = await api.get(`/users/pupils/classes/`);
+        console.log(response.data?.classes[nameClass]);
+        const presentPupilIds =
+          response.data?.classes[nameClass]?.present_pupils?.pupils;
+
+        setLatePupils(presentPupilIds);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchParents();
+  }, [test, nameClass]);
 
   return (
     <div>
@@ -134,7 +145,7 @@ const Report = ({ report, setReport }) => {
 
             <p style={{ display: "flex", justifyContent: "space-between" }}>
               <span>На территории школы</span>
-              <span>- 28</span>
+              <span>- {teachPupilsCount}</span>
             </p>
 
             <p style={{ display: "flex", justifyContent: "space-between" }}>
@@ -156,7 +167,7 @@ const Report = ({ report, setReport }) => {
                   <div className="accordion-header">
                     <p className="accordion-name">Отсутсвуют</p>
                     <p className="accordion-item-span">
-                      - {(pupilMissing?.length - 1) | 0}
+                      - {pupilMissing?.length | 0}
                     </p>
                   </div>
                 </Accordion.Header>
@@ -165,22 +176,18 @@ const Report = ({ report, setReport }) => {
                     {pupilMissing?.map((item, index) => (
                       <li
                         key={index}
-                        className="attendance_item"
+                        className="accordion-listItem"
                         style={{ borderColor: theme }}
                       >
-                        <Link className="attendance_link">
-                          <p className="attendance_name">{item?.full_name}</p>
-                          <img
-                            className="attendance_avatar"
-                            style={{ objectFit: "cover" }}
-                            src={
-                              item?.main_image ? item?.main_image : usersLogo
-                            }
-                            alt="Avatar"
-                            width="50"
-                            height="50"
-                          />
-                        </Link>
+                        <img
+                          className="userImage"
+                          style={{ objectFit: "cover" }}
+                          src={item?.main_image ? item?.main_image : usersLogo}
+                          alt="user"
+                          width="50"
+                          height="50"
+                        />
+                        <p className="fullName">{item?.full_name}</p>
                       </li>
                     ))}
                   </ul>
@@ -193,21 +200,30 @@ const Report = ({ report, setReport }) => {
                 <Accordion.Header>
                   <div className="accordion-header">
                     <p className="accordion-name">Опоздавшие</p>
-                    <p className="accordion-item-span">- 1</p>
+                    <p className="accordion-item-span">
+                      - {latePupils?.length | 0}
+                    </p>
                   </div>
                 </Accordion.Header>
                 <Accordion.Body>
                   <ul className="accordion-list">
-                    <li className="accordion-listItem">
-                      <img
-                        className="userImage"
-                        src={Image}
-                        alt="user"
-                        width="50"
-                        height="50"
-                      />
-                      <p className="fullName">Shohruh Azimov</p>
-                    </li>
+                    {latePupils?.map((item, index) => (
+                      <li
+                        key={index}
+                        className="accordion-listItem"
+                        style={{ borderColor: theme }}
+                      >
+                        <img
+                          className="userImage"
+                          style={{ objectFit: "cover" }}
+                          src={item?.main_image ? item?.main_image : usersLogo}
+                          alt="user"
+                          width="50"
+                          height="50"
+                        />
+                        <p className="fullName">{item?.full_name}</p>
+                      </li>
+                    ))}
                   </ul>
                 </Accordion.Body>
               </Accordion.Item>

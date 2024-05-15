@@ -152,7 +152,6 @@ function Pupil() {
       style={{ "--scrollbar-thumb": theme }}
     >
       {user?.map((item, index) => {
-        console.log(item.pupil_class);
         const date = item.birth_date;
         const birthDate = new Date(date);
         const today = new Date();
