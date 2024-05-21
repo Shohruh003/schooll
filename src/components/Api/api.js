@@ -1,28 +1,30 @@
-import axios from 'axios';
+import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'https://smartsafeschoolback.tadi.uz/api',
+  baseURL: "http://192.168.14.12:8585/api",
 });
 
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token === undefined) {
-      const refreshToken = localStorage.getItem('refreshToken');
-      axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
-          'refresh': refreshToken
+      const refreshToken = localStorage.getItem("refreshToken");
+      axios
+        .post("http://192.168.14.12:8585/api/users/token/refresh/", {
+          refresh: refreshToken,
         })
-      .then((result) => {
-        const { token } = result.data.access;
+        .then((result) => {
+          const { token } = result.data.access;
 
-        localStorage.setItem('token', token);
+          localStorage.setItem("token", token);
 
-        config.headers.Authorization = `Bearer ${token}`;
-      }).catch((error) => {
-        localStorage.clear()
-		window.location.reload()
-        console.log(error);
-      });
+          config.headers.Authorization = `Bearer ${token}`;
+        })
+        .catch((error) => {
+          localStorage.clear();
+          window.location.reload();
+          console.log(error);
+        });
     } else {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -39,22 +41,23 @@ api.interceptors.response.use(
     const originalRequest = error.config;
     if (error.response?.status === 403 && !originalRequest._retry) {
       originalRequest._retry = true;
-      const refreshToken = localStorage.getItem('refreshToken');
-      axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
-          'refresh': refreshToken
+      const refreshToken = localStorage.getItem("refreshToken");
+      axios
+        .post("http://192.168.14.12:8585/api/users/token/refresh/", {
+          refresh: refreshToken,
         })
-      .then((result) => {
-        const { token } = result.data.access;
+        .then((result) => {
+          const { token } = result.data.access;
 
-        localStorage.setItem('token', token);
-        originalRequest.headers.Authorization = `Bearer ${token}`;
-        return api(originalRequest); // api ni o'zgartirdik
-
-      }).catch((error) => {
-        localStorage.clear()
-		window.location.reload()
-        console.log(error);
-      });
+          localStorage.setItem("token", token);
+          originalRequest.headers.Authorization = `Bearer ${token}`;
+          return api(originalRequest); // api ni o'zgartirdik
+        })
+        .catch((error) => {
+          localStorage.clear();
+          window.location.reload();
+          console.log(error);
+        });
     }
 
     return Promise.reject(error);
@@ -69,7 +72,7 @@ api.interceptors.response.use(
 //     if (token === undefined) {
 //       try {
 //         const refreshToken = localStorage.getItem('refreshToken');
-//         const response = axios.post('https://smartsafeschoolback.tadi.uz/api/users/token/refresh/', {
+//         const response = axios.post('http://192.168.14.12:8585/api/users/token/refresh/', {
 //           'refresh': refreshToken
 //         });
 //         const { token } = response.data.access;
