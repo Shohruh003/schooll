@@ -20,7 +20,7 @@ function Login() {
     formData.append("password", password.value);
 
     axios
-      .post("http://192.168.14.12:8585/api/users/token/", formData)
+      .post("http://192.168.100.53:8585/api/users/token/", formData)
       .then((response) => {
         console.log(response.data);
         localStorage.setItem("refreshToken", response.data?.refresh);

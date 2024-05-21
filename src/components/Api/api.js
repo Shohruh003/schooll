@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://192.168.14.12:8585/api",
+  baseURL: "http://192.168.100.53:8585/api",
 });
 
 api.interceptors.request.use(
@@ -10,7 +10,7 @@ api.interceptors.request.use(
     if (token === undefined) {
       const refreshToken = localStorage.getItem("refreshToken");
       axios
-        .post("http://192.168.14.12:8585/api/users/token/refresh/", {
+        .post("http://192.168.100.53:8585/api/users/token/refresh/", {
           refresh: refreshToken,
         })
         .then((result) => {
@@ -43,7 +43,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       const refreshToken = localStorage.getItem("refreshToken");
       axios
-        .post("http://192.168.14.12:8585/api/users/token/refresh/", {
+        .post("http://192.168.100.53:8585/api/users/token/refresh/", {
           refresh: refreshToken,
         })
         .then((result) => {
@@ -72,7 +72,7 @@ api.interceptors.response.use(
 //     if (token === undefined) {
 //       try {
 //         const refreshToken = localStorage.getItem('refreshToken');
-//         const response = axios.post('http://192.168.14.12:8585/api/users/token/refresh/', {
+//         const response = axios.post('http://192.168.100.53:8585/api/users/token/refresh/', {
 //           'refresh': refreshToken
 //         });
 //         const { token } = response.data.access;
