@@ -159,12 +159,12 @@ function Dashboard () {
 
 		fetchPupils();
 	}, [setPupilEmotion]);
-const neutralTeacher = teacherEmotion?.neutral?.count
-		const happyTeacher = teacherEmotion?.happy?.count
-		const sadTeacher = teacherEmotion?.sad?.count
-		const angryTeacher = teacherEmotion?.angry?.count
-		const surpriseTeacher = teacherEmotion?.surprise?.count
-		const fearTeacher = teacherEmotion?.fear?.count
+		const neutralTeacher = teacherEmotion?.neutral?.count || 50
+		const happyTeacher = teacherEmotion?.happy?.count || 10
+		const sadTeacher = teacherEmotion?.sad?.count || 10
+		const angryTeacher = teacherEmotion?.angry?.count || 10
+		const surpriseTeacher = teacherEmotion?.surprise?.count || 10
+		const fearTeacher = teacherEmotion?.fear?.count || 10
 
 
 	const options = {
@@ -197,12 +197,12 @@ const neutralTeacher = teacherEmotion?.neutral?.count
 		backgroundColor: "transparent"
 	}
 
-		const neutralPupils = pupilEmotion?.neutral?.count
-		const happyPupils = pupilEmotion?.happy?.count
-		const sadPupils = pupilEmotion?.sad?.count
-		const angryPupils = pupilEmotion?.angry?.count
-		const surprisePupils = pupilEmotion?.surprise?.count
-		const fearPupils = pupilEmotion?.fear?.count
+		const neutralPupils = pupilEmotion?.neutral?.count || 50
+		const happyPupils = pupilEmotion?.happy?.count || 10
+		const sadPupils = pupilEmotion?.sad?.count || 10
+		const angryPupils = pupilEmotion?.angry?.count || 10
+		const surprisePupils = pupilEmotion?.surprise?.count || 10
+		const fearPupils = pupilEmotion?.fear?.count || 10
 
 	const pupils = {
 		animationEnabled: true,

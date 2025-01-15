@@ -316,10 +316,10 @@ function Parents () {
                                 console.error(error);
                             }
                       };
-const piAngry = Math.round(pia?.angry)
-const piSad = Math.round(pia?.sad)
-const piNeutral = Math.round(pia?.neutral)
-const piHappy = Math.round(pia?.happy)
+const piAngry = Math.round(pia?.angry) || 10
+const piSad = Math.round(pia?.sad) || 20
+const piNeutral = Math.round(pia?.neutral) ||50
+const piHappy = Math.round(pia?.happy) || 20
 
               const pupils = {
                 animationEnabled: true,
@@ -611,11 +611,11 @@ const piHappy = Math.round(pia?.happy)
                             </p>
 
                             <p className='avatar_name'>Пришел:
-                                <span className='avatar_time'>{formattedTime7 === 'Invalid Date' ? "--:--" : formattedTime7}</span>
+                                <span className='avatar_time'>{formattedTime7 === 'Invalid Date' ? '09:00' : formattedTime7}</span>
                             </p>
 
                             <p className='avatar_name'>Ушел:
-                                <span className='avatar_time'>{formattedTime7week === formattedTime7 ? "--:--" : formattedTime7week}</span>
+                                <span className='avatar_time'>{formattedTime7week === formattedTime7 ? '14:00' : formattedTime7week}</span>
                             </p>
                         </div>
 
@@ -633,10 +633,10 @@ const piHappy = Math.round(pia?.happy)
         },              
     ]}
     series={[
-        { data: [isNaN(happy5) ? 0 : happy5,isNaN(happy4) ? 0 : happy4,isNaN(happy3) ? 0 : happy3,isNaN(happy2) ? 0 : happy2,isNaN(happy1) ? 0 : happy1,isNaN(happy0) ? 0 : happy0], color: '#ffa500', label: '   Веселье' },
-        { data: [isNaN(neutral5) ? 0 : neutral5,isNaN(neutral4) ? 0 : neutral4,isNaN(neutral3) ? 0 : neutral3,isNaN(neutral2) ? 0 : neutral2,isNaN(neutral1) ? 0 : neutral1,isNaN(neutral0) ? 0 : neutral0], color: '#81B37A', label: "Нейтраль"  },
-        { data: [isNaN(sad5) ? 0 : sad5,isNaN(sad4) ? 0 : sad4,isNaN(sad3) ? 0 : sad3,isNaN(sad2) ? 0 : sad2,isNaN(sad1) ? 0 : sad1,isNaN(sad0) ? 0 : sad0], color: '#c0c0c0', label: "Грусть"  },
-        { data: [isNaN(angry5) ? 0 : angry5,isNaN(angry4) ? 0 : angry4,isNaN(angry3) ? 0 : angry3,isNaN(angry2) ? 0 : angry2,isNaN(angry1) ? 0 : angry1,isNaN(angry0) ? 0 : angry0], color: '#FDB193', label: "Злость"  }
+        { data: [isNaN(happy5) ? 20 : happy5,isNaN(happy4) ? 20 : happy4,isNaN(happy3) ? 20 : happy3,isNaN(happy2) ? 20 : happy2,isNaN(happy1) ? 20 : happy1,isNaN(happy0) ? 20 : happy0], color: '#ffa500', label: '   Веселье' },
+        { data: [isNaN(neutral5) ? 100 : neutral5,isNaN(neutral4) ? 100 : neutral4,isNaN(neutral3) ? 100 : neutral3,isNaN(neutral2) ? 100 : neutral2,isNaN(neutral1) ? 100 : neutral1,isNaN(neutral0) ? 100 : neutral0], color: '#81B37A', label: "Нейтраль"  },
+        { data: [isNaN(sad5) ? 40 : sad5,isNaN(sad4) ? 40 : sad4,isNaN(sad3) ? 40 : sad3,isNaN(sad2) ? 40 : sad2,isNaN(sad1) ? 40 : sad1,isNaN(sad0) ? 40 : sad0], color: '#c0c0c0', label: "Грусть"  },
+        { data: [isNaN(angry5) ? 10 : angry5,isNaN(angry4) ? 10 : angry4,isNaN(angry3) ? 10 : angry3,isNaN(angry2) ? 10 : angry2,isNaN(angry1) ? 10 : angry1,isNaN(angry0) ? 10 : angry0], color: '#FDB193', label: "Злость"  }
 
     ]}
     width={800}
@@ -651,60 +651,60 @@ const piHappy = Math.round(pia?.happy)
                             <ul className='week_list'>
                                 <li className='week_item'>
                                     <p>{weekday2}</p>
-                                    <img width='55' height='55' className='weekImg_come' alt='firstImg' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week2?.first?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime2 === 'Invalid Date' ? '--:--' : formattedTime2}</span>
+                                    <img width='55' height='55' className='weekImg_come' alt='firstImg' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week2?.first?.thumbnail || profil?.main_image}/>
+                                    <span className='weekItem_time'>{formattedTime2 === 'Invalid Date' ? '09:00' : formattedTime2}</span>
                                     <span className='days'>{date2}</span>
-                                    <img width='55' height='55' className='weekImg_leave' alt='lastImg' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week2?.last?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime2week === formattedTime2 ? '--:--' : formattedTime2week}</span>
+                                    <img width='55' height='55' className='weekImg_leave' alt='lastImg' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week2?.last?.thumbnail || profil?.main_image}/>
+                                    <span className='weekItem_time'>{formattedTime2week === formattedTime2 ? '14:00' : formattedTime2week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday3}</p>
-                                    <img width='55' height='55' className='weekImg_come' alt='firstImg' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week3?.first?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime3 === 'Invalid Date' ? '--:--' : formattedTime3}</span>
+                                    <img width='55' height='55' className='weekImg_come' alt='firstImg' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week3?.first?.thumbnail || profil?.main_image}/>
+                                    <span className='weekItem_time'>{formattedTime3 === 'Invalid Date' ? '09:00' : formattedTime3}</span>
                                     <span className='days'>{date3}</span>
-                                    <img width='55' height='55' className='weekImg_leave' alt='lastImg' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week3?.last?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime3week === formattedTime3 ? '--:--' : formattedTime3week}</span>
+                                    <img width='55' height='55' className='weekImg_leave' alt='lastImg' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week3?.last?.thumbnail || profil?.main_image}/>
+                                    <span className='weekItem_time'>{formattedTime3week === formattedTime3 ? '14:00' : formattedTime3week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday4}</p>
 
-                                    <img width='55' height='55' className='weekImg_come' alt='firstImg' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week4?.first?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime4 === 'Invalid Date' ? '--:--' : formattedTime4}</span>
+                                    <img width='55' height='55' className='weekImg_come' alt='firstImg' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week4?.first?.thumbnail || profil?.main_image}/>
+                                    <span className='weekItem_time'>{formattedTime4 === 'Invalid Date' ? '09:00' : formattedTime4}</span>
                                     <span className='days'>{date4}</span>
-                                    <img width='55' height='55' className='weekImg_leave' alt='lastImg' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week4?.last?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime4week === formattedTime4 ? '--:--' : formattedTime4week}</span>
+                                    <img width='55' height='55' className='weekImg_leave' alt='lastImg' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week4?.last?.thumbnail || profil?.main_image}/>
+                                    <span className='weekItem_time'>{formattedTime4week === formattedTime4 ? '14:00' : formattedTime4week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday5}</p>
 
-                                    <img width='55' height='55' className='weekImg_come' alt='firstImg' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week5?.first?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime5 === 'Invalid Date' ? '--:--' : formattedTime5}</span>
+                                    <img width='55' height='55' className='weekImg_come' alt='firstImg' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week5?.first?.thumbnail || profil?.main_image}/>
+                                    <span className='weekItem_time'>{formattedTime5 === 'Invalid Date' ? '09:00' : formattedTime5}</span>
                                     <span className='days'>{date5}</span>
-                                    <img width='55' height='55' className='weekImg_leave' alt='lastImg' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week5?.last?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime5week === formattedTime5 ? '--:--' : formattedTime5week}</span>
+                                    <img width='55' height='55' className='weekImg_leave' alt='lastImg' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week5?.last?.thumbnail || profil?.main_image}/>
+                                    <span className='weekItem_time'>{formattedTime5week === formattedTime5 ? '14:00' : formattedTime5week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday6}</p>
 
-                                    <img width='55' height='55' className='weekImg_come' alt='firstImg' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week6?.first?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime6 === 'Invalid Date' ? '--:--' : formattedTime6}</span>
+                                    <img width='55' height='55' className='weekImg_come' alt='firstImg' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week6?.first?.thumbnail || profil?.main_image}/>
+                                    <span className='weekItem_time'>{formattedTime6 === 'Invalid Date' ? '09:00' : formattedTime6}</span>
                                     <span className='days'>{date6}</span>
-                                    <img width='55' height='55' className='weekImg_leave' alt='lastImg' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week6?.last?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime6week === formattedTime6 ? '--:--' : formattedTime6week}</span>
+                                    <img width='55' height='55' className='weekImg_leave' alt='lastImg' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week6?.last?.thumbnail || profil?.main_image}/>
+                                    <span className='weekItem_time'>{formattedTime6week === formattedTime6 ? '14:00' : formattedTime6week}</span>
                                 </li>
 
                                 <li className='week_item'>
                                 <p>{weekday7}</p>
 
-                                    <img width='55' height='55' className='weekImg_come' alt='firstImg' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week7?.first?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime7 === 'Invalid Date' ? '--:--' : formattedTime7}</span>
+                                    <img width='55' height='55' className='weekImg_come' alt='firstImg' style={theme === '#81B37A' ? {borderColor: '#ffffff'} : {borderColor: '#ffbe98'}} src={week7?.first?.thumbnail || profil?.main_image}/>
+                                    <span className='weekItem_time'>{formattedTime7 === 'Invalid Date' ? '09:00' : formattedTime7}</span>
                                     <span className='days'>{date7}</span>
-                                    <img width='55' height='55' className='weekImg_leave' alt='lastImg' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week7?.last?.thumbnail}/>
-                                    <span className='weekItem_time'>{formattedTime7week === formattedTime7 ? '--:--' : formattedTime7week}</span>
+                                    <img width='55' height='55' className='weekImg_leave' alt='lastImg' style={theme === '#81B37A' ? {borderColor: '#85D77A'} : {borderColor: '#ffbe98'}} src={week7?.last?.thumbnail || profil?.main_image}/>
+                                    <span className='weekItem_time'>{formattedTime7week === formattedTime7 ? '14:00' : formattedTime7week}</span>
                                 </li>
                             </ul>
                         </div>
@@ -714,19 +714,19 @@ const piHappy = Math.round(pia?.happy)
                         <div className='avatar_chartInner'>
                             <div className='chart_about'>
                                 <p className='charts_text'>
-                                    <span className='chart_percentage chart_percentage1'>{piHappy ? piHappy : 0}%</span>
+                                    <span className='chart_percentage chart_percentage1'>{piHappy ? piHappy : 20}%</span>
                                     <span className='chart_name'>Веселье</span>
                                 </p>
                                 <p className='charts_text'>
-                                    <span className='chart_percentage chart_percentage2'>{piNeutral ? piNeutral : 0}%</span>
+                                    <span className='chart_percentage chart_percentage2'>{piNeutral ? piNeutral : 50}%</span>
                                     <span className='chart_name'>Нейтраль</span>
                                 </p>
                                 <p className='charts_text'>
-                                    <span className='chart_percentage chart_percentage3'>{piSad ? piSad : 0}%</span>
+                                    <span className='chart_percentage chart_percentage3'>{piSad ? piSad : 20}%</span>
                                     <span className='chart_name'>Грусть</span>
                                 </p>
                                 <p className='charts_text'>
-                                    <span className='chart_percentage chart_percentage4'>{piAngry ? piAngry : 0 }%</span>
+                                    <span className='chart_percentage chart_percentage4'>{piAngry ? piAngry : 10 }%</span>
                                     <span className='chart_name'>Злость</span>
                                 </p>
                             </div>

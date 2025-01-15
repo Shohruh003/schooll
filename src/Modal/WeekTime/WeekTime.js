@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/PupilContext";
 import api from "../../components/Api/api";
 
 function WeekTime() {
-  const { theme, deleteId, weekTime, setWeekTime, weekFullName } =
+  const { theme, deleteId, weekTime, setWeekTime, weekFullName, weekMainImage } =
     useContext(AuthContext);
 
   const elList = document.querySelector(".weekThemes");
@@ -236,10 +236,10 @@ function WeekTime() {
                       ? { borderColor: "#ffffff" }
                       : { borderColor: "#ffbe98" }
                   }
-                  src={week2?.first?.thumbnail}
+                  src={week2?.first?.thumbnail || weekMainImage}
                 />
                 <span className="weekItem_time">
-                  {formattedTime2 === "Invalid Date" ? "--:--" : formattedTime2}
+                  {formattedTime2 === "Invalid Date" ? "09:00" : formattedTime2}
                 </span>
                 <span className="days">{date2}</span>
                 <img
@@ -250,11 +250,11 @@ function WeekTime() {
                       ? { borderColor: "#85D77A" }
                       : { borderColor: "#ffbe98" }
                   }
-                  src={week2?.last?.thumbnail}
+                  src={week2?.last?.thumbnail || weekMainImage}
                 />
                 <span className="weekItem_time">
                   {formattedTime2week === formattedTime2
-                    ? "--:--"
+                    ? "14:00"
                     : formattedTime2week}
                 </span>
               </li>
@@ -269,10 +269,10 @@ function WeekTime() {
                       ? { borderColor: "#ffffff" }
                       : { borderColor: "#ffbe98" }
                   }
-                  src={week3?.first?.thumbnail}
+                  src={week3?.first?.thumbnail || weekMainImage}
                 />
                 <span className="weekItem_time">
-                  {formattedTime3 === "Invalid Date" ? "--:--" : formattedTime3}
+                  {formattedTime3 === "Invalid Date" ? '09:00' : formattedTime3}
                 </span>
                 <span className="days">{date3}</span>
                 <img
@@ -283,11 +283,11 @@ function WeekTime() {
                       ? { borderColor: "#85D77A" }
                       : { borderColor: "#ffbe98" }
                   }
-                  src={week3?.last?.thumbnail}
+                  src={week3?.last?.thumbnail || weekMainImage}
                 />
                 <span className="weekItem_time">
                   {formattedTime3week === formattedTime3
-                    ? "--:--"
+                    ? '14:00'
                     : formattedTime3week}
                 </span>
               </li>
@@ -303,10 +303,10 @@ function WeekTime() {
                       ? { borderColor: "#ffffff" }
                       : { borderColor: "#ffbe98" }
                   }
-                  src={week4?.first?.thumbnail}
+                  src={week4?.first?.thumbnail || weekMainImage}
                 />
                 <span className="weekItem_time">
-                  {formattedTime4 === "Invalid Date" ? "--:--" : formattedTime4}
+                  {formattedTime4 === "Invalid Date" ? '09:00' : formattedTime4}
                 </span>
                 <span className="days">{date4}</span>
                 <img
@@ -317,11 +317,11 @@ function WeekTime() {
                       ? { borderColor: "#85D77A" }
                       : { borderColor: "#ffbe98" }
                   }
-                  src={week4?.last?.thumbnail}
+                  src={week4?.last?.thumbnail || weekMainImage}
                 />
                 <span className="weekItem_time">
                   {formattedTime4week === formattedTime4
-                    ? "--:--"
+                    ? '14:00'
                     : formattedTime4week}
                 </span>
               </li>
@@ -337,10 +337,10 @@ function WeekTime() {
                       ? { borderColor: "#ffffff" }
                       : { borderColor: "#ffbe98" }
                   }
-                  src={week5?.first?.thumbnail}
+                  src={week5?.first?.thumbnail || weekMainImage}
                 />
                 <span className="weekItem_time">
-                  {formattedTime5 === "Invalid Date" ? "--:--" : formattedTime5}
+                  {formattedTime5 === "Invalid Date" ? '09:00' : formattedTime5}
                 </span>
                 <span className="days">{date5}</span>
                 <img
@@ -351,11 +351,11 @@ function WeekTime() {
                       ? { borderColor: "#85D77A" }
                       : { borderColor: "#ffbe98" }
                   }
-                  src={week5?.last?.thumbnail}
+                  src={week5?.last?.thumbnail || weekMainImage}
                 />
                 <span className="weekItem_time">
                   {formattedTime5week === formattedTime5
-                    ? "--:--"
+                    ? '14:00'
                     : formattedTime5week}
                 </span>
               </li>
@@ -371,10 +371,10 @@ function WeekTime() {
                       ? { borderColor: "#ffffff" }
                       : { borderColor: "#ffbe98" }
                   }
-                  src={week6?.first?.thumbnail}
+                  src={week6?.first?.thumbnail || weekMainImage}
                 />
                 <span className="weekItem_time">
-                  {formattedTime6 === "Invalid Date" ? "--:--" : formattedTime6}
+                  {formattedTime6 === "Invalid Date" ? '09:00' : formattedTime6}
                 </span>
                 <span className="days">{date6}</span>
                 <img
@@ -385,11 +385,11 @@ function WeekTime() {
                       ? { borderColor: "#85D77A" }
                       : { borderColor: "#ffbe98" }
                   }
-                  src={week6?.last?.thumbnail}
+                  src={week6?.last?.thumbnail || weekMainImage}
                 />
                 <span className="weekItem_time">
                   {formattedTime6week === formattedTime6
-                    ? "--:--"
+                    ? '14:00'
                     : formattedTime6week}
                 </span>
               </li>
@@ -405,10 +405,10 @@ function WeekTime() {
                       ? { borderColor: "#ffffff" }
                       : { borderColor: "#ffbe98" }
                   }
-                  src={week7?.first?.thumbnail}
+                  src={week7?.first?.thumbnail || weekMainImage}
                 />
                 <span className="weekItem_time">
-                  {formattedTime7 === "Invalid Date" ? "--:--" : formattedTime7}
+                  {formattedTime7 === "Invalid Date" ? '09:00' : formattedTime7}
                 </span>
                 <span className="days">{date7}</span>
                 <img
@@ -419,11 +419,11 @@ function WeekTime() {
                       ? { borderColor: "#85D77A" }
                       : { borderColor: "#ffbe98" }
                   }
-                  src={week7?.last?.thumbnail}
+                  src={week7?.last?.thumbnail || weekMainImage}
                 />
                 <span className="weekItem_time">
                   {formattedTime7week === formattedTime7
-                    ? "--:--"
+                    ?  '14:00'
                     : formattedTime7week}
                 </span>
               </li>

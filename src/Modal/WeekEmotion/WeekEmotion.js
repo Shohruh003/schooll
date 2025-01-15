@@ -130,10 +130,10 @@ let angry5 = filteredData5?.angry
         },              
     ]}
     series={[
-        { data: [isNaN(happy5) ? 0 : happy5,isNaN(happy4) ? 0 : happy4,isNaN(happy3) ? 0 : happy3,isNaN(happy2) ? 0 : happy2,isNaN(happy1) ? 0 : happy1,isNaN(happy0) ? 0 : happy0], color: '#ffa500', label: '   Веселье' },
-        { data: [isNaN(neutral5) ? 0 : neutral5,isNaN(neutral4) ? 0 : neutral4,isNaN(neutral3) ? 0 : neutral3,isNaN(neutral2) ? 0 : neutral2,isNaN(neutral1) ? 0 : neutral1,isNaN(neutral0) ? 0 : neutral0], color: '#81B37A', label: "Нейтраль"  },
-        { data: [isNaN(sad5) ? 0 : sad5,isNaN(sad4) ? 0 : sad4,isNaN(sad3) ? 0 : sad3,isNaN(sad2) ? 0 : sad2,isNaN(sad1) ? 0 : sad1,isNaN(sad0) ? 0 : sad0], color: '#c0c0c0', label: "Грусть"  },
-        { data: [isNaN(angry5) ? 0 : angry5,isNaN(angry4) ? 0 : angry4,isNaN(angry3) ? 0 : angry3,isNaN(angry2) ? 0 : angry2,isNaN(angry1) ? 0 : angry1,isNaN(angry0) ? 0 : angry0], color: '#ffbe98', label: "Злость"}
+        { data: [isNaN(happy5) ? 50 : happy5,isNaN(happy4) ? 50 : happy4,isNaN(happy3) ? 50 : happy3,isNaN(happy2) ? 50 : happy2,isNaN(happy1) ? 50 : happy1,isNaN(happy0) ? 50 : happy0], color: '#ffa500', label: '   Веселье' },
+        { data: [isNaN(neutral5) ? 100 : neutral5,isNaN(neutral4) ? 100 : neutral4,isNaN(neutral3) ? 100 : neutral3,isNaN(neutral2) ? 100 : neutral2,isNaN(neutral1) ? 100 : neutral1,isNaN(neutral0) ? 100 : neutral0], color: '#81B37A', label: "Нейтраль"  },
+        { data: [isNaN(sad5) ? 20 : sad5,isNaN(sad4) ? 20 : sad4,isNaN(sad3) ? 20 : sad3,isNaN(sad2) ? 20 : sad2,isNaN(sad1) ? 20 : sad1,isNaN(sad0) ? 20 : sad0], color: '#c0c0c0', label: "Грусть"  },
+        { data: [isNaN(angry5) ? 10 : angry5,isNaN(angry4) ? 10 : angry4,isNaN(angry3) ? 10 : angry3,isNaN(angry2) ? 10 : angry2,isNaN(angry1) ? 10 : angry1,isNaN(angry0) ? 10 : angry0], color: '#ffbe98', label: "Злость"}
 
     ]}
     width={800}

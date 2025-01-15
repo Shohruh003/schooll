@@ -15,21 +15,21 @@ function Dash() {
 
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const fetchPupils = async () => {
-      try {
-        const response = await api.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/for_pupils/');
-        setDashPupil(response.data.Pupils)
-        setDashteacher(response.data.Teacher)
-        setUser(response.data.Users)
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  //   const fetchPupils = async () => {
+  //     try {
+  //       const response = await api.get('https://www.api.yomon-emas.uz/api/users/all_pupils_emotion/for_pupils/');
+  //       setDashPupil(response.data.Pupils)
+  //       setDashteacher(response.data.Teacher)
+  //       setUser(response.data.Users)
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
 
-    fetchPupils();
-  }, []);
+  //   fetchPupils();
+  // }, []);
 
 
   return (

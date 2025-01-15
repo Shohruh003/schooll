@@ -70,7 +70,7 @@ function ClassesList() {
                   <span className="class_name">
                     {item.value.all_pupils_count
                       ? item.value.all_pupils_count
-                      : "Отсутствует"}
+                      : 0}
                   </span>
                 </div>
               </p>
@@ -79,7 +79,11 @@ function ClassesList() {
                 <div>
                   <span className="class_heading">Учеников в классе</span>
                   <span className="class_name">
-                    {item.value.present_pupils.count}
+                    {/* {item.value.present_pupils.count}
+                     */}
+                     {item.value.all_pupils_count
+                      ? item.value.all_pupils_count
+                      : 0}
                   </span>
                 </div>
               </p>
@@ -99,8 +103,8 @@ function ClassesList() {
                       ? "Страх"
                       : item.value.common_emotion === "surprise"
                       ? "Удивление"
-                      : "Отсутствует"
-                    : "Отсутствует"
+                      : "Нейтраль"
+                    : "Нейтраль"
                 }`}
                 style={{ borderColor: theme }}
               >
@@ -119,13 +123,13 @@ function ClassesList() {
                         ? "Страх"
                         : item.value.common_emotion === "surprise"
                         ? "Удивление"
-                        : "Отсутствует"
-                      : "Отсутствует"}
+                        : "Нейтраль"
+                      : "Нейтраль"}
                   </span>
                   <span className="class_name">
                     {Math.floor(item.value.avg_confidence)
                       ? Math.floor(item.value.avg_confidence)
-                      : 0}{" "}
+                      : 100}{" "}
                     %
                   </span>
                 </div>
