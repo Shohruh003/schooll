@@ -9,42 +9,6 @@ import WeekEmotion from "../../Modal/WeekEmotion/WeekEmotion";
 import WeekTime from "../../Modal/WeekTime/WeekTime";
 import api from "../Api/api";
 
-const mock = [
-  {
-    id: 2,
-    age: 10,
-    className: "5-B",
-    emotions: "sad",
-    confidence: "90",
-    come: "09:00",
-    exit: "14:00",
-    displayName: "Мария Ивановна",
-    photo: "https://react-declarative-playground.github.io/image/7.jpg",
-  },
-  {
-    id: 3,
-    age: 15,
-    className: "7-V",
-    emotions: "angry",
-    confidence: "74",
-    come: "09:00",
-    exit: "14:00",
-    displayName: "Baxriddinov Jamshid",
-    photo: "https://react-declarative-playground.github.io/image/5.jpg",
-  },
-  {
-    id: 4,
-    age: 15,
-    className: "8-A",
-    emotions: "neutral",
-    confidence: "95",
-    come: "09:00",
-    exit: "14:00",
-    displayName: "Azimjonov Musoxon",
-    photo: "https://react-declarative-playground.github.io/image/6.jpg",
-  },
-];
-
 function TeacherList() {
   const {
     weekTime,
